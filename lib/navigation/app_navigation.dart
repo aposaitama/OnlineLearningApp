@@ -4,6 +4,7 @@ import 'package:online_app/screens/account_screen/account_screen.dart';
 import 'package:online_app/screens/auth_screen/login_screen/login_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/phone_linking_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/register_screen.dart';
+import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/verify_phone_screen.dart';
 import 'package:online_app/screens/course_screen/course_screen.dart';
 import 'package:online_app/screens/home_screen/home_screen.dart';
 import 'package:online_app/screens/message_screen/message_screen.dart';
@@ -12,7 +13,7 @@ import 'package:online_app/screens/root_screen/root_screen.dart';
 class AppRouter {
   GoRouter createRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: '/register',
+      initialLocation: '/phone_linking',
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => RootScreen(
@@ -88,6 +89,10 @@ class AppRouter {
         GoRoute(
           path: '/phone_linking',
           builder: (context, state) => const PhoneLinkingScreen(),
+        ),
+        GoRoute(
+          path: '/phone_verify',
+          builder: (context, state) => const VerifyPhoneScreen(),
         ),
 
         // GoRoute(

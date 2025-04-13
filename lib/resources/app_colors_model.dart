@@ -16,8 +16,9 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
   final Color pink;
   final Color violet;
   final Color onSurface;
+  final Color onSurfaceContainer; // 🆕 нове поле
   final Color mainTextColor;
-  final Color hintTextColor; // нове поле
+  final Color hintTextColor;
 
   const AppColorsModel({
     required this.redLight,
@@ -34,8 +35,9 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
     required this.pink,
     required this.violet,
     required this.onSurface,
-    required this.mainTextColor, // ініціалізація нового поля
-    required this.hintTextColor, // ініціалізація нового поля
+    required this.onSurfaceContainer, // 🆕 ініціалізація нового поля
+    required this.mainTextColor,
+    required this.hintTextColor,
   });
 
   @override
@@ -56,9 +58,10 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
       pink: Color.lerp(pink, other.pink, t)!,
       violet: Color.lerp(violet, other.violet, t)!,
       onSurface: Color.lerp(onSurface, other.onSurface, t)!,
+      onSurfaceContainer:
+          Color.lerp(onSurfaceContainer, other.onSurfaceContainer, t)!, // 🆕
       mainTextColor: Color.lerp(mainTextColor, other.mainTextColor, t)!,
-      hintTextColor: Color.lerp(
-          hintTextColor, other.hintTextColor, t)!, // лерп для нового поля
+      hintTextColor: Color.lerp(hintTextColor, other.hintTextColor, t)!,
     );
   }
 
@@ -78,8 +81,9 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
     Color? pink,
     Color? violet,
     Color? onSurface,
+    Color? onSurfaceContainer, // 🆕
     Color? mainTextColor,
-    Color? hintTextColor, // параметр для нового поля
+    Color? hintTextColor,
   }) {
     return AppColorsModel(
       redLight: redLight ?? this.redLight,
@@ -96,10 +100,9 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
       pink: pink ?? this.pink,
       violet: violet ?? this.violet,
       onSurface: onSurface ?? this.onSurface,
-      mainTextColor:
-          mainTextColor ?? this.mainTextColor, // оновлення нового поля
-      hintTextColor:
-          hintTextColor ?? this.hintTextColor, // оновлення нового поля
+      onSurfaceContainer: onSurfaceContainer ?? this.onSurfaceContainer, // 🆕
+      mainTextColor: mainTextColor ?? this.mainTextColor,
+      hintTextColor: hintTextColor ?? this.hintTextColor,
     );
   }
 }

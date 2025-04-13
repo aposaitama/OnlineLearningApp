@@ -59,14 +59,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
               contentPadding: const EdgeInsets.only(
                 left: 14.0,
                 right: 22.0,
-                top: 15.0,
-                bottom: 15.0,
+                top: 13.0,
+                bottom: 12.0,
               ),
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              hintStyle: AppFonts.poppinsRegular,
+              hintStyle: AppFonts.poppinsRegular.copyWith(
+                fontSize: 14.0,
+              ),
               hintText: widget.hint,
               suffixIcon: widget.isPassword == true
                   ? Padding(

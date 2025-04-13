@@ -7,6 +7,8 @@ import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/key_field.dart';
+import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/phone_text_field.dart';
+import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:online_app/widgets/custom_text_field.dart';
 
 class PhoneLinkingScreen extends StatelessWidget {
@@ -73,48 +75,123 @@ class PhoneLinkingScreen extends StatelessWidget {
                     topRight: Radius.circular(10.0),
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Gap(25.0),
-                    Text(
-                      'Enter Your  Phone Number',
-                      style: AppFonts.poppinsRegular.copyWith(
-                        fontSize: 14.0,
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()
-                            ?.hintTextColor,
-                      ),
-                    ),
-                    const Gap(25.0),
-                    const CustomTextField(title: 'title', hint: 'hint'),
-                    SizedBox(
-                      height: 250.0,
-                      child: GridView(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          childAspectRatio: 2.0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Gap(25.0),
+                      Text(
+                        'Enter Your  Phone Number',
+                        style: AppFonts.poppinsRegular.copyWith(
+                          fontSize: 14.0,
+                          color: Theme.of(context)
+                              .extension<AppColorsModel>()
+                              ?.hintTextColor,
                         ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        children: const [
-                          KeyField(num: '1'),
-                          KeyField(num: '2'),
-                          KeyField(num: '3'),
-                          KeyField(num: '4'),
-                          KeyField(num: '5'),
-                          KeyField(num: '6'),
-                          KeyField(num: '7'),
-                          KeyField(num: '8'),
-                          KeyField(num: '9'),
-                          KeyField(num: '0'),
+                      ),
+                      const Gap(25.0),
+                      const Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          PhoneTextField(
+                            hint: '',
+                          ),
+                          SizedBox(
+                            width: 125.0,
+                            child: CustomFilledButton(
+                              buttonTitle: 'Continue',
+                            ),
+                          )
                         ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            for (var row in [
+                              ['1', '2', '3'],
+                              ['4', '5', '6'],
+                              ['7', '8', '9'],
+                            ])
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: row
+                                      .map(
+                                        (num) => Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0,
+                                          ),
+                                          child: SizedBox(
+                                            width: 64,
+                                            height: 64,
+                                            child: Center(
+                                              child: KeyField(
+                                                num: num,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20.0,
+                                    ),
+                                    child: SizedBox(
+                                      width: 64,
+                                      height: 64,
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 20.0,
+                                    ),
+                                    child: SizedBox(
+                                        width: 64,
+                                        height: 64,
+                                        child:
+                                            Center(child: KeyField(num: '0'))),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0,
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: SizedBox(
+                                        height: 64.0,
+                                        width: 64.0,
+                                        child: Icon(
+                                          Icons.backspace_outlined,
+                                          color: Theme.of(context)
+                                              .extension<AppColorsModel>()
+                                              ?.mainTextColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

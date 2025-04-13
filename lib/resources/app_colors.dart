@@ -6,6 +6,7 @@ class AppColors {
   static const Color deepBlueColor = Color(0xFF3D5CFF);
   static const Color darkColor = Color(0xFF1F1F39);
   static const Color charcoalBlue = Color(0xFF2F2F42);
+  static const Color darkSlateBlue = Color(0xFF3E3E55);
   static const Color lightGreyColor = Color(0xFFF4F3FD);
   static const Color lavanderGrayColor = Color(0xFFB8B8D2);
   static const Color textPrimary = Color(0xFF272727);
