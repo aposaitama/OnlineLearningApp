@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/account_screen/account_screen.dart';
+import 'package:online_app/screens/auth_screen/login_screen/login_screen.dart';
+import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/phone_linking_screen.dart';
+import 'package:online_app/screens/auth_screen/register_screen/register_screen.dart';
 import 'package:online_app/screens/course_screen/course_screen.dart';
 import 'package:online_app/screens/home_screen/home_screen.dart';
 import 'package:online_app/screens/message_screen/message_screen.dart';
@@ -9,7 +12,7 @@ import 'package:online_app/screens/root_screen/root_screen.dart';
 class AppRouter {
   GoRouter createRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: '/home',
+      initialLocation: '/register',
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => RootScreen(
@@ -74,10 +77,19 @@ class AppRouter {
           ],
         ),
 
-        // GoRoute(
-        //   path: '/bypass',
-        //   builder: (context, state) => const BypassScreen(),
-        // ),
+        GoRoute(
+          path: '/login',
+          builder: (context, state) => const LoginScreen(),
+        ),
+        GoRoute(
+          path: '/register',
+          builder: (context, state) => const RegisterScreen(),
+        ),
+        GoRoute(
+          path: '/phone_linking',
+          builder: (context, state) => const PhoneLinkingScreen(),
+        ),
+
         // GoRoute(
         //   path: '/register_code',
         //   builder: (context, state) => const RegisterScreenEnterCode(),

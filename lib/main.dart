@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/navigation/app_navigation.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
+import 'package:online_app/resources/app_theme.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      theme: GlobalTheme.lightTheme,
+      darkTheme: GlobalTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      routerConfig: AppRouter().createRouter(
+        context,
       ),
-      routerConfig: AppRouter().createRouter(context),
     );
   }
 }

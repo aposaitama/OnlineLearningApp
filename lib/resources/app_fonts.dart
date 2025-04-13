@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppFonts {
+  static TextStyle poppinsBold = const TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.w700,
+    height: 1.0,
+    fontFamily: 'Poppins',
+  );
+
   static TextStyle poppinsSemiBold = const TextStyle(
     fontSize: 24.0,
     fontWeight: FontWeight.w600,
