@@ -95,10 +95,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomFilledButton(
                         buttonTitle: 'Create account',
                         onTap: () {
-                          // SuccessRegistration.show(
-                          //   context,
-                          //   () => context.go('/home'),
-                          // );
                           context.push('/phone_linking');
                         },
                       ),

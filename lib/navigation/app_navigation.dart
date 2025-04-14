@@ -13,7 +13,7 @@ import 'package:online_app/screens/root_screen/root_screen.dart';
 class AppRouter {
   GoRouter createRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: '/phone_linking',
+      initialLocation: '/phone_verify',
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => RootScreen(
@@ -40,16 +40,6 @@ class AppRouter {
                 ),
               ],
             ),
-
-            // StatefulShellBranch(
-            //   routes: [
-            //     GoRoute(
-            //       path: '/search',
-            //       builder: (context, state) =>
-            //           SearchScreen(scaffoldKey: scaffoldKey),
-            //     ),
-            //   ],
-            // ),
             StatefulShellBranch(
               routes: [
                 GoRoute(

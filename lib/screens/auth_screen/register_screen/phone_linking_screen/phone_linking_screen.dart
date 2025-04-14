@@ -93,15 +93,16 @@ class PhoneLinkingScreen extends StatelessWidget {
                         ),
                       ),
                       const Gap(25.0),
-                      const Stack(
+                      Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          PhoneTextField(
+                          const PhoneTextField(
                             hint: '',
                           ),
                           SizedBox(
                             width: 125.0,
                             child: CustomFilledButton(
+                              onTap: () => context.push('/phone_verify'),
                               buttonTitle: 'Continue',
                             ),
                           )

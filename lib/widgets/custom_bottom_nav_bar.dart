@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_colors.dart';
+import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -58,12 +59,14 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               Container(
                 height: 95.0,
                 padding: const EdgeInsets.only(bottom: 20.0),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   ),
-                  color: Colors.white,
+                  color: Theme.of(context)
+                      .extension<AppColorsModel>()
+                      ?.onSurfaceContainer,
                   // boxShadow: [
                   //   BoxShadow(
                   //     color: Colors.black.withOpacity(0.1),
@@ -153,9 +156,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 child: Container(
                   height: 62.0,
                   width: 62.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
+                    color: Theme.of(context)
+                        .extension<AppColorsModel>()
+                        ?.onSurfaceContainer,
                   ),
                   child: Center(
                     child: Container(

@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/key_field.dart';
+import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/success_registration.dart';
+import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/widgets/text_form_field_item.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 
 class VerifyPhoneScreen extends StatelessWidget {
@@ -50,14 +53,165 @@ class VerifyPhoneScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const SizedBox(
+                    height: 70.0,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 60.0,
+                      horizontal: 59.0,
                     ),
-                    child: CustomFilledButton(
-                      buttonTitle: 'Verify and Create Account',
+                    child: Column(
+                      children: [
+                        Text(
+                          'Code is sent to 283 835 2999 ',
+                          style: AppFonts.poppinsRegular.copyWith(
+                            fontSize: 18.0,
+                            color: Theme.of(context)
+                                .extension<AppColorsModel>()
+                                ?.hintTextColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextFormFieldItem(),
+                            TextFormFieldItem(),
+                            TextFormFieldItem(),
+                            TextFormFieldItem(),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Didn’t recieve code?',
+                              style: AppFonts.poppinsRegular.copyWith(
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .extension<AppColorsModel>()
+                                    ?.hintTextColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 4.0,
+                            ),
+                            GestureDetector(
+                              onTap: () => context.go('/register'),
+                              child: Text(
+                                'Request again',
+                                style: AppFonts.poppinsRegular.copyWith(
+                                  fontSize: 12.0,
+                                  color: AppColors.deepBlueColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 38.0,
+                        ),
+                        CustomFilledButton(
+                          onTap: () {
+                            SuccessRegistration.show(
+                              context,
+                              () => context.go('/home'),
+                            );
+                          },
+                          buttonTitle: 'Verify and Create Account',
+                        ),
+                      ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 50.0,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        children: [
+                          for (var row in [
+                            ['1', '2', '3'],
+                            ['4', '5', '6'],
+                            ['7', '8', '9'],
+                          ])
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: row
+                                    .map(
+                                      (num) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                        ),
+                                        child: SizedBox(
+                                          width: 64,
+                                          height: 64,
+                                          child: Center(
+                                            child: KeyField(
+                                              num: num,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
+                            ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0,
+                                  ),
+                                  child: SizedBox(
+                                    width: 64,
+                                    height: 64,
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 20.0,
+                                  ),
+                                  child: SizedBox(
+                                      width: 64,
+                                      height: 64,
+                                      child: Center(child: KeyField(num: '0'))),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {},
+                                    child: SizedBox(
+                                      height: 64.0,
+                                      width: 64.0,
+                                      child: Icon(
+                                        Icons.backspace_outlined,
+                                        color: Theme.of(context)
+                                            .extension<AppColorsModel>()
+                                            ?.mainTextColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
