@@ -60,7 +60,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 height: 95.0,
                 padding: const EdgeInsets.only(bottom: 20.0),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   ),

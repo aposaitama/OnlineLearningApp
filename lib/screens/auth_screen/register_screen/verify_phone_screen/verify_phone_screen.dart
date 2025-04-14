@@ -14,8 +14,6 @@ class VerifyPhoneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor:
@@ -74,7 +72,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextFormFieldItem(),
@@ -83,7 +81,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                             TextFormFieldItem(),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30.0,
                         ),
                         Row(
@@ -128,7 +126,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 35.0,
                   ),
                   Expanded(
@@ -136,7 +134,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Column(
                         children: [
-                          for (var row in [
+                          for (List<String> row in [
                             ['1', '2', '3'],
                             ['4', '5', '6'],
                             ['7', '8', '9'],
@@ -147,7 +145,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: row
                                     .map(
-                                      (num) => Padding(
+                                      (numItem) => Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20.0,
                                         ),
@@ -156,7 +154,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                                           height: 64,
                                           child: Center(
                                             child: KeyField(
-                                              num: num,
+                                              num: numItem,
                                             ),
                                           ),
                                         ),

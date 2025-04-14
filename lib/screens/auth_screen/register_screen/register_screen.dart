@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/success_registration.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:online_app/widgets/custom_text_field.dart';
 

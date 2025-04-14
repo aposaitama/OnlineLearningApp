@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_app/navigation/app_navigation.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/key_field.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/phone_text_field.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
-import 'package:online_app/widgets/custom_text_field.dart';
 
 class PhoneLinkingScreen extends StatelessWidget {
   const PhoneLinkingScreen({super.key});
@@ -49,7 +47,7 @@ class PhoneLinkingScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               child: Column(
                 children: [
@@ -125,7 +123,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: row
                                       .map(
-                                        (num) => Padding(
+                                        (numItem) => Padding(
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: 20.0,
                                           ),
@@ -134,7 +132,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                                             height: 64,
                                             child: Center(
                                               child: KeyField(
-                                                num: num,
+                                                num: numItem,
                                               ),
                                             ),
                                           ),
