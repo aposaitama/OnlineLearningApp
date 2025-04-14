@@ -32,7 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 159.0,
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,18 +60,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   color:
                       Theme.of(context).extension<AppColorsModel>()?.onSurface,
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
+                    topLeft: Radius.circular(
+                      10.0,
+                    ),
+                    topRight: Radius.circular(
+                      10.0,
+                    ),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                  ),
                   child: Column(
                     children: [
                       const SizedBox(
                         height: 33.0,
                       ),
-                      const CustomTextField(title: 'Your Email', hint: ''),
+                      const CustomTextField(
+                        title: 'Your Email',
+                        hint: '',
+                      ),
                       const SizedBox(
                         height: 25.0,
                       ),

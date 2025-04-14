@@ -31,7 +31,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 159.0,
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,18 +70,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.charcoalBlue : Colors.white,
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
+                    topLeft: Radius.circular(
+                      10.0,
+                    ),
+                    topRight: Radius.circular(
+                      10.0,
+                    ),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                  ),
                   child: Column(
                     children: [
                       const SizedBox(
                         height: 33.0,
                       ),
-                      const CustomTextField(title: 'Your Email', hint: ''),
+                      const CustomTextField(
+                        title: 'Your Email',
+                        hint: '',
+                      ),
                       const SizedBox(
                         height: 25.0,
                       ),
@@ -94,7 +105,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomFilledButton(
                         buttonTitle: 'Create account',
                         onTap: () {
-                          context.push('/phone_linking');
+                          context.push(
+                            '/phone_linking',
+                          );
                         },
                       ),
                       const SizedBox(
@@ -112,7 +125,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             value: isAgree,
                             onChanged: (value) {
                               isAgree = !isAgree;
-                              setState(() {});
+                              setState(
+                                () {},
+                              );
                             },
                           ),
                           Expanded(
@@ -120,11 +135,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               maxLines: null,
                               'By creating an account you have to agree with our them & condication.',
                               style: AppFonts.poppinsRegular.copyWith(
-                                  height: 1.5,
-                                  fontSize: 12.0,
-                                  color: Theme.of(context)
-                                      .extension<AppColorsModel>()
-                                      ?.hintTextColor),
+                                height: 1.5,
+                                fontSize: 12.0,
+                                color: Theme.of(context)
+                                    .extension<AppColorsModel>()
+                                    ?.hintTextColor,
+                              ),
                             ),
                           )
                         ],
@@ -139,9 +155,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             'Already have an account？',
                             style: AppFonts.poppinsRegular.copyWith(
                               fontSize: 12.0,
-                              color: Theme.of(context)
-                                  .extension<AppColorsModel>()
-                                  ?.hintTextColor,
+                              color: Theme.of(
+                                context,
+                              ).extension<AppColorsModel>()?.hintTextColor,
                             ),
                           ),
                           const SizedBox(
@@ -149,7 +165,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              context.go('/login');
+                              context.go(
+                                '/login',
+                              );
                             },
                             child: Text(
                               'Log in',

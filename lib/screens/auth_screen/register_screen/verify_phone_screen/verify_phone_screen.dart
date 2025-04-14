@@ -44,8 +44,12 @@ class VerifyPhoneScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10.0),
-                  topRight: Radius.circular(10.0),
+                  topLeft: Radius.circular(
+                    10.0,
+                  ),
+                  topRight: Radius.circular(
+                    10.0,
+                  ),
                 ),
               ),
               child: Column(
@@ -64,9 +68,9 @@ class VerifyPhoneScreen extends StatelessWidget {
                           'Code is sent to 283 835 2999 ',
                           style: AppFonts.poppinsRegular.copyWith(
                             fontSize: 18.0,
-                            color: Theme.of(context)
-                                .extension<AppColorsModel>()
-                                ?.hintTextColor,
+                            color: Theme.of(
+                              context,
+                            ).extension<AppColorsModel>()?.hintTextColor,
                           ),
                         ),
                         const SizedBox(
@@ -91,16 +95,18 @@ class VerifyPhoneScreen extends StatelessWidget {
                               'Didn’t recieve code?',
                               style: AppFonts.poppinsRegular.copyWith(
                                 fontSize: 12.0,
-                                color: Theme.of(context)
-                                    .extension<AppColorsModel>()
-                                    ?.hintTextColor,
+                                color: Theme.of(
+                                  context,
+                                ).extension<AppColorsModel>()?.hintTextColor,
                               ),
                             ),
                             const SizedBox(
                               width: 4.0,
                             ),
                             GestureDetector(
-                              onTap: () => context.go('/register'),
+                              onTap: () => context.go(
+                                '/register',
+                              ),
                               child: Text(
                                 'Request again',
                                 style: AppFonts.poppinsRegular.copyWith(
@@ -118,7 +124,9 @@ class VerifyPhoneScreen extends StatelessWidget {
                           onTap: () {
                             SuccessRegistration.show(
                               context,
-                              () => context.go('/home'),
+                              () => context.go(
+                                '/home',
+                              ),
                             );
                           },
                           buttonTitle: 'Verify and Create Account',
@@ -131,7 +139,9 @@ class VerifyPhoneScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                      ),
                       child: Column(
                         children: [
                           for (List<String> row in [
@@ -181,9 +191,14 @@ class VerifyPhoneScreen extends StatelessWidget {
                                     horizontal: 20.0,
                                   ),
                                   child: SizedBox(
-                                      width: 64,
-                                      height: 64,
-                                      child: Center(child: KeyField(num: '0'))),
+                                    width: 64,
+                                    height: 64,
+                                    child: Center(
+                                      child: KeyField(
+                                        num: '0',
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -196,7 +211,9 @@ class VerifyPhoneScreen extends StatelessWidget {
                                       width: 64.0,
                                       child: Icon(
                                         Icons.backspace_outlined,
-                                        color: Theme.of(context)
+                                        color: Theme.of(
+                                          context,
+                                        )
                                             .extension<AppColorsModel>()
                                             ?.mainTextColor,
                                       ),

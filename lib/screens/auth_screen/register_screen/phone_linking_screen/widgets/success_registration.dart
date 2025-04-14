@@ -13,27 +13,36 @@ class SuccessRegistration {
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(
+            15.0,
+          ),
         ),
         backgroundColor:
             Theme.of(context).extension<AppColorsModel>()?.onSurface,
-        contentPadding: const EdgeInsets.all(0.0),
+        contentPadding: const EdgeInsets.all(
+          0.0,
+        ),
         content: Padding(
-          padding: const EdgeInsets.only(top: 48.0),
+          padding: const EdgeInsets.only(
+            top: 48.0,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture.asset('assets/icons/Success.svg'),
+              SvgPicture.asset(
+                'assets/icons/Success.svg',
+              ),
               const SizedBox(
                 height: 19.0,
               ),
               Text(
                 'Success',
                 style: AppFonts.poppinsMedium.copyWith(
-                    fontSize: 16.0,
-                    color: Theme.of(context)
-                        .extension<AppColorsModel>()
-                        ?.mainTextColor),
+                  fontSize: 16.0,
+                  color: Theme.of(context)
+                      .extension<AppColorsModel>()
+                      ?.mainTextColor,
+                ),
               ),
               const SizedBox(
                 height: 9.0,

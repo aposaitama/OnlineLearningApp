@@ -58,7 +58,9 @@ class PhoneLinkingScreen extends StatelessWidget {
                       'assets/icons/LinkPhone.svg',
                     ),
                   ),
-                  const Gap(40.0),
+                  const Gap(
+                    40.0,
+                  ),
                 ],
               ),
             ),
@@ -69,8 +71,12 @@ class PhoneLinkingScreen extends StatelessWidget {
                   color:
                       Theme.of(context).extension<AppColorsModel>()?.onSurface,
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
+                    topLeft: Radius.circular(
+                      10.0,
+                    ),
+                    topRight: Radius.circular(
+                      10.0,
+                    ),
                   ),
                 ),
                 child: Padding(
@@ -160,10 +166,14 @@ class PhoneLinkingScreen extends StatelessWidget {
                                       horizontal: 20.0,
                                     ),
                                     child: SizedBox(
-                                        width: 64,
-                                        height: 64,
-                                        child:
-                                            Center(child: KeyField(num: '0'))),
+                                      width: 64,
+                                      height: 64,
+                                      child: Center(
+                                        child: KeyField(
+                                          num: '0',
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(

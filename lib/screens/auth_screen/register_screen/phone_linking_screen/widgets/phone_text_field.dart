@@ -32,7 +32,9 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         ),
       ),
       child: TextFormField(
-        style: AppFonts.poppinsBold.copyWith(fontSize: 18),
+        style: AppFonts.poppinsBold.copyWith(
+          fontSize: 18,
+        ),
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: widget.controller,
         decoration: InputDecoration(
@@ -44,9 +46,13 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(
+              10.0,
+            ),
           ),
-          hintStyle: AppFonts.poppinsBold.copyWith(fontSize: 18),
+          hintStyle: AppFonts.poppinsBold.copyWith(
+            fontSize: 18,
+          ),
           hintText: widget.hint,
         ),
         onChanged: (value) {},
