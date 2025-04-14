@@ -64,16 +64,15 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   ),
-                  color: Theme.of(context)
-                      .extension<AppColorsModel>()
-                      ?.onSurfaceContainer,
-                  // boxShadow: [
-                  //   BoxShadow(
-                  //     color: Colors.black.withOpacity(0.1),
-                  //     blurRadius: 5,
-                  //     spreadRadius: 2,
-                  //   ),
-                  // ],
+                  color:
+                      Theme.of(context).extension<AppColorsModel>()?.darkColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 5,
+                      spreadRadius: 2,
+                    ),
+                  ],
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -160,15 +159,17 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                     shape: BoxShape.circle,
                     color: Theme.of(context)
                         .extension<AppColorsModel>()
-                        ?.onSurfaceContainer,
+                        ?.darkColor,
                   ),
                   child: Center(
                     child: Container(
                       height: 52.0,
                       width: 52.0,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.lightGreyColor,
+                        color: Theme.of(context)
+                            .extension<AppColorsModel>()
+                            ?.bottomSearchButton,
                       ),
                       child: SvgPicture.asset(
                         fit: BoxFit.scaleDown,

@@ -13,7 +13,7 @@ import 'package:online_app/screens/root_screen/root_screen.dart';
 class AppRouter {
   GoRouter createRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: '/phone_verify',
+      initialLocation: '/register',
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => RootScreen(

@@ -16,9 +16,11 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
   final Color pink;
   final Color violet;
   final Color onSurface;
-  final Color onSurfaceContainer; // 🆕 нове поле
+  final Color onSurfaceContainer;
   final Color mainTextColor;
   final Color hintTextColor;
+  final Color bottomSearchButton;
+  final Color darkColor; // 🆕 Додано нове поле для темного кольору
 
   const AppColorsModel({
     required this.redLight,
@@ -35,9 +37,11 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
     required this.pink,
     required this.violet,
     required this.onSurface,
-    required this.onSurfaceContainer, // 🆕 ініціалізація нового поля
+    required this.onSurfaceContainer,
     required this.mainTextColor,
     required this.hintTextColor,
+    required this.bottomSearchButton,
+    required this.darkColor, // 🆕 Додано в конструктор
   });
 
   @override
@@ -59,9 +63,13 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
       violet: Color.lerp(violet, other.violet, t)!,
       onSurface: Color.lerp(onSurface, other.onSurface, t)!,
       onSurfaceContainer:
-          Color.lerp(onSurfaceContainer, other.onSurfaceContainer, t)!, // 🆕
+          Color.lerp(onSurfaceContainer, other.onSurfaceContainer, t)!,
       mainTextColor: Color.lerp(mainTextColor, other.mainTextColor, t)!,
       hintTextColor: Color.lerp(hintTextColor, other.hintTextColor, t)!,
+      bottomSearchButton:
+          Color.lerp(bottomSearchButton, other.bottomSearchButton, t)!,
+      darkColor:
+          Color.lerp(darkColor, other.darkColor, t)!, // 🆕 Лерп для darkColor
     );
   }
 
@@ -81,9 +89,11 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
     Color? pink,
     Color? violet,
     Color? onSurface,
-    Color? onSurfaceContainer, // 🆕
+    Color? onSurfaceContainer,
     Color? mainTextColor,
     Color? hintTextColor,
+    Color? bottomSearchButton,
+    Color? darkColor, // 🆕 Додано параметр для темного кольору
   }) {
     return AppColorsModel(
       redLight: redLight ?? this.redLight,
@@ -100,9 +110,11 @@ class AppColorsModel extends ThemeExtension<AppColorsModel> {
       pink: pink ?? this.pink,
       violet: violet ?? this.violet,
       onSurface: onSurface ?? this.onSurface,
-      onSurfaceContainer: onSurfaceContainer ?? this.onSurfaceContainer, // 🆕
+      onSurfaceContainer: onSurfaceContainer ?? this.onSurfaceContainer,
       mainTextColor: mainTextColor ?? this.mainTextColor,
       hintTextColor: hintTextColor ?? this.hintTextColor,
+      bottomSearchButton: bottomSearchButton ?? this.bottomSearchButton,
+      darkColor: darkColor ?? this.darkColor, // 🆕 Додано в копіювання
     );
   }
 }

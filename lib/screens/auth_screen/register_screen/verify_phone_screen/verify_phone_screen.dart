@@ -129,7 +129,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 50.0,
+                    height: 35.0,
                   ),
                   Expanded(
                     child: Padding(
