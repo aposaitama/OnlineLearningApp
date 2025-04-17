@@ -3,5 +3,5 @@ import 'routes.dart';
 
 class AppRouter {
   GoRouter createRouter() =>
-      GoRouter(initialLocation: '/phone_verify', routes: $appRoutes);
+      GoRouter(initialLocation: '/register', routes: $appRoutes);
 }

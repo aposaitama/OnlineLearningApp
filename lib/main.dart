@@ -1,14 +1,22 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/navigation/app_navigation.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_theme.dart';
+import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: "lib/api_keys.env");
+
   runApp(
     MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => NavigationCubit())],
+      providers: [
+        BlocProvider(create: (_) => NavigationCubit()),
+        BlocProvider(create: (_) => AuthBloc()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -20,6 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: BotToastInit(),
       title: 'Flutter Demo',
       theme: GlobalTheme.lightTheme,
       darkTheme: GlobalTheme.darkTheme,

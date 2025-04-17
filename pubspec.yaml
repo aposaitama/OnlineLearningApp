@@ -44,6 +44,8 @@ dependencies:
   flutter_svg: ^2.0.17
   freezed_annotation: ^2.4.1
   gap: ^3.0.1
+  bot_toast: ^4.1.3
+  flutter_dotenv: ^5.2.1
 
 
 dev_dependencies:
@@ -78,6 +80,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/fonts/
+    - lib/api_keys.env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
