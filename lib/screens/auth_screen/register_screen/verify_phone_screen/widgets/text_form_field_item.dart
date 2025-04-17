@@ -4,7 +4,9 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 
 class TextFormFieldItem extends StatelessWidget {
-  const TextFormFieldItem({super.key});
+  final TextEditingController? controller;
+
+  const TextFormFieldItem({super.key, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,32 +15,27 @@ class TextFormFieldItem extends StatelessWidget {
       width: 50.0,
       height: 58.0,
       child: TextFormField(
+        controller: controller,
         showCursor: false,
         decoration: InputDecoration(
           filled: true,
           fillColor: isDark ? AppColors.darkSlateBlue : Colors.transparent,
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              13.0,
-            ),
+            borderRadius: BorderRadius.circular(13.0),
             borderSide: BorderSide(
               width: 0.5,
               color: isDark ? Colors.transparent : AppColors.lavanderGrayColor,
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              13.0,
-            ),
+            borderRadius: BorderRadius.circular(13.0),
             borderSide: BorderSide(
               width: 0.5,
               color: isDark ? Colors.transparent : AppColors.lavanderGrayColor,
             ),
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              13.0,
-            ),
+            borderRadius: BorderRadius.circular(13.0),
             borderSide: BorderSide(
               width: 0.5,
               color: isDark ? Colors.transparent : AppColors.lavanderGrayColor,

@@ -9,8 +9,51 @@ import 'package:online_app/screens/auth_screen/register_screen/phone_linking_scr
 import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/widgets/text_form_field_item.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 
-class VerifyPhoneScreen extends StatelessWidget {
+class VerifyPhoneScreen extends StatefulWidget {
   const VerifyPhoneScreen({super.key});
+
+  @override
+  State<VerifyPhoneScreen> createState() => _VerifyPhoneScreenState();
+}
+
+class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
+  final List code = ['', '', '', ''];
+  late List<TextEditingController> _controllers;
+
+  @override
+  void initState() {
+    super.initState();
+    _controllers = List.generate(4, (_) => TextEditingController());
+  }
+
+  @override
+  void dispose() {
+    // Очищаємо контролери при виході зі сторінки
+    for (TextEditingController controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  void addDigit(String digit) {
+    final index = code.indexWhere((element) => element.isEmpty);
+    if (index != -1) {
+      setState(() {
+        code[index] = digit;
+        _controllers[index].text = digit; // Оновлюємо контролер
+      });
+    }
+  }
+
+  void deleteDigit() {
+    final index = code.lastIndexWhere((element) => element.isNotEmpty);
+    if (index != -1) {
+      setState(() {
+        code[index] = '';
+        _controllers[index].clear(); // Очищаємо контролер
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +73,7 @@ class VerifyPhoneScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Verify Phone',
+          'Create payment password',
           style: AppFonts.poppinsMedium.copyWith(
             color: Theme.of(context).extension<AppColorsModel>()?.mainTextColor,
           ),
@@ -44,104 +87,57 @@ class VerifyPhoneScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(
-                    10.0,
-                  ),
-                  topRight: Radius.circular(
-                    10.0,
-                  ),
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
                 ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 70.0,
-                  ),
+                  const SizedBox(height: 70.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 59.0,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 59.0),
                     child: Column(
                       children: [
                         Text(
-                          'Code is sent to 283 835 2999 ',
+                          textAlign: TextAlign.center,
+                          'Enter 4 didgits to create payment password',
                           style: AppFonts.poppinsRegular.copyWith(
                             fontSize: 18.0,
-                            color: Theme.of(
-                              context,
-                            ).extension<AppColorsModel>()?.hintTextColor,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextFormFieldItem(),
-                            TextFormFieldItem(),
-                            TextFormFieldItem(),
-                            TextFormFieldItem(),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Didn’t recieve code?',
-                              style: AppFonts.poppinsRegular.copyWith(
-                                fontSize: 12.0,
-                                color: Theme.of(
+                            color:
+                                Theme.of(
                                   context,
                                 ).extension<AppColorsModel>()?.hintTextColor,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 4.0,
-                            ),
-                            GestureDetector(
-                              onTap: () => context.go(
-                                '/register',
-                              ),
-                              child: Text(
-                                'Request again',
-                                style: AppFonts.poppinsRegular.copyWith(
-                                  fontSize: 12.0,
-                                  color: AppColors.deepBlueColor,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        const SizedBox(
-                          height: 38.0,
+                        const SizedBox(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(4, (index) {
+                            return TextFormFieldItem(
+                              controller: _controllers[index],
+                            );
+                          }),
                         ),
+                        const SizedBox(height: 30.0),
+
+                        const SizedBox(height: 38.0),
                         CustomFilledButton(
                           onTap: () {
                             SuccessRegistration.show(
                               context,
-                              () => context.go(
-                                '/home',
-                              ),
+                              () => context.go('/home'),
                             );
                           },
-                          buttonTitle: 'Verify and Create Account',
+                          buttonTitle: 'Create Account',
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 35.0,
-                  ),
+                  const SizedBox(height: 35.0),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Column(
                         children: [
                           for (List<String> row in [
@@ -153,24 +149,27 @@ class VerifyPhoneScreen extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: row
-                                    .map(
-                                      (numItem) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0,
-                                        ),
-                                        child: SizedBox(
-                                          width: 64,
-                                          height: 64,
-                                          child: Center(
-                                            child: KeyField(
-                                              num: numItem,
+                                children:
+                                    row
+                                        .map(
+                                          (numItem) => Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 20.0,
+                                            ),
+                                            child: SizedBox(
+                                              width: 64,
+                                              height: 64,
+                                              child: Center(
+                                                child: KeyField(
+                                                  num: numItem,
+                                                  onKeyTap:
+                                                      () => addDigit(numItem),
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
+                                        )
+                                        .toList(),
                               ),
                             ),
                           Expanded(
@@ -181,10 +180,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 20.0,
                                   ),
-                                  child: SizedBox(
-                                    width: 64,
-                                    height: 64,
-                                  ),
+                                  child: SizedBox(width: 64, height: 64),
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(
@@ -193,11 +189,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                                   child: SizedBox(
                                     width: 64,
                                     height: 64,
-                                    child: Center(
-                                      child: KeyField(
-                                        num: '0',
-                                      ),
-                                    ),
+                                    child: Center(child: KeyField(num: '0')),
                                   ),
                                 ),
                                 Padding(
@@ -205,17 +197,18 @@ class VerifyPhoneScreen extends StatelessWidget {
                                     horizontal: 20.0,
                                   ),
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      deleteDigit();
+                                    },
                                     child: SizedBox(
                                       height: 64.0,
                                       width: 64.0,
                                       child: Icon(
                                         Icons.backspace_outlined,
-                                        color: Theme.of(
-                                          context,
-                                        )
-                                            .extension<AppColorsModel>()
-                                            ?.mainTextColor,
+                                        color:
+                                            Theme.of(context)
+                                                .extension<AppColorsModel>()
+                                                ?.mainTextColor,
                                       ),
                                     ),
                                   ),
@@ -230,7 +223,7 @@ class VerifyPhoneScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

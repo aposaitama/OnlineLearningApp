@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/navigation/app_navigation.dart';
+import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_theme.dart';
 
 void main() {
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (_) => NavigationCubit()),
-  ], child: const MyApp()));
+  runApp(
+    MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => NavigationCubit())],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,9 +24,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalTheme.lightTheme,
       darkTheme: GlobalTheme.darkTheme,
       themeMode: ThemeMode.system,
-      routerConfig: AppRouter().createRouter(
-        context,
-      ),
+      routerConfig: AppRouter().createRouter(),
     );
   }
 }

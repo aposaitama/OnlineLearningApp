@@ -14,6 +14,7 @@ class PhoneLinkingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController phoneNumberController = TextEditingController();
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final appBarBackgroundColor =
         isDark ? AppColors.darkColor : AppColors.greyCoor;
@@ -58,9 +59,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                       'assets/icons/LinkPhone.svg',
                     ),
                   ),
-                  const Gap(
-                    40.0,
-                  ),
+                  const Gap(40.0),
                 ],
               ),
             ),
@@ -71,18 +70,12 @@ class PhoneLinkingScreen extends StatelessWidget {
                   color:
                       Theme.of(context).extension<AppColorsModel>()?.onSurface,
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(
-                      10.0,
-                    ),
-                    topRight: Radius.circular(
-                      10.0,
-                    ),
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -91,30 +84,34 @@ class PhoneLinkingScreen extends StatelessWidget {
                         'Enter Your  Phone Number',
                         style: AppFonts.poppinsRegular.copyWith(
                           fontSize: 14.0,
-                          color: Theme.of(context)
-                              .extension<AppColorsModel>()
-                              ?.hintTextColor,
+                          color:
+                              Theme.of(
+                                context,
+                              ).extension<AppColorsModel>()?.hintTextColor,
                         ),
                       ),
                       const Gap(25.0),
                       Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          const PhoneTextField(
+                          PhoneTextField(
                             hint: '',
+                            controller: phoneNumberController,
                           ),
                           SizedBox(
                             width: 125.0,
                             child: CustomFilledButton(
-                              onTap: () => context.push('/phone_verify'),
+                              onTap:
+                                  () =>
+                                      phoneNumberController.text.isNotEmpty
+                                          ? context.push('/phone_verify')
+                                          : null,
                               buttonTitle: 'Continue',
                             ),
-                          )
+                          ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
+                      const SizedBox(height: 20.0),
                       Expanded(
                         child: Column(
                           children: [
@@ -127,24 +124,30 @@ class PhoneLinkingScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: row
-                                      .map(
-                                        (numItem) => Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0,
-                                          ),
-                                          child: SizedBox(
-                                            width: 64,
-                                            height: 64,
-                                            child: Center(
-                                              child: KeyField(
-                                                num: numItem,
+                                  children:
+                                      row
+                                          .map(
+                                            (numItem) => Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    horizontal: 20.0,
+                                                  ),
+                                              child: SizedBox(
+                                                width: 64,
+                                                height: 64,
+                                                child: Center(
+                                                  child: KeyField(
+                                                    num: numItem,
+                                                    onKeyTap: () {
+                                                      phoneNumberController
+                                                          .text += numItem;
+                                                    },
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
+                                          )
+                                          .toList(),
                                 ),
                               ),
                             Expanded(
@@ -156,12 +159,9 @@ class PhoneLinkingScreen extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(
                                       horizontal: 20.0,
                                     ),
-                                    child: SizedBox(
-                                      width: 64,
-                                      height: 64,
-                                    ),
+                                    child: SizedBox(width: 64, height: 64),
                                   ),
-                                  const Padding(
+                                  Padding(
                                     padding: EdgeInsets.symmetric(
                                       horizontal: 20.0,
                                     ),
@@ -171,6 +171,9 @@ class PhoneLinkingScreen extends StatelessWidget {
                                       child: Center(
                                         child: KeyField(
                                           num: '0',
+                                          onKeyTap: () {
+                                            phoneNumberController.text += '0';
+                                          },
                                         ),
                                       ),
                                     ),
@@ -180,15 +183,27 @@ class PhoneLinkingScreen extends StatelessWidget {
                                       horizontal: 20.0,
                                     ),
                                     child: GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        phoneNumberController.text.isNotEmpty
+                                            ? phoneNumberController.text
+                                                .substring(
+                                                  0,
+                                                  phoneNumberController
+                                                          .text
+                                                          .length -
+                                                      1,
+                                                )
+                                            : null;
+                                      },
                                       child: SizedBox(
                                         height: 64.0,
                                         width: 64.0,
                                         child: Icon(
                                           Icons.backspace_outlined,
-                                          color: Theme.of(context)
-                                              .extension<AppColorsModel>()
-                                              ?.mainTextColor,
+                                          color:
+                                              Theme.of(context)
+                                                  .extension<AppColorsModel>()
+                                                  ?.mainTextColor,
                                         ),
                                       ),
                                     ),
@@ -203,7 +218,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
