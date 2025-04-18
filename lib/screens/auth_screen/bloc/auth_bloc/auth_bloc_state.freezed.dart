@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthBlocState {
   RegisterStatus get status => throw _privateConstructorUsedError;
+  LoginStatus get loginStatus => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthBlocState
@@ -34,7 +35,11 @@ abstract class $AuthBlocStateCopyWith<$Res> {
     $Res Function(AuthBlocState) then,
   ) = _$AuthBlocStateCopyWithImpl<$Res, AuthBlocState>;
   @useResult
-  $Res call({RegisterStatus status, String errorMessage});
+  $Res call({
+    RegisterStatus status,
+    LoginStatus loginStatus,
+    String errorMessage,
+  });
 }
 
 /// @nodoc
@@ -51,7 +56,11 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? errorMessage = null}) {
+  $Res call({
+    Object? status = null,
+    Object? loginStatus = null,
+    Object? errorMessage = null,
+  }) {
     return _then(
       _value.copyWith(
             status:
@@ -59,6 +68,11 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
                     ? _value.status
                     : status // ignore: cast_nullable_to_non_nullable
                         as RegisterStatus,
+            loginStatus:
+                null == loginStatus
+                    ? _value.loginStatus
+                    : loginStatus // ignore: cast_nullable_to_non_nullable
+                        as LoginStatus,
             errorMessage:
                 null == errorMessage
                     ? _value.errorMessage
@@ -79,7 +93,11 @@ abstract class _$$AuthBlocStateImplCopyWith<$Res>
   ) = __$$AuthBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RegisterStatus status, String errorMessage});
+  $Res call({
+    RegisterStatus status,
+    LoginStatus loginStatus,
+    String errorMessage,
+  });
 }
 
 /// @nodoc
@@ -95,7 +113,11 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? errorMessage = null}) {
+  $Res call({
+    Object? status = null,
+    Object? loginStatus = null,
+    Object? errorMessage = null,
+  }) {
     return _then(
       _$AuthBlocStateImpl(
         status:
@@ -103,6 +125,11 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                     as RegisterStatus,
+        loginStatus:
+            null == loginStatus
+                ? _value.loginStatus
+                : loginStatus // ignore: cast_nullable_to_non_nullable
+                    as LoginStatus,
         errorMessage:
             null == errorMessage
                 ? _value.errorMessage
@@ -118,6 +145,7 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
 class _$AuthBlocStateImpl implements _AuthBlocState {
   const _$AuthBlocStateImpl({
     this.status = RegisterStatus.initial,
+    this.loginStatus = LoginStatus.initial,
     this.errorMessage = '',
   });
 
@@ -126,11 +154,14 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   final RegisterStatus status;
   @override
   @JsonKey()
+  final LoginStatus loginStatus;
+  @override
+  @JsonKey()
   final String errorMessage;
 
   @override
   String toString() {
-    return 'AuthBlocState(status: $status, errorMessage: $errorMessage)';
+    return 'AuthBlocState(status: $status, loginStatus: $loginStatus, errorMessage: $errorMessage)';
   }
 
   @override
@@ -139,12 +170,15 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
         (other.runtimeType == runtimeType &&
             other is _$AuthBlocStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.loginStatus, loginStatus) ||
+                other.loginStatus == loginStatus) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, status, loginStatus, errorMessage);
 
   /// Create a copy of AuthBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -158,11 +192,14 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
 abstract class _AuthBlocState implements AuthBlocState {
   const factory _AuthBlocState({
     final RegisterStatus status,
+    final LoginStatus loginStatus,
     final String errorMessage,
   }) = _$AuthBlocStateImpl;
 
   @override
   RegisterStatus get status;
+  @override
+  LoginStatus get loginStatus;
   @override
   String get errorMessage;
 

@@ -10,4 +10,6 @@ class AuthBlocEvent with _$AuthBlocEvent {
     String email,
     String password,
   ) = RegisterUserBlocEvent;
+  const factory AuthBlocEvent.loginUser(String email, String password) =
+      LoginUserBlocEvent;
 }
