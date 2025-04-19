@@ -3,5 +3,5 @@ import 'routes.dart';
 
 class AppRouter {
   GoRouter createRouter() =>
-      GoRouter(initialLocation: '/register', routes: $appRoutes);
+      GoRouter(initialLocation: '/auth_gate', routes: $appRoutes);
 }

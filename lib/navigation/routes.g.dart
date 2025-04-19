@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
   $loginRoute,
   $phoneLinkingRoute,
   $phoneVerifyRoute,
+  $authGateRoute,
   $rootShellRoute,
 ];
 
@@ -89,6 +90,27 @@ extension $PhoneVerifyRouteExtension on PhoneVerifyRoute {
       const PhoneVerifyRoute();
 
   String get location => GoRouteData.$location('/phone_verify');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $authGateRoute => GoRouteData.$route(
+  path: '/auth_gate',
+
+  factory: $AuthGateRouteExtension._fromState,
+);
+
+extension $AuthGateRouteExtension on AuthGateRoute {
+  static AuthGateRoute _fromState(GoRouterState state) => const AuthGateRoute();
+
+  String get location => GoRouteData.$location('/auth_gate');
 
   void go(BuildContext context) => context.go(location);
 
