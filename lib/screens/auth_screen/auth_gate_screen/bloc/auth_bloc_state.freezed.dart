@@ -12,8 +12,7 @@ part of 'auth_bloc_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthGateBlocState {
@@ -29,9 +28,8 @@ mixin _$AuthGateBlocState {
 /// @nodoc
 abstract class $AuthGateBlocStateCopyWith<$Res> {
   factory $AuthGateBlocStateCopyWith(
-    AuthGateBlocState value,
-    $Res Function(AuthGateBlocState) then,
-  ) = _$AuthGateBlocStateCopyWithImpl<$Res, AuthGateBlocState>;
+          AuthGateBlocState value, $Res Function(AuthGateBlocState) then) =
+      _$AuthGateBlocStateCopyWithImpl<$Res, AuthGateBlocState>;
   @useResult
   $Res call({AuthGateStatus gateStatus});
 }
@@ -50,27 +48,24 @@ class _$AuthGateBlocStateCopyWithImpl<$Res, $Val extends AuthGateBlocState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? gateStatus = null}) {
-    return _then(
-      _value.copyWith(
-            gateStatus:
-                null == gateStatus
-                    ? _value.gateStatus
-                    : gateStatus // ignore: cast_nullable_to_non_nullable
-                        as AuthGateStatus,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? gateStatus = null,
+  }) {
+    return _then(_value.copyWith(
+      gateStatus: null == gateStatus
+          ? _value.gateStatus
+          : gateStatus // ignore: cast_nullable_to_non_nullable
+              as AuthGateStatus,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$AuthGateBlocStateImplCopyWith<$Res>
     implements $AuthGateBlocStateCopyWith<$Res> {
-  factory _$$AuthGateBlocStateImplCopyWith(
-    _$AuthGateBlocStateImpl value,
-    $Res Function(_$AuthGateBlocStateImpl) then,
-  ) = __$$AuthGateBlocStateImplCopyWithImpl<$Res>;
+  factory _$$AuthGateBlocStateImplCopyWith(_$AuthGateBlocStateImpl value,
+          $Res Function(_$AuthGateBlocStateImpl) then) =
+      __$$AuthGateBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AuthGateStatus gateStatus});
@@ -80,25 +75,23 @@ abstract class _$$AuthGateBlocStateImplCopyWith<$Res>
 class __$$AuthGateBlocStateImplCopyWithImpl<$Res>
     extends _$AuthGateBlocStateCopyWithImpl<$Res, _$AuthGateBlocStateImpl>
     implements _$$AuthGateBlocStateImplCopyWith<$Res> {
-  __$$AuthGateBlocStateImplCopyWithImpl(
-    _$AuthGateBlocStateImpl _value,
-    $Res Function(_$AuthGateBlocStateImpl) _then,
-  ) : super(_value, _then);
+  __$$AuthGateBlocStateImplCopyWithImpl(_$AuthGateBlocStateImpl _value,
+      $Res Function(_$AuthGateBlocStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of AuthGateBlocState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? gateStatus = null}) {
-    return _then(
-      _$AuthGateBlocStateImpl(
-        gateStatus:
-            null == gateStatus
-                ? _value.gateStatus
-                : gateStatus // ignore: cast_nullable_to_non_nullable
-                    as AuthGateStatus,
-      ),
-    );
+  $Res call({
+    Object? gateStatus = null,
+  }) {
+    return _then(_$AuthGateBlocStateImpl(
+      gateStatus: null == gateStatus
+          ? _value.gateStatus
+          : gateStatus // ignore: cast_nullable_to_non_nullable
+              as AuthGateStatus,
+    ));
   }
 }
 
@@ -135,9 +128,7 @@ class _$AuthGateBlocStateImpl implements _AuthGateBlocState {
   @pragma('vm:prefer-inline')
   _$$AuthGateBlocStateImplCopyWith<_$AuthGateBlocStateImpl> get copyWith =>
       __$$AuthGateBlocStateImplCopyWithImpl<_$AuthGateBlocStateImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 }
 
 abstract class _AuthGateBlocState implements AuthGateBlocState {

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/user_model/user_model.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +11,7 @@ class StrapiApiService {
   final Dio _dio;
 
   StrapiApiService()
-    : _dio = Dio(
+      : _dio = Dio(
           BaseOptions(
             baseUrl: 'http://localhost:1337/api',
             headers: {
@@ -18,24 +19,23 @@ class StrapiApiService {
               'Content-Type': 'application/json',
             },
           ),
-        )
-        ..interceptors.addAll([
-          PrettyDioLogger(
-            requestHeader: true,
-            requestBody: true,
-            responseBody: true,
-            responseHeader: false,
-            error: true,
-            compact: true,
-            maxWidth: 90,
-            enabled: kDebugMode,
-          ),
-          QueuedInterceptorsWrapper(
-            onError: (exception, handler) {
-              return handler.next(exception);
-            },
-          ),
-        ]);
+        )..interceptors.addAll([
+            PrettyDioLogger(
+              requestHeader: true,
+              requestBody: true,
+              responseBody: true,
+              responseHeader: false,
+              error: true,
+              compact: true,
+              maxWidth: 90,
+              enabled: kDebugMode,
+            ),
+            QueuedInterceptorsWrapper(
+              onError: (exception, handler) {
+                return handler.next(exception);
+              },
+            ),
+          ]);
 
   Future<void> saveToken(String token) async {
     await prefs.setString('jwt_token', token);
@@ -70,6 +70,52 @@ class StrapiApiService {
       throw 'Register failed: $message';
     } catch (e) {
       throw 'Register failed';
+    }
+  }
+
+  // Future<bool> linkPhoneNumber(
+  //   String phoneNumber,
+  // ) async {
+  //   try {
+  //     final userData = await getUser();
+  //     final response = await _dio.post(
+  //       '/auth/local/register',
+  //       data: {'username': userName, 'email': email, 'password': password},
+  //     );
+  //     final token = response.data['jwt'];
+  //     await saveToken(token);
+
+  //     return token;
+  //   } on DioException catch (e) {
+  //     final message = e.response?.data['error']['message'] ?? 'Unknown error';
+  //     throw 'Register failed: $message';
+  //   } catch (e) {
+  //     throw 'Register failed';
+  //   }
+  // }
+
+  Future<UserModel?> getUser() async {
+    final token = await getToken();
+    if (token == null) return null;
+
+    try {
+      final response = await _dio.get(
+        '/users/me',
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+        queryParameters: {
+          'populate': '*',
+        },
+      );
+
+      return UserModel.fromJson(
+        response.data,
+      );
+    } catch (e) {
+      return null;
     }
   }
 

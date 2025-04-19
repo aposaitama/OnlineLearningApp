@@ -12,8 +12,7 @@ part of 'auth_bloc_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthBlocState {
@@ -31,15 +30,11 @@ mixin _$AuthBlocState {
 /// @nodoc
 abstract class $AuthBlocStateCopyWith<$Res> {
   factory $AuthBlocStateCopyWith(
-    AuthBlocState value,
-    $Res Function(AuthBlocState) then,
-  ) = _$AuthBlocStateCopyWithImpl<$Res, AuthBlocState>;
+          AuthBlocState value, $Res Function(AuthBlocState) then) =
+      _$AuthBlocStateCopyWithImpl<$Res, AuthBlocState>;
   @useResult
-  $Res call({
-    RegisterStatus status,
-    LoginStatus loginStatus,
-    String errorMessage,
-  });
+  $Res call(
+      {RegisterStatus status, LoginStatus loginStatus, String errorMessage});
 }
 
 /// @nodoc
@@ -61,26 +56,20 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
     Object? loginStatus = null,
     Object? errorMessage = null,
   }) {
-    return _then(
-      _value.copyWith(
-            status:
-                null == status
-                    ? _value.status
-                    : status // ignore: cast_nullable_to_non_nullable
-                        as RegisterStatus,
-            loginStatus:
-                null == loginStatus
-                    ? _value.loginStatus
-                    : loginStatus // ignore: cast_nullable_to_non_nullable
-                        as LoginStatus,
-            errorMessage:
-                null == errorMessage
-                    ? _value.errorMessage
-                    : errorMessage // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as RegisterStatus,
+      loginStatus: null == loginStatus
+          ? _value.loginStatus
+          : loginStatus // ignore: cast_nullable_to_non_nullable
+              as LoginStatus,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -88,16 +77,12 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
 abstract class _$$AuthBlocStateImplCopyWith<$Res>
     implements $AuthBlocStateCopyWith<$Res> {
   factory _$$AuthBlocStateImplCopyWith(
-    _$AuthBlocStateImpl value,
-    $Res Function(_$AuthBlocStateImpl) then,
-  ) = __$$AuthBlocStateImplCopyWithImpl<$Res>;
+          _$AuthBlocStateImpl value, $Res Function(_$AuthBlocStateImpl) then) =
+      __$$AuthBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    RegisterStatus status,
-    LoginStatus loginStatus,
-    String errorMessage,
-  });
+  $Res call(
+      {RegisterStatus status, LoginStatus loginStatus, String errorMessage});
 }
 
 /// @nodoc
@@ -105,9 +90,8 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
     extends _$AuthBlocStateCopyWithImpl<$Res, _$AuthBlocStateImpl>
     implements _$$AuthBlocStateImplCopyWith<$Res> {
   __$$AuthBlocStateImplCopyWithImpl(
-    _$AuthBlocStateImpl _value,
-    $Res Function(_$AuthBlocStateImpl) _then,
-  ) : super(_value, _then);
+      _$AuthBlocStateImpl _value, $Res Function(_$AuthBlocStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of AuthBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -118,36 +102,30 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
     Object? loginStatus = null,
     Object? errorMessage = null,
   }) {
-    return _then(
-      _$AuthBlocStateImpl(
-        status:
-            null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                    as RegisterStatus,
-        loginStatus:
-            null == loginStatus
-                ? _value.loginStatus
-                : loginStatus // ignore: cast_nullable_to_non_nullable
-                    as LoginStatus,
-        errorMessage:
-            null == errorMessage
-                ? _value.errorMessage
-                : errorMessage // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$AuthBlocStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as RegisterStatus,
+      loginStatus: null == loginStatus
+          ? _value.loginStatus
+          : loginStatus // ignore: cast_nullable_to_non_nullable
+              as LoginStatus,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$AuthBlocStateImpl implements _AuthBlocState {
-  const _$AuthBlocStateImpl({
-    this.status = RegisterStatus.initial,
-    this.loginStatus = LoginStatus.initial,
-    this.errorMessage = '',
-  });
+  const _$AuthBlocStateImpl(
+      {this.status = RegisterStatus.initial,
+      this.loginStatus = LoginStatus.initial,
+      this.errorMessage = ''});
 
   @override
   @JsonKey()
@@ -190,11 +168,10 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
 }
 
 abstract class _AuthBlocState implements AuthBlocState {
-  const factory _AuthBlocState({
-    final RegisterStatus status,
-    final LoginStatus loginStatus,
-    final String errorMessage,
-  }) = _$AuthBlocStateImpl;
+  const factory _AuthBlocState(
+      {final RegisterStatus status,
+      final LoginStatus loginStatus,
+      final String errorMessage}) = _$AuthBlocStateImpl;
 
   @override
   RegisterStatus get status;

@@ -12,8 +12,7 @@ part of 'auth_bloc_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthBlocEvent {
@@ -22,38 +21,44 @@ mixin _$AuthBlocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userName, String email, String password)
-    registerUser,
+        registerUser,
     required TResult Function(String email, String password) loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userName, String email, String password)?
-    registerUser,
+        registerUser,
     TResult? Function(String email, String password)? loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userName, String email, String password)?
-    registerUser,
+        registerUser,
     TResult Function(String email, String password)? loginUser,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(RegisterUserBlocEvent value) registerUser,
     required TResult Function(LoginUserBlocEvent value) loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RegisterUserBlocEvent value)? registerUser,
     TResult? Function(LoginUserBlocEvent value)? loginUser,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RegisterUserBlocEvent value)? registerUser,
     TResult Function(LoginUserBlocEvent value)? loginUser,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of AuthBlocEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -65,9 +70,8 @@ mixin _$AuthBlocEvent {
 /// @nodoc
 abstract class $AuthBlocEventCopyWith<$Res> {
   factory $AuthBlocEventCopyWith(
-    AuthBlocEvent value,
-    $Res Function(AuthBlocEvent) then,
-  ) = _$AuthBlocEventCopyWithImpl<$Res, AuthBlocEvent>;
+          AuthBlocEvent value, $Res Function(AuthBlocEvent) then) =
+      _$AuthBlocEventCopyWithImpl<$Res, AuthBlocEvent>;
   @useResult
   $Res call({String email, String password});
 }
@@ -86,22 +90,20 @@ class _$AuthBlocEventCopyWithImpl<$Res, $Val extends AuthBlocEvent>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? email = null, Object? password = null}) {
-    return _then(
-      _value.copyWith(
-            email:
-                null == email
-                    ? _value.email
-                    : email // ignore: cast_nullable_to_non_nullable
-                        as String,
-            password:
-                null == password
-                    ? _value.password
-                    : password // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -109,9 +111,9 @@ class _$AuthBlocEventCopyWithImpl<$Res, $Val extends AuthBlocEvent>
 abstract class _$$RegisterUserBlocEventImplCopyWith<$Res>
     implements $AuthBlocEventCopyWith<$Res> {
   factory _$$RegisterUserBlocEventImplCopyWith(
-    _$RegisterUserBlocEventImpl value,
-    $Res Function(_$RegisterUserBlocEventImpl) then,
-  ) = __$$RegisterUserBlocEventImplCopyWithImpl<$Res>;
+          _$RegisterUserBlocEventImpl value,
+          $Res Function(_$RegisterUserBlocEventImpl) then) =
+      __$$RegisterUserBlocEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String userName, String email, String password});
@@ -121,10 +123,9 @@ abstract class _$$RegisterUserBlocEventImplCopyWith<$Res>
 class __$$RegisterUserBlocEventImplCopyWithImpl<$Res>
     extends _$AuthBlocEventCopyWithImpl<$Res, _$RegisterUserBlocEventImpl>
     implements _$$RegisterUserBlocEventImplCopyWith<$Res> {
-  __$$RegisterUserBlocEventImplCopyWithImpl(
-    _$RegisterUserBlocEventImpl _value,
-    $Res Function(_$RegisterUserBlocEventImpl) _then,
-  ) : super(_value, _then);
+  __$$RegisterUserBlocEventImplCopyWithImpl(_$RegisterUserBlocEventImpl _value,
+      $Res Function(_$RegisterUserBlocEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of AuthBlocEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -135,22 +136,20 @@ class __$$RegisterUserBlocEventImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(
-      _$RegisterUserBlocEventImpl(
-        null == userName
-            ? _value.userName
-            : userName // ignore: cast_nullable_to_non_nullable
-                as String,
-        null == email
-            ? _value.email
-            : email // ignore: cast_nullable_to_non_nullable
-                as String,
-        null == password
-            ? _value.password
-            : password // ignore: cast_nullable_to_non_nullable
-                as String,
-      ),
-    );
+    return _then(_$RegisterUserBlocEventImpl(
+      null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -192,17 +191,14 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterUserBlocEventImplCopyWith<_$RegisterUserBlocEventImpl>
-  get copyWith =>
-      __$$RegisterUserBlocEventImplCopyWithImpl<_$RegisterUserBlocEventImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$RegisterUserBlocEventImplCopyWithImpl<
+          _$RegisterUserBlocEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userName, String email, String password)
-    registerUser,
+        registerUser,
     required TResult Function(String email, String password) loginUser,
   }) {
     return registerUser(userName, email, password);
@@ -212,7 +208,7 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userName, String email, String password)?
-    registerUser,
+        registerUser,
     TResult? Function(String email, String password)? loginUser,
   }) {
     return registerUser?.call(userName, email, password);
@@ -222,7 +218,7 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userName, String email, String password)?
-    registerUser,
+        registerUser,
     TResult Function(String email, String password)? loginUser,
     required TResult orElse(),
   }) {
@@ -266,10 +262,8 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
 
 abstract class RegisterUserBlocEvent implements AuthBlocEvent {
   const factory RegisterUserBlocEvent(
-    final String userName,
-    final String email,
-    final String password,
-  ) = _$RegisterUserBlocEventImpl;
+          final String userName, final String email, final String password) =
+      _$RegisterUserBlocEventImpl;
 
   String get userName;
   @override
@@ -282,16 +276,15 @@ abstract class RegisterUserBlocEvent implements AuthBlocEvent {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisterUserBlocEventImplCopyWith<_$RegisterUserBlocEventImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$LoginUserBlocEventImplCopyWith<$Res>
     implements $AuthBlocEventCopyWith<$Res> {
-  factory _$$LoginUserBlocEventImplCopyWith(
-    _$LoginUserBlocEventImpl value,
-    $Res Function(_$LoginUserBlocEventImpl) then,
-  ) = __$$LoginUserBlocEventImplCopyWithImpl<$Res>;
+  factory _$$LoginUserBlocEventImplCopyWith(_$LoginUserBlocEventImpl value,
+          $Res Function(_$LoginUserBlocEventImpl) then) =
+      __$$LoginUserBlocEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password});
@@ -301,28 +294,28 @@ abstract class _$$LoginUserBlocEventImplCopyWith<$Res>
 class __$$LoginUserBlocEventImplCopyWithImpl<$Res>
     extends _$AuthBlocEventCopyWithImpl<$Res, _$LoginUserBlocEventImpl>
     implements _$$LoginUserBlocEventImplCopyWith<$Res> {
-  __$$LoginUserBlocEventImplCopyWithImpl(
-    _$LoginUserBlocEventImpl _value,
-    $Res Function(_$LoginUserBlocEventImpl) _then,
-  ) : super(_value, _then);
+  __$$LoginUserBlocEventImplCopyWithImpl(_$LoginUserBlocEventImpl _value,
+      $Res Function(_$LoginUserBlocEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of AuthBlocEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? email = null, Object? password = null}) {
-    return _then(
-      _$LoginUserBlocEventImpl(
-        null == email
-            ? _value.email
-            : email // ignore: cast_nullable_to_non_nullable
-                as String,
-        null == password
-            ? _value.password
-            : password // ignore: cast_nullable_to_non_nullable
-                as String,
-      ),
-    );
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$LoginUserBlocEventImpl(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -361,15 +354,13 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
   @pragma('vm:prefer-inline')
   _$$LoginUserBlocEventImplCopyWith<_$LoginUserBlocEventImpl> get copyWith =>
       __$$LoginUserBlocEventImplCopyWithImpl<_$LoginUserBlocEventImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userName, String email, String password)
-    registerUser,
+        registerUser,
     required TResult Function(String email, String password) loginUser,
   }) {
     return loginUser(email, password);
@@ -379,7 +370,7 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userName, String email, String password)?
-    registerUser,
+        registerUser,
     TResult? Function(String email, String password)? loginUser,
   }) {
     return loginUser?.call(email, password);
@@ -389,7 +380,7 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userName, String email, String password)?
-    registerUser,
+        registerUser,
     TResult Function(String email, String password)? loginUser,
     required TResult orElse(),
   }) {
