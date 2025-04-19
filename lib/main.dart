@@ -2,7 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:online_app/navigation/app_navigation.dart';
+import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_theme.dart';
@@ -10,7 +10,8 @@ import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
-
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   runApp(
     MultiBlocProvider(
       providers: [
