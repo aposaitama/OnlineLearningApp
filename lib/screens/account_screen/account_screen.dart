@@ -22,7 +22,7 @@ class AccountScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Account'),
       ),
     );
