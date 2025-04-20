@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
+import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
+import 'package:online_app/screens/home_screen/widgets/progress_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,15 +47,23 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20.0,
-        ),
-        child: Column(
-          children: [
-            MeetupWidget(),
-          ],
-        ),
+      body: const Column(
+        children: [
+          ProgressWidget(),
+          SizedBox(
+            height: 16.0,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.0,
+            ),
+            child: Column(
+              children: [
+                MeetupWidget(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

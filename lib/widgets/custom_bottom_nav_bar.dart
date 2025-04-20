@@ -66,13 +66,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   ),
                   color:
                       Theme.of(context).extension<AppColorsModel>()?.darkColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 5,
-                      spreadRadius: 2,
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withOpacity(0.1),
+                  //     blurRadius: 5,
+                  //     spreadRadius: 2,
+                  //   ),
+                  // ],
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
