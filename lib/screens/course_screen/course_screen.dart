@@ -3,10 +3,17 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 
-class CourseScreen extends StatelessWidget {
+class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
 
+  @override
+  State<CourseScreen> createState() => _CourseScreenState();
+}
+
+class _CourseScreenState extends State<CourseScreen> {
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +41,8 @@ class CourseScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text('Course'),
+      body: Column(
+        children: [SearchTextField(searchFieldController: searchController)],
       ),
     );
   }

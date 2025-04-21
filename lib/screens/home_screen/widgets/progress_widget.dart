@@ -31,21 +31,21 @@ class ProgressWidget extends StatelessWidget {
           child: Container(
               height: 96.0,
               decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).extension<AppColorsModel>()?.onSurface,
-                  borderRadius: BorderRadius.circular(
-                    15.0,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.darkHintTextColor.withValues(
-                        alpha: 0.1,
-                      ),
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                      offset: const Offset(2, 5),
+                color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
+                borderRadius: BorderRadius.circular(
+                  15.0,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.darkHintTextColor.withValues(
+                      alpha: 0.1,
                     ),
-                  ]),
+                    spreadRadius: 5,
+                    blurRadius: 5,
+                    offset: const Offset(2, 5),
+                  ),
+                ],
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,

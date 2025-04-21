@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -41,26 +42,104 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
               right: 21.0,
             ),
-            child: SvgPicture.asset(
-              'assets/icons/UserImage.svg',
+            child: GestureDetector(
+              onTap: () {
+                context.go('/account');
+              },
+              child: SvgPicture.asset(
+                'assets/icons/UserImage.svg',
+              ),
             ),
           ),
         ],
       ),
-      body: const Column(
+      body: Column(
         children: [
-          ProgressWidget(),
-          SizedBox(
+          const ProgressWidget(),
+          const SizedBox(
             height: 16.0,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.0,
+            padding: const EdgeInsets.only(
+              left: 20.0,
             ),
-            child: Column(
-              children: [
-                MeetupWidget(),
-              ],
+            child: SizedBox(
+              height: 154.0,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      right: 10.0,
+                    ),
+                    child: Container(
+                      height: 154.0,
+                      width: 250.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          13.0,
+                        ),
+                        color: AppColors.lightBlueColor,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    Text(
+                      'Learning Plan',
+                      style: AppFonts.poppinsMedium.copyWith(
+                        color: Theme.of(context)
+                            .extension<AppColorsModel>()
+                            ?.mainTextColor,
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Container(
+                      height: 133.0,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .extension<AppColorsModel>()
+                            ?.onSurface,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.darkHintTextColor.withValues(
+                              alpha: 0.1,
+                            ),
+                            spreadRadius: 5,
+                            blurRadius: 5,
+                            offset: const Offset(2, 5),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(
+                          15.0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14.0,
+                    ),
+                    const MeetupWidget(),
+                  ],
+                ),
+              ),
             ),
           ),
         ],

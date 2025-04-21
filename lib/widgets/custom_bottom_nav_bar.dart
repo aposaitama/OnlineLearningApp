@@ -6,6 +6,7 @@ import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/search_modal_sheet.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -27,15 +28,12 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         context.go('/course');
         break;
       case 2:
-        // showBottomSheet(
-        //   context: context,
-        //   builder: (context) => const RecordScreen(),
-        // ).closed.then((_) {
-        //   if (mounted) {
-        //     context.read<NavigationCubit>().navigateTo(-1);
-        //   }
-        // });
-        setState(() => isBottomSheetOpen = true);
+        showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          builder: (context) => const SearchModalSheet(),
+        );
+
         break;
       case 3:
         context.go('/message');
@@ -152,31 +150,38 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 padding: const EdgeInsets.only(
                   bottom: 53.0,
                 ),
-                child: Container(
-                  height: 62.0,
-                  width: 62.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context)
-                        .extension<AppColorsModel>()
-                        ?.darkColor,
+                child: GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => const SearchModalSheet(),
                   ),
-                  child: Center(
-                    child: Container(
-                      height: 52.0,
-                      width: 52.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()
-                            ?.bottomSearchButton,
-                      ),
-                      child: SvgPicture.asset(
-                        fit: BoxFit.scaleDown,
-                        'assets/icons/Search.svg',
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.deepBlueColor,
-                          BlendMode.srcIn,
+                  child: Container(
+                    height: 62.0,
+                    width: 62.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context)
+                          .extension<AppColorsModel>()
+                          ?.darkColor,
+                    ),
+                    child: Center(
+                      child: Container(
+                        height: 52.0,
+                        width: 52.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context)
+                              .extension<AppColorsModel>()
+                              ?.bottomSearchButton,
+                        ),
+                        child: SvgPicture.asset(
+                          fit: BoxFit.scaleDown,
+                          'assets/icons/Search.svg',
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.deepBlueColor,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
