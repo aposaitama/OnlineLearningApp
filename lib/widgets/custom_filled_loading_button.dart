@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:online_app/resources/app_colors.dart';
-import 'package:online_app/resources/app_fonts.dart';
 
 class CustomFilledLoadingButton extends StatelessWidget {
   const CustomFilledLoadingButton({super.key});

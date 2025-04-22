@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -40,9 +39,12 @@ class ProgressWidget extends StatelessWidget {
                     color: AppColors.darkHintTextColor.withValues(
                       alpha: 0.1,
                     ),
-                    spreadRadius: 5,
-                    blurRadius: 5,
-                    offset: const Offset(2, 5),
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: const Offset(
+                      2,
+                      5,
+                    ),
                   ),
                 ],
               ),
@@ -104,7 +106,7 @@ class ProgressWidget extends StatelessWidget {
                       ],
                     ),
                     const GradientProgressBar(
-                      value: 0.4,
+                      value: 0.9,
                     )
                   ],
                 ),
