@@ -57,7 +57,7 @@ class MeetupWidget extends StatelessWidget {
                       color: AppColors.darkPurpleColor,
                       fontSize: 12.0,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -73,7 +73,7 @@ class MeetupWidget extends StatelessWidget {
               fit: BoxFit.scaleDown,
               'assets/icons/Meetup_icon.svg',
             ),
-          )
+          ),
         ],
       ),
     );

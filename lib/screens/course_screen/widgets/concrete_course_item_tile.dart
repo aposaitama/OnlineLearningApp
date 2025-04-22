@@ -92,7 +92,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
                           ).extension<AppColorsModel>()?.hintTextColor,
                           fontSize: 12.0,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Padding(
@@ -133,12 +133,12 @@ class ConcreteCourseItemTile extends StatelessWidget {
                               fontSize: 10.0,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

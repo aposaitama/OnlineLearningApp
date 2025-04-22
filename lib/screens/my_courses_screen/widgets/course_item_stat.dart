@@ -111,9 +111,9 @@ class CourseItemStat extends StatelessWidget {
                       'assets/icons/Polygon.svg',
                     ),
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
