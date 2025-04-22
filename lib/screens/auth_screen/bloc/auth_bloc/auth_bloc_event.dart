@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:online_app/models/user_model/user_model.dart';
 
 part 'auth_bloc_event.freezed.dart';
 

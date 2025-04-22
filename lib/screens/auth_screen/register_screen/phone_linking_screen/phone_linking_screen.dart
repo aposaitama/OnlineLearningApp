@@ -84,10 +84,9 @@ class PhoneLinkingScreen extends StatelessWidget {
                         'Enter Your  Phone Number',
                         style: AppFonts.poppinsRegular.copyWith(
                           fontSize: 14.0,
-                          color:
-                              Theme.of(
-                                context,
-                              ).extension<AppColorsModel>()?.hintTextColor,
+                          color: Theme.of(
+                            context,
+                          ).extension<AppColorsModel>()?.hintTextColor,
                         ),
                       ),
                       const Gap(25.0),
@@ -101,11 +100,9 @@ class PhoneLinkingScreen extends StatelessWidget {
                           SizedBox(
                             width: 125.0,
                             child: CustomFilledButton(
-                              onTap:
-                                  () =>
-                                      phoneNumberController.text.isNotEmpty
-                                          ? context.push('/phone_verify')
-                                          : null,
+                              onTap: () => phoneNumberController.text.isNotEmpty
+                                  ? context.push('/phone_verify')
+                                  : null,
                               buttonTitle: 'Continue',
                             ),
                           ),
@@ -124,30 +121,28 @@ class PhoneLinkingScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children:
-                                      row
-                                          .map(
-                                            (numItem) => Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 20.0,
-                                                  ),
-                                              child: SizedBox(
-                                                width: 64,
-                                                height: 64,
-                                                child: Center(
-                                                  child: KeyField(
-                                                    num: numItem,
-                                                    onKeyTap: () {
-                                                      phoneNumberController
-                                                          .text += numItem;
-                                                    },
-                                                  ),
-                                                ),
+                                  children: row
+                                      .map(
+                                        (numItem) => Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0,
+                                          ),
+                                          child: SizedBox(
+                                            width: 64,
+                                            height: 64,
+                                            child: Center(
+                                              child: KeyField(
+                                                num: numItem,
+                                                onKeyTap: () {
+                                                  phoneNumberController.text +=
+                                                      numItem;
+                                                },
                                               ),
                                             ),
-                                          )
-                                          .toList(),
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
                                 ),
                               ),
                             Expanded(
@@ -162,7 +157,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                                     child: SizedBox(width: 64, height: 64),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                       horizontal: 20.0,
                                     ),
                                     child: SizedBox(
@@ -187,12 +182,11 @@ class PhoneLinkingScreen extends StatelessWidget {
                                         phoneNumberController.text.isNotEmpty
                                             ? phoneNumberController.text
                                                 .substring(
-                                                  0,
-                                                  phoneNumberController
-                                                          .text
-                                                          .length -
-                                                      1,
-                                                )
+                                                0,
+                                                phoneNumberController
+                                                        .text.length -
+                                                    1,
+                                              )
                                             : null;
                                       },
                                       child: SizedBox(
@@ -200,10 +194,9 @@ class PhoneLinkingScreen extends StatelessWidget {
                                         width: 64.0,
                                         child: Icon(
                                           Icons.backspace_outlined,
-                                          color:
-                                              Theme.of(context)
-                                                  .extension<AppColorsModel>()
-                                                  ?.mainTextColor,
+                                          color: Theme.of(context)
+                                              .extension<AppColorsModel>()
+                                              ?.mainTextColor,
                                         ),
                                       ),
                                     ),

@@ -22,8 +22,10 @@ class MessageScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Text('Message'),
+      body: const Center(
+        child: Text(
+          'Message',
+        ),
       ),
     );
   }

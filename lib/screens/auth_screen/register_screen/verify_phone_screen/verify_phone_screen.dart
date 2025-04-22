@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/key_field.dart';
@@ -23,12 +22,14 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(4, (_) => TextEditingController());
+    _controllers = List.generate(
+      4,
+      (_) => TextEditingController(),
+    );
   }
 
   @override
   void dispose() {
-    // Очищаємо контролери при виході зі сторінки
     for (TextEditingController controller in _controllers) {
       controller.dispose();
     }
@@ -38,20 +39,26 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   void addDigit(String digit) {
     final index = code.indexWhere((element) => element.isEmpty);
     if (index != -1) {
-      setState(() {
-        code[index] = digit;
-        _controllers[index].text = digit; // Оновлюємо контролер
-      });
+      setState(
+        () {
+          code[index] = digit;
+          _controllers[index].text = digit;
+        },
+      );
     }
   }
 
   void deleteDigit() {
-    final index = code.lastIndexWhere((element) => element.isNotEmpty);
+    final index = code.lastIndexWhere(
+      (element) => element.isNotEmpty,
+    );
     if (index != -1) {
-      setState(() {
-        code[index] = '';
-        _controllers[index].clear(); // Очищаємо контролер
-      });
+      setState(
+        () {
+          code[index] = '';
+          _controllers[index].clear();
+        },
+      );
     }
   }
 
@@ -104,10 +111,9 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                           'Enter 4 didgits to create payment password',
                           style: AppFonts.poppinsRegular.copyWith(
                             fontSize: 18.0,
-                            color:
-                                Theme.of(
-                                  context,
-                                ).extension<AppColorsModel>()?.hintTextColor,
+                            color: Theme.of(
+                              context,
+                            ).extension<AppColorsModel>()?.hintTextColor,
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -120,13 +126,14 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                           }),
                         ),
                         const SizedBox(height: 30.0),
-
                         const SizedBox(height: 38.0),
                         CustomFilledButton(
                           onTap: () {
                             SuccessRegistration.show(
                               context,
-                              () => context.go('/home'),
+                              () => context.go(
+                                '/home',
+                              ),
                             );
                           },
                           buttonTitle: 'Create Account',
@@ -134,10 +141,14 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 35.0),
+                  const SizedBox(
+                    height: 35.0,
+                  ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                      ),
                       child: Column(
                         children: [
                           for (List<String> row in [
@@ -149,27 +160,27 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children:
-                                    row
-                                        .map(
-                                          (numItem) => Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20.0,
-                                            ),
-                                            child: SizedBox(
-                                              width: 64,
-                                              height: 64,
-                                              child: Center(
-                                                child: KeyField(
-                                                  num: numItem,
-                                                  onKeyTap:
-                                                      () => addDigit(numItem),
-                                                ),
+                                children: row
+                                    .map(
+                                      (numItem) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                        ),
+                                        child: SizedBox(
+                                          width: 64,
+                                          height: 64,
+                                          child: Center(
+                                            child: KeyField(
+                                              num: numItem,
+                                              onKeyTap: () => addDigit(
+                                                numItem,
                                               ),
                                             ),
                                           ),
-                                        )
-                                        .toList(),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
                               ),
                             ),
                           Expanded(
@@ -180,7 +191,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 20.0,
                                   ),
-                                  child: SizedBox(width: 64, height: 64),
+                                  child: SizedBox(
+                                    width: 64,
+                                    height: 64,
+                                  ),
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(
@@ -189,7 +203,11 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   child: SizedBox(
                                     width: 64,
                                     height: 64,
-                                    child: Center(child: KeyField(num: '0')),
+                                    child: Center(
+                                      child: KeyField(
+                                        num: '0',
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -205,10 +223,9 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       width: 64.0,
                                       child: Icon(
                                         Icons.backspace_outlined,
-                                        color:
-                                            Theme.of(context)
-                                                .extension<AppColorsModel>()
-                                                ?.mainTextColor,
+                                        color: Theme.of(context)
+                                            .extension<AppColorsModel>()
+                                            ?.mainTextColor,
                                       ),
                                     ),
                                   ),

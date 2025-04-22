@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
-import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/home_screen/widgets/learning_plan_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/progress_widget.dart';
 
@@ -88,55 +88,23 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 20.0,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 25.0,
                     ),
-                    Text(
-                      'Learning Plan',
-                      style: AppFonts.poppinsMedium.copyWith(
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()
-                            ?.mainTextColor,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                    Container(
-                      height: 133.0,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()
-                            ?.onSurface,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.darkHintTextColor.withValues(
-                              alpha: 0.1,
-                            ),
-                            spreadRadius: 5,
-                            blurRadius: 5,
-                            offset: const Offset(2, 5),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(
-                          15.0,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
+                    LearningPlanWidget(),
+                    SizedBox(
                       height: 14.0,
                     ),
-                    const MeetupWidget(),
+                    MeetupWidget(),
                   ],
                 ),
               ),

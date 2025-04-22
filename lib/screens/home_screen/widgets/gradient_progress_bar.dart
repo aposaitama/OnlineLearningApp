@@ -13,6 +13,7 @@ class GradientProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final reversedValue = 1.0 - value;
     return Container(
       height: 6.0,
       decoration: BoxDecoration(
@@ -22,35 +23,38 @@ class GradientProgressBar extends StatelessWidget {
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          return Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: constraints.maxWidth * value.clamp(0.0, 1.0),
-              decoration: BoxDecoration(
-                color: value <= 0.15
-                    ? (isDark
-                        ? Theme.of(context)
-                            .extension<AppColorsModel>()!
-                            .hintTextColor
-                        : AppColors.lightGreyColor)
-                    : null,
-                gradient: value > 0.15
-                    ? LinearGradient(
-                        colors: [
-                          isDark
-                              ? Theme.of(context)
-                                  .extension<AppColorsModel>()!
-                                  .hintTextColor
-                              : AppColors.lightGreyColor,
-                          Colors.red,
-                        ],
-                        stops: const [0.0, 1.0],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      )
-                    : null,
+          return Stack(
+            alignment: Alignment.centerRight,
+            children: [
+              Container(
+                // width: constraints.maxWidth * value.clamp(0.0, 1.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      isDark
+                          ? Theme.of(
+                              context,
+                            ).extension<AppColorsModel>()!.hintTextColor
+                          : AppColors.lightGreyColor,
+                      AppColors.orangeProgressBarColor,
+                    ],
+                    stops: const [0.0, 1.0],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                ),
               ),
-            ),
+              Container(
+                width: constraints.maxWidth * reversedValue.clamp(0.0, 1.0),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? Theme.of(context)
+                          .extension<AppColorsModel>()!
+                          .hintTextColor
+                      : AppColors.lightGreyColor,
+                ),
+              ),
+            ],
           );
         },
       ),
