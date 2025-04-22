@@ -8,6 +8,8 @@ import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_theme.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 
+import 'navigation/cubit/navigation_cubit.dart';
+
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
