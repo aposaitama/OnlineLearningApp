@@ -12,95 +12,96 @@ class ProggressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 96.0,
-        decoration: BoxDecoration(
-          color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
-          borderRadius: BorderRadius.circular(
-            15.0,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.darkHintTextColor.withValues(
-                alpha: 0.1,
-              ),
-              spreadRadius: 2,
-              blurRadius: 10,
-              offset: const Offset(
-                2,
-                5,
-              ),
-            ),
-          ],
+      height: 96.0,
+      decoration: BoxDecoration(
+        color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
+        borderRadius: BorderRadius.circular(
+          15.0,
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 16.0,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkHintTextColor.withValues(
+              alpha: 0.1,
+            ),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(
+              2,
+              5,
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Learned today',
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 16.0,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Learned today',
+                  style: AppFonts.poppinsRegular.copyWith(
+                    color: Theme.of(context)
+                        .extension<AppColorsModel>()
+                        ?.hintTextColor,
+                    fontSize: 12.0,
+                  ),
+                ),
+                myCoursesText
+                    ? GestureDetector(
+                        onTap: () => context.push(
+                          '/my_courses',
+                        ),
+                        child: Text(
+                          'My courses',
+                          style: AppFonts.poppinsRegular.copyWith(
+                            color: AppColors.deepBlueColor,
+                            fontSize: 12.0,
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '46min',
+                  style: AppFonts.poppinsBold.copyWith(
+                    color: Theme.of(context)
+                        .extension<AppColorsModel>()
+                        ?.mainTextColor,
+                    fontSize: 20.0,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 3.0,
+                  ),
+                  child: Text(
+                    ' / 60min',
                     style: AppFonts.poppinsRegular.copyWith(
                       color: Theme.of(context)
                           .extension<AppColorsModel>()
                           ?.hintTextColor,
-                      fontSize: 12.0,
+                      fontSize: 10.0,
                     ),
                   ),
-                  myCoursesText
-                      ? GestureDetector(
-                          onTap: () => context.push(
-                            '/my_courses',
-                          ),
-                          child: Text(
-                            'My courses',
-                            style: AppFonts.poppinsRegular.copyWith(
-                              color: AppColors.deepBlueColor,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    '46min',
-                    style: AppFonts.poppinsBold.copyWith(
-                      color: Theme.of(context)
-                          .extension<AppColorsModel>()
-                          ?.mainTextColor,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 3.0,
-                    ),
-                    child: Text(
-                      ' / 60min',
-                      style: AppFonts.poppinsRegular.copyWith(
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()
-                            ?.hintTextColor,
-                        fontSize: 10.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const GradientProgressBar(
-                value: 0.9,
-              )
-            ],
-          ),
-        ));
+                ),
+              ],
+            ),
+            const GradientProgressBar(
+              value: 0.9,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
