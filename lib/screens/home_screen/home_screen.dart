@@ -5,7 +5,7 @@ import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
-import 'package:online_app/screens/home_screen/widgets/progress_widget.dart';
+import 'package:online_app/screens/home_screen/widgets/progress_widget_with_bg.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const ProgressWidget(),
+          const ProgressWidgetWithBg(),
           const SizedBox(
             height: 16.0,
           ),

@@ -107,42 +107,63 @@ class _CourseScreenState extends State<CourseScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 28.0,
-              child: Wrap(
-                spacing: 17.0,
-                runSpacing: 20.0,
-                children: categories.map((category) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          selectedCategory = category;
-                        },
-                      );
-                    },
-                    child: Container(
-                      height: 28.0,
-                      width: 73.0,
-                      decoration: BoxDecoration(
-                        color: category == selectedCategory
-                            ? AppColors.deepBlueColor
-                            : isDark
-                                ? AppColors.darkHintTextColor
-                                : Colors.white,
-                        borderRadius: BorderRadius.circular(
-                          13.0,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          category,
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
+            const SizedBox(
+              height: 13.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
               ),
+              child: SizedBox(
+                height: 28.0,
+                child: Wrap(
+                  spacing: 17.0,
+                  runSpacing: 20.0,
+                  children: categories.map((category) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(
+                          () {
+                            selectedCategory = category;
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 28.0,
+                        width: 73.0,
+                        decoration: BoxDecoration(
+                          color: category == selectedCategory
+                              ? AppColors.deepBlueColor
+                              : isDark
+                                  ? AppColors.darkHintTextColor
+                                  : Colors.white,
+                          borderRadius: BorderRadius.circular(
+                            13.0,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            category,
+                            style: AppFonts.poppinsRegular.copyWith(
+                              color: category == selectedCategory
+                                  ? Colors.white
+                                  : Theme.of(
+                                      context,
+                                    )
+                                      .extension<AppColorsModel>()
+                                      ?.hintTextColor,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 24.0,
             ),
             Expanded(
               child: ListView.builder(
@@ -153,6 +174,9 @@ class _CourseScreenState extends State<CourseScreen> {
                 itemBuilder: (context, index) {
                   return const ConcreteCourseItemTile(
                     concreteCourseTitle: 'Product Design v1.0',
+                    concreteCourseAuthor: 'Robertson Connie',
+                    concreteCoursePrice: 190,
+                    concreteCourseDuration: 16,
                   );
                 },
               ),

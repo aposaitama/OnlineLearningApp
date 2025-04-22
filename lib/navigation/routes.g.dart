@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
       $phoneLinkingRoute,
       $phoneVerifyRoute,
       $authGateRoute,
+      $myCoursesScreenRoute,
       $rootShellRoute,
     ];
 
@@ -115,6 +116,29 @@ extension $AuthGateRouteExtension on AuthGateRoute {
 
   String get location => GoRouteData.$location(
         '/auth_gate',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $myCoursesScreenRoute => GoRouteData.$route(
+      path: '/my_courses',
+      factory: $MyCoursesScreenRouteExtension._fromState,
+    );
+
+extension $MyCoursesScreenRouteExtension on MyCoursesScreenRoute {
+  static MyCoursesScreenRoute _fromState(GoRouterState state) =>
+      const MyCoursesScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/my_courses',
       );
 
   void go(BuildContext context) => context.go(location);

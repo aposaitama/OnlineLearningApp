@@ -4,10 +4,11 @@ import 'package:online_app/resources/app_colors_model.dart';
 
 class GradientProgressBar extends StatelessWidget {
   final double value;
-
+  final bool isBackGroundWhite;
   const GradientProgressBar({
     super.key,
     required this.value,
+    this.isBackGroundWhite = false,
   });
 
   @override
@@ -17,6 +18,9 @@ class GradientProgressBar extends StatelessWidget {
     return Container(
       height: 6.0,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          13.0,
+        ),
         color: isDark
             ? Theme.of(context).extension<AppColorsModel>()?.hintTextColor
             : AppColors.lightGreyColor,
@@ -29,6 +33,9 @@ class GradientProgressBar extends StatelessWidget {
               Container(
                 // width: constraints.maxWidth * value.clamp(0.0, 1.0),
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    20.0,
+                  ),
                   gradient: LinearGradient(
                     colors: [
                       isDark
@@ -47,11 +54,17 @@ class GradientProgressBar extends StatelessWidget {
               Container(
                 width: constraints.maxWidth * reversedValue.clamp(0.0, 1.0),
                 decoration: BoxDecoration(
-                  color: isDark
-                      ? Theme.of(context)
-                          .extension<AppColorsModel>()!
-                          .hintTextColor
-                      : AppColors.lightGreyColor,
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0),
+                  ),
+                  color: isBackGroundWhite
+                      ? Colors.white
+                      : isDark
+                          ? Theme.of(context)
+                              .extension<AppColorsModel>()!
+                              .hintTextColor
+                          : AppColors.lightGreyColor,
                 ),
               ),
             ],
