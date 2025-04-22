@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/auth_gate_screen.dart';
+import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
 import 'package:online_app/screens/root_screen/root_screen.dart';
 import 'package:online_app/screens/home_screen/home_screen.dart';
 import 'package:online_app/screens/course_screen/course_screen.dart';
@@ -56,6 +57,15 @@ class AuthGateRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const AuthGateScreen();
+}
+
+@TypedGoRoute<MyCoursesScreenRoute>(path: '/my_courses')
+class MyCoursesScreenRoute extends GoRouteData {
+  const MyCoursesScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MyCoursesScreen();
 }
 
 @TypedStatefulShellRoute<RootShellRoute>(
