@@ -5,6 +5,7 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 
 class ConcreteCourseItemTile extends StatelessWidget {
+  final String imageUrl;
   final String concreteCourseTitle;
   final String concreteCourseAuthor;
   final double concreteCoursePrice;
@@ -15,6 +16,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
     required this.concreteCourseAuthor,
     required this.concreteCoursePrice,
     required this.concreteCourseDuration,
+    required this.imageUrl,
   });
 
   @override
@@ -52,16 +54,37 @@ class ConcreteCourseItemTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Container(
-                height: 68.0,
-                width: 68.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    13.0,
-                  ),
-                  color: AppColors.darkHintTextColor,
-                ),
-              ),
+              imageUrl.isEmpty
+                  ? Container(
+                      height: 68.0,
+                      width: 68.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          13.0,
+                        ),
+                        color: AppColors.darkHintTextColor,
+                      ),
+                      // child: ClipRRect(
+                      //   borderRadius: BorderRadius.circular(13.0),
+                      //   child: Image.network(
+                      //     'http://localhost:1337$imageUrl',
+                      //     height: 68.0,
+                      //     width: 68.0,
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // ),
+                    )
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        13.0,
+                      ),
+                      child: Image.network(
+                        'http://localhost:1337$imageUrl',
+                        height: 68.0,
+                        width: 68.0,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
               const SizedBox(
                 width: 35.0,
               ),
@@ -80,7 +103,9 @@ class ConcreteCourseItemTile extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SvgPicture.asset('assets/icons/Union.svg'),
+                      SvgPicture.asset(
+                        'assets/icons/Union.svg',
+                      ),
                       const SizedBox(
                         width: 6.0,
                       ),

@@ -9,7 +9,7 @@ class UserModel with _$UserModel {
     required int id,
     required String username,
     required String email,
-    required String userPhoneNumber,
+    required String? userPhoneNumber,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
