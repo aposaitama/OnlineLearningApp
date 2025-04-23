@@ -7,6 +7,9 @@ import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_theme.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
+import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
+import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc.dart';
 
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
@@ -15,8 +18,21 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => NavigationCubit()),
-        BlocProvider(create: (_) => AuthBloc()),
+        BlocProvider(
+          create: (_) => NavigationCubit(),
+        ),
+        BlocProvider(
+          create: (_) => AuthBloc(),
+        ),
+        BlocProvider(
+          create: (_) => HomeScreenBloc(),
+        ),
+        BlocProvider(
+          create: (_) => CourseScreenBloc(),
+        ),
+        BlocProvider(
+          create: (_) => CourseDetailsBloc(),
+        ),
       ],
       child: const MyApp(),
     ),

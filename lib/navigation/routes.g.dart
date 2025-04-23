@@ -13,6 +13,7 @@ List<RouteBase> get $appRoutes => [
       $phoneVerifyRoute,
       $authGateRoute,
       $myCoursesScreenRoute,
+      $courseDetailsRoute,
       $rootShellRoute,
     ];
 
@@ -139,6 +140,31 @@ extension $MyCoursesScreenRouteExtension on MyCoursesScreenRoute {
 
   String get location => GoRouteData.$location(
         '/my_courses',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $courseDetailsRoute => GoRouteData.$route(
+      path: '/course_details/:courseId',
+      factory: $CourseDetailsRouteExtension._fromState,
+    );
+
+extension $CourseDetailsRouteExtension on CourseDetailsRoute {
+  static CourseDetailsRoute _fromState(GoRouterState state) =>
+      CourseDetailsRoute(
+        state.pathParameters['courseId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/course_details/${Uri.encodeComponent(courseId)}',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/course_basic_model/course_basic_model.dart';
+import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -96,6 +98,7 @@ class StrapiApiService {
 
   Future<UserModel?> getUser() async {
     final token = await getToken();
+
     if (token == null) return null;
 
     try {
@@ -127,6 +130,7 @@ class StrapiApiService {
       );
 
       final token = response.data['jwt'];
+
       await saveToken(token);
       return token;
     } on DioException catch (e) {
@@ -134,6 +138,47 @@ class StrapiApiService {
       throw 'Login failed: $message';
     } catch (e) {
       throw 'Login failed';
+    }
+  }
+
+  Future<List<CourseBasicModel>> fetchCourseItems() async {
+    try {
+      final response = await _dio.get('/course-items', queryParameters: {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+      });
+
+      final List<dynamic> data = response.data['data'] ?? [];
+
+      return data.map((json) => CourseBasicModel.fromJson(json)).toList();
+    } on DioException catch (e) {
+      final message = e.response?.data['error']['message'] ?? 'Unknown error';
+      throw 'Failed to load data: $message';
+    } catch (e) {
+      throw 'Failed to load data';
+    }
+  }
+
+  Future<CourseConcreteModel> fetchConcreteCourse(
+    String documentID,
+  ) async {
+    try {
+      final response = await _dio.get(
+        '/course-items/$documentID',
+        queryParameters: {
+          'populate': 'courseVideoItems.video',
+          'populate[]': 'courseImage',
+        },
+      );
+
+      return CourseConcreteModel.fromJson(
+        response.data['data'],
+      );
+    } on DioException catch (e) {
+      final message = e.response?.data['error']['message'] ?? 'Unknown error';
+      throw 'Failed to load data: $message';
+    } catch (e) {
+      throw 'Failed to load data';
     }
   }
 }
