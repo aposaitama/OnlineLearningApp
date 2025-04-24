@@ -1,3 +1,4 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/resources/app_colors.dart';
@@ -6,6 +7,12 @@ import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
+import 'package:online_app/screens/course_details_screen/widgets/buy_bottom_bar.dart';
+import 'package:online_app/screens/course_details_screen/widgets/course_info_widget.dart';
+import 'package:online_app/screens/course_details_screen/widgets/course_video_item_tile.dart';
+import 'package:online_app/screens/course_details_screen/widgets/course_videos_builder.dart';
+import 'package:online_app/screens/course_details_screen/widgets/custom_overlays_controls.dart';
+import 'package:video_player/video_player.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final String courseId;
@@ -41,16 +48,42 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
               body: Stack(
             alignment: Alignment.topCenter,
             children: [
-              course != null
-                  ? SizedBox(
-                      width: double.infinity,
-                      height: imageHeight,
-                      child: Image.network(
-                        fit: BoxFit.cover,
-                        'http://localhost:1337${course.courseImage.url}',
-                      ),
-                    )
-                  : Container(),
+              BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
+                  builder: (context, state) {
+                if (state.videoLoadingStatus ==
+                    CourseLoadingVideoStatus.initial) {
+                  return course != null
+                      ? SizedBox(
+                          width: double.infinity,
+                          height: imageHeight,
+                          child: Image.network(
+                            fit: BoxFit.cover,
+                            'http://localhost:1337${course.courseImage.url}',
+                          ),
+                        )
+                      : Container();
+                }
+                if (state.videoLoadingStatus ==
+                    CourseLoadingVideoStatus.loaded) {
+                  return state.courseVideo != null
+                      ? SizedBox(
+                          width: double.infinity,
+                          height: imageHeight,
+                          child: Chewie(
+                            controller: ChewieController(
+                              videoPlayerController: state.courseVideo!,
+                              customControls: const CustomOverlayControls(),
+                            ),
+                          )
+
+                          // VideoPlayer(
+                          //   state.courseVideo!,
+                          // ),
+                          )
+                      : const SizedBox();
+                }
+                return Container();
+              }),
               Column(
                 children: [
                   Padding(
@@ -73,99 +106,66 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                       ),
                       height: height - imageHeight + 22,
                       width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 35.0,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CourseInfoWidget(
+                              courseTitle: course?.courseTitle ?? '',
+                              courseDescription:
+                                  course?.courseDescription ?? '',
+                              coursePrice: course?.coursePrice ?? 0.0,
+                              courseDuration:
+                                  course?.totalCourseDurationInSeconds ?? 0,
+                              courseVideoLength:
+                                  course?.courseVideoItems.length ?? 0,
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            Expanded(
+                              child: CourseVideosBuilder(
+                                  videoList:
+                                      state.course?.courseVideoItems ?? [],
+                                  onPlayPressed: (index) async {
+                                    context.read<CourseDetailsBloc>().add(
+                                          LoadCourseVideoEvent(
+                                            state
+                                                    .course
+                                                    ?.courseVideoItems[index]
+                                                    .video
+                                                    .url ??
+                                                '',
+                                          ),
+                                        );
+                                    context
+                                        .read<CourseDetailsBloc>()
+                                        .add(const PlayVideoEvent());
+                                  }),
+                            ),
+                            GestureDetector(
+                              onTap: () => context
+                                  .read<CourseDetailsBloc>()
+                                  .add(PauseVideoEvent()),
+                              child: Container(
+                                height: 50.0,
+                                width: 50.0,
+                                color: Colors.amber,
+                              ),
+                            ),
+                            const BuyBottomBar(),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
               )
             ],
-          )
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     course != null
-              //         ? SizedBox(
-              //             height: 300.0,
-              //             child: Image.network(
-              //               fit: BoxFit.cover,
-              //               'http://localhost:1337${course.courseImage.url}',
-              //             ),
-              //           )
-              //         : Container(),
-              //     Column(
-              //       children: [
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               course?.courseTitle ?? '',
-              //               style: AppFonts.poppinsBold.copyWith(
-              //                 color: Theme.of(context)
-              //                     .extension<AppColorsModel>()!
-              //                     .mainTextColor,
-              //                 fontSize: 20.0,
-              //                 height: 2.0,
-              //               ),
-              //             ),
-              //             Text(
-              //               '\$${course?.coursePrice.toString() ?? '0.0'}',
-              //               style: AppFonts.poppinsBold.copyWith(
-              //                 color: AppColors.deepBlueColor,
-              //                 fontSize: 20.0,
-              //                 height: 2.0,
-              //               ),
-              //             )
-              //           ],
-              //         )
-              //       ],
-              //     ),
-              //     Row(
-              //       children: [
-              //         Text(
-              //           '6h 14min',
-              //           style: AppFonts.poppinsRegular.copyWith(
-              //             color: Theme.of(context)
-              //                 .extension<AppColorsModel>()!
-              //                 .hintTextColor,
-              //             fontSize: 12.0,
-              //           ),
-              //         ),
-              //         const SizedBox(
-              //           width: 10.0,
-              //         ),
-              //         Text(
-              //           '${course?.courseVideoItems.length.toString() ?? ''} Lessons',
-              //           style: AppFonts.poppinsRegular.copyWith(
-              //             color: Theme.of(context)
-              //                 .extension<AppColorsModel>()!
-              //                 .hintTextColor,
-              //             fontSize: 12.0,
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //     Text(
-              //       'About this course',
-              //       style: AppFonts.poppinsBold.copyWith(
-              //         color: Theme.of(context)
-              //             .extension<AppColorsModel>()!
-              //             .mainTextColor,
-              //         fontSize: 16.0,
-              //         height: 2.0,
-              //       ),
-              //     ),
-              //     Text(
-              //       course?.courseDescription ?? '',
-              //       style: AppFonts.poppinsRegular.copyWith(
-              //         color: Theme.of(context)
-              //             .extension<AppColorsModel>()!
-              //             .hintTextColor,
-              //         fontSize: 12.0,
-              //       ),
-              //     ),
-              //   ],
-              // ),
-
-              );
+          ));
         } else {
           return const SizedBox();
         }
