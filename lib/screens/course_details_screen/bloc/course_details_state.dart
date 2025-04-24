@@ -26,6 +26,7 @@ class CourseDetailsState with _$CourseDetailsState {
     CourseDetailsLoadingStatus loadingStatus,
     @Default(CourseLoadingVideoStatus.initial)
     CourseLoadingVideoStatus videoLoadingStatus,
+    @Default(false) bool isFullScreen,
     VideoPlayerController? courseVideo,
   }) = _CourseDetailsState;
 }

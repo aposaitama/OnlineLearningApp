@@ -49,41 +49,53 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
             alignment: Alignment.topCenter,
             children: [
               BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
-                  builder: (context, state) {
-                if (state.videoLoadingStatus ==
-                    CourseLoadingVideoStatus.initial) {
-                  return course != null
-                      ? SizedBox(
-                          width: double.infinity,
-                          height: imageHeight,
-                          child: Image.network(
-                            fit: BoxFit.cover,
-                            'http://localhost:1337${course.courseImage.url}',
-                          ),
-                        )
-                      : Container();
-                }
-                if (state.videoLoadingStatus ==
-                    CourseLoadingVideoStatus.loaded) {
-                  return state.courseVideo != null
-                      ? SizedBox(
-                          width: double.infinity,
-                          height: imageHeight,
-                          child: Chewie(
-                            controller: ChewieController(
-                              videoPlayerController: state.courseVideo!,
-                              customControls: const CustomOverlayControls(),
+                builder: (context, state) {
+                  if (state.videoLoadingStatus ==
+                      CourseLoadingVideoStatus.initial) {
+                    return course != null
+                        ? SizedBox(
+                            width: double.infinity,
+                            height: imageHeight,
+                            child: Image.network(
+                              fit: BoxFit.cover,
+                              'http://localhost:1337${course.courseImage.url}',
                             ),
                           )
-
-                          // VideoPlayer(
-                          //   state.courseVideo!,
-                          // ),
+                        : Container();
+                  }
+                  if (state.videoLoadingStatus ==
+                      CourseLoadingVideoStatus.loaded) {
+                    return state.courseVideo != null
+                        ? BlocListener<CourseDetailsBloc, CourseDetailsState>(
+                            listener: (context, state) {
+                              // Якщо змінився режим fullScreen, оновлюємо контролер
+                              if (state.isFullScreen !=
+                                  context
+                                      .read<CourseDetailsBloc>()
+                                      .state
+                                      .isFullScreen) {
+                                setState(() {
+                                  // Оновлюємо орієнтацію та fullScreen
+                                });
+                              }
+                            },
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: imageHeight,
+                              child: Chewie(
+                                controller: ChewieController(
+                                  fullScreenByDefault: state.isFullScreen,
+                                  videoPlayerController: state.courseVideo!,
+                                  customControls: const CustomOverlayControls(),
+                                ),
+                              ),
+                            ),
                           )
-                      : const SizedBox();
-                }
-                return Container();
-              }),
+                        : const SizedBox();
+                  }
+                  return Container();
+                },
+              ),
               Column(
                 children: [
                   Padding(
