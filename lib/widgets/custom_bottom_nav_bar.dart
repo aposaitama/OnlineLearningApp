@@ -6,7 +6,7 @@ import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/screens/search_modal_sheet.dart';
+import 'package:online_app/widgets/search_modal_sheet/search_modal_sheet.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
