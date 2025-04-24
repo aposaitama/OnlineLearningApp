@@ -302,7 +302,7 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
               child: Padding(
                 padding: const EdgeInsets.only(
                   top: 40.0,
-                  left: 20.0,
+                  // left: 20.0,
                 ),
                 child: IconButton(
                   onPressed: () => context.read<CourseDetailsBloc>().add(
@@ -332,8 +332,13 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SvgPicture.asset(
-                          'assets/icons/FullScreen.svg',
+                        IconButton(
+                          onPressed: () => context
+                              .read<CourseDetailsBloc>()
+                              .add(FullScreenEvent()),
+                          icon: SvgPicture.asset(
+                            'assets/icons/FullScreen.svg',
+                          ),
                         ),
                       ],
                     ),

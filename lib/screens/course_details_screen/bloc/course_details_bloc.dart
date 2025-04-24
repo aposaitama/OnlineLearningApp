@@ -15,6 +15,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     on<PauseVideoEvent>(_pauseVideo);
     on<ResumeVideoEvent>(_resumeVideo);
     on<CloseVideoEvent>(_closeVideo);
+    on<FullScreenEvent>(_fullScreen);
   }
 
   Future<void> _playVideo(
@@ -36,6 +37,18 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
       state.copyWith(
         videoLoadingStatus: CourseLoadingVideoStatus.initial,
         courseVideo: null,
+      ),
+    );
+  }
+
+  Future<void> _fullScreen(
+    FullScreenEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    if (state.courseVideo == null) return;
+    emit(
+      state.copyWith(
+        isFullScreen: !state.isFullScreen,
       ),
     );
   }

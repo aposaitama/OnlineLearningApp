@@ -24,6 +24,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$CourseDetailsEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$CourseDetailsEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -180,6 +186,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) {
     return loadCourseInfo(documentID);
   }
@@ -193,6 +200,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) {
     return loadCourseInfo?.call(documentID);
   }
@@ -206,6 +214,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -223,6 +232,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) {
     return loadCourseInfo(this);
   }
@@ -236,6 +246,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) {
     return loadCourseInfo?.call(this);
   }
@@ -249,6 +260,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -348,6 +360,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) {
     return loadCourseVideo(videoUrl);
   }
@@ -361,6 +374,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) {
     return loadCourseVideo?.call(videoUrl);
   }
@@ -374,6 +388,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -391,6 +406,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) {
     return loadCourseVideo(this);
   }
@@ -404,6 +420,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) {
     return loadCourseVideo?.call(this);
   }
@@ -417,6 +434,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -486,6 +504,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) {
     return playVideo();
   }
@@ -499,6 +518,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) {
     return playVideo?.call();
   }
@@ -512,6 +532,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -529,6 +550,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) {
     return playVideo(this);
   }
@@ -542,6 +564,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) {
     return playVideo?.call(this);
   }
@@ -555,6 +578,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -615,6 +639,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) {
     return pauseVideo();
   }
@@ -628,6 +653,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) {
     return pauseVideo?.call();
   }
@@ -641,6 +667,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -658,6 +685,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) {
     return pauseVideo(this);
   }
@@ -671,6 +699,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) {
     return pauseVideo?.call(this);
   }
@@ -684,6 +713,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -744,6 +774,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) {
     return resumeVideo();
   }
@@ -757,6 +788,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) {
     return resumeVideo?.call();
   }
@@ -770,6 +802,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -787,6 +820,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) {
     return resumeVideo(this);
   }
@@ -800,6 +834,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) {
     return resumeVideo?.call(this);
   }
@@ -813,6 +848,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -873,6 +909,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
   }) {
     return closeVideo();
   }
@@ -886,6 +923,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
   }) {
     return closeVideo?.call();
   }
@@ -899,6 +937,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -916,6 +955,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
   }) {
     return closeVideo(this);
   }
@@ -929,6 +969,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
   }) {
     return closeVideo?.call(this);
   }
@@ -942,6 +983,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -953,4 +995,139 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
 
 abstract class CloseVideoEvent implements CourseDetailsEvent {
   const factory CloseVideoEvent() = _$CloseVideoEventImpl;
+}
+
+/// @nodoc
+abstract class _$$FullScreenEventImplCopyWith<$Res> {
+  factory _$$FullScreenEventImplCopyWith(_$FullScreenEventImpl value,
+          $Res Function(_$FullScreenEventImpl) then) =
+      __$$FullScreenEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FullScreenEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$FullScreenEventImpl>
+    implements _$$FullScreenEventImplCopyWith<$Res> {
+  __$$FullScreenEventImplCopyWithImpl(
+      _$FullScreenEventImpl _value, $Res Function(_$FullScreenEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$FullScreenEventImpl implements FullScreenEvent {
+  const _$FullScreenEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.fullScreen()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FullScreenEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
+  }) {
+    return fullScreen();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
+  }) {
+    return fullScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
+    required TResult orElse(),
+  }) {
+    if (fullScreen != null) {
+      return fullScreen();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+  }) {
+    return fullScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+  }) {
+    return fullScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    required TResult orElse(),
+  }) {
+    if (fullScreen != null) {
+      return fullScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FullScreenEvent implements CourseDetailsEvent {
+  const factory FullScreenEvent() = _$FullScreenEventImpl;
 }

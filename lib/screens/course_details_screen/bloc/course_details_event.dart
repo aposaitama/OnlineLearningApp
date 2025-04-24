@@ -14,4 +14,5 @@ class CourseDetailsEvent with _$CourseDetailsEvent {
   const factory CourseDetailsEvent.pauseVideo() = PauseVideoEvent;
   const factory CourseDetailsEvent.resumeVideo() = ResumeVideoEvent;
   const factory CourseDetailsEvent.closeVideo() = CloseVideoEvent;
+  const factory CourseDetailsEvent.fullScreen() = FullScreenEvent;
 }
