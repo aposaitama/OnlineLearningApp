@@ -11,24 +11,28 @@ class MeetupWidget extends StatelessWidget {
     return Container(
       height: 120.0,
       decoration: BoxDecoration(
+        color: AppColors.lightPurpleColor,
+        borderRadius: BorderRadius.circular(
+          15.0,
+        ),
+        border: Border.all(
           color: AppColors.lightPurpleColor,
-          borderRadius: BorderRadius.circular(
-            15.0,
-          ),
-          border: Border.all(
-            color: AppColors.lightPurpleColor,
-            width: 0.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.darkHintTextColor.withValues(
-                alpha: 0.1,
-              ),
-              spreadRadius: 5,
-              blurRadius: 5,
-              offset: const Offset(2, 5),
+          width: 0.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkHintTextColor.withValues(
+              alpha: 0.1,
             ),
-          ]),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(
+              2,
+              5,
+            ),
+          ),
+        ],
+      ),
       child: Row(
         children: [
           Expanded(
@@ -53,7 +57,7 @@ class MeetupWidget extends StatelessWidget {
                       color: AppColors.darkPurpleColor,
                       fontSize: 12.0,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -69,7 +73,7 @@ class MeetupWidget extends StatelessWidget {
               fit: BoxFit.scaleDown,
               'assets/icons/Meetup_icon.svg',
             ),
-          )
+          ),
         ],
       ),
     );

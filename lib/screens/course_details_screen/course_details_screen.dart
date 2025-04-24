@@ -1,0 +1,187 @@
+import 'package:chewie/chewie.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_app/resources/app_colors.dart';
+import 'package:online_app/resources/app_colors_model.dart';
+import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
+import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
+import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
+import 'package:online_app/screens/course_details_screen/widgets/buy_bottom_bar.dart';
+import 'package:online_app/screens/course_details_screen/widgets/course_info_widget.dart';
+import 'package:online_app/screens/course_details_screen/widgets/course_video_item_tile.dart';
+import 'package:online_app/screens/course_details_screen/widgets/course_videos_builder.dart';
+import 'package:online_app/screens/course_details_screen/widgets/custom_overlays_controls.dart';
+import 'package:video_player/video_player.dart';
+
+class CourseDetailsScreen extends StatefulWidget {
+  final String courseId;
+  const CourseDetailsScreen({
+    super.key,
+    required this.courseId,
+  });
+
+  @override
+  State<CourseDetailsScreen> createState() => _CourseDetailsScreenState();
+}
+
+class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
+  @override
+  void initState() {
+    context.read<CourseDetailsBloc>().add(
+          LoadConcreteCourseInfoEvent(
+            widget.courseId,
+          ),
+        );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double imageHeight = MediaQuery.of(context).size.height / 3;
+    final double height = MediaQuery.of(context).size.height;
+    return BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
+      builder: (context, state) {
+        if (state.loadingStatus == CourseDetailsLoadingStatus.loaded) {
+          final course = state.course;
+          return Scaffold(
+              body: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
+                builder: (context, state) {
+                  if (state.videoLoadingStatus ==
+                      CourseLoadingVideoStatus.initial) {
+                    return course != null
+                        ? SizedBox(
+                            width: double.infinity,
+                            height: imageHeight,
+                            child: Image.network(
+                              fit: BoxFit.cover,
+                              'http://localhost:1337${course.courseImage.url}',
+                            ),
+                          )
+                        : Container();
+                  }
+                  if (state.videoLoadingStatus ==
+                      CourseLoadingVideoStatus.loaded) {
+                    return state.courseVideo != null
+                        ? BlocListener<CourseDetailsBloc, CourseDetailsState>(
+                            listener: (context, state) {
+                              // Якщо змінився режим fullScreen, оновлюємо контролер
+                              if (state.isFullScreen !=
+                                  context
+                                      .read<CourseDetailsBloc>()
+                                      .state
+                                      .isFullScreen) {
+                                setState(() {
+                                  // Оновлюємо орієнтацію та fullScreen
+                                });
+                              }
+                            },
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: imageHeight,
+                              child: Chewie(
+                                controller: ChewieController(
+                                  fullScreenByDefault: state.isFullScreen,
+                                  videoPlayerController: state.courseVideo!,
+                                  customControls: const CustomOverlayControls(),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox();
+                  }
+                  return Container();
+                },
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: imageHeight - 22,
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .extension<AppColorsModel>()!
+                            .onSurface,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(
+                            25.0,
+                          ),
+                          topRight: Radius.circular(
+                            25.0,
+                          ),
+                        ),
+                      ),
+                      height: height - imageHeight + 22,
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 35.0,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CourseInfoWidget(
+                              courseTitle: course?.courseTitle ?? '',
+                              courseDescription:
+                                  course?.courseDescription ?? '',
+                              coursePrice: course?.coursePrice ?? 0.0,
+                              courseDuration:
+                                  course?.totalCourseDurationInSeconds ?? 0,
+                              courseVideoLength:
+                                  course?.courseVideoItems.length ?? 0,
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            Expanded(
+                              child: CourseVideosBuilder(
+                                  videoList:
+                                      state.course?.courseVideoItems ?? [],
+                                  onPlayPressed: (index) async {
+                                    context.read<CourseDetailsBloc>().add(
+                                          LoadCourseVideoEvent(
+                                            state
+                                                    .course
+                                                    ?.courseVideoItems[index]
+                                                    .video
+                                                    .url ??
+                                                '',
+                                          ),
+                                        );
+                                    context
+                                        .read<CourseDetailsBloc>()
+                                        .add(const PlayVideoEvent());
+                                  }),
+                            ),
+                            GestureDetector(
+                              onTap: () => context
+                                  .read<CourseDetailsBloc>()
+                                  .add(PauseVideoEvent()),
+                              child: Container(
+                                height: 50.0,
+                                width: 50.0,
+                                color: Colors.amber,
+                              ),
+                            ),
+                            const BuyBottomBar(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ));
+        } else {
+          return const SizedBox();
+        }
+      },
+    );
+  }
+}

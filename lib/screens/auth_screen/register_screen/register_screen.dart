@@ -2,7 +2,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -38,8 +37,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           state.status == RegisterStatus.successfull
               ? context.go('/phone_linking')
               : state.status == RegisterStatus.failed
-              ? BotToast.showText(text: state.errorMessage)
-              : null;
+                  ? BotToast.showText(text: state.errorMessage)
+                  : null;
         },
         child: Scaffold(
           body: Column(
@@ -56,10 +55,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Text(
                         'Sign Up',
                         style: AppFonts.poppinsBold.copyWith(
-                          color:
-                              Theme.of(
-                                context,
-                              ).extension<AppColorsModel>()?.mainTextColor,
+                          color: Theme.of(
+                            context,
+                          ).extension<AppColorsModel>()?.mainTextColor,
                         ),
                       ),
                       const SizedBox(height: 6.0),
@@ -115,12 +113,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onTap: () {
                             // context.push('/phone_linking');
                             context.read<AuthBloc>().add(
-                              RegisterUserBlocEvent(
-                                userNameController.text,
-                                userEmailController.text,
-                                userPasswordController.text,
-                              ),
-                            );
+                                  RegisterUserBlocEvent(
+                                    userNameController.text,
+                                    userEmailController.text,
+                                    userPasswordController.text,
+                                  ),
+                                );
                           },
                         ),
                         const SizedBox(height: 10.0),
@@ -146,10 +144,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 style: AppFonts.poppinsRegular.copyWith(
                                   height: 1.5,
                                   fontSize: 12.0,
-                                  color:
-                                      Theme.of(context)
-                                          .extension<AppColorsModel>()
-                                          ?.hintTextColor,
+                                  color: Theme.of(context)
+                                      .extension<AppColorsModel>()
+                                      ?.hintTextColor,
                                 ),
                               ),
                             ),
@@ -163,10 +160,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Already have an account？',
                               style: AppFonts.poppinsRegular.copyWith(
                                 fontSize: 12.0,
-                                color:
-                                    Theme.of(context)
-                                        .extension<AppColorsModel>()
-                                        ?.hintTextColor,
+                                color: Theme.of(context)
+                                    .extension<AppColorsModel>()
+                                    ?.hintTextColor,
                               ),
                             ),
                             const SizedBox(width: 4.0),

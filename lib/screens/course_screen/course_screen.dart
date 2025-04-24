@@ -14,7 +14,6 @@ class CourseScreen extends StatefulWidget {
 
 class _CourseScreenState extends State<CourseScreen> {
   final TextEditingController searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +42,7 @@ class _CourseScreenState extends State<CourseScreen> {
         ],
       ),
       body: Column(
-        children: [
-          SearchTextField(
-            searchFieldController: searchController,
-          ),
-        ],
+        children: [SearchTextField(searchFieldController: searchController)],
       ),
     );
   }
