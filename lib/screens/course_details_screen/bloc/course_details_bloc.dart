@@ -14,6 +14,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     on<PlayVideoEvent>(_playVideo);
     on<PauseVideoEvent>(_pauseVideo);
     on<ResumeVideoEvent>(_resumeVideo);
+    on<CloseVideoEvent>(_closeVideo);
   }
 
   Future<void> _playVideo(
@@ -22,6 +23,21 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   ) async {
     if (state.courseVideo == null) return;
     state.courseVideo!.play();
+  }
+
+  Future<void> _closeVideo(
+    CloseVideoEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    if (state.courseVideo == null) return;
+
+    state.courseVideo!.dispose();
+    emit(
+      state.copyWith(
+        videoLoadingStatus: CourseLoadingVideoStatus.initial,
+        courseVideo: null,
+      ),
+    );
   }
 
   Future<void> _pauseVideo(

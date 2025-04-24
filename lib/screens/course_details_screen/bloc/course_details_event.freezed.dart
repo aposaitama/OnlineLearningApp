@@ -23,6 +23,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function() playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function()? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$CourseDetailsEvent {
     TResult Function()? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function(PlayVideoEvent value) playVideo,
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function(PlayVideoEvent value)? playVideo,
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$CourseDetailsEvent {
     TResult Function(PlayVideoEvent value)? playVideo,
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -173,6 +179,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function() playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
   }) {
     return loadCourseInfo(documentID);
   }
@@ -185,6 +192,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function()? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
   }) {
     return loadCourseInfo?.call(documentID);
   }
@@ -197,6 +205,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function()? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -213,6 +222,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function(PlayVideoEvent value) playVideo,
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
   }) {
     return loadCourseInfo(this);
   }
@@ -225,6 +235,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function(PlayVideoEvent value)? playVideo,
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
   }) {
     return loadCourseInfo?.call(this);
   }
@@ -237,6 +248,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function(PlayVideoEvent value)? playVideo,
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -335,6 +347,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function() playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
   }) {
     return loadCourseVideo(videoUrl);
   }
@@ -347,6 +360,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function()? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
   }) {
     return loadCourseVideo?.call(videoUrl);
   }
@@ -359,6 +373,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function()? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -375,6 +390,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function(PlayVideoEvent value) playVideo,
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
   }) {
     return loadCourseVideo(this);
   }
@@ -387,6 +403,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function(PlayVideoEvent value)? playVideo,
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
   }) {
     return loadCourseVideo?.call(this);
   }
@@ -399,6 +416,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function(PlayVideoEvent value)? playVideo,
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -467,6 +485,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function() playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
   }) {
     return playVideo();
   }
@@ -479,6 +498,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function()? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
   }) {
     return playVideo?.call();
   }
@@ -491,6 +511,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function()? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -507,6 +528,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function(PlayVideoEvent value) playVideo,
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
   }) {
     return playVideo(this);
   }
@@ -519,6 +541,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function(PlayVideoEvent value)? playVideo,
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
   }) {
     return playVideo?.call(this);
   }
@@ -531,6 +554,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function(PlayVideoEvent value)? playVideo,
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -590,6 +614,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function() playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
   }) {
     return pauseVideo();
   }
@@ -602,6 +627,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function()? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
   }) {
     return pauseVideo?.call();
   }
@@ -614,6 +640,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function()? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -630,6 +657,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function(PlayVideoEvent value) playVideo,
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
   }) {
     return pauseVideo(this);
   }
@@ -642,6 +670,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function(PlayVideoEvent value)? playVideo,
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
   }) {
     return pauseVideo?.call(this);
   }
@@ -654,6 +683,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function(PlayVideoEvent value)? playVideo,
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -713,6 +743,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function() playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
   }) {
     return resumeVideo();
   }
@@ -725,6 +756,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function()? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
   }) {
     return resumeVideo?.call();
   }
@@ -737,6 +769,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function()? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -753,6 +786,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function(PlayVideoEvent value) playVideo,
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
   }) {
     return resumeVideo(this);
   }
@@ -765,6 +799,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function(PlayVideoEvent value)? playVideo,
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
   }) {
     return resumeVideo?.call(this);
   }
@@ -777,6 +812,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function(PlayVideoEvent value)? playVideo,
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -788,4 +824,133 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
 
 abstract class ResumeVideoEvent implements CourseDetailsEvent {
   const factory ResumeVideoEvent() = _$ResumeVideoEventImpl;
+}
+
+/// @nodoc
+abstract class _$$CloseVideoEventImplCopyWith<$Res> {
+  factory _$$CloseVideoEventImplCopyWith(_$CloseVideoEventImpl value,
+          $Res Function(_$CloseVideoEventImpl) then) =
+      __$$CloseVideoEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CloseVideoEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$CloseVideoEventImpl>
+    implements _$$CloseVideoEventImplCopyWith<$Res> {
+  __$$CloseVideoEventImplCopyWithImpl(
+      _$CloseVideoEventImpl _value, $Res Function(_$CloseVideoEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CloseVideoEventImpl implements CloseVideoEvent {
+  const _$CloseVideoEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.closeVideo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CloseVideoEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+  }) {
+    return closeVideo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+  }) {
+    return closeVideo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    required TResult orElse(),
+  }) {
+    if (closeVideo != null) {
+      return closeVideo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+  }) {
+    return closeVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+  }) {
+    return closeVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    required TResult orElse(),
+  }) {
+    if (closeVideo != null) {
+      return closeVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CloseVideoEvent implements CourseDetailsEvent {
+  const factory CloseVideoEvent() = _$CloseVideoEventImpl;
 }
