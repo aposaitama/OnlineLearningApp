@@ -61,7 +61,7 @@ class SearchModalSheet extends StatelessWidget {
                   width: 14.0,
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
