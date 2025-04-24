@@ -16,44 +16,61 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CourseDetailsEvent {
-  String get documentID => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of CourseDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CourseDetailsEventCopyWith<CourseDetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +79,6 @@ abstract class $CourseDetailsEventCopyWith<$Res> {
   factory $CourseDetailsEventCopyWith(
           CourseDetailsEvent value, $Res Function(CourseDetailsEvent) then) =
       _$CourseDetailsEventCopyWithImpl<$Res, CourseDetailsEvent>;
-  @useResult
-  $Res call({String documentID});
 }
 
 /// @nodoc
@@ -78,28 +93,14 @@ class _$CourseDetailsEventCopyWithImpl<$Res, $Val extends CourseDetailsEvent>
 
   /// Create a copy of CourseDetailsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? documentID = null,
-  }) {
-    return _then(_value.copyWith(
-      documentID: null == documentID
-          ? _value.documentID
-          : documentID // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadConcreteCourseInfoEventImplCopyWith<$Res>
-    implements $CourseDetailsEventCopyWith<$Res> {
+abstract class _$$LoadConcreteCourseInfoEventImplCopyWith<$Res> {
   factory _$$LoadConcreteCourseInfoEventImplCopyWith(
           _$LoadConcreteCourseInfoEventImpl value,
           $Res Function(_$LoadConcreteCourseInfoEventImpl) then) =
       __$$LoadConcreteCourseInfoEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String documentID});
 }
@@ -168,6 +169,10 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
   }) {
     return loadCourseInfo(documentID);
   }
@@ -176,6 +181,10 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
   }) {
     return loadCourseInfo?.call(documentID);
   }
@@ -184,6 +193,10 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -196,6 +209,10 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
   }) {
     return loadCourseInfo(this);
   }
@@ -204,6 +221,10 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
   }) {
     return loadCourseInfo?.call(this);
   }
@@ -212,6 +233,10 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -225,13 +250,542 @@ abstract class LoadConcreteCourseInfoEvent implements CourseDetailsEvent {
   const factory LoadConcreteCourseInfoEvent(final String documentID) =
       _$LoadConcreteCourseInfoEventImpl;
 
-  @override
   String get documentID;
 
   /// Create a copy of CourseDetailsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadConcreteCourseInfoEventImplCopyWith<_$LoadConcreteCourseInfoEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadCourseVideoEventImplCopyWith<$Res> {
+  factory _$$LoadCourseVideoEventImplCopyWith(_$LoadCourseVideoEventImpl value,
+          $Res Function(_$LoadCourseVideoEventImpl) then) =
+      __$$LoadCourseVideoEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String videoUrl});
+}
+
+/// @nodoc
+class __$$LoadCourseVideoEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$LoadCourseVideoEventImpl>
+    implements _$$LoadCourseVideoEventImplCopyWith<$Res> {
+  __$$LoadCourseVideoEventImplCopyWithImpl(_$LoadCourseVideoEventImpl _value,
+      $Res Function(_$LoadCourseVideoEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videoUrl = null,
+  }) {
+    return _then(_$LoadCourseVideoEventImpl(
+      null == videoUrl
+          ? _value.videoUrl
+          : videoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
+  const _$LoadCourseVideoEventImpl(this.videoUrl);
+
+  @override
+  final String videoUrl;
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.loadCourseVideo(videoUrl: $videoUrl)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadCourseVideoEventImpl &&
+            (identical(other.videoUrl, videoUrl) ||
+                other.videoUrl == videoUrl));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, videoUrl);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadCourseVideoEventImplCopyWith<_$LoadCourseVideoEventImpl>
+      get copyWith =>
+          __$$LoadCourseVideoEventImplCopyWithImpl<_$LoadCourseVideoEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+  }) {
+    return loadCourseVideo(videoUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+  }) {
+    return loadCourseVideo?.call(videoUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (loadCourseVideo != null) {
+      return loadCourseVideo(videoUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+  }) {
+    return loadCourseVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+  }) {
+    return loadCourseVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (loadCourseVideo != null) {
+      return loadCourseVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadCourseVideoEvent implements CourseDetailsEvent {
+  const factory LoadCourseVideoEvent(final String videoUrl) =
+      _$LoadCourseVideoEventImpl;
+
+  String get videoUrl;
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadCourseVideoEventImplCopyWith<_$LoadCourseVideoEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PlayVideoEventImplCopyWith<$Res> {
+  factory _$$PlayVideoEventImplCopyWith(_$PlayVideoEventImpl value,
+          $Res Function(_$PlayVideoEventImpl) then) =
+      __$$PlayVideoEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PlayVideoEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$PlayVideoEventImpl>
+    implements _$$PlayVideoEventImplCopyWith<$Res> {
+  __$$PlayVideoEventImplCopyWithImpl(
+      _$PlayVideoEventImpl _value, $Res Function(_$PlayVideoEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$PlayVideoEventImpl implements PlayVideoEvent {
+  const _$PlayVideoEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.playVideo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PlayVideoEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+  }) {
+    return playVideo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+  }) {
+    return playVideo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (playVideo != null) {
+      return playVideo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+  }) {
+    return playVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+  }) {
+    return playVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (playVideo != null) {
+      return playVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PlayVideoEvent implements CourseDetailsEvent {
+  const factory PlayVideoEvent() = _$PlayVideoEventImpl;
+}
+
+/// @nodoc
+abstract class _$$PauseVideoEventImplCopyWith<$Res> {
+  factory _$$PauseVideoEventImplCopyWith(_$PauseVideoEventImpl value,
+          $Res Function(_$PauseVideoEventImpl) then) =
+      __$$PauseVideoEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PauseVideoEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$PauseVideoEventImpl>
+    implements _$$PauseVideoEventImplCopyWith<$Res> {
+  __$$PauseVideoEventImplCopyWithImpl(
+      _$PauseVideoEventImpl _value, $Res Function(_$PauseVideoEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$PauseVideoEventImpl implements PauseVideoEvent {
+  const _$PauseVideoEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.pauseVideo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PauseVideoEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+  }) {
+    return pauseVideo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+  }) {
+    return pauseVideo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (pauseVideo != null) {
+      return pauseVideo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+  }) {
+    return pauseVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+  }) {
+    return pauseVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (pauseVideo != null) {
+      return pauseVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PauseVideoEvent implements CourseDetailsEvent {
+  const factory PauseVideoEvent() = _$PauseVideoEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ResumeVideoEventImplCopyWith<$Res> {
+  factory _$$ResumeVideoEventImplCopyWith(_$ResumeVideoEventImpl value,
+          $Res Function(_$ResumeVideoEventImpl) then) =
+      __$$ResumeVideoEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResumeVideoEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$ResumeVideoEventImpl>
+    implements _$$ResumeVideoEventImplCopyWith<$Res> {
+  __$$ResumeVideoEventImplCopyWithImpl(_$ResumeVideoEventImpl _value,
+      $Res Function(_$ResumeVideoEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResumeVideoEventImpl implements ResumeVideoEvent {
+  const _$ResumeVideoEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.resumeVideo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResumeVideoEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl) loadCourseVideo,
+    required TResult Function() playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+  }) {
+    return resumeVideo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl)? loadCourseVideo,
+    TResult? Function()? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+  }) {
+    return resumeVideo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl)? loadCourseVideo,
+    TResult Function()? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (resumeVideo != null) {
+      return resumeVideo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+  }) {
+    return resumeVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+  }) {
+    return resumeVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    required TResult orElse(),
+  }) {
+    if (resumeVideo != null) {
+      return resumeVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResumeVideoEvent implements CourseDetailsEvent {
+  const factory ResumeVideoEvent() = _$ResumeVideoEventImpl;
 }

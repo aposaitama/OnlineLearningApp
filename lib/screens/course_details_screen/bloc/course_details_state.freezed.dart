@@ -19,6 +19,9 @@ mixin _$CourseDetailsState {
   CourseConcreteModel? get course => throw _privateConstructorUsedError;
   CourseDetailsLoadingStatus get loadingStatus =>
       throw _privateConstructorUsedError;
+  CourseLoadingVideoStatus get videoLoadingStatus =>
+      throw _privateConstructorUsedError;
+  VideoPlayerController? get courseVideo => throw _privateConstructorUsedError;
 
   /// Create a copy of CourseDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +37,10 @@ abstract class $CourseDetailsStateCopyWith<$Res> {
       _$CourseDetailsStateCopyWithImpl<$Res, CourseDetailsState>;
   @useResult
   $Res call(
-      {CourseConcreteModel? course, CourseDetailsLoadingStatus loadingStatus});
+      {CourseConcreteModel? course,
+      CourseDetailsLoadingStatus loadingStatus,
+      CourseLoadingVideoStatus videoLoadingStatus,
+      VideoPlayerController? courseVideo});
 
   $CourseConcreteModelCopyWith<$Res>? get course;
 }
@@ -56,6 +62,8 @@ class _$CourseDetailsStateCopyWithImpl<$Res, $Val extends CourseDetailsState>
   $Res call({
     Object? course = freezed,
     Object? loadingStatus = null,
+    Object? videoLoadingStatus = null,
+    Object? courseVideo = freezed,
   }) {
     return _then(_value.copyWith(
       course: freezed == course
@@ -66,6 +74,14 @@ class _$CourseDetailsStateCopyWithImpl<$Res, $Val extends CourseDetailsState>
           ? _value.loadingStatus
           : loadingStatus // ignore: cast_nullable_to_non_nullable
               as CourseDetailsLoadingStatus,
+      videoLoadingStatus: null == videoLoadingStatus
+          ? _value.videoLoadingStatus
+          : videoLoadingStatus // ignore: cast_nullable_to_non_nullable
+              as CourseLoadingVideoStatus,
+      courseVideo: freezed == courseVideo
+          ? _value.courseVideo
+          : courseVideo // ignore: cast_nullable_to_non_nullable
+              as VideoPlayerController?,
     ) as $Val);
   }
 
@@ -93,7 +109,10 @@ abstract class _$$CourseDetailsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {CourseConcreteModel? course, CourseDetailsLoadingStatus loadingStatus});
+      {CourseConcreteModel? course,
+      CourseDetailsLoadingStatus loadingStatus,
+      CourseLoadingVideoStatus videoLoadingStatus,
+      VideoPlayerController? courseVideo});
 
   @override
   $CourseConcreteModelCopyWith<$Res>? get course;
@@ -114,6 +133,8 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? course = freezed,
     Object? loadingStatus = null,
+    Object? videoLoadingStatus = null,
+    Object? courseVideo = freezed,
   }) {
     return _then(_$CourseDetailsStateImpl(
       course: freezed == course
@@ -124,6 +145,14 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
           ? _value.loadingStatus
           : loadingStatus // ignore: cast_nullable_to_non_nullable
               as CourseDetailsLoadingStatus,
+      videoLoadingStatus: null == videoLoadingStatus
+          ? _value.videoLoadingStatus
+          : videoLoadingStatus // ignore: cast_nullable_to_non_nullable
+              as CourseLoadingVideoStatus,
+      courseVideo: freezed == courseVideo
+          ? _value.courseVideo
+          : courseVideo // ignore: cast_nullable_to_non_nullable
+              as VideoPlayerController?,
     ));
   }
 }
@@ -132,17 +161,25 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
 
 class _$CourseDetailsStateImpl implements _CourseDetailsState {
   const _$CourseDetailsStateImpl(
-      {this.course, this.loadingStatus = CourseDetailsLoadingStatus.initial});
+      {this.course,
+      this.loadingStatus = CourseDetailsLoadingStatus.initial,
+      this.videoLoadingStatus = CourseLoadingVideoStatus.initial,
+      this.courseVideo});
 
   @override
   final CourseConcreteModel? course;
   @override
   @JsonKey()
   final CourseDetailsLoadingStatus loadingStatus;
+  @override
+  @JsonKey()
+  final CourseLoadingVideoStatus videoLoadingStatus;
+  @override
+  final VideoPlayerController? courseVideo;
 
   @override
   String toString() {
-    return 'CourseDetailsState(course: $course, loadingStatus: $loadingStatus)';
+    return 'CourseDetailsState(course: $course, loadingStatus: $loadingStatus, videoLoadingStatus: $videoLoadingStatus, courseVideo: $courseVideo)';
   }
 
   @override
@@ -152,11 +189,16 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
             other is _$CourseDetailsStateImpl &&
             (identical(other.course, course) || other.course == course) &&
             (identical(other.loadingStatus, loadingStatus) ||
-                other.loadingStatus == loadingStatus));
+                other.loadingStatus == loadingStatus) &&
+            (identical(other.videoLoadingStatus, videoLoadingStatus) ||
+                other.videoLoadingStatus == videoLoadingStatus) &&
+            (identical(other.courseVideo, courseVideo) ||
+                other.courseVideo == courseVideo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, course, loadingStatus);
+  int get hashCode => Object.hash(
+      runtimeType, course, loadingStatus, videoLoadingStatus, courseVideo);
 
   /// Create a copy of CourseDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -170,14 +212,19 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
 
 abstract class _CourseDetailsState implements CourseDetailsState {
   const factory _CourseDetailsState(
-          {final CourseConcreteModel? course,
-          final CourseDetailsLoadingStatus loadingStatus}) =
-      _$CourseDetailsStateImpl;
+      {final CourseConcreteModel? course,
+      final CourseDetailsLoadingStatus loadingStatus,
+      final CourseLoadingVideoStatus videoLoadingStatus,
+      final VideoPlayerController? courseVideo}) = _$CourseDetailsStateImpl;
 
   @override
   CourseConcreteModel? get course;
   @override
   CourseDetailsLoadingStatus get loadingStatus;
+  @override
+  CourseLoadingVideoStatus get videoLoadingStatus;
+  @override
+  VideoPlayerController? get courseVideo;
 
   /// Create a copy of CourseDetailsState
   /// with the given fields replaced by the non-null parameter values.
