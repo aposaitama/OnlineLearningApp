@@ -11,7 +11,6 @@ import 'package:online_app/screens/course_details_screen/bloc/course_details_blo
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc.dart';
 
-import 'navigation/cubit/navigation_cubit.dart';
 
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");

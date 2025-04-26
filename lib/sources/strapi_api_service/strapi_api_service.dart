@@ -5,15 +5,16 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/models/user_model/user_model.dart';
+import 'package:online_app/utils/extensions.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StrapiApiService {
   final SharedPreferences prefs = locator<SharedPreferences>();
-  final Dio _dio;
+  final Dio dio;
 
   StrapiApiService()
-      : _dio = Dio(
+      : dio = Dio(
           BaseOptions(
             baseUrl: 'http://localhost:1337/api',
             headers: {
@@ -59,9 +60,13 @@ class StrapiApiService {
     String password,
   ) async {
     try {
-      final response = await _dio.post(
+      final response = await dio.post(
         '/auth/local/register',
-        data: {'username': userName, 'email': email, 'password': password},
+        data: {
+          'username': userName,
+          'email': email,
+          'password': password,
+        },
       );
       final token = response.data['jwt'];
       await saveToken(token);
@@ -102,7 +107,7 @@ class StrapiApiService {
     if (token == null) return null;
 
     try {
-      final response = await _dio.get(
+      final response = await dio.get(
         '/users/me',
         options: Options(
           headers: {
@@ -124,7 +129,7 @@ class StrapiApiService {
 
   Future<String> login(String email, String password) async {
     try {
-      final response = await _dio.post(
+      final response = await dio.post(
         '/auth/local',
         data: {'identifier': email, 'password': password},
       );
@@ -143,7 +148,7 @@ class StrapiApiService {
 
   Future<List<CourseBasicModel>> fetchCourseItems() async {
     try {
-      final response = await _dio.get('/course-items', queryParameters: {
+      final response = await dio.get('/course-items', queryParameters: {
         'populate': 'courseVideoItems.video',
         'populate[]': 'courseImage',
       });
@@ -163,7 +168,7 @@ class StrapiApiService {
     String documentID,
   ) async {
     try {
-      final response = await _dio.get(
+      final response = await dio.get(
         '/course-items/$documentID',
         queryParameters: {
           'populate': 'courseVideoItems.video',
@@ -179,6 +184,38 @@ class StrapiApiService {
       throw 'Failed to load data: $message';
     } catch (e) {
       throw 'Failed to load data';
+    }
+  }
+
+  Future<List<CourseBasicModel>> filterCourses({
+    required List<String> categories,
+  }) async {
+    try {
+      final queryParameters = {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+        if (categories.isNotEmpty)
+          'filters[courseCategory][\$in]': categories,
+      };
+
+      final response = await dio.get(
+        '/course-items',
+        queryParameters: queryParameters,
+      );
+
+      if (response.isSuccess) {
+        return (response.data['data'] as List)
+            .map(
+              (json) => CourseBasicModel.fromJson(
+            json
+          ),
+        )
+            .toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }

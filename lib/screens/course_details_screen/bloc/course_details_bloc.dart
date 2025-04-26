@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
