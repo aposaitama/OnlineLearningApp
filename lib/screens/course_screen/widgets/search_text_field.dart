@@ -10,14 +10,16 @@ class SearchTextField extends StatelessWidget {
   final void Function()? onPrefixPressed;
   final void Function(String)? onChanged;
   final TextEditingController searchFieldController;
+  final VoidCallback onTapFilters;
 
   const SearchTextField({
     super.key,
     this.onEditingComplete,
     this.onPrefixPressed,
     this.onChanged,
-    required this.searchFieldController,
+    required this.searchFieldController, required this.onTapFilters,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +50,7 @@ class SearchTextField extends StatelessWidget {
               right: 25.0,
             ),
             child: GestureDetector(
-              onTap: () => showModalBottomSheet(
-                isScrollControlled: true,
-                context: context,
-                builder: (context) => const SearchModalSheet(),
-              ),
+              onTap: onTapFilters,
               child: SvgPicture.asset(
                 fit: BoxFit.scaleDown,
                 'assets/icons/Filter.svg',
