@@ -11,6 +11,9 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 
+import '../../bloc/filters_bloc/filters_bloc.dart';
+import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
+
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
 
@@ -25,7 +28,25 @@ class _CourseScreenState extends State<CourseScreen> {
     context.read<CourseScreenBloc>().add(const LoadCourseBasicInfoEvent());
   }
 
-
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (bottomSheetContext) => SearchModalSheet(
+        applyFilters: () {
+          final filterState = context.read<FiltersBloc>().state;
+          context.read<CourseScreenBloc>().add(
+            FilterCoursesEvent(
+              categories: filterState.selectedCategories,
+              durations: filterState.selectedDurations,
+              priceRange: filterState.priceRange,
+            ),
+          );
+          bottomSheetContext.pop();
+        },
+      ),
+    );
+  }
 
   final categories = ['All', 'Popular', 'New'];
   String selectedCategory = 'All';
@@ -39,7 +60,7 @@ class _CourseScreenState extends State<CourseScreen> {
           appBar: AppBar(
             toolbarHeight: 85.0,
             backgroundColor:
-            Theme.of(context).extension<AppColorsModel>()!.darkColor,
+                Theme.of(context).extension<AppColorsModel>()!.darkColor,
             centerTitle: false,
             title: Text(
               'Course',
@@ -75,7 +96,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                   child: SearchTextField(
                     searchFieldController: searchController,
-                    onFiltersTap: (){},
+                    onTapFilters: _showFilterBottomSheet,
                   ),
                 ),
                 const SizedBox(
@@ -141,7 +162,7 @@ class _CourseScreenState extends State<CourseScreen> {
                         return GestureDetector(
                           onTap: () {
                             setState(
-                                  () {
+                              () {
                                 selectedCategory = category;
                               },
                             );
@@ -153,8 +174,8 @@ class _CourseScreenState extends State<CourseScreen> {
                               color: category == selectedCategory
                                   ? AppColors.deepBlueColor
                                   : isDark
-                                  ? AppColors.darkHintTextColor
-                                  : Colors.white,
+                                      ? AppColors.darkHintTextColor
+                                      : Colors.white,
                               borderRadius: BorderRadius.circular(
                                 13.0,
                               ),
@@ -166,10 +187,10 @@ class _CourseScreenState extends State<CourseScreen> {
                                   color: category == selectedCategory
                                       ? Colors.white
                                       : Theme.of(
-                                    context,
-                                  )
-                                      .extension<AppColorsModel>()
-                                      ?.hintTextColor,
+                                          context,
+                                        )
+                                          .extension<AppColorsModel>()
+                                          ?.hintTextColor,
                                   fontSize: 14.0,
                                 ),
                               ),
@@ -202,7 +223,7 @@ class _CourseScreenState extends State<CourseScreen> {
                           concreteCourseAuthor: concreteCourse.courseAuthor,
                           concreteCoursePrice: concreteCourse.coursePrice,
                           concreteCourseDuration:
-                          concreteCourse.totalCourseDurationInSeconds,
+                              concreteCourse.totalCourseDurationInSeconds,
                         ),
                       );
                     },
