@@ -11,6 +11,9 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 
+import '../../bloc/filters_bloc/filters_bloc.dart';
+import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
+
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
 
@@ -23,6 +26,26 @@ class _CourseScreenState extends State<CourseScreen> {
   void initState() {
     super.initState();
     context.read<CourseScreenBloc>().add(const LoadCourseBasicInfoEvent());
+  }
+
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (bottomSheetContext) => SearchModalSheet(
+        applyFilters: () {
+          final filterState = context.read<FiltersBloc>().state;
+          context.read<CourseScreenBloc>().add(
+            FilterCoursesEvent(
+              categories: filterState.selectedCategories,
+              durations: filterState.selectedDurations,
+              priceRange: filterState.priceRange,
+            ),
+          );
+          bottomSheetContext.pop();
+        },
+      ),
+    );
   }
 
   final categories = ['All', 'Popular', 'New'];
@@ -73,6 +96,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                   child: SearchTextField(
                     searchFieldController: searchController,
+                    onTapFilters: _showFilterBottomSheet,
                   ),
                 ),
                 const SizedBox(
