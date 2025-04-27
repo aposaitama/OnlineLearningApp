@@ -169,6 +169,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/UserImage.svg
   String get userImage => 'assets/icons/UserImage.svg';
 
+  /// File path: assets/icons/clear_text.svg
+  String get clearText => 'assets/icons/clear_text.svg';
+
   /// File path: assets/icons/close.svg
   String get close => 'assets/icons/close.svg';
 
@@ -193,6 +196,7 @@ class $AssetsIconsGen {
     success,
     union,
     userImage,
+    clearText,
     close,
   ];
 }

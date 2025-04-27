@@ -15,6 +15,7 @@ class SearchScreenState with _$SearchScreenState {
   factory SearchScreenState({
     @Default([]) List<CourseBasicModel> coursesList,
     @Default(SearchListStatus.initial) SearchListStatus coursesListStatus,
+    String? searchText,
     String? errorMessage,
 }) = _SearchScreenState;
 }

@@ -24,6 +24,9 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
+  final TextEditingController _courseScreenTextFieldController =
+      TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -38,25 +41,27 @@ class _CourseScreenState extends State<CourseScreen> {
       context: context,
       builder: (bottomSheetContext) => SearchModalSheet(
         applyFilters: () {
-          final filterState = context.read<FiltersBloc>().state;
-          context.read<SearchScreenBloc>().add(
-                GetSearchedCoursesEvent(
-                  categories: filterState.selectedCategories,
-                  durations: filterState.selectedDurations,
-                  priceRange: filterState.priceRange,
-                ),
-              );
-          bottomSheetContext.pop();
-
           context.push('/search-screen');
         },
       ),
     );
   }
 
+  void _onSubmitted(String value) {
+    final searchBloc = context.read<CourseScreenBloc>();
+    searchBloc.add(
+          EnterTextOnCourseScreenEvent(
+            enteredText: value,
+          ),
+        );
+
+    searchBloc.add(
+          const GetSearchedByTextCoursesEvent(),
+        );
+  }
+
   final categories = ['All', 'Popular', 'New'];
   String selectedCategory = 'All';
-  // final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +107,9 @@ class _CourseScreenState extends State<CourseScreen> {
                     horizontal: 20.0,
                   ),
                   child: SearchTextField(
-                    // searchFieldController: searchController,
+                    searchFieldController: _courseScreenTextFieldController,
                     onTapFilters: _showFilterBottomSheet,
+                    onSubmitted: (value) => _onSubmitted(value),
                   ),
                 ),
                 const SizedBox(

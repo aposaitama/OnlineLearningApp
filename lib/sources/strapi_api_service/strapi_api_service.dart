@@ -189,13 +189,15 @@ class StrapiApiService {
 
   Future<List<CourseBasicModel>> filterCourses({
     required List<String> categories,
+    String? searchedText,
   }) async {
     try {
       final queryParameters = {
         'populate': 'courseVideoItems.video',
         'populate[]': 'courseImage',
-        if (categories.isNotEmpty)
-          'filters[courseCategory][\$in]': categories,
+        if (categories.isNotEmpty) 'filters[courseCategory][\$in]': categories,
+        if (searchedText != null)
+          'filters[courseTitle][\$contains]': searchedText,
       };
 
       final response = await dio.get(
@@ -206,16 +208,45 @@ class StrapiApiService {
       if (response.isSuccess) {
         return (response.data['data'] as List)
             .map(
-              (json) => CourseBasicModel.fromJson(
-            json
-          ),
-        )
+              (json) => CourseBasicModel.fromJson(json),
+            )
             .toList();
       } else {
         return [];
       }
     } catch (e) {
       throw Exception(e);
+    }
+  }
+
+  Future<List<CourseBasicModel>> searchCoursesByText({
+    String? enteredText,
+  }) async {
+    try {
+      final queryParameters = {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+        if (enteredText != null)
+          'filters[courseTitle][\$contains]': enteredText,
+      };
+
+      final response = await dio.get(
+        '/course-items',
+        queryParameters: queryParameters,
+      );
+
+      if(response.isSuccess){
+        return (response.data['data'] as List)
+            .map(
+              (json) => CourseBasicModel.fromJson(json),
+        )
+            .toList();
+      } else{
+        throw Exception('Something went wrong during the search!');
+      }
+
+    } catch (e) {
+      rethrow;
     }
   }
 }

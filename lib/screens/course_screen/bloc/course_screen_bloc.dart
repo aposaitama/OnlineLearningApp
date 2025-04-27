@@ -13,6 +13,8 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
 
   CourseScreenBloc() : super(const CourseScreenState()) {
     on<LoadCourseBasicInfoEvent>(_loadCourseList);
+    on<GetSearchedByTextCoursesEvent>(_getSearchedCourses);
+    on<EnterTextOnCourseScreenEvent>(_onEnterText);
   }
 
   Future<void> _loadCourseList(
@@ -28,4 +30,34 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     );
   }
 
+  Future<void> _getSearchedCourses(
+    GetSearchedByTextCoursesEvent event,
+    Emitter<CourseScreenState> emit,
+  ) async {
+    try {
+      final searchedCourses = await strapiApiService.searchCoursesByText(
+        enteredText: state.enteredText,
+      );
+
+      emit(
+        state.copyWith(
+          loadingStatus: CourseScreenStatus.loaded,
+          courseList: searchedCourses,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  void _onEnterText(
+    EnterTextOnCourseScreenEvent event,
+    Emitter<CourseScreenState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        enteredText: event.enteredText,
+      ),
+    );
+  }
 }

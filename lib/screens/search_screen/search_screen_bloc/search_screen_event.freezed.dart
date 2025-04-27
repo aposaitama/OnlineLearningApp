@@ -16,14 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchScreenEvent {
-  List<String> get categories => throw _privateConstructorUsedError;
-  List<RangeValues> get durations => throw _privateConstructorUsedError;
-  RangeValues get priceRange => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<String> categories,
             List<RangeValues> durations, RangeValues priceRange)
         loadSearchedCourses,
+    required TResult Function(String? enteredText) enterText,
+    required TResult Function() clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +30,8 @@ mixin _$SearchScreenEvent {
     TResult? Function(List<String> categories, List<RangeValues> durations,
             RangeValues priceRange)?
         loadSearchedCourses,
+    TResult? Function(String? enteredText)? enterText,
+    TResult? Function()? clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,8 @@ mixin _$SearchScreenEvent {
     TResult Function(List<String> categories, List<RangeValues> durations,
             RangeValues priceRange)?
         loadSearchedCourses,
+    TResult Function(String? enteredText)? enterText,
+    TResult Function()? clearState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,24 +48,24 @@ mixin _$SearchScreenEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetSearchedCoursesEvent value)
         loadSearchedCourses,
+    required TResult Function(EnterSearchTextEvent value) enterText,
+    required TResult Function(ClearSearchStateEvent value) clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult? Function(EnterSearchTextEvent value)? enterText,
+    TResult? Function(ClearSearchStateEvent value)? clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult Function(EnterSearchTextEvent value)? enterText,
+    TResult Function(ClearSearchStateEvent value)? clearState,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of SearchScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SearchScreenEventCopyWith<SearchScreenEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -71,11 +74,6 @@ abstract class $SearchScreenEventCopyWith<$Res> {
   factory $SearchScreenEventCopyWith(
           SearchScreenEvent value, $Res Function(SearchScreenEvent) then) =
       _$SearchScreenEventCopyWithImpl<$Res, SearchScreenEvent>;
-  @useResult
-  $Res call(
-      {List<String> categories,
-      List<RangeValues> durations,
-      RangeValues priceRange});
 }
 
 /// @nodoc
@@ -90,38 +88,14 @@ class _$SearchScreenEventCopyWithImpl<$Res, $Val extends SearchScreenEvent>
 
   /// Create a copy of SearchScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? categories = null,
-    Object? durations = null,
-    Object? priceRange = null,
-  }) {
-    return _then(_value.copyWith(
-      categories: null == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      durations: null == durations
-          ? _value.durations
-          : durations // ignore: cast_nullable_to_non_nullable
-              as List<RangeValues>,
-      priceRange: null == priceRange
-          ? _value.priceRange
-          : priceRange // ignore: cast_nullable_to_non_nullable
-              as RangeValues,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetSearchedCoursesEventImplCopyWith<$Res>
-    implements $SearchScreenEventCopyWith<$Res> {
+abstract class _$$GetSearchedCoursesEventImplCopyWith<$Res> {
   factory _$$GetSearchedCoursesEventImplCopyWith(
           _$GetSearchedCoursesEventImpl value,
           $Res Function(_$GetSearchedCoursesEventImpl) then) =
       __$$GetSearchedCoursesEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {List<String> categories,
@@ -233,6 +207,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
     required TResult Function(List<String> categories,
             List<RangeValues> durations, RangeValues priceRange)
         loadSearchedCourses,
+    required TResult Function(String? enteredText) enterText,
+    required TResult Function() clearState,
   }) {
     return loadSearchedCourses(categories, durations, priceRange);
   }
@@ -243,6 +219,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
     TResult? Function(List<String> categories, List<RangeValues> durations,
             RangeValues priceRange)?
         loadSearchedCourses,
+    TResult? Function(String? enteredText)? enterText,
+    TResult? Function()? clearState,
   }) {
     return loadSearchedCourses?.call(categories, durations, priceRange);
   }
@@ -253,6 +231,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
     TResult Function(List<String> categories, List<RangeValues> durations,
             RangeValues priceRange)?
         loadSearchedCourses,
+    TResult Function(String? enteredText)? enterText,
+    TResult Function()? clearState,
     required TResult orElse(),
   }) {
     if (loadSearchedCourses != null) {
@@ -266,6 +246,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetSearchedCoursesEvent value)
         loadSearchedCourses,
+    required TResult Function(EnterSearchTextEvent value) enterText,
+    required TResult Function(ClearSearchStateEvent value) clearState,
   }) {
     return loadSearchedCourses(this);
   }
@@ -274,6 +256,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult? Function(EnterSearchTextEvent value)? enterText,
+    TResult? Function(ClearSearchStateEvent value)? clearState,
   }) {
     return loadSearchedCourses?.call(this);
   }
@@ -282,6 +266,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult Function(EnterSearchTextEvent value)? enterText,
+    TResult Function(ClearSearchStateEvent value)? clearState,
     required TResult orElse(),
   }) {
     if (loadSearchedCourses != null) {
@@ -297,17 +283,290 @@ abstract class GetSearchedCoursesEvent implements SearchScreenEvent {
       required final List<RangeValues> durations,
       required final RangeValues priceRange}) = _$GetSearchedCoursesEventImpl;
 
-  @override
   List<String> get categories;
-  @override
   List<RangeValues> get durations;
-  @override
   RangeValues get priceRange;
 
   /// Create a copy of SearchScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetSearchedCoursesEventImplCopyWith<_$GetSearchedCoursesEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EnterSearchTextEventImplCopyWith<$Res> {
+  factory _$$EnterSearchTextEventImplCopyWith(_$EnterSearchTextEventImpl value,
+          $Res Function(_$EnterSearchTextEventImpl) then) =
+      __$$EnterSearchTextEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? enteredText});
+}
+
+/// @nodoc
+class __$$EnterSearchTextEventImplCopyWithImpl<$Res>
+    extends _$SearchScreenEventCopyWithImpl<$Res, _$EnterSearchTextEventImpl>
+    implements _$$EnterSearchTextEventImplCopyWith<$Res> {
+  __$$EnterSearchTextEventImplCopyWithImpl(_$EnterSearchTextEventImpl _value,
+      $Res Function(_$EnterSearchTextEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SearchScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? enteredText = freezed,
+  }) {
+    return _then(_$EnterSearchTextEventImpl(
+      enteredText: freezed == enteredText
+          ? _value.enteredText
+          : enteredText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterSearchTextEventImpl implements EnterSearchTextEvent {
+  const _$EnterSearchTextEventImpl({this.enteredText});
+
+  @override
+  final String? enteredText;
+
+  @override
+  String toString() {
+    return 'SearchScreenEvent.enterText(enteredText: $enteredText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterSearchTextEventImpl &&
+            (identical(other.enteredText, enteredText) ||
+                other.enteredText == enteredText));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, enteredText);
+
+  /// Create a copy of SearchScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterSearchTextEventImplCopyWith<_$EnterSearchTextEventImpl>
+      get copyWith =>
+          __$$EnterSearchTextEventImplCopyWithImpl<_$EnterSearchTextEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<String> categories,
+            List<RangeValues> durations, RangeValues priceRange)
+        loadSearchedCourses,
+    required TResult Function(String? enteredText) enterText,
+    required TResult Function() clearState,
+  }) {
+    return enterText(enteredText);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<String> categories, List<RangeValues> durations,
+            RangeValues priceRange)?
+        loadSearchedCourses,
+    TResult? Function(String? enteredText)? enterText,
+    TResult? Function()? clearState,
+  }) {
+    return enterText?.call(enteredText);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String> categories, List<RangeValues> durations,
+            RangeValues priceRange)?
+        loadSearchedCourses,
+    TResult Function(String? enteredText)? enterText,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (enterText != null) {
+      return enterText(enteredText);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetSearchedCoursesEvent value)
+        loadSearchedCourses,
+    required TResult Function(EnterSearchTextEvent value) enterText,
+    required TResult Function(ClearSearchStateEvent value) clearState,
+  }) {
+    return enterText(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult? Function(EnterSearchTextEvent value)? enterText,
+    TResult? Function(ClearSearchStateEvent value)? clearState,
+  }) {
+    return enterText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult Function(EnterSearchTextEvent value)? enterText,
+    TResult Function(ClearSearchStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (enterText != null) {
+      return enterText(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterSearchTextEvent implements SearchScreenEvent {
+  const factory EnterSearchTextEvent({final String? enteredText}) =
+      _$EnterSearchTextEventImpl;
+
+  String? get enteredText;
+
+  /// Create a copy of SearchScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterSearchTextEventImplCopyWith<_$EnterSearchTextEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearSearchStateEventImplCopyWith<$Res> {
+  factory _$$ClearSearchStateEventImplCopyWith(
+          _$ClearSearchStateEventImpl value,
+          $Res Function(_$ClearSearchStateEventImpl) then) =
+      __$$ClearSearchStateEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearSearchStateEventImplCopyWithImpl<$Res>
+    extends _$SearchScreenEventCopyWithImpl<$Res, _$ClearSearchStateEventImpl>
+    implements _$$ClearSearchStateEventImplCopyWith<$Res> {
+  __$$ClearSearchStateEventImplCopyWithImpl(_$ClearSearchStateEventImpl _value,
+      $Res Function(_$ClearSearchStateEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SearchScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClearSearchStateEventImpl implements ClearSearchStateEvent {
+  const _$ClearSearchStateEventImpl();
+
+  @override
+  String toString() {
+    return 'SearchScreenEvent.clearState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearSearchStateEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<String> categories,
+            List<RangeValues> durations, RangeValues priceRange)
+        loadSearchedCourses,
+    required TResult Function(String? enteredText) enterText,
+    required TResult Function() clearState,
+  }) {
+    return clearState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<String> categories, List<RangeValues> durations,
+            RangeValues priceRange)?
+        loadSearchedCourses,
+    TResult? Function(String? enteredText)? enterText,
+    TResult? Function()? clearState,
+  }) {
+    return clearState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String> categories, List<RangeValues> durations,
+            RangeValues priceRange)?
+        loadSearchedCourses,
+    TResult Function(String? enteredText)? enterText,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (clearState != null) {
+      return clearState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetSearchedCoursesEvent value)
+        loadSearchedCourses,
+    required TResult Function(EnterSearchTextEvent value) enterText,
+    required TResult Function(ClearSearchStateEvent value) clearState,
+  }) {
+    return clearState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult? Function(EnterSearchTextEvent value)? enterText,
+    TResult? Function(ClearSearchStateEvent value)? clearState,
+  }) {
+    return clearState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetSearchedCoursesEvent value)? loadSearchedCourses,
+    TResult Function(EnterSearchTextEvent value)? enterText,
+    TResult Function(ClearSearchStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (clearState != null) {
+      return clearState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClearSearchStateEvent implements SearchScreenEvent {
+  const factory ClearSearchStateEvent() = _$ClearSearchStateEventImpl;
 }
