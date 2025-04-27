@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
 import 'package:online_app/bloc/filters_bloc/filters_event.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/utils/constants.dart';
 import 'package:online_app/widgets/search_modal_sheet/filter_categories_builder.dart';
 import 'package:online_app/widgets/search_modal_sheet/filter_durations_builder.dart';
 import 'package:online_app/widgets/search_modal_sheet/price_slider.dart';
 
+import '../../bloc/filters_bloc/filters_bloc.dart';
 import '../../bloc/filters_bloc/filters_state.dart';
 
 class SearchModalSheet extends StatelessWidget {
@@ -27,7 +26,15 @@ class SearchModalSheet extends StatelessWidget {
     RangeValues priceRange,
   ) {
     context.read<FiltersBloc>().add(
-          SelectPriceRangeEvent(priceRange: priceRange),
+          SelectPriceRangeEvent(
+            priceRange: priceRange,
+          ),
+        );
+  }
+
+  void _clearFilters(BuildContext context) {
+    context.read<FiltersBloc>().add(
+          const ClearFiltersStateEvent(),
         );
   }
 
@@ -41,7 +48,9 @@ class SearchModalSheet extends StatelessWidget {
 
   void _selectDuration(BuildContext context, RangeValues duration) {
     context.read<FiltersBloc>().add(
-          SelectDurationEvent(duration: duration),
+          SelectDurationEvent(
+            duration: duration,
+          ),
         );
   }
 
@@ -150,13 +159,13 @@ class SearchModalSheet extends StatelessWidget {
                     duration,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
+                const Spacer(),
+                SafeArea(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => _clearFilters(context),
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.transparent,

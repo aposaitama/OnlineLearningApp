@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
-import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
+import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
 import 'package:online_app/widgets/search_modal_sheet/search_modal_sheet.dart';
+
+import '../bloc/filters_bloc/filters_bloc.dart';
+import '../screens/search_screen/search_screen_bloc/search_screen_event.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -52,14 +53,16 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         return SearchModalSheet(
           applyFilters: () {
             final filterState = context.read<FiltersBloc>().state;
-            context.read<CourseScreenBloc>().add(
-                  FilterCoursesEvent(
+            context.read<SearchScreenBloc>().add(
+              GetSearchedCoursesEvent(
                     categories: filterState.selectedCategories,
                     durations: filterState.selectedDurations,
                     priceRange: filterState.priceRange,
                   ),
                 );
             bottomSheetContext.pop();
+
+            context.push('/search-screen');
           },
         );
       },

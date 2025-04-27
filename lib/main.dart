@@ -2,7 +2,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
@@ -11,6 +10,10 @@ import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
+
+import 'bloc/filters_bloc/filters_bloc.dart';
+
 
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
@@ -36,6 +39,9 @@ void main() async {
         ),
         BlocProvider(
           create: (_) => FiltersBloc(),
+        ),
+        BlocProvider(
+          create: (_) => SearchScreenBloc(),
         ),
       ],
       child: const MyApp(),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
-import 'package:online_app/bloc/filters_bloc/filters_state.dart';
 
+import '../../bloc/filters_bloc/filters_bloc.dart';
+import '../../bloc/filters_bloc/filters_state.dart';
 import '../../resources/app_colors.dart';
 import '../../resources/app_colors_model.dart';
 

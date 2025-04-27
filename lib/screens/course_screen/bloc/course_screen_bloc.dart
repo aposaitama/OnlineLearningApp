@@ -13,7 +13,6 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
 
   CourseScreenBloc() : super(const CourseScreenState()) {
     on<LoadCourseBasicInfoEvent>(_loadCourseList);
-    on<FilterCoursesEvent>(_onFilterCourses);
   }
 
   Future<void> _loadCourseList(
@@ -29,41 +28,4 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     );
   }
 
-  Future<void> _onFilterCourses(
-    FilterCoursesEvent event,
-    Emitter<CourseScreenState> emit,
-  ) async {
-    try {
-      final List<CourseBasicModel> result =
-          await strapiApiService.filterCourses(
-        categories: event.categories,
-      );
-
-      final List<CourseBasicModel> filteredCourses = result.where(
-        (course) {
-          final durationInHours = course.totalCourseDurationInSeconds.toHours();
-
-          final matchesDuration = event.durations.isEmpty ||
-              event.durations.any(
-                (duration) =>
-                    durationInHours >= duration.start &&
-                    durationInHours <= duration.end,
-              );
-
-          final matchesPrice = course.coursePrice >= event.priceRange.start &&
-              course.coursePrice <= event.priceRange.end;
-
-          return matchesDuration && matchesPrice;
-        },
-      ).toList();
-
-      emit(
-        state.copyWith(
-          courseList: filteredCourses,
-        ),
-      );
-    } catch (e) {
-      throw Exception(e);
-    }
-  }
 }
