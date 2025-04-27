@@ -219,11 +219,33 @@ class StrapiApiService {
     }
   }
 
-  Future<void> searchCoursesByText() async {
-    try{
-      final queryParameters = {};
+  Future<List<CourseBasicModel>> searchCoursesByText({
+    String? enteredText,
+  }) async {
+    try {
+      final queryParameters = {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+        if (enteredText != null)
+          'filters[courseTitle][\$contains]': enteredText,
+      };
 
-    }catch(e){
+      final response = await dio.get(
+        '/course-items',
+        queryParameters: queryParameters,
+      );
+
+      if(response.isSuccess){
+        return (response.data['data'] as List)
+            .map(
+              (json) => CourseBasicModel.fromJson(json),
+        )
+            .toList();
+      } else{
+        throw Exception('Something went wrong during the search!');
+      }
+
+    } catch (e) {
       rethrow;
     }
   }

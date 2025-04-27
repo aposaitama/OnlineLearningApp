@@ -15,5 +15,6 @@ class CourseScreenState with _$CourseScreenState {
   const factory CourseScreenState({
     @Default([]) List<CourseBasicModel> courseList,
     @Default(CourseScreenStatus.initial) CourseScreenStatus loadingStatus,
+    String? enteredText,
   }) = _CourseScreenState;
 }
