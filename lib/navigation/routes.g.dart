@@ -13,6 +13,7 @@ List<RouteBase> get $appRoutes => [
       $phoneVerifyRoute,
       $authGateRoute,
       $myCoursesScreenRoute,
+      $searchScreenRoute,
       $courseDetailsRoute,
       $rootShellRoute,
     ];
@@ -140,6 +141,29 @@ extension $MyCoursesScreenRouteExtension on MyCoursesScreenRoute {
 
   String get location => GoRouteData.$location(
         '/my_courses',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $searchScreenRoute => GoRouteData.$route(
+      path: '/search-screen',
+      factory: $SearchScreenRouteExtension._fromState,
+    );
+
+extension $SearchScreenRouteExtension on SearchScreenRoute {
+  static SearchScreenRoute _fromState(GoRouterState state) =>
+      const SearchScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/search-screen',
       );
 
   void go(BuildContext context) => context.go(location);

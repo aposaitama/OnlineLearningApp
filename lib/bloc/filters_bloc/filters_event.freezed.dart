@@ -21,6 +21,7 @@ mixin _$FiltersEvent {
     required TResult Function(RangeValues priceRange) selectPriceRange,
     required TResult Function(String category) selectCategories,
     required TResult Function(RangeValues duration) selectDurations,
+    required TResult Function() clearFiltersState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$FiltersEvent {
     TResult? Function(RangeValues priceRange)? selectPriceRange,
     TResult? Function(String category)? selectCategories,
     TResult? Function(RangeValues duration)? selectDurations,
+    TResult? Function()? clearFiltersState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$FiltersEvent {
     TResult Function(RangeValues priceRange)? selectPriceRange,
     TResult Function(String category)? selectCategories,
     TResult Function(RangeValues duration)? selectDurations,
+    TResult Function()? clearFiltersState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$FiltersEvent {
     required TResult Function(SelectPriceRangeEvent value) selectPriceRange,
     required TResult Function(SelectCategoriesEvent value) selectCategories,
     required TResult Function(SelectDurationEvent value) selectDurations,
+    required TResult Function(ClearFiltersStateEvent value) clearFiltersState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$FiltersEvent {
     TResult? Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult? Function(SelectCategoriesEvent value)? selectCategories,
     TResult? Function(SelectDurationEvent value)? selectDurations,
+    TResult? Function(ClearFiltersStateEvent value)? clearFiltersState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$FiltersEvent {
     TResult Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult Function(SelectCategoriesEvent value)? selectCategories,
     TResult Function(SelectDurationEvent value)? selectDurations,
+    TResult Function(ClearFiltersStateEvent value)? clearFiltersState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -157,6 +163,7 @@ class _$SelectPriceRangeEventImpl implements SelectPriceRangeEvent {
     required TResult Function(RangeValues priceRange) selectPriceRange,
     required TResult Function(String category) selectCategories,
     required TResult Function(RangeValues duration) selectDurations,
+    required TResult Function() clearFiltersState,
   }) {
     return selectPriceRange(priceRange);
   }
@@ -167,6 +174,7 @@ class _$SelectPriceRangeEventImpl implements SelectPriceRangeEvent {
     TResult? Function(RangeValues priceRange)? selectPriceRange,
     TResult? Function(String category)? selectCategories,
     TResult? Function(RangeValues duration)? selectDurations,
+    TResult? Function()? clearFiltersState,
   }) {
     return selectPriceRange?.call(priceRange);
   }
@@ -177,6 +185,7 @@ class _$SelectPriceRangeEventImpl implements SelectPriceRangeEvent {
     TResult Function(RangeValues priceRange)? selectPriceRange,
     TResult Function(String category)? selectCategories,
     TResult Function(RangeValues duration)? selectDurations,
+    TResult Function()? clearFiltersState,
     required TResult orElse(),
   }) {
     if (selectPriceRange != null) {
@@ -191,6 +200,7 @@ class _$SelectPriceRangeEventImpl implements SelectPriceRangeEvent {
     required TResult Function(SelectPriceRangeEvent value) selectPriceRange,
     required TResult Function(SelectCategoriesEvent value) selectCategories,
     required TResult Function(SelectDurationEvent value) selectDurations,
+    required TResult Function(ClearFiltersStateEvent value) clearFiltersState,
   }) {
     return selectPriceRange(this);
   }
@@ -201,6 +211,7 @@ class _$SelectPriceRangeEventImpl implements SelectPriceRangeEvent {
     TResult? Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult? Function(SelectCategoriesEvent value)? selectCategories,
     TResult? Function(SelectDurationEvent value)? selectDurations,
+    TResult? Function(ClearFiltersStateEvent value)? clearFiltersState,
   }) {
     return selectPriceRange?.call(this);
   }
@@ -211,6 +222,7 @@ class _$SelectPriceRangeEventImpl implements SelectPriceRangeEvent {
     TResult Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult Function(SelectCategoriesEvent value)? selectCategories,
     TResult Function(SelectDurationEvent value)? selectDurations,
+    TResult Function(ClearFiltersStateEvent value)? clearFiltersState,
     required TResult orElse(),
   }) {
     if (selectPriceRange != null) {
@@ -307,6 +319,7 @@ class _$SelectCategoriesEventImpl implements SelectCategoriesEvent {
     required TResult Function(RangeValues priceRange) selectPriceRange,
     required TResult Function(String category) selectCategories,
     required TResult Function(RangeValues duration) selectDurations,
+    required TResult Function() clearFiltersState,
   }) {
     return selectCategories(category);
   }
@@ -317,6 +330,7 @@ class _$SelectCategoriesEventImpl implements SelectCategoriesEvent {
     TResult? Function(RangeValues priceRange)? selectPriceRange,
     TResult? Function(String category)? selectCategories,
     TResult? Function(RangeValues duration)? selectDurations,
+    TResult? Function()? clearFiltersState,
   }) {
     return selectCategories?.call(category);
   }
@@ -327,6 +341,7 @@ class _$SelectCategoriesEventImpl implements SelectCategoriesEvent {
     TResult Function(RangeValues priceRange)? selectPriceRange,
     TResult Function(String category)? selectCategories,
     TResult Function(RangeValues duration)? selectDurations,
+    TResult Function()? clearFiltersState,
     required TResult orElse(),
   }) {
     if (selectCategories != null) {
@@ -341,6 +356,7 @@ class _$SelectCategoriesEventImpl implements SelectCategoriesEvent {
     required TResult Function(SelectPriceRangeEvent value) selectPriceRange,
     required TResult Function(SelectCategoriesEvent value) selectCategories,
     required TResult Function(SelectDurationEvent value) selectDurations,
+    required TResult Function(ClearFiltersStateEvent value) clearFiltersState,
   }) {
     return selectCategories(this);
   }
@@ -351,6 +367,7 @@ class _$SelectCategoriesEventImpl implements SelectCategoriesEvent {
     TResult? Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult? Function(SelectCategoriesEvent value)? selectCategories,
     TResult? Function(SelectDurationEvent value)? selectDurations,
+    TResult? Function(ClearFiltersStateEvent value)? clearFiltersState,
   }) {
     return selectCategories?.call(this);
   }
@@ -361,6 +378,7 @@ class _$SelectCategoriesEventImpl implements SelectCategoriesEvent {
     TResult Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult Function(SelectCategoriesEvent value)? selectCategories,
     TResult Function(SelectDurationEvent value)? selectDurations,
+    TResult Function(ClearFiltersStateEvent value)? clearFiltersState,
     required TResult orElse(),
   }) {
     if (selectCategories != null) {
@@ -456,6 +474,7 @@ class _$SelectDurationEventImpl implements SelectDurationEvent {
     required TResult Function(RangeValues priceRange) selectPriceRange,
     required TResult Function(String category) selectCategories,
     required TResult Function(RangeValues duration) selectDurations,
+    required TResult Function() clearFiltersState,
   }) {
     return selectDurations(duration);
   }
@@ -466,6 +485,7 @@ class _$SelectDurationEventImpl implements SelectDurationEvent {
     TResult? Function(RangeValues priceRange)? selectPriceRange,
     TResult? Function(String category)? selectCategories,
     TResult? Function(RangeValues duration)? selectDurations,
+    TResult? Function()? clearFiltersState,
   }) {
     return selectDurations?.call(duration);
   }
@@ -476,6 +496,7 @@ class _$SelectDurationEventImpl implements SelectDurationEvent {
     TResult Function(RangeValues priceRange)? selectPriceRange,
     TResult Function(String category)? selectCategories,
     TResult Function(RangeValues duration)? selectDurations,
+    TResult Function()? clearFiltersState,
     required TResult orElse(),
   }) {
     if (selectDurations != null) {
@@ -490,6 +511,7 @@ class _$SelectDurationEventImpl implements SelectDurationEvent {
     required TResult Function(SelectPriceRangeEvent value) selectPriceRange,
     required TResult Function(SelectCategoriesEvent value) selectCategories,
     required TResult Function(SelectDurationEvent value) selectDurations,
+    required TResult Function(ClearFiltersStateEvent value) clearFiltersState,
   }) {
     return selectDurations(this);
   }
@@ -500,6 +522,7 @@ class _$SelectDurationEventImpl implements SelectDurationEvent {
     TResult? Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult? Function(SelectCategoriesEvent value)? selectCategories,
     TResult? Function(SelectDurationEvent value)? selectDurations,
+    TResult? Function(ClearFiltersStateEvent value)? clearFiltersState,
   }) {
     return selectDurations?.call(this);
   }
@@ -510,6 +533,7 @@ class _$SelectDurationEventImpl implements SelectDurationEvent {
     TResult Function(SelectPriceRangeEvent value)? selectPriceRange,
     TResult Function(SelectCategoriesEvent value)? selectCategories,
     TResult Function(SelectDurationEvent value)? selectDurations,
+    TResult Function(ClearFiltersStateEvent value)? clearFiltersState,
     required TResult orElse(),
   }) {
     if (selectDurations != null) {
@@ -530,4 +554,124 @@ abstract class SelectDurationEvent implements FiltersEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectDurationEventImplCopyWith<_$SelectDurationEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearFiltersStateEventImplCopyWith<$Res> {
+  factory _$$ClearFiltersStateEventImplCopyWith(
+          _$ClearFiltersStateEventImpl value,
+          $Res Function(_$ClearFiltersStateEventImpl) then) =
+      __$$ClearFiltersStateEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearFiltersStateEventImplCopyWithImpl<$Res>
+    extends _$FiltersEventCopyWithImpl<$Res, _$ClearFiltersStateEventImpl>
+    implements _$$ClearFiltersStateEventImplCopyWith<$Res> {
+  __$$ClearFiltersStateEventImplCopyWithImpl(
+      _$ClearFiltersStateEventImpl _value,
+      $Res Function(_$ClearFiltersStateEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FiltersEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClearFiltersStateEventImpl implements ClearFiltersStateEvent {
+  const _$ClearFiltersStateEventImpl();
+
+  @override
+  String toString() {
+    return 'FiltersEvent.clearFiltersState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearFiltersStateEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RangeValues priceRange) selectPriceRange,
+    required TResult Function(String category) selectCategories,
+    required TResult Function(RangeValues duration) selectDurations,
+    required TResult Function() clearFiltersState,
+  }) {
+    return clearFiltersState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RangeValues priceRange)? selectPriceRange,
+    TResult? Function(String category)? selectCategories,
+    TResult? Function(RangeValues duration)? selectDurations,
+    TResult? Function()? clearFiltersState,
+  }) {
+    return clearFiltersState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RangeValues priceRange)? selectPriceRange,
+    TResult Function(String category)? selectCategories,
+    TResult Function(RangeValues duration)? selectDurations,
+    TResult Function()? clearFiltersState,
+    required TResult orElse(),
+  }) {
+    if (clearFiltersState != null) {
+      return clearFiltersState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectPriceRangeEvent value) selectPriceRange,
+    required TResult Function(SelectCategoriesEvent value) selectCategories,
+    required TResult Function(SelectDurationEvent value) selectDurations,
+    required TResult Function(ClearFiltersStateEvent value) clearFiltersState,
+  }) {
+    return clearFiltersState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SelectPriceRangeEvent value)? selectPriceRange,
+    TResult? Function(SelectCategoriesEvent value)? selectCategories,
+    TResult? Function(SelectDurationEvent value)? selectDurations,
+    TResult? Function(ClearFiltersStateEvent value)? clearFiltersState,
+  }) {
+    return clearFiltersState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectPriceRangeEvent value)? selectPriceRange,
+    TResult Function(SelectCategoriesEvent value)? selectCategories,
+    TResult Function(SelectDurationEvent value)? selectDurations,
+    TResult Function(ClearFiltersStateEvent value)? clearFiltersState,
+    required TResult orElse(),
+  }) {
+    if (clearFiltersState != null) {
+      return clearFiltersState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClearFiltersStateEvent implements FiltersEvent {
+  const factory ClearFiltersStateEvent() = _$ClearFiltersStateEventImpl;
 }

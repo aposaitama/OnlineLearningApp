@@ -10,6 +10,8 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
+import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
+import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_event.dart';
 
 import '../../bloc/filters_bloc/filters_bloc.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
@@ -25,7 +27,9 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CourseScreenBloc>().add(const LoadCourseBasicInfoEvent());
+    context.read<CourseScreenBloc>().add(
+          const LoadCourseBasicInfoEvent(),
+        );
   }
 
   void _showFilterBottomSheet() {
@@ -35,14 +39,16 @@ class _CourseScreenState extends State<CourseScreen> {
       builder: (bottomSheetContext) => SearchModalSheet(
         applyFilters: () {
           final filterState = context.read<FiltersBloc>().state;
-          context.read<CourseScreenBloc>().add(
-            FilterCoursesEvent(
-              categories: filterState.selectedCategories,
-              durations: filterState.selectedDurations,
-              priceRange: filterState.priceRange,
-            ),
-          );
+          context.read<SearchScreenBloc>().add(
+                GetSearchedCoursesEvent(
+                  categories: filterState.selectedCategories,
+                  durations: filterState.selectedDurations,
+                  priceRange: filterState.priceRange,
+                ),
+              );
           bottomSheetContext.pop();
+
+          context.push('/search-screen');
         },
       ),
     );
@@ -50,7 +56,8 @@ class _CourseScreenState extends State<CourseScreen> {
 
   final categories = ['All', 'Popular', 'New'];
   String selectedCategory = 'All';
-  final TextEditingController searchController = TextEditingController();
+  // final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -95,7 +102,7 @@ class _CourseScreenState extends State<CourseScreen> {
                     horizontal: 20.0,
                   ),
                   child: SearchTextField(
-                    searchFieldController: searchController,
+                    // searchFieldController: searchController,
                     onTapFilters: _showFilterBottomSheet,
                   ),
                 ),

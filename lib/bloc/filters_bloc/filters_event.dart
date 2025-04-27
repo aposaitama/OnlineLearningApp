@@ -16,4 +16,6 @@ class FiltersEvent with _$FiltersEvent {
   const factory FiltersEvent.selectDurations({
     required RangeValues duration,
   }) = SelectDurationEvent;
+
+  const factory FiltersEvent.clearFiltersState() = ClearFiltersStateEvent;
 }

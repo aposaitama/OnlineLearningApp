@@ -9,6 +9,7 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
     on<SelectPriceRangeEvent>(_onSelectPriceRange);
     on<SelectCategoriesEvent>(_onSelectCategory);
     on<SelectDurationEvent>(_onSelectDuration);
+    on<ClearFiltersStateEvent>(_onClearState);
   }
 
   void _onSelectPriceRange(
@@ -43,11 +44,11 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
   }
 
   void _onSelectDuration(
-      SelectDurationEvent event,
-      Emitter<FiltersState> emit,
-      ) {
+    SelectDurationEvent event,
+    Emitter<FiltersState> emit,
+  ) {
     final List<RangeValues> currentDurations =
-    List<RangeValues>.from(state.selectedDurations);
+        List<RangeValues>.from(state.selectedDurations);
 
     if (currentDurations.contains(event.duration)) {
       currentDurations.remove(event.duration);
@@ -59,6 +60,15 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
       state.copyWith(
         selectedDurations: currentDurations,
       ),
+    );
+  }
+
+  void _onClearState(
+    ClearFiltersStateEvent event,
+    Emitter<FiltersState> emit,
+  ) {
+    emit(
+      FiltersState(),
     );
   }
 }

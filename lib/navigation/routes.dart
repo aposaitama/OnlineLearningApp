@@ -12,6 +12,7 @@ import 'package:online_app/screens/auth_screen/login_screen/login_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/register_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/phone_linking_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/verify_phone_screen.dart';
+import 'package:online_app/screens/search_screen/search_screen.dart';
 
 part 'routes.g.dart';
 
@@ -67,6 +68,15 @@ class MyCoursesScreenRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const MyCoursesScreen();
+}
+
+@TypedGoRoute<SearchScreenRoute>(path: '/search-screen')
+class SearchScreenRoute extends GoRouteData {
+  const SearchScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SearchScreen();
 }
 
 @TypedGoRoute<CourseDetailsRoute>(

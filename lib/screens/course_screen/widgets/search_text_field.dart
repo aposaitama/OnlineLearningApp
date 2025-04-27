@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/widgets/search_modal_sheet/search_modal_sheet.dart';
+
 
 class SearchTextField extends StatelessWidget {
   final void Function()? onEditingComplete;
   final void Function()? onPrefixPressed;
   final void Function(String)? onChanged;
-  final TextEditingController searchFieldController;
+  final TextEditingController? searchFieldController;
   final VoidCallback onTapFilters;
 
   const SearchTextField({
@@ -17,16 +17,16 @@ class SearchTextField extends StatelessWidget {
     this.onEditingComplete,
     this.onPrefixPressed,
     this.onChanged,
-    required this.searchFieldController, required this.onTapFilters,
+    this.searchFieldController,
+    required this.onTapFilters,
   });
-
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return TextField(
       onEditingComplete: onEditingComplete,
-      controller: searchFieldController,
+      // controller: searchFieldController,
       cursorColor: Colors.transparent,
       decoration: InputDecoration(
           prefixIcon: IconButton(
