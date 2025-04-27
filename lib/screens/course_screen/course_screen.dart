@@ -25,6 +25,8 @@ class _CourseScreenState extends State<CourseScreen> {
     context.read<CourseScreenBloc>().add(const LoadCourseBasicInfoEvent());
   }
 
+
+
   final categories = ['All', 'Popular', 'New'];
   String selectedCategory = 'All';
   final TextEditingController searchController = TextEditingController();
@@ -37,7 +39,7 @@ class _CourseScreenState extends State<CourseScreen> {
           appBar: AppBar(
             toolbarHeight: 85.0,
             backgroundColor:
-                Theme.of(context).extension<AppColorsModel>()!.darkColor,
+            Theme.of(context).extension<AppColorsModel>()!.darkColor,
             centerTitle: false,
             title: Text(
               'Course',
@@ -73,6 +75,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                   child: SearchTextField(
                     searchFieldController: searchController,
+                    onFiltersTap: (){},
                   ),
                 ),
                 const SizedBox(
@@ -138,7 +141,7 @@ class _CourseScreenState extends State<CourseScreen> {
                         return GestureDetector(
                           onTap: () {
                             setState(
-                              () {
+                                  () {
                                 selectedCategory = category;
                               },
                             );
@@ -150,8 +153,8 @@ class _CourseScreenState extends State<CourseScreen> {
                               color: category == selectedCategory
                                   ? AppColors.deepBlueColor
                                   : isDark
-                                      ? AppColors.darkHintTextColor
-                                      : Colors.white,
+                                  ? AppColors.darkHintTextColor
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(
                                 13.0,
                               ),
@@ -163,10 +166,10 @@ class _CourseScreenState extends State<CourseScreen> {
                                   color: category == selectedCategory
                                       ? Colors.white
                                       : Theme.of(
-                                          context,
-                                        )
-                                          .extension<AppColorsModel>()
-                                          ?.hintTextColor,
+                                    context,
+                                  )
+                                      .extension<AppColorsModel>()
+                                      ?.hintTextColor,
                                   fontSize: 14.0,
                                 ),
                               ),
@@ -199,7 +202,7 @@ class _CourseScreenState extends State<CourseScreen> {
                           concreteCourseAuthor: concreteCourse.courseAuthor,
                           concreteCoursePrice: concreteCourse.coursePrice,
                           concreteCourseDuration:
-                              concreteCourse.totalCourseDurationInSeconds,
+                          concreteCourse.totalCourseDurationInSeconds,
                         ),
                       );
                     },

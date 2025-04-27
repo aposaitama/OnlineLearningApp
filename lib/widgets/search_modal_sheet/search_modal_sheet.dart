@@ -15,7 +15,12 @@ import 'package:online_app/widgets/search_modal_sheet/price_slider.dart';
 import '../../bloc/filters_bloc/filters_state.dart';
 
 class SearchModalSheet extends StatelessWidget {
-  const SearchModalSheet({super.key});
+  final VoidCallback applyFilters;
+
+  const SearchModalSheet({
+    super.key,
+    required this.applyFilters,
+  });
 
   void _selectPriceRange(
     BuildContext context,
@@ -43,9 +48,8 @@ class SearchModalSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColorsModel = Theme.of(context).extension<AppColorsModel>();
-    return BlocProvider(
-      create: (context) => FiltersBloc(),
-      child: BlocBuilder<FiltersBloc, FiltersState>(builder: (context, state) {
+    return BlocBuilder<FiltersBloc, FiltersState>(
+      builder: (context, state) {
         return Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -190,7 +194,7 @@ class SearchModalSheet extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: applyFilters,
                             child: const Text('Apply Filter'),
                           ),
                         ),
@@ -202,7 +206,7 @@ class SearchModalSheet extends StatelessWidget {
             ),
           ),
         );
-      }),
+      },
     );
   }
 }

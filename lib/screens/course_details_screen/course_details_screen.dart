@@ -16,6 +16,7 @@ import 'package:video_player/video_player.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final String courseId;
+
   const CourseDetailsScreen({
     super.key,
     required this.courseId,
@@ -153,15 +154,16 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                                 '',
                                           ),
                                         );
-                                    context
-                                        .read<CourseDetailsBloc>()
-                                        .add(const PlayVideoEvent());
+                                    context.read<CourseDetailsBloc>().add(
+                                          const PlayVideoEvent(),
+                                        );
                                   }),
                             ),
                             GestureDetector(
-                              onTap: () => context
-                                  .read<CourseDetailsBloc>()
-                                  .add(PauseVideoEvent()),
+                              onTap: () =>
+                                  context.read<CourseDetailsBloc>().add(
+                                        PauseVideoEvent(),
+                                      ),
                               child: Container(
                                 height: 50.0,
                                 width: 50.0,
