@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/utils/seconds_to_date_extension.dart';
 
 class CourseInfoWidget extends StatelessWidget {
   final String courseTitle;
@@ -56,7 +57,7 @@ class CourseInfoWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                courseDuration.toString(),
+                courseDuration.toTimeFormat(),
                 style: AppFonts.poppinsRegular.copyWith(
                   color: Theme.of(context)
                       .extension<AppColorsModel>()!

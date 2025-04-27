@@ -1,6 +1,8 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -9,10 +11,8 @@ import 'package:online_app/screens/course_details_screen/bloc/course_details_eve
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
 import 'package:online_app/screens/course_details_screen/widgets/buy_bottom_bar.dart';
 import 'package:online_app/screens/course_details_screen/widgets/course_info_widget.dart';
-import 'package:online_app/screens/course_details_screen/widgets/course_video_item_tile.dart';
 import 'package:online_app/screens/course_details_screen/widgets/course_videos_builder.dart';
 import 'package:online_app/screens/course_details_screen/widgets/custom_overlays_controls.dart';
-import 'package:video_player/video_player.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final String courseId;
@@ -53,13 +53,37 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                   if (state.videoLoadingStatus ==
                       CourseLoadingVideoStatus.initial) {
                     return course != null
-                        ? SizedBox(
-                            width: double.infinity,
-                            height: imageHeight,
-                            child: Image.network(
-                              fit: BoxFit.cover,
-                              'http://localhost:1337${course.courseImage.url}',
-                            ),
+                        ? Stack(
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                height: imageHeight,
+                                child: Image.network(
+                                  fit: BoxFit.cover,
+                                  'http://localhost:1337${course.courseImage.url}',
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 35.0,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      context.pop();
+                                    },
+                                    icon: SvgPicture.asset(
+                                      'assets/icons/ArrowBack.svg',
+                                      colorFilter: const ColorFilter.mode(
+                                        AppColors.darkColor,
+                                        BlendMode.srcIn,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           )
                         : Container();
                   }
@@ -161,7 +185,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                             GestureDetector(
                               onTap: () => context
                                   .read<CourseDetailsBloc>()
-                                  .add(PauseVideoEvent()),
+                                  .add(const PauseVideoEvent()),
                               child: Container(
                                 height: 50.0,
                                 width: 50.0,
