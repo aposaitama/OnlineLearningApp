@@ -3,11 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/utils/index_to_string_extension.dart';
+import 'package:online_app/utils/seconds_to_date_extension.dart';
 
 class CourseVideoItemTile extends StatelessWidget {
   final int videoNumber;
   final String videoTitle;
-  final String videoDuration;
+  final int videoDuration;
   final String videoUrl;
   final void Function()? onPlayPressed;
   const CourseVideoItemTile({
@@ -36,7 +38,7 @@ class CourseVideoItemTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      videoNumber.toString(),
+                      videoNumber.indexToString(),
                       style: AppFonts.poppinsMedium.copyWith(
                         color: Theme.of(context)
                             .extension<AppColorsModel>()!
@@ -67,7 +69,7 @@ class CourseVideoItemTile extends StatelessWidget {
                     height: 6.0,
                   ),
                   Text(
-                    videoDuration,
+                    '${videoDuration.toTimeFormat()} min',
                     style: AppFonts.poppinsMedium.copyWith(
                       color: Theme.of(context)
                           .extension<AppColorsModel>()!

@@ -23,7 +23,7 @@ class CourseVideosBuilder extends StatelessWidget {
           return CourseVideoItemTile(
             onPlayPressed:
                 onPlayPressed != null ? () => onPlayPressed!(index) : null,
-            videoDuration: videoList[index].videoDurationInSeconds.toString(),
+            videoDuration: videoList[index].videoDurationInSeconds,
             videoNumber: index,
             videoTitle: videoList[index].videoTitle,
             videoUrl: videoList[index].video.url,
