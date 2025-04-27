@@ -24,11 +24,21 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   SearchScreenBloc get _searchScreenBloc => context.read<SearchScreenBloc>();
+  final TextEditingController _searchScreenController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _getSearchedCourses();
+    _searchScreenController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchScreenController.dispose();
   }
 
   void _getSearchedCourses() {
@@ -65,6 +75,33 @@ class _SearchScreenState extends State<SearchScreen> {
         );
   }
 
+  Future<void> _onSubmitSearch(String value) async {
+    final searchBloc = context.read<SearchScreenBloc>();
+    searchBloc.add(
+      EnterSearchTextEvent(
+        enteredText: value,
+      ),
+    );
+
+    _searchScreenController.text = value;
+
+    await searchBloc.stream.firstWhere((state) => state.searchText != null);
+
+    _getSearchedCourses();
+  }
+
+  void _back() {
+    context.read<SearchScreenBloc>().add(
+          const ClearSearchStateEvent(),
+        );
+
+    context.read<FiltersBloc>().add(
+          const ClearFiltersStateEvent(),
+        );
+
+    context.pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<FiltersBloc, FiltersState>(
@@ -78,7 +115,7 @@ class _SearchScreenState extends State<SearchScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: GestureDetector(
-            onTap: () => context.pop(),
+            onTap: _back,
             child: SvgPicture.asset(
               Assets.icons.arrowBack,
               fit: BoxFit.scaleDown,
@@ -95,6 +132,8 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               SearchTextField(
                 onTapFilters: _showFilterBottomSheet,
+                onSubmitted: (value) => _onSubmitSearch(value),
+                searchFieldController: _searchScreenController,
               ),
               Padding(
                 padding: const EdgeInsets.only(

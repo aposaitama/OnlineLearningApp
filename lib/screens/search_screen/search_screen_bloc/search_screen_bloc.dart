@@ -15,6 +15,8 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
           SearchScreenState(),
         ) {
     on<GetSearchedCoursesEvent>(_onGetSearchedCourses);
+    on<EnterSearchTextEvent>(_onEnterText);
+    on<ClearSearchStateEvent>(_onClearState);
   }
 
   Future<void> _onGetSearchedCourses(
@@ -31,6 +33,7 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
       final List<CourseBasicModel> result =
           await strapiApiService.filterCourses(
         categories: event.categories,
+        searchedText: state.searchText,
       );
 
       final List<CourseBasicModel> filteredCourses = result.where(
@@ -70,5 +73,25 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
     } catch (e) {
       rethrow;
     }
+  }
+
+  void _onEnterText(
+    EnterSearchTextEvent event,
+    Emitter<SearchScreenState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        searchText: event.enteredText,
+      ),
+    );
+  }
+
+  void _onClearState(
+    ClearSearchStateEvent event,
+    Emitter<SearchScreenState> emit,
+  ) {
+    emit(
+      SearchScreenState(),
+    );
   }
 }

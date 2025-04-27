@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchScreenState {
   List<CourseBasicModel> get coursesList => throw _privateConstructorUsedError;
   SearchListStatus get coursesListStatus => throw _privateConstructorUsedError;
+  String? get searchText => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchScreenState
@@ -36,6 +37,7 @@ abstract class $SearchScreenStateCopyWith<$Res> {
   $Res call(
       {List<CourseBasicModel> coursesList,
       SearchListStatus coursesListStatus,
+      String? searchText,
       String? errorMessage});
 }
 
@@ -56,6 +58,7 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
   $Res call({
     Object? coursesList = null,
     Object? coursesListStatus = null,
+    Object? searchText = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -67,6 +70,10 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
           ? _value.coursesListStatus
           : coursesListStatus // ignore: cast_nullable_to_non_nullable
               as SearchListStatus,
+      searchText: freezed == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -86,6 +93,7 @@ abstract class _$$SearchScreenStateImplCopyWith<$Res>
   $Res call(
       {List<CourseBasicModel> coursesList,
       SearchListStatus coursesListStatus,
+      String? searchText,
       String? errorMessage});
 }
 
@@ -104,6 +112,7 @@ class __$$SearchScreenStateImplCopyWithImpl<$Res>
   $Res call({
     Object? coursesList = null,
     Object? coursesListStatus = null,
+    Object? searchText = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$SearchScreenStateImpl(
@@ -115,6 +124,10 @@ class __$$SearchScreenStateImplCopyWithImpl<$Res>
           ? _value.coursesListStatus
           : coursesListStatus // ignore: cast_nullable_to_non_nullable
               as SearchListStatus,
+      searchText: freezed == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -129,6 +142,7 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
   _$SearchScreenStateImpl(
       {final List<CourseBasicModel> coursesList = const [],
       this.coursesListStatus = SearchListStatus.initial,
+      this.searchText,
       this.errorMessage})
       : _coursesList = coursesList;
 
@@ -145,11 +159,13 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
   @JsonKey()
   final SearchListStatus coursesListStatus;
   @override
+  final String? searchText;
+  @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'SearchScreenState(coursesList: $coursesList, coursesListStatus: $coursesListStatus, errorMessage: $errorMessage)';
+    return 'SearchScreenState(coursesList: $coursesList, coursesListStatus: $coursesListStatus, searchText: $searchText, errorMessage: $errorMessage)';
   }
 
   @override
@@ -161,6 +177,8 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
                 .equals(other._coursesList, _coursesList) &&
             (identical(other.coursesListStatus, coursesListStatus) ||
                 other.coursesListStatus == coursesListStatus) &&
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -170,6 +188,7 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
       runtimeType,
       const DeepCollectionEquality().hash(_coursesList),
       coursesListStatus,
+      searchText,
       errorMessage);
 
   /// Create a copy of SearchScreenState
@@ -186,12 +205,15 @@ abstract class _SearchScreenState implements SearchScreenState {
   factory _SearchScreenState(
       {final List<CourseBasicModel> coursesList,
       final SearchListStatus coursesListStatus,
+      final String? searchText,
       final String? errorMessage}) = _$SearchScreenStateImpl;
 
   @override
   List<CourseBasicModel> get coursesList;
   @override
   SearchListStatus get coursesListStatus;
+  @override
+  String? get searchText;
   @override
   String? get errorMessage;
 

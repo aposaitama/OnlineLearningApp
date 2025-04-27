@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_state.dart';
@@ -38,12 +39,17 @@ class SearchedCoursesBuilder extends StatelessWidget {
               itemCount: state.coursesList.length,
               itemBuilder: (context, index) {
                 final course = state.coursesList[index];
-                return ConcreteCourseItemTile(
-                  concreteCourseTitle: course.courseTitle,
-                  concreteCourseAuthor: course.courseAuthor,
-                  concreteCoursePrice: course.coursePrice,
-                  concreteCourseDuration: course.totalCourseDurationInSeconds,
-                  imageUrl: course.courseImage.url,
+                return GestureDetector(
+                  onTap: () => context.push(
+                    '/course_details/${course.documentId}',
+                  ),
+                  child: ConcreteCourseItemTile(
+                    concreteCourseTitle: course.courseTitle,
+                    concreteCourseAuthor: course.courseAuthor,
+                    concreteCoursePrice: course.coursePrice,
+                    concreteCourseDuration: course.totalCourseDurationInSeconds,
+                    imageUrl: course.courseImage.url,
+                  ),
                 );
               },
             ),
