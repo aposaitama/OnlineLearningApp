@@ -10,10 +10,6 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
-import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
-import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_event.dart';
-
-import '../../bloc/filters_bloc/filters_bloc.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
 
 class CourseScreen extends StatefulWidget {
@@ -50,14 +46,14 @@ class _CourseScreenState extends State<CourseScreen> {
   void _onSubmitted(String value) {
     final searchBloc = context.read<CourseScreenBloc>();
     searchBloc.add(
-          EnterTextOnCourseScreenEvent(
-            enteredText: value,
-          ),
-        );
+      EnterTextOnCourseScreenEvent(
+        enteredText: value,
+      ),
+    );
 
     searchBloc.add(
-          const GetSearchedByTextCoursesEvent(),
-        );
+      const GetSearchedByTextCoursesEvent(),
+    );
   }
 
   final categories = ['All', 'Popular', 'New'];

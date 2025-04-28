@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
-import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
@@ -93,15 +92,14 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                     return state.courseVideo != null
                         ? BlocListener<CourseDetailsBloc, CourseDetailsState>(
                             listener: (context, state) {
-                              // Якщо змінився режим fullScreen, оновлюємо контролер
                               if (state.isFullScreen !=
                                   context
                                       .read<CourseDetailsBloc>()
                                       .state
                                       .isFullScreen) {
-                                setState(() {
-                                  // Оновлюємо орієнтацію та fullScreen
-                                });
+                                setState(
+                                  () {},
+                                );
                               }
                             },
                             child: SizedBox(
@@ -194,7 +192,10 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 color: Colors.amber,
                               ),
                             ),
-                            const BuyBottomBar(),
+                            BuyBottomBar(
+                              onBuyButtonPressed: () => context
+                                  .push('/payment-screen/${widget.courseId}'),
+                            ),
                           ],
                         ),
                       ),

@@ -146,7 +146,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ),
-              SearchedCoursesBuilder(),
+              const SearchedCoursesBuilder(),
             ],
           ),
         ),
