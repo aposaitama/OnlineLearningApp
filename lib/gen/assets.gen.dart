@@ -115,6 +115,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Account.svg
   String get account => 'assets/icons/Account.svg';
 
+  /// File path: assets/icons/AddIcon.svg
+  String get addIcon => 'assets/icons/AddIcon.svg';
+
   /// File path: assets/icons/ArrowBack.svg
   String get arrowBack => 'assets/icons/ArrowBack.svg';
 
@@ -163,6 +166,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Success.svg
   String get success => 'assets/icons/Success.svg';
 
+  /// File path: assets/icons/SuccessfullPayment.svg
+  String get successfullPayment => 'assets/icons/SuccessfullPayment.svg';
+
   /// File path: assets/icons/Union.svg
   String get union => 'assets/icons/Union.svg';
 
@@ -178,6 +184,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<String> get values => [
     account,
+    addIcon,
     arrowBack,
     course,
     dateTime,
@@ -194,6 +201,7 @@ class $AssetsIconsGen {
     search,
     star,
     success,
+    successfullPayment,
     union,
     userImage,
     clearText,

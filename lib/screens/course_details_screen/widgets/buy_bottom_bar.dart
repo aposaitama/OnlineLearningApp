@@ -5,7 +5,8 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 
 class BuyBottomBar extends StatelessWidget {
-  const BuyBottomBar({super.key});
+  final void Function()? onBuyButtonPressed;
+  const BuyBottomBar({super.key, this.onBuyButtonPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +55,9 @@ class BuyBottomBar extends StatelessWidget {
             const SizedBox(
               width: 14.0,
             ),
-            const Expanded(
+            Expanded(
               child: CustomFilledButton(
+                onTap: onBuyButtonPressed,
                 buttonTitle: 'Buy Now',
               ),
             )
