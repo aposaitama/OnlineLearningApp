@@ -14,6 +14,7 @@ List<RouteBase> get $appRoutes => [
       $authGateRoute,
       $myCoursesScreenRoute,
       $searchScreenRoute,
+      $paymentScreenRoute,
       $courseDetailsRoute,
       $rootShellRoute,
     ];
@@ -164,6 +165,29 @@ extension $SearchScreenRouteExtension on SearchScreenRoute {
 
   String get location => GoRouteData.$location(
         '/search-screen',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $paymentScreenRoute => GoRouteData.$route(
+      path: '/payment-screen',
+      factory: $PaymentScreenRouteExtension._fromState,
+    );
+
+extension $PaymentScreenRouteExtension on PaymentScreenRoute {
+  static PaymentScreenRoute _fromState(GoRouterState state) =>
+      const PaymentScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/payment-screen',
       );
 
   void go(BuildContext context) => context.go(location);

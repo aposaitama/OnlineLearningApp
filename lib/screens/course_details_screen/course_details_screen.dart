@@ -184,12 +184,10 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   }),
                             ),
                             GestureDetector(
-
                               onTap: () =>
                                   context.read<CourseDetailsBloc>().add(
-                                        PauseVideoEvent(),
+                                        const PauseVideoEvent(),
                                       ),
-
                               child: Container(
                                 height: 50.0,
                                 width: 50.0,
