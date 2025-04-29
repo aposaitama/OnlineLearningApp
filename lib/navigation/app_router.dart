@@ -5,6 +5,6 @@ class AppRouter {
   GoRouter createRouter() => GoRouter(
       // initialLocation: '/course_details/wq23eaa3b17lf6cn43lr7i0j',
       // initialLocation: '/course_details/wq23eaa3b17lf6cn43lr7i0j',
-      initialLocation: '/auth_gate',
+      initialLocation: '/payment-screen/wq23eaa3b17lf6cn43lr7i0j',
       routes: $appRoutes);
 }

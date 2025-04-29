@@ -235,18 +235,35 @@ class StrapiApiService {
         queryParameters: queryParameters,
       );
 
-      if(response.isSuccess){
+      if (response.isSuccess) {
         return (response.data['data'] as List)
             .map(
               (json) => CourseBasicModel.fromJson(json),
-        )
+            )
             .toList();
-      } else{
+      } else {
         throw Exception('Something went wrong during the search!');
       }
-
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future<bool> purchaseCourse(String courseDocumentID) async {
+    try {
+      final userModel = await getUser();
+      final int userID = userModel?.id ?? 0;
+      await dio.put(
+        '/users/$userID',
+        data: {
+          'user_purchased_courses': {
+            "connect": [4]
+          }
+        },
+      );
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

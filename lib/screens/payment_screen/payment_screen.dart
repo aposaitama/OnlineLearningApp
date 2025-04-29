@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
+import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -27,6 +28,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
   ];
 
   final _controller = PageController();
+
+  final strapi = StrapiApiService();
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +97,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
               child: cards.length > 1
                   ? CustomFilledButton(
-                      onTap: () => context.push('/successfull_payment_screen'),
+                      onTap: () {
+                        strapi.purchaseCourse(
+                          widget.courseId,
+                        );
+                        // context.push('/successfull_payment_screen');
+                      },
                       buttonTitle: 'Pay Now',
                     )
                   : const CustomFilledButton(

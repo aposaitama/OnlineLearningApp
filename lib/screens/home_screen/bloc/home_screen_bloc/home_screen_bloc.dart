@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc_event.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc_state.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
+
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
