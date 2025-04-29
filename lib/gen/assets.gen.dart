@@ -181,6 +181,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/close.svg
   String get close => 'assets/icons/close.svg';
 
+  /// File path: assets/icons/favourite_filled.svg
+  String get favouriteFilled => 'assets/icons/favourite_filled.svg';
+
+  /// File path: assets/icons/lock_icon.svg
+  String get lockIcon => 'assets/icons/lock_icon.svg';
+
   /// List of all assets
   List<String> get values => [
     account,
@@ -206,6 +212,8 @@ class $AssetsIconsGen {
     userImage,
     clearText,
     close,
+    favouriteFilled,
+    lockIcon,
   ];
 }
 

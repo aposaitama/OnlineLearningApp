@@ -3,10 +3,17 @@ import 'package:online_app/models/course_concrete_model.dart/course_concrete_mod
 import 'package:online_app/screens/course_details_screen/widgets/course_video_item_tile.dart';
 
 class CourseVideosBuilder extends StatelessWidget {
+  final String courseId;
   final void Function(int index)? onPlayPressed;
+  final void Function(int index)? onLockPressed;
   final List<CourseVideoItem> videoList;
-  const CourseVideosBuilder(
-      {super.key, required this.videoList, this.onPlayPressed});
+  const CourseVideosBuilder({
+    super.key,
+    required this.videoList,
+    this.onPlayPressed,
+    required this.courseId,
+    this.onLockPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +28,13 @@ class CourseVideosBuilder extends StatelessWidget {
         itemCount: videoList.length,
         itemBuilder: (context, index) {
           return CourseVideoItemTile(
+            videoModel: videoList[index],
+            courseId: courseId,
+            onLockPressed:
+                onLockPressed != null ? () => onLockPressed!(index) : null,
             onPlayPressed:
                 onPlayPressed != null ? () => onPlayPressed!(index) : null,
-            videoDuration: videoList[index].videoDurationInSeconds,
             videoNumber: index,
-            videoTitle: videoList[index].videoTitle,
-            videoUrl: videoList[index].video.url,
           );
         },
       ),

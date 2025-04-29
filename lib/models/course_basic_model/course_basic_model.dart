@@ -6,6 +6,7 @@ part 'course_basic_model.g.dart';
 @freezed
 class CourseBasicModel with _$CourseBasicModel {
   const factory CourseBasicModel({
+    required int id,
     required String documentId,
     required String courseTitle,
     required Image courseImage,

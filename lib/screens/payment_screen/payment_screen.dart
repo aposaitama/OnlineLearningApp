@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
@@ -101,6 +104,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         strapi.purchaseCourse(
                           widget.courseId,
                         );
+                        context.read<HomeScreenBloc>().add(
+                              const LoadUserHomeScreenBlocEvent(),
+                            );
                         // context.push('/successfull_payment_screen');
                       },
                       buttonTitle: 'Pay Now',
