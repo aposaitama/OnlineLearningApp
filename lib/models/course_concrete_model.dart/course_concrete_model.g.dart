@@ -9,6 +9,7 @@ part of 'course_concrete_model.dart';
 _$CourseConcreteModelImpl _$$CourseConcreteModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseConcreteModelImpl(
+      id: (json['id'] as num).toInt(),
       documentId: json['documentId'] as String,
       courseTitle: json['courseTitle'] as String,
       courseDescription: json['courseDescription'] as String,
@@ -26,6 +27,7 @@ _$CourseConcreteModelImpl _$$CourseConcreteModelImplFromJson(
 Map<String, dynamic> _$$CourseConcreteModelImplToJson(
         _$CourseConcreteModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'documentId': instance.documentId,
       'courseTitle': instance.courseTitle,
       'courseDescription': instance.courseDescription,
@@ -40,17 +42,26 @@ Map<String, dynamic> _$$CourseConcreteModelImplToJson(
 _$CourseVideoItemImpl _$$CourseVideoItemImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseVideoItemImpl(
+      id: (json['id'] as num).toInt(),
       videoTitle: json['videoTitle'] as String,
       videoDurationInSeconds: (json['videoDurationInSeconds'] as num).toInt(),
-      videoAvailabilityStatus: json['videoAvailabilityStatus'] as String,
+      videoAvailabilityStatus: $enumDecode(
+          _$VideoAvailabilityStatusEnumMap, json['videoAvailabilityStatus']),
       video: Image.fromJson(json['video'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CourseVideoItemImplToJson(
         _$CourseVideoItemImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'videoTitle': instance.videoTitle,
       'videoDurationInSeconds': instance.videoDurationInSeconds,
-      'videoAvailabilityStatus': instance.videoAvailabilityStatus,
+      'videoAvailabilityStatus':
+          _$VideoAvailabilityStatusEnumMap[instance.videoAvailabilityStatus]!,
       'video': instance.video,
     };
+
+const _$VideoAvailabilityStatusEnumMap = {
+  VideoAvailabilityStatus.available: 'available',
+  VideoAvailabilityStatus.requiresPurchase: 'requiresPurchase',
+};

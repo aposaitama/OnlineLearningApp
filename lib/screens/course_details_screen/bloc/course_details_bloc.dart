@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
@@ -15,6 +16,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     on<ResumeVideoEvent>(_resumeVideo);
     on<CloseVideoEvent>(_closeVideo);
     on<FullScreenEvent>(_fullScreen);
+    on<ToogleFavouriteEvent>(_toogleFavourite);
   }
 
   Future<void> _playVideo(
@@ -23,6 +25,34 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   ) async {
     if (state.courseVideo == null) return;
     state.courseVideo!.play();
+    emit(
+      state.copyWith(
+        videoPlayingId: event.videoPlayingId,
+      ),
+    );
+  }
+
+  Future<void> _toogleFavourite(
+    ToogleFavouriteEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    final currentUser = await strapiApiService.getUser();
+    final List<CourseId> favorites =
+        List.from(currentUser?.favourite_items ?? []);
+
+    final exists = favorites.any((item) => item.documentId == event.documentId);
+
+    if (exists) {
+      strapiApiService.removeFromFavourite(event.documentId);
+    } else {
+      strapiApiService.addToFavourite(event.documentId);
+    }
+
+    emit(
+      state.copyWith(
+        isInFavourite: !exists,
+      ),
+    );
   }
 
   Future<void> _closeVideo(
@@ -34,6 +64,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     state.courseVideo!.dispose();
     emit(
       state.copyWith(
+        videoPlayingId: '',
         videoLoadingStatus: CourseLoadingVideoStatus.initial,
         courseVideo: null,
       ),
@@ -75,10 +106,16 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     final course = await strapiApiService.fetchConcreteCourse(
       event.documentID,
     );
+    final currentUser = await strapiApiService.getUser();
+
+    final favorites = List<CourseId>.from(currentUser?.favourite_items ?? []);
+    final isFavorite =
+        favorites.any((fav) => fav.documentId == event.documentID);
     emit(
       state.copyWith(
         loadingStatus: CourseDetailsLoadingStatus.loaded,
         course: course,
+        isInFavourite: isFavorite,
       ),
     );
   }
@@ -99,9 +136,13 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     await controller.initialize();
     controller.play();
 
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
+        videoPlayingId: event.videoPlayingId,
         videoLoadingStatus: CourseLoadingVideoStatus.loaded,
-        courseVideo: controller));
+        courseVideo: controller,
+      ),
+    );
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     // strapiApiService.fetchConcreteCourse(
     //   event.videoUrl,

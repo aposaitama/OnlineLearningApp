@@ -22,11 +22,17 @@ enum CourseLoadingVideoStatus {
 class CourseDetailsState with _$CourseDetailsState {
   const factory CourseDetailsState({
     CourseConcreteModel? course,
-    @Default(CourseDetailsLoadingStatus.initial)
+    @Default(
+      CourseDetailsLoadingStatus.initial,
+    )
     CourseDetailsLoadingStatus loadingStatus,
-    @Default(CourseLoadingVideoStatus.initial)
+    @Default(
+      CourseLoadingVideoStatus.initial,
+    )
     CourseLoadingVideoStatus videoLoadingStatus,
     @Default(false) bool isFullScreen,
+    @Default(false) bool isInFavourite,
+    @Default('') String videoPlayingId,
     VideoPlayerController? courseVideo,
   }) = _CourseDetailsState;
 }

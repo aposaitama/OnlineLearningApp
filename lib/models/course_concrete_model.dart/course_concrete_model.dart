@@ -7,6 +7,7 @@ part 'course_concrete_model.g.dart';
 @freezed
 class CourseConcreteModel with _$CourseConcreteModel {
   const factory CourseConcreteModel({
+    required int id,
     required String documentId,
     required String courseTitle,
     required String courseDescription,
@@ -25,12 +26,22 @@ class CourseConcreteModel with _$CourseConcreteModel {
       _$CourseConcreteModelFromJson(json);
 }
 
+@JsonEnum()
+enum VideoAvailabilityStatus {
+  @JsonValue('available')
+  available,
+
+  @JsonValue('requiresPurchase')
+  requiresPurchase,
+}
+
 @freezed
 class CourseVideoItem with _$CourseVideoItem {
   const factory CourseVideoItem({
+    required int id,
     required String videoTitle,
     required int videoDurationInSeconds,
-    required String videoAvailabilityStatus,
+    required VideoAvailabilityStatus videoAvailabilityStatus,
     required Image video,
   }) = _CourseVideoItem;
 

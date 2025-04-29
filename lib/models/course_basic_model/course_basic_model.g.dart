@@ -9,6 +9,7 @@ part of 'course_basic_model.dart';
 _$CourseBasicModelImpl _$$CourseBasicModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseBasicModelImpl(
+      id: (json['id'] as num).toInt(),
       documentId: json['documentId'] as String,
       courseTitle: json['courseTitle'] as String,
       courseImage: Image.fromJson(json['courseImage'] as Map<String, dynamic>),
@@ -21,6 +22,7 @@ _$CourseBasicModelImpl _$$CourseBasicModelImplFromJson(
 Map<String, dynamic> _$$CourseBasicModelImplToJson(
         _$CourseBasicModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'documentId': instance.documentId,
       'courseTitle': instance.courseTitle,
       'courseImage': instance.courseImage,

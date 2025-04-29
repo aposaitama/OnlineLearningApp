@@ -20,6 +20,7 @@ CourseConcreteModel _$CourseConcreteModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseConcreteModel {
+  int get id => throw _privateConstructorUsedError;
   String get documentId => throw _privateConstructorUsedError;
   String get courseTitle => throw _privateConstructorUsedError;
   String get courseDescription => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $CourseConcreteModelCopyWith<$Res> {
       _$CourseConcreteModelCopyWithImpl<$Res, CourseConcreteModel>;
   @useResult
   $Res call(
-      {String documentId,
+      {int id,
+      String documentId,
       String courseTitle,
       String courseDescription,
       Image courseImage,
@@ -76,6 +78,7 @@ class _$CourseConcreteModelCopyWithImpl<$Res, $Val extends CourseConcreteModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? documentId = null,
     Object? courseTitle = null,
     Object? courseDescription = null,
@@ -87,6 +90,10 @@ class _$CourseConcreteModelCopyWithImpl<$Res, $Val extends CourseConcreteModel>
     Object? courseVideoItems = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       documentId: null == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
@@ -146,7 +153,8 @@ abstract class _$$CourseConcreteModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String documentId,
+      {int id,
+      String documentId,
       String courseTitle,
       String courseDescription,
       Image courseImage,
@@ -173,6 +181,7 @@ class __$$CourseConcreteModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? documentId = null,
     Object? courseTitle = null,
     Object? courseDescription = null,
@@ -184,6 +193,10 @@ class __$$CourseConcreteModelImplCopyWithImpl<$Res>
     Object? courseVideoItems = null,
   }) {
     return _then(_$CourseConcreteModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       documentId: null == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
@@ -228,7 +241,8 @@ class __$$CourseConcreteModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseConcreteModelImpl implements _CourseConcreteModel {
   const _$CourseConcreteModelImpl(
-      {required this.documentId,
+      {required this.id,
+      required this.documentId,
       required this.courseTitle,
       required this.courseDescription,
       required this.courseImage,
@@ -242,6 +256,8 @@ class _$CourseConcreteModelImpl implements _CourseConcreteModel {
   factory _$CourseConcreteModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseConcreteModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String documentId;
   @override
@@ -269,7 +285,7 @@ class _$CourseConcreteModelImpl implements _CourseConcreteModel {
 
   @override
   String toString() {
-    return 'CourseConcreteModel(documentId: $documentId, courseTitle: $courseTitle, courseDescription: $courseDescription, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice, courseType: $courseType, courseVideoItems: $courseVideoItems)';
+    return 'CourseConcreteModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseDescription: $courseDescription, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice, courseType: $courseType, courseVideoItems: $courseVideoItems)';
   }
 
   @override
@@ -277,6 +293,7 @@ class _$CourseConcreteModelImpl implements _CourseConcreteModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseConcreteModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.documentId, documentId) ||
                 other.documentId == documentId) &&
             (identical(other.courseTitle, courseTitle) ||
@@ -303,6 +320,7 @@ class _$CourseConcreteModelImpl implements _CourseConcreteModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       documentId,
       courseTitle,
       courseDescription,
@@ -332,7 +350,8 @@ class _$CourseConcreteModelImpl implements _CourseConcreteModel {
 
 abstract class _CourseConcreteModel implements CourseConcreteModel {
   const factory _CourseConcreteModel(
-          {required final String documentId,
+          {required final int id,
+          required final String documentId,
           required final String courseTitle,
           required final String courseDescription,
           required final Image courseImage,
@@ -346,6 +365,8 @@ abstract class _CourseConcreteModel implements CourseConcreteModel {
   factory _CourseConcreteModel.fromJson(Map<String, dynamic> json) =
       _$CourseConcreteModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get documentId;
   @override
@@ -379,9 +400,11 @@ CourseVideoItem _$CourseVideoItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseVideoItem {
+  int get id => throw _privateConstructorUsedError;
   String get videoTitle => throw _privateConstructorUsedError;
   int get videoDurationInSeconds => throw _privateConstructorUsedError;
-  String get videoAvailabilityStatus => throw _privateConstructorUsedError;
+  VideoAvailabilityStatus get videoAvailabilityStatus =>
+      throw _privateConstructorUsedError;
   Image get video => throw _privateConstructorUsedError;
 
   /// Serializes this CourseVideoItem to a JSON map.
@@ -401,9 +424,10 @@ abstract class $CourseVideoItemCopyWith<$Res> {
       _$CourseVideoItemCopyWithImpl<$Res, CourseVideoItem>;
   @useResult
   $Res call(
-      {String videoTitle,
+      {int id,
+      String videoTitle,
       int videoDurationInSeconds,
-      String videoAvailabilityStatus,
+      VideoAvailabilityStatus videoAvailabilityStatus,
       Image video});
 
   $ImageCopyWith<$Res> get video;
@@ -424,12 +448,17 @@ class _$CourseVideoItemCopyWithImpl<$Res, $Val extends CourseVideoItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? videoTitle = null,
     Object? videoDurationInSeconds = null,
     Object? videoAvailabilityStatus = null,
     Object? video = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       videoTitle: null == videoTitle
           ? _value.videoTitle
           : videoTitle // ignore: cast_nullable_to_non_nullable
@@ -441,7 +470,7 @@ class _$CourseVideoItemCopyWithImpl<$Res, $Val extends CourseVideoItem>
       videoAvailabilityStatus: null == videoAvailabilityStatus
           ? _value.videoAvailabilityStatus
           : videoAvailabilityStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as VideoAvailabilityStatus,
       video: null == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -469,9 +498,10 @@ abstract class _$$CourseVideoItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String videoTitle,
+      {int id,
+      String videoTitle,
       int videoDurationInSeconds,
-      String videoAvailabilityStatus,
+      VideoAvailabilityStatus videoAvailabilityStatus,
       Image video});
 
   @override
@@ -491,12 +521,17 @@ class __$$CourseVideoItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? videoTitle = null,
     Object? videoDurationInSeconds = null,
     Object? videoAvailabilityStatus = null,
     Object? video = null,
   }) {
     return _then(_$CourseVideoItemImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       videoTitle: null == videoTitle
           ? _value.videoTitle
           : videoTitle // ignore: cast_nullable_to_non_nullable
@@ -508,7 +543,7 @@ class __$$CourseVideoItemImplCopyWithImpl<$Res>
       videoAvailabilityStatus: null == videoAvailabilityStatus
           ? _value.videoAvailabilityStatus
           : videoAvailabilityStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as VideoAvailabilityStatus,
       video: null == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -521,7 +556,8 @@ class __$$CourseVideoItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseVideoItemImpl implements _CourseVideoItem {
   const _$CourseVideoItemImpl(
-      {required this.videoTitle,
+      {required this.id,
+      required this.videoTitle,
       required this.videoDurationInSeconds,
       required this.videoAvailabilityStatus,
       required this.video});
@@ -530,17 +566,19 @@ class _$CourseVideoItemImpl implements _CourseVideoItem {
       _$$CourseVideoItemImplFromJson(json);
 
   @override
+  final int id;
+  @override
   final String videoTitle;
   @override
   final int videoDurationInSeconds;
   @override
-  final String videoAvailabilityStatus;
+  final VideoAvailabilityStatus videoAvailabilityStatus;
   @override
   final Image video;
 
   @override
   String toString() {
-    return 'CourseVideoItem(videoTitle: $videoTitle, videoDurationInSeconds: $videoDurationInSeconds, videoAvailabilityStatus: $videoAvailabilityStatus, video: $video)';
+    return 'CourseVideoItem(id: $id, videoTitle: $videoTitle, videoDurationInSeconds: $videoDurationInSeconds, videoAvailabilityStatus: $videoAvailabilityStatus, video: $video)';
   }
 
   @override
@@ -548,6 +586,7 @@ class _$CourseVideoItemImpl implements _CourseVideoItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseVideoItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.videoTitle, videoTitle) ||
                 other.videoTitle == videoTitle) &&
             (identical(other.videoDurationInSeconds, videoDurationInSeconds) ||
@@ -560,7 +599,7 @@ class _$CourseVideoItemImpl implements _CourseVideoItem {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, videoTitle,
+  int get hashCode => Object.hash(runtimeType, id, videoTitle,
       videoDurationInSeconds, videoAvailabilityStatus, video);
 
   /// Create a copy of CourseVideoItem
@@ -582,20 +621,23 @@ class _$CourseVideoItemImpl implements _CourseVideoItem {
 
 abstract class _CourseVideoItem implements CourseVideoItem {
   const factory _CourseVideoItem(
-      {required final String videoTitle,
+      {required final int id,
+      required final String videoTitle,
       required final int videoDurationInSeconds,
-      required final String videoAvailabilityStatus,
+      required final VideoAvailabilityStatus videoAvailabilityStatus,
       required final Image video}) = _$CourseVideoItemImpl;
 
   factory _CourseVideoItem.fromJson(Map<String, dynamic> json) =
       _$CourseVideoItemImpl.fromJson;
 
   @override
+  int get id;
+  @override
   String get videoTitle;
   @override
   int get videoDurationInSeconds;
   @override
-  String get videoAvailabilityStatus;
+  VideoAvailabilityStatus get videoAvailabilityStatus;
   @override
   Image get video;
 

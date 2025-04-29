@@ -19,34 +19,38 @@ mixin _$CourseDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +75,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +87,7 @@ mixin _$CourseDetailsEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,12 +188,14 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
     return loadCourseInfo(documentID);
   }
@@ -195,12 +204,13 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
     return loadCourseInfo?.call(documentID);
   }
@@ -209,12 +219,13 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -233,6 +244,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return loadCourseInfo(this);
   }
@@ -247,6 +259,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return loadCourseInfo?.call(this);
   }
@@ -261,6 +274,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -289,7 +303,7 @@ abstract class _$$LoadCourseVideoEventImplCopyWith<$Res> {
           $Res Function(_$LoadCourseVideoEventImpl) then) =
       __$$LoadCourseVideoEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String videoUrl});
+  $Res call({String videoUrl, String videoPlayingId});
 }
 
 /// @nodoc
@@ -306,11 +320,16 @@ class __$$LoadCourseVideoEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? videoUrl = null,
+    Object? videoPlayingId = null,
   }) {
     return _then(_$LoadCourseVideoEventImpl(
       null == videoUrl
           ? _value.videoUrl
           : videoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == videoPlayingId
+          ? _value.videoPlayingId
+          : videoPlayingId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -319,14 +338,16 @@ class __$$LoadCourseVideoEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
-  const _$LoadCourseVideoEventImpl(this.videoUrl);
+  const _$LoadCourseVideoEventImpl(this.videoUrl, this.videoPlayingId);
 
   @override
   final String videoUrl;
+  @override
+  final String videoPlayingId;
 
   @override
   String toString() {
-    return 'CourseDetailsEvent.loadCourseVideo(videoUrl: $videoUrl)';
+    return 'CourseDetailsEvent.loadCourseVideo(videoUrl: $videoUrl, videoPlayingId: $videoPlayingId)';
   }
 
   @override
@@ -335,11 +356,13 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
         (other.runtimeType == runtimeType &&
             other is _$LoadCourseVideoEventImpl &&
             (identical(other.videoUrl, videoUrl) ||
-                other.videoUrl == videoUrl));
+                other.videoUrl == videoUrl) &&
+            (identical(other.videoPlayingId, videoPlayingId) ||
+                other.videoPlayingId == videoPlayingId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, videoUrl);
+  int get hashCode => Object.hash(runtimeType, videoUrl, videoPlayingId);
 
   /// Create a copy of CourseDetailsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -355,44 +378,48 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
-    return loadCourseVideo(videoUrl);
+    return loadCourseVideo(videoUrl, videoPlayingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
-    return loadCourseVideo?.call(videoUrl);
+    return loadCourseVideo?.call(videoUrl, videoPlayingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
-      return loadCourseVideo(videoUrl);
+      return loadCourseVideo(videoUrl, videoPlayingId);
     }
     return orElse();
   }
@@ -407,6 +434,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return loadCourseVideo(this);
   }
@@ -421,6 +449,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return loadCourseVideo?.call(this);
   }
@@ -435,6 +464,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -445,10 +475,12 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
 }
 
 abstract class LoadCourseVideoEvent implements CourseDetailsEvent {
-  const factory LoadCourseVideoEvent(final String videoUrl) =
+  const factory LoadCourseVideoEvent(
+          final String videoUrl, final String videoPlayingId) =
       _$LoadCourseVideoEventImpl;
 
   String get videoUrl;
+  String get videoPlayingId;
 
   /// Create a copy of CourseDetailsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -462,6 +494,8 @@ abstract class _$$PlayVideoEventImplCopyWith<$Res> {
   factory _$$PlayVideoEventImplCopyWith(_$PlayVideoEventImpl value,
           $Res Function(_$PlayVideoEventImpl) then) =
       __$$PlayVideoEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String videoPlayingId});
 }
 
 /// @nodoc
@@ -474,69 +508,100 @@ class __$$PlayVideoEventImplCopyWithImpl<$Res>
 
   /// Create a copy of CourseDetailsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videoPlayingId = null,
+  }) {
+    return _then(_$PlayVideoEventImpl(
+      null == videoPlayingId
+          ? _value.videoPlayingId
+          : videoPlayingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$PlayVideoEventImpl implements PlayVideoEvent {
-  const _$PlayVideoEventImpl();
+  const _$PlayVideoEventImpl(this.videoPlayingId);
+
+  @override
+  final String videoPlayingId;
 
   @override
   String toString() {
-    return 'CourseDetailsEvent.playVideo()';
+    return 'CourseDetailsEvent.playVideo(videoPlayingId: $videoPlayingId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PlayVideoEventImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$PlayVideoEventImpl &&
+            (identical(other.videoPlayingId, videoPlayingId) ||
+                other.videoPlayingId == videoPlayingId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, videoPlayingId);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlayVideoEventImplCopyWith<_$PlayVideoEventImpl> get copyWith =>
+      __$$PlayVideoEventImplCopyWithImpl<_$PlayVideoEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
-    return playVideo();
+    return playVideo(videoPlayingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
-    return playVideo?.call();
+    return playVideo?.call(videoPlayingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
-      return playVideo();
+      return playVideo(videoPlayingId);
     }
     return orElse();
   }
@@ -551,6 +616,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return playVideo(this);
   }
@@ -565,6 +631,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return playVideo?.call(this);
   }
@@ -579,6 +646,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -589,7 +657,16 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
 }
 
 abstract class PlayVideoEvent implements CourseDetailsEvent {
-  const factory PlayVideoEvent() = _$PlayVideoEventImpl;
+  const factory PlayVideoEvent(final String videoPlayingId) =
+      _$PlayVideoEventImpl;
+
+  String get videoPlayingId;
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlayVideoEventImplCopyWith<_$PlayVideoEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -634,12 +711,14 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
     return pauseVideo();
   }
@@ -648,12 +727,13 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
     return pauseVideo?.call();
   }
@@ -662,12 +742,13 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -686,6 +767,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return pauseVideo(this);
   }
@@ -700,6 +782,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return pauseVideo?.call(this);
   }
@@ -714,6 +797,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -769,12 +853,14 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
     return resumeVideo();
   }
@@ -783,12 +869,13 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
     return resumeVideo?.call();
   }
@@ -797,12 +884,13 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -821,6 +909,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return resumeVideo(this);
   }
@@ -835,6 +924,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return resumeVideo?.call(this);
   }
@@ -849,6 +939,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -904,12 +995,14 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
     return closeVideo();
   }
@@ -918,12 +1011,13 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
     return closeVideo?.call();
   }
@@ -932,12 +1026,13 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -956,6 +1051,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return closeVideo(this);
   }
@@ -970,6 +1066,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return closeVideo?.call(this);
   }
@@ -984,6 +1081,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -1039,12 +1137,14 @@ class _$FullScreenEventImpl implements FullScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String documentID) loadCourseInfo,
-    required TResult Function(String videoUrl) loadCourseVideo,
-    required TResult Function() playVideo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
     required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
   }) {
     return fullScreen();
   }
@@ -1053,12 +1153,13 @@ class _$FullScreenEventImpl implements FullScreenEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String documentID)? loadCourseInfo,
-    TResult? Function(String videoUrl)? loadCourseVideo,
-    TResult? Function()? playVideo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
     TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
   }) {
     return fullScreen?.call();
   }
@@ -1067,12 +1168,13 @@ class _$FullScreenEventImpl implements FullScreenEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String documentID)? loadCourseInfo,
-    TResult Function(String videoUrl)? loadCourseVideo,
-    TResult Function()? playVideo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
     TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (fullScreen != null) {
@@ -1091,6 +1193,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
     return fullScreen(this);
   }
@@ -1105,6 +1208,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
     return fullScreen?.call(this);
   }
@@ -1119,6 +1223,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
   }) {
     if (fullScreen != null) {
@@ -1130,4 +1235,185 @@ class _$FullScreenEventImpl implements FullScreenEvent {
 
 abstract class FullScreenEvent implements CourseDetailsEvent {
   const factory FullScreenEvent() = _$FullScreenEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ToogleFavouriteEventImplCopyWith<$Res> {
+  factory _$$ToogleFavouriteEventImplCopyWith(_$ToogleFavouriteEventImpl value,
+          $Res Function(_$ToogleFavouriteEventImpl) then) =
+      __$$ToogleFavouriteEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String documentId});
+}
+
+/// @nodoc
+class __$$ToogleFavouriteEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$ToogleFavouriteEventImpl>
+    implements _$$ToogleFavouriteEventImplCopyWith<$Res> {
+  __$$ToogleFavouriteEventImplCopyWithImpl(_$ToogleFavouriteEventImpl _value,
+      $Res Function(_$ToogleFavouriteEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? documentId = null,
+  }) {
+    return _then(_$ToogleFavouriteEventImpl(
+      null == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
+  const _$ToogleFavouriteEventImpl(this.documentId);
+
+  @override
+  final String documentId;
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.toogleFavourite(documentId: $documentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToogleFavouriteEventImpl &&
+            (identical(other.documentId, documentId) ||
+                other.documentId == documentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, documentId);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToogleFavouriteEventImplCopyWith<_$ToogleFavouriteEventImpl>
+      get copyWith =>
+          __$$ToogleFavouriteEventImplCopyWithImpl<_$ToogleFavouriteEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
+  }) {
+    return toogleFavourite(documentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
+  }) {
+    return toogleFavourite?.call(documentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
+    required TResult orElse(),
+  }) {
+    if (toogleFavourite != null) {
+      return toogleFavourite(documentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+  }) {
+    return toogleFavourite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+  }) {
+    return toogleFavourite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    required TResult orElse(),
+  }) {
+    if (toogleFavourite != null) {
+      return toogleFavourite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToogleFavouriteEvent implements CourseDetailsEvent {
+  const factory ToogleFavouriteEvent(final String documentId) =
+      _$ToogleFavouriteEventImpl;
+
+  String get documentId;
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ToogleFavouriteEventImplCopyWith<_$ToogleFavouriteEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -115,7 +115,9 @@ class StrapiApiService {
           },
         ),
         queryParameters: {
-          'populate': '*',
+          // 'populate': '*',
+          'populate': 'user_purchased_courses.courseImage',
+          'populate[]': 'favourite_items'
         },
       );
 
@@ -249,7 +251,7 @@ class StrapiApiService {
     }
   }
 
-  Future<bool> purchaseCourse(String courseDocumentID) async {
+  Future<bool> purchaseCourse(String courseID) async {
     try {
       final userModel = await getUser();
       final int userID = userModel?.id ?? 0;
@@ -257,7 +259,43 @@ class StrapiApiService {
         '/users/$userID',
         data: {
           'user_purchased_courses': {
-            "connect": [4]
+            "connect": [courseID]
+          }
+        },
+      );
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> addToFavourite(String courseID) async {
+    try {
+      final userModel = await getUser();
+      final int userID = userModel?.id ?? 0;
+      await dio.put(
+        '/users/$userID',
+        data: {
+          'favourite_items': {
+            "connect": [courseID]
+          }
+        },
+      );
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> removeFromFavourite(String courseID) async {
+    try {
+      final userModel = await getUser();
+      final int userID = userModel?.id ?? 0;
+      await dio.put(
+        '/users/$userID',
+        data: {
+          'favourite_items': {
+            "disconnect": [courseID]
           }
         },
       );

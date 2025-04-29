@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:online_app/models/course_basic_model/course_basic_model.dart';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
@@ -10,8 +11,21 @@ class UserModel with _$UserModel {
     required String username,
     required String email,
     required String? userPhoneNumber,
+    required List<CourseBasicModel> user_purchased_courses,
+    required List<CourseId> favourite_items,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
+}
+
+@freezed
+class CourseId with _$CourseId {
+  const factory CourseId({
+    required int id,
+    required String documentId,
+  }) = _CourseId;
+
+  factory CourseId.fromJson(Map<String, dynamic> json) =>
+      _$CourseIdFromJson(json);
 }

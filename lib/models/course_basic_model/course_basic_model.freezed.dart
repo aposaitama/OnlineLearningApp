@@ -20,6 +20,7 @@ CourseBasicModel _$CourseBasicModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseBasicModel {
+  int get id => throw _privateConstructorUsedError;
   String get documentId => throw _privateConstructorUsedError;
   String get courseTitle => throw _privateConstructorUsedError;
   Image get courseImage => throw _privateConstructorUsedError;
@@ -44,7 +45,8 @@ abstract class $CourseBasicModelCopyWith<$Res> {
       _$CourseBasicModelCopyWithImpl<$Res, CourseBasicModel>;
   @useResult
   $Res call(
-      {String documentId,
+      {int id,
+      String documentId,
       String courseTitle,
       Image courseImage,
       String courseAuthor,
@@ -69,6 +71,7 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? documentId = null,
     Object? courseTitle = null,
     Object? courseImage = null,
@@ -77,6 +80,10 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
     Object? coursePrice = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       documentId: null == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
@@ -124,7 +131,8 @@ abstract class _$$CourseBasicModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String documentId,
+      {int id,
+      String documentId,
       String courseTitle,
       Image courseImage,
       String courseAuthor,
@@ -148,6 +156,7 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? documentId = null,
     Object? courseTitle = null,
     Object? courseImage = null,
@@ -156,6 +165,10 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
     Object? coursePrice = null,
   }) {
     return _then(_$CourseBasicModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       documentId: null == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
@@ -188,7 +201,8 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseBasicModelImpl implements _CourseBasicModel {
   const _$CourseBasicModelImpl(
-      {required this.documentId,
+      {required this.id,
+      required this.documentId,
       required this.courseTitle,
       required this.courseImage,
       required this.courseAuthor,
@@ -198,6 +212,8 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
   factory _$CourseBasicModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseBasicModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String documentId;
   @override
@@ -213,7 +229,7 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
 
   @override
   String toString() {
-    return 'CourseBasicModel(documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice)';
+    return 'CourseBasicModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice)';
   }
 
   @override
@@ -221,6 +237,7 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseBasicModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.documentId, documentId) ||
                 other.documentId == documentId) &&
             (identical(other.courseTitle, courseTitle) ||
@@ -239,7 +256,7 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, documentId, courseTitle,
+  int get hashCode => Object.hash(runtimeType, id, documentId, courseTitle,
       courseImage, courseAuthor, totalCourseDurationInSeconds, coursePrice);
 
   /// Create a copy of CourseBasicModel
@@ -261,7 +278,8 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
 
 abstract class _CourseBasicModel implements CourseBasicModel {
   const factory _CourseBasicModel(
-      {required final String documentId,
+      {required final int id,
+      required final String documentId,
       required final String courseTitle,
       required final Image courseImage,
       required final String courseAuthor,
@@ -271,6 +289,8 @@ abstract class _CourseBasicModel implements CourseBasicModel {
   factory _CourseBasicModel.fromJson(Map<String, dynamic> json) =
       _$CourseBasicModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get documentId;
   @override
