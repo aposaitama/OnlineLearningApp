@@ -22,8 +22,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   //Mock data
   final List<String> cards = [
-    // 'Card 1',
-    // 'Card 2',
+    'Card 1',
+    'Card 2',
   ];
 
   final _controller = PageController();
