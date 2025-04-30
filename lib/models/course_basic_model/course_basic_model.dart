@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 
 part 'course_basic_model.freezed.dart';
 part 'course_basic_model.g.dart';
@@ -13,6 +14,7 @@ class CourseBasicModel with _$CourseBasicModel {
     required String courseAuthor,
     required int totalCourseDurationInSeconds,
     required double coursePrice,
+    required List<CourseVideoItem> courseVideoItems,
     // required String courseType,
     // required String courseTitle,
     // required String email,

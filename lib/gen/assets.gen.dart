@@ -184,6 +184,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/favourite_filled.svg
   String get favouriteFilled => 'assets/icons/favourite_filled.svg';
 
+  /// File path: assets/icons/icon_done.svg
+  String get iconDone => 'assets/icons/icon_done.svg';
+
   /// File path: assets/icons/lock_icon.svg
   String get lockIcon => 'assets/icons/lock_icon.svg';
 
@@ -213,6 +216,7 @@ class $AssetsIconsGen {
     clearText,
     close,
     favouriteFilled,
+    iconDone,
     lockIcon,
   ];
 }

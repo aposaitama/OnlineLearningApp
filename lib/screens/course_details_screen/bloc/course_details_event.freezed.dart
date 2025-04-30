@@ -25,6 +25,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) =>
@@ -37,6 +38,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) =>
@@ -49,6 +51,7 @@ mixin _$CourseDetailsEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -62,6 +65,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) =>
@@ -74,6 +78,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) =>
@@ -86,6 +91,7 @@ mixin _$CourseDetailsEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -194,6 +200,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -209,6 +216,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -224,6 +232,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -243,6 +252,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -258,6 +268,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -273,6 +284,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -384,6 +396,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -399,6 +412,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -414,6 +428,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -433,6 +448,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -448,6 +464,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -463,6 +480,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -566,6 +584,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -581,6 +600,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -596,6 +616,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -615,6 +636,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -630,6 +652,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -645,6 +668,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -717,6 +741,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -732,6 +757,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -747,6 +773,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -766,6 +793,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -781,6 +809,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -796,6 +825,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -859,6 +889,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -874,6 +905,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -889,6 +921,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -908,6 +941,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -923,6 +957,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -938,6 +973,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -1001,6 +1037,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -1016,6 +1053,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -1031,6 +1069,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -1050,6 +1089,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -1065,6 +1105,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -1080,6 +1121,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -1093,6 +1135,154 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
 
 abstract class CloseVideoEvent implements CourseDetailsEvent {
   const factory CloseVideoEvent() = _$CloseVideoEventImpl;
+}
+
+/// @nodoc
+abstract class _$$FinishedVideoEventImplCopyWith<$Res> {
+  factory _$$FinishedVideoEventImplCopyWith(_$FinishedVideoEventImpl value,
+          $Res Function(_$FinishedVideoEventImpl) then) =
+      __$$FinishedVideoEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FinishedVideoEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$FinishedVideoEventImpl>
+    implements _$$FinishedVideoEventImplCopyWith<$Res> {
+  __$$FinishedVideoEventImplCopyWithImpl(_$FinishedVideoEventImpl _value,
+      $Res Function(_$FinishedVideoEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$FinishedVideoEventImpl implements FinishedVideoEvent {
+  const _$FinishedVideoEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.finishedVideo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FinishedVideoEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
+    required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
+  }) {
+    return finishedVideo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
+    TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
+  }) {
+    return finishedVideo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
+    TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
+    required TResult orElse(),
+  }) {
+    if (finishedVideo != null) {
+      return finishedVideo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+  }) {
+    return finishedVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+  }) {
+    return finishedVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    required TResult orElse(),
+  }) {
+    if (finishedVideo != null) {
+      return finishedVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FinishedVideoEvent implements CourseDetailsEvent {
+  const factory FinishedVideoEvent() = _$FinishedVideoEventImpl;
 }
 
 /// @nodoc
@@ -1143,6 +1333,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -1158,6 +1349,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -1173,6 +1365,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -1192,6 +1385,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -1207,6 +1401,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -1222,6 +1417,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),
@@ -1315,6 +1511,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     required TResult Function() pauseVideo,
     required TResult Function() resumeVideo,
     required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
   }) {
@@ -1330,6 +1527,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult? Function()? pauseVideo,
     TResult? Function()? resumeVideo,
     TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
   }) {
@@ -1345,6 +1543,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult Function()? pauseVideo,
     TResult Function()? resumeVideo,
     TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
     required TResult orElse(),
@@ -1364,6 +1563,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     required TResult Function(PauseVideoEvent value) pauseVideo,
     required TResult Function(ResumeVideoEvent value) resumeVideo,
     required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
   }) {
@@ -1379,6 +1579,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult? Function(PauseVideoEvent value)? pauseVideo,
     TResult? Function(ResumeVideoEvent value)? resumeVideo,
     TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
   }) {
@@ -1394,6 +1595,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult Function(PauseVideoEvent value)? pauseVideo,
     TResult Function(ResumeVideoEvent value)? resumeVideo,
     TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
     required TResult orElse(),

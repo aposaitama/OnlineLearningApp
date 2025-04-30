@@ -8,6 +8,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/utils/extensions.dart';
 import 'package:video_player/video_player.dart';
 
@@ -28,11 +30,25 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
     _startHideTimer();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final controller = ChewieController.of(context);
-      controller.videoPlayerController.addListener(() {
-        if (mounted && _showControls) {
-          setState(() {});
-        }
-      });
+      final videoController = controller.videoPlayerController;
+      controller.videoPlayerController.addListener(
+        () {
+          if (mounted && _showControls) {
+            setState(() {});
+          }
+          final isEnded = videoController.value.position >=
+                  videoController.value.duration &&
+              !videoController.value.isPlaying;
+          if (isEnded) {
+            context.read<CourseDetailsBloc>().add(
+                  const FinishedVideoEvent(),
+                );
+            context.read<HomeScreenBloc>().add(
+                  const LoadUserHomeScreenBlocEvent(),
+                );
+          }
+        },
+      );
     });
   }
 

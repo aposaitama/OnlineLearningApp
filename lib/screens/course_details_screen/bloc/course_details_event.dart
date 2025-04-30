@@ -7,6 +7,7 @@ class CourseDetailsEvent with _$CourseDetailsEvent {
   const factory CourseDetailsEvent.loadCourseInfo(
     String documentID,
   ) = LoadConcreteCourseInfoEvent;
+
   const factory CourseDetailsEvent.loadCourseVideo(
     String videoUrl,
     String videoPlayingId,
@@ -16,6 +17,7 @@ class CourseDetailsEvent with _$CourseDetailsEvent {
   const factory CourseDetailsEvent.pauseVideo() = PauseVideoEvent;
   const factory CourseDetailsEvent.resumeVideo() = ResumeVideoEvent;
   const factory CourseDetailsEvent.closeVideo() = CloseVideoEvent;
+  const factory CourseDetailsEvent.finishedVideo() = FinishedVideoEvent;
   const factory CourseDetailsEvent.fullScreen() = FullScreenEvent;
   const factory CourseDetailsEvent.toogleFavourite(String documentId) =
       ToogleFavouriteEvent;

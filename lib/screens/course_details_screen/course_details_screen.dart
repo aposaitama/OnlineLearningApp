@@ -105,17 +105,15 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 );
                               }
                             },
-                            child: SafeArea(
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: imageHeight,
-                                child: Chewie(
-                                  controller: ChewieController(
-                                    fullScreenByDefault: state.isFullScreen,
-                                    videoPlayerController: state.courseVideo!,
-                                    customControls:
-                                        const CustomOverlayControls(),
-                                  ),
+                            //safearea
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: imageHeight,
+                              child: Chewie(
+                                controller: ChewieController(
+                                  fullScreenByDefault: state.isFullScreen,
+                                  videoPlayerController: state.courseVideo!,
+                                  customControls: const CustomOverlayControls(),
                                 ),
                               ),
                             ),
