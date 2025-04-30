@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -127,7 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             height: 25.0,
                           ),
-                          LearningPlanWidget(),
+                          LearningPlanWidget(
+                            completedVideos:
+                                state.userInfo?.completed_course_videos ?? [],
+                            coursesList:
+                                state.userInfo?.user_purchased_courses ?? [],
+                          ),
                           SizedBox(
                             height: 14.0,
                           ),

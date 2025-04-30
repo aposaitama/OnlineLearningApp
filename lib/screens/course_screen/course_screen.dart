@@ -8,6 +8,7 @@ import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
+import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
@@ -118,22 +119,15 @@ class _CourseScreenState extends State<CourseScreen> {
                       left: 20.0,
                     ),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 3,
+                    itemCount: state.categoriesList.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          right: 10.0,
-                        ),
-                        child: Container(
-                          height: 77.0,
-                          width: 160.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              13.0,
-                            ),
-                            color: AppColors.lightBlueColor,
-                          ),
-                        ),
+                      final concreteCategory = state.categoriesList[index];
+                      print(concreteCategory.categoryImage.url);
+                      return CategoriesItemTile(
+                        backgroundColor: '',
+                        textColor: '',
+                        imageUrl: concreteCategory.categoryImage.url,
+                        categoryTitle: concreteCategory.categoryTitle,
                       );
                     },
                   ),

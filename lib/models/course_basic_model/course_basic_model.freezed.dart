@@ -27,6 +27,8 @@ mixin _$CourseBasicModel {
   String get courseAuthor => throw _privateConstructorUsedError;
   int get totalCourseDurationInSeconds => throw _privateConstructorUsedError;
   double get coursePrice => throw _privateConstructorUsedError;
+  List<CourseVideoItem> get courseVideoItems =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this CourseBasicModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +53,8 @@ abstract class $CourseBasicModelCopyWith<$Res> {
       Image courseImage,
       String courseAuthor,
       int totalCourseDurationInSeconds,
-      double coursePrice});
+      double coursePrice,
+      List<CourseVideoItem> courseVideoItems});
 
   $ImageCopyWith<$Res> get courseImage;
 }
@@ -78,6 +81,7 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
     Object? courseAuthor = null,
     Object? totalCourseDurationInSeconds = null,
     Object? coursePrice = null,
+    Object? courseVideoItems = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -108,6 +112,10 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
           ? _value.coursePrice
           : coursePrice // ignore: cast_nullable_to_non_nullable
               as double,
+      courseVideoItems: null == courseVideoItems
+          ? _value.courseVideoItems
+          : courseVideoItems // ignore: cast_nullable_to_non_nullable
+              as List<CourseVideoItem>,
     ) as $Val);
   }
 
@@ -137,7 +145,8 @@ abstract class _$$CourseBasicModelImplCopyWith<$Res>
       Image courseImage,
       String courseAuthor,
       int totalCourseDurationInSeconds,
-      double coursePrice});
+      double coursePrice,
+      List<CourseVideoItem> courseVideoItems});
 
   @override
   $ImageCopyWith<$Res> get courseImage;
@@ -163,6 +172,7 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
     Object? courseAuthor = null,
     Object? totalCourseDurationInSeconds = null,
     Object? coursePrice = null,
+    Object? courseVideoItems = null,
   }) {
     return _then(_$CourseBasicModelImpl(
       id: null == id
@@ -193,6 +203,10 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
           ? _value.coursePrice
           : coursePrice // ignore: cast_nullable_to_non_nullable
               as double,
+      courseVideoItems: null == courseVideoItems
+          ? _value._courseVideoItems
+          : courseVideoItems // ignore: cast_nullable_to_non_nullable
+              as List<CourseVideoItem>,
     ));
   }
 }
@@ -207,7 +221,9 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
       required this.courseImage,
       required this.courseAuthor,
       required this.totalCourseDurationInSeconds,
-      required this.coursePrice});
+      required this.coursePrice,
+      required final List<CourseVideoItem> courseVideoItems})
+      : _courseVideoItems = courseVideoItems;
 
   factory _$CourseBasicModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseBasicModelImplFromJson(json);
@@ -226,10 +242,18 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
   final int totalCourseDurationInSeconds;
   @override
   final double coursePrice;
+  final List<CourseVideoItem> _courseVideoItems;
+  @override
+  List<CourseVideoItem> get courseVideoItems {
+    if (_courseVideoItems is EqualUnmodifiableListView)
+      return _courseVideoItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_courseVideoItems);
+  }
 
   @override
   String toString() {
-    return 'CourseBasicModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice)';
+    return 'CourseBasicModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice, courseVideoItems: $courseVideoItems)';
   }
 
   @override
@@ -251,13 +275,23 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
                 other.totalCourseDurationInSeconds ==
                     totalCourseDurationInSeconds) &&
             (identical(other.coursePrice, coursePrice) ||
-                other.coursePrice == coursePrice));
+                other.coursePrice == coursePrice) &&
+            const DeepCollectionEquality()
+                .equals(other._courseVideoItems, _courseVideoItems));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, documentId, courseTitle,
-      courseImage, courseAuthor, totalCourseDurationInSeconds, coursePrice);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      documentId,
+      courseTitle,
+      courseImage,
+      courseAuthor,
+      totalCourseDurationInSeconds,
+      coursePrice,
+      const DeepCollectionEquality().hash(_courseVideoItems));
 
   /// Create a copy of CourseBasicModel
   /// with the given fields replaced by the non-null parameter values.
@@ -278,13 +312,15 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
 
 abstract class _CourseBasicModel implements CourseBasicModel {
   const factory _CourseBasicModel(
-      {required final int id,
-      required final String documentId,
-      required final String courseTitle,
-      required final Image courseImage,
-      required final String courseAuthor,
-      required final int totalCourseDurationInSeconds,
-      required final double coursePrice}) = _$CourseBasicModelImpl;
+          {required final int id,
+          required final String documentId,
+          required final String courseTitle,
+          required final Image courseImage,
+          required final String courseAuthor,
+          required final int totalCourseDurationInSeconds,
+          required final double coursePrice,
+          required final List<CourseVideoItem> courseVideoItems}) =
+      _$CourseBasicModelImpl;
 
   factory _CourseBasicModel.fromJson(Map<String, dynamic> json) =
       _$CourseBasicModelImpl.fromJson;
@@ -303,6 +339,8 @@ abstract class _CourseBasicModel implements CourseBasicModel {
   int get totalCourseDurationInSeconds;
   @override
   double get coursePrice;
+  @override
+  List<CourseVideoItem> get courseVideoItems;
 
   /// Create a copy of CourseBasicModel
   /// with the given fields replaced by the non-null parameter values.

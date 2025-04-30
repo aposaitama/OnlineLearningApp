@@ -17,6 +17,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     on<CloseVideoEvent>(_closeVideo);
     on<FullScreenEvent>(_fullScreen);
     on<ToogleFavouriteEvent>(_toogleFavourite);
+    on<FinishedVideoEvent>(_finishedPlayingVideo);
   }
 
   Future<void> _playVideo(
@@ -28,6 +29,22 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     emit(
       state.copyWith(
         videoPlayingId: event.videoPlayingId,
+      ),
+    );
+  }
+
+  Future<void> _finishedPlayingVideo(
+    FinishedVideoEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    if (state.courseVideo == null) return;
+    state.courseVideo!.dispose();
+    await strapiApiService.completeVideo(state.videoPlayingId);
+    emit(
+      state.copyWith(
+        videoPlayingId: '',
+        videoLoadingStatus: CourseLoadingVideoStatus.initial,
+        courseVideo: null,
       ),
     );
   }

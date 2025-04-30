@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/models/user_model/user_model.dart';
@@ -117,7 +118,9 @@ class StrapiApiService {
         queryParameters: {
           // 'populate': '*',
           'populate': 'user_purchased_courses.courseImage',
-          'populate[]': 'favourite_items'
+          'populate[]': 'favourite_items',
+          'populate[][]': 'user_purchased_courses.courseVideoItems.video',
+          'populate[][][]': 'completed_course_videos.video'
         },
       );
 
@@ -158,6 +161,23 @@ class StrapiApiService {
       final List<dynamic> data = response.data['data'] ?? [];
 
       return data.map((json) => CourseBasicModel.fromJson(json)).toList();
+    } on DioException catch (e) {
+      final message = e.response?.data['error']['message'] ?? 'Unknown error';
+      throw 'Failed to load data: $message';
+    } catch (e) {
+      throw 'Failed to load data';
+    }
+  }
+
+  Future<List<CategoriesModel>> fetchCategoriesItems() async {
+    try {
+      final response = await dio.get('/categories', queryParameters: {
+        'populate': 'categoryImage',
+      });
+
+      final List<dynamic> data = response.data['data'] ?? [];
+
+      return data.map((json) => CategoriesModel.fromJson(json)).toList();
     } on DioException catch (e) {
       final message = e.response?.data['error']['message'] ?? 'Unknown error';
       throw 'Failed to load data: $message';
@@ -267,6 +287,21 @@ class StrapiApiService {
     } catch (e) {
       return false;
     }
+  }
+
+  Future<void> completeVideo(String videoID) async {
+    try {
+      final userModel = await getUser();
+      final int userID = userModel?.id ?? 0;
+      await dio.put(
+        '/users/$userID',
+        data: {
+          'completed_course_videos': {
+            "connect": [videoID]
+          }
+        },
+      );
+    } catch (e) {}
   }
 
   Future<bool> addToFavourite(String courseID) async {

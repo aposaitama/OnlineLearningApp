@@ -15,7 +15,7 @@ import 'package:online_app/utils/extensions.dart';
 class CourseVideoItemTile extends StatefulWidget {
   final CourseVideoItem videoModel;
   final String courseId;
-
+  final bool isCompleted;
   final int videoNumber;
   final void Function()? onPlayPressed;
   final void Function()? onLockPressed;
@@ -26,6 +26,7 @@ class CourseVideoItemTile extends StatefulWidget {
     required this.courseId,
     this.onLockPressed,
     required this.videoModel,
+    required this.isCompleted,
   });
 
   @override
@@ -80,14 +81,26 @@ class _CourseVideoItemTileState extends State<CourseVideoItemTile> {
                   const SizedBox(
                     height: 6.0,
                   ),
-                  Text(
-                    '${widget.videoModel.videoDurationInSeconds.toTimeFormat()} min',
-                    style: AppFonts.poppinsMedium.copyWith(
-                      color: Theme.of(context)
-                          .extension<AppColorsModel>()!
-                          .hintTextColor,
-                      fontSize: 12.0,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        '${widget.videoModel.videoDurationInSeconds.toTimeFormat()} min',
+                        style: AppFonts.poppinsMedium.copyWith(
+                          color: widget.isCompleted
+                              ? AppColors.deepBlueColor
+                              : Theme.of(context)
+                                  .extension<AppColorsModel>()!
+                                  .hintTextColor,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      widget.isCompleted
+                          ? SvgPicture.asset('assets/icons/icon_done.svg')
+                          : const SizedBox.shrink()
+                    ],
                   ),
                 ],
               ),

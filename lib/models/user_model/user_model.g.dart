@@ -18,6 +18,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       favourite_items: (json['favourite_items'] as List<dynamic>)
           .map((e) => CourseId.fromJson(e as Map<String, dynamic>))
           .toList(),
+      completed_course_videos:
+          (json['completed_course_videos'] as List<dynamic>)
+              .map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -28,6 +32,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'userPhoneNumber': instance.userPhoneNumber,
       'user_purchased_courses': instance.user_purchased_courses,
       'favourite_items': instance.favourite_items,
+      'completed_course_videos': instance.completed_course_videos,
     };
 
 _$CourseIdImpl _$$CourseIdImplFromJson(Map<String, dynamic> json) =>

@@ -27,6 +27,8 @@ mixin _$UserModel {
   List<CourseBasicModel> get user_purchased_courses =>
       throw _privateConstructorUsedError;
   List<CourseId> get favourite_items => throw _privateConstructorUsedError;
+  List<CourseVideoItem> get completed_course_videos =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +51,8 @@ abstract class $UserModelCopyWith<$Res> {
       String email,
       String? userPhoneNumber,
       List<CourseBasicModel> user_purchased_courses,
-      List<CourseId> favourite_items});
+      List<CourseId> favourite_items,
+      List<CourseVideoItem> completed_course_videos});
 }
 
 /// @nodoc
@@ -73,6 +76,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? userPhoneNumber = freezed,
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
+    Object? completed_course_videos = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -99,6 +103,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.favourite_items
           : favourite_items // ignore: cast_nullable_to_non_nullable
               as List<CourseId>,
+      completed_course_videos: null == completed_course_videos
+          ? _value.completed_course_videos
+          : completed_course_videos // ignore: cast_nullable_to_non_nullable
+              as List<CourseVideoItem>,
     ) as $Val);
   }
 }
@@ -117,7 +125,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String email,
       String? userPhoneNumber,
       List<CourseBasicModel> user_purchased_courses,
-      List<CourseId> favourite_items});
+      List<CourseId> favourite_items,
+      List<CourseVideoItem> completed_course_videos});
 }
 
 /// @nodoc
@@ -139,6 +148,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? userPhoneNumber = freezed,
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
+    Object? completed_course_videos = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -165,6 +175,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value._favourite_items
           : favourite_items // ignore: cast_nullable_to_non_nullable
               as List<CourseId>,
+      completed_course_videos: null == completed_course_videos
+          ? _value._completed_course_videos
+          : completed_course_videos // ignore: cast_nullable_to_non_nullable
+              as List<CourseVideoItem>,
     ));
   }
 }
@@ -178,9 +192,11 @@ class _$UserModelImpl implements _UserModel {
       required this.email,
       required this.userPhoneNumber,
       required final List<CourseBasicModel> user_purchased_courses,
-      required final List<CourseId> favourite_items})
+      required final List<CourseId> favourite_items,
+      required final List<CourseVideoItem> completed_course_videos})
       : _user_purchased_courses = user_purchased_courses,
-        _favourite_items = favourite_items;
+        _favourite_items = favourite_items,
+        _completed_course_videos = completed_course_videos;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -210,9 +226,18 @@ class _$UserModelImpl implements _UserModel {
     return EqualUnmodifiableListView(_favourite_items);
   }
 
+  final List<CourseVideoItem> _completed_course_videos;
+  @override
+  List<CourseVideoItem> get completed_course_videos {
+    if (_completed_course_videos is EqualUnmodifiableListView)
+      return _completed_course_videos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_completed_course_videos);
+  }
+
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos)';
   }
 
   @override
@@ -229,7 +254,9 @@ class _$UserModelImpl implements _UserModel {
             const DeepCollectionEquality().equals(
                 other._user_purchased_courses, _user_purchased_courses) &&
             const DeepCollectionEquality()
-                .equals(other._favourite_items, _favourite_items));
+                .equals(other._favourite_items, _favourite_items) &&
+            const DeepCollectionEquality().equals(
+                other._completed_course_videos, _completed_course_videos));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -241,7 +268,8 @@ class _$UserModelImpl implements _UserModel {
       email,
       userPhoneNumber,
       const DeepCollectionEquality().hash(_user_purchased_courses),
-      const DeepCollectionEquality().hash(_favourite_items));
+      const DeepCollectionEquality().hash(_favourite_items),
+      const DeepCollectionEquality().hash(_completed_course_videos));
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -261,12 +289,14 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final int id,
-      required final String username,
-      required final String email,
-      required final String? userPhoneNumber,
-      required final List<CourseBasicModel> user_purchased_courses,
-      required final List<CourseId> favourite_items}) = _$UserModelImpl;
+          {required final int id,
+          required final String username,
+          required final String email,
+          required final String? userPhoneNumber,
+          required final List<CourseBasicModel> user_purchased_courses,
+          required final List<CourseId> favourite_items,
+          required final List<CourseVideoItem> completed_course_videos}) =
+      _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -283,6 +313,8 @@ abstract class _UserModel implements UserModel {
   List<CourseBasicModel> get user_purchased_courses;
   @override
   List<CourseId> get favourite_items;
+  @override
+  List<CourseVideoItem> get completed_course_videos;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

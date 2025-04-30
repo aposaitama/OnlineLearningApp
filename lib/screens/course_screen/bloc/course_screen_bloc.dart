@@ -18,11 +18,12 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     Emitter<CourseScreenState> emit,
   ) async {
     final courseItems = await strapiApiService.fetchCourseItems();
+    final courseCategories = await strapiApiService.fetchCategoriesItems();
     emit(
       state.copyWith(
-        loadingStatus: CourseScreenStatus.loaded,
-        courseList: courseItems,
-      ),
+          loadingStatus: CourseScreenStatus.loaded,
+          courseList: courseItems,
+          categoriesList: courseCategories),
     );
   }
 
