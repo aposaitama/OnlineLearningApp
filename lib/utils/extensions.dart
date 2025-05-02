@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 
 extension SecToHoursExtension on int {
@@ -54,3 +56,21 @@ extension DurationToString on Duration {
 
   String _twoDigits(int n) => n.toString().padLeft(2, '0');
 }
+
+extension HexToColorExtension on String {
+  Color toColor() {
+    String hex = replaceAll('#', '');
+
+    if (hex.length == 6) {
+      hex = 'FF$hex';
+    }
+
+    return Color(
+      int.parse(
+        hex,
+        radix: 16,
+      ),
+    );
+  }
+}
+

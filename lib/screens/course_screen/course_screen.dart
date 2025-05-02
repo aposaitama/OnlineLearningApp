@@ -8,7 +8,7 @@ import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
-import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
+import 'package:online_app/screens/course_screen/widgets/categories_builder.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
@@ -21,15 +21,24 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
+  CourseScreenBloc get _courseScreenBloc => context.read<CourseScreenBloc>();
   final TextEditingController _courseScreenTextFieldController =
       TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    context.read<CourseScreenBloc>().add(
-          const LoadCourseBasicInfoEvent(),
-        );
+    _loadInitialData();
+  }
+
+  void _loadInitialData() {
+    _courseScreenBloc.add(
+      const LoadCourseBasicInfoEvent(),
+    );
+
+    _courseScreenBloc.add(
+      const GetCategoriesOnCoursesEvent(),
+    );
   }
 
   void _showFilterBottomSheet() {
@@ -112,26 +121,7 @@ class _CourseScreenState extends State<CourseScreen> {
                 const SizedBox(
                   height: 35.0,
                 ),
-                SizedBox(
-                  height: 85.0,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                    ),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: state.categoriesList.length,
-                    itemBuilder: (context, index) {
-                      final concreteCategory = state.categoriesList[index];
-                      print(concreteCategory.categoryImage.url);
-                      return CategoriesItemTile(
-                        backgroundColor: '',
-                        textColor: '',
-                        imageUrl: concreteCategory.categoryImage.url,
-                        categoryTitle: concreteCategory.categoryTitle,
-                      );
-                    },
-                  ),
-                ),
+                const CategoriesBuilder(),
                 const SizedBox(
                   height: 35.0,
                 ),

@@ -16,6 +16,7 @@ _$CategoriesModelImpl _$$CategoriesModelImplFromJson(
           Image.fromJson(json['categoryImage'] as Map<String, dynamic>),
       hexBackgroundColor: json['hexBackgroundColor'] as String,
       hexTitleTextColor: json['hexTitleTextColor'] as String,
+      hexTextBackgroundColor: json['hexTextBackgroundColor'] as String,
     );
 
 Map<String, dynamic> _$$CategoriesModelImplToJson(
@@ -27,4 +28,5 @@ Map<String, dynamic> _$$CategoriesModelImplToJson(
       'categoryImage': instance.categoryImage,
       'hexBackgroundColor': instance.hexBackgroundColor,
       'hexTitleTextColor': instance.hexTitleTextColor,
+      'hexTextBackgroundColor': instance.hexTextBackgroundColor,
     };

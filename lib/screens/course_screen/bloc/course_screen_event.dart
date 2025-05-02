@@ -12,4 +12,6 @@ class CourseScreenEvent with _$CourseScreenEvent {
   const factory CourseScreenEvent.enterText({
     String? enteredText,
   }) = EnterTextOnCourseScreenEvent;
+
+  const factory CourseScreenEvent.getCategories() = GetCategoriesOnCoursesEvent;
 }

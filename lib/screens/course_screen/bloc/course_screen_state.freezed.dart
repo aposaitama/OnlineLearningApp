@@ -21,6 +21,7 @@ mixin _$CourseScreenState {
       throw _privateConstructorUsedError;
   CourseScreenStatus get loadingStatus => throw _privateConstructorUsedError;
   String? get enteredText => throw _privateConstructorUsedError;
+  List<CategoriesModel> get categories => throw _privateConstructorUsedError;
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +40,8 @@ abstract class $CourseScreenStateCopyWith<$Res> {
       {List<CourseBasicModel> courseList,
       List<CategoriesModel> categoriesList,
       CourseScreenStatus loadingStatus,
-      String? enteredText});
+      String? enteredText,
+      List<CategoriesModel> categories});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$CourseScreenStateCopyWithImpl<$Res, $Val extends CourseScreenState>
     Object? categoriesList = null,
     Object? loadingStatus = null,
     Object? enteredText = freezed,
+    Object? categories = null,
   }) {
     return _then(_value.copyWith(
       courseList: null == courseList
@@ -79,6 +82,10 @@ class _$CourseScreenStateCopyWithImpl<$Res, $Val extends CourseScreenState>
           ? _value.enteredText
           : enteredText // ignore: cast_nullable_to_non_nullable
               as String?,
+      categories: null == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<CategoriesModel>,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$CourseScreenStateImplCopyWith<$Res>
       {List<CourseBasicModel> courseList,
       List<CategoriesModel> categoriesList,
       CourseScreenStatus loadingStatus,
-      String? enteredText});
+      String? enteredText,
+      List<CategoriesModel> categories});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$CourseScreenStateImplCopyWithImpl<$Res>
     Object? categoriesList = null,
     Object? loadingStatus = null,
     Object? enteredText = freezed,
+    Object? categories = null,
   }) {
     return _then(_$CourseScreenStateImpl(
       courseList: null == courseList
@@ -133,6 +142,10 @@ class __$$CourseScreenStateImplCopyWithImpl<$Res>
           ? _value.enteredText
           : enteredText // ignore: cast_nullable_to_non_nullable
               as String?,
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<CategoriesModel>,
     ));
   }
 }
@@ -144,9 +157,11 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
       {final List<CourseBasicModel> courseList = const [],
       final List<CategoriesModel> categoriesList = const [],
       this.loadingStatus = CourseScreenStatus.initial,
-      this.enteredText})
+      this.enteredText,
+      final List<CategoriesModel> categories = const []})
       : _courseList = courseList,
-        _categoriesList = categoriesList;
+        _categoriesList = categoriesList,
+        _categories = categories;
 
   final List<CourseBasicModel> _courseList;
   @override
@@ -171,10 +186,18 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
   final CourseScreenStatus loadingStatus;
   @override
   final String? enteredText;
+  final List<CategoriesModel> _categories;
+  @override
+  @JsonKey()
+  List<CategoriesModel> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
 
   @override
   String toString() {
-    return 'CourseScreenState(courseList: $courseList, categoriesList: $categoriesList, loadingStatus: $loadingStatus, enteredText: $enteredText)';
+    return 'CourseScreenState(courseList: $courseList, categoriesList: $categoriesList, loadingStatus: $loadingStatus, enteredText: $enteredText, categories: $categories)';
   }
 
   @override
@@ -189,7 +212,9 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
             (identical(other.loadingStatus, loadingStatus) ||
                 other.loadingStatus == loadingStatus) &&
             (identical(other.enteredText, enteredText) ||
-                other.enteredText == enteredText));
+                other.enteredText == enteredText) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
@@ -198,7 +223,8 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
       const DeepCollectionEquality().hash(_courseList),
       const DeepCollectionEquality().hash(_categoriesList),
       loadingStatus,
-      enteredText);
+      enteredText,
+      const DeepCollectionEquality().hash(_categories));
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -215,7 +241,8 @@ abstract class _CourseScreenState implements CourseScreenState {
       {final List<CourseBasicModel> courseList,
       final List<CategoriesModel> categoriesList,
       final CourseScreenStatus loadingStatus,
-      final String? enteredText}) = _$CourseScreenStateImpl;
+      final String? enteredText,
+      final List<CategoriesModel> categories}) = _$CourseScreenStateImpl;
 
   @override
   List<CourseBasicModel> get courseList;
@@ -225,6 +252,8 @@ abstract class _CourseScreenState implements CourseScreenState {
   CourseScreenStatus get loadingStatus;
   @override
   String? get enteredText;
+  @override
+  List<CategoriesModel> get categories;
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.

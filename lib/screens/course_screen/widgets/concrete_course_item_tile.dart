@@ -5,6 +5,8 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/utils/extensions.dart';
 
+import '../../../gen/assets.gen.dart';
+
 class ConcreteCourseItemTile extends StatelessWidget {
   final String imageUrl;
   final String concreteCourseTitle;
@@ -105,7 +107,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        'assets/icons/Union.svg',
+                        Assets.icons.union,
                       ),
                       const SizedBox(
                         width: 6.0,

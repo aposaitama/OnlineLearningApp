@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
+import 'package:online_app/repositories/category_repository/category_repository.dart';
 import 'package:online_app/resources/app_theme.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
@@ -21,6 +22,9 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        RepositoryProvider(
+          create: (_) => CategoryRepository(),
+        ),
         BlocProvider(
           create: (_) => NavigationCubit(),
         ),
@@ -31,7 +35,9 @@ void main() async {
           create: (_) => HomeScreenBloc(),
         ),
         BlocProvider(
-          create: (_) => CourseScreenBloc(),
+          create: (context) => CourseScreenBloc(
+            categoryRepository: context.read<CategoryRepository>(),
+          ),
         ),
         BlocProvider(
           create: (_) => CourseDetailsBloc(),

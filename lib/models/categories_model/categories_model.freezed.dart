@@ -26,6 +26,7 @@ mixin _$CategoriesModel {
   Image get categoryImage => throw _privateConstructorUsedError;
   String get hexBackgroundColor => throw _privateConstructorUsedError;
   String get hexTitleTextColor => throw _privateConstructorUsedError;
+  String get hexTextBackgroundColor => throw _privateConstructorUsedError;
 
   /// Serializes this CategoriesModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +50,8 @@ abstract class $CategoriesModelCopyWith<$Res> {
       String categoryTitle,
       Image categoryImage,
       String hexBackgroundColor,
-      String hexTitleTextColor});
+      String hexTitleTextColor,
+      String hexTextBackgroundColor});
 
   $ImageCopyWith<$Res> get categoryImage;
 }
@@ -75,6 +77,7 @@ class _$CategoriesModelCopyWithImpl<$Res, $Val extends CategoriesModel>
     Object? categoryImage = null,
     Object? hexBackgroundColor = null,
     Object? hexTitleTextColor = null,
+    Object? hexTextBackgroundColor = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -100,6 +103,10 @@ class _$CategoriesModelCopyWithImpl<$Res, $Val extends CategoriesModel>
       hexTitleTextColor: null == hexTitleTextColor
           ? _value.hexTitleTextColor
           : hexTitleTextColor // ignore: cast_nullable_to_non_nullable
+              as String,
+      hexTextBackgroundColor: null == hexTextBackgroundColor
+          ? _value.hexTextBackgroundColor
+          : hexTextBackgroundColor // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -129,7 +136,8 @@ abstract class _$$CategoriesModelImplCopyWith<$Res>
       String categoryTitle,
       Image categoryImage,
       String hexBackgroundColor,
-      String hexTitleTextColor});
+      String hexTitleTextColor,
+      String hexTextBackgroundColor});
 
   @override
   $ImageCopyWith<$Res> get categoryImage;
@@ -154,6 +162,7 @@ class __$$CategoriesModelImplCopyWithImpl<$Res>
     Object? categoryImage = null,
     Object? hexBackgroundColor = null,
     Object? hexTitleTextColor = null,
+    Object? hexTextBackgroundColor = null,
   }) {
     return _then(_$CategoriesModelImpl(
       id: null == id
@@ -180,6 +189,10 @@ class __$$CategoriesModelImplCopyWithImpl<$Res>
           ? _value.hexTitleTextColor
           : hexTitleTextColor // ignore: cast_nullable_to_non_nullable
               as String,
+      hexTextBackgroundColor: null == hexTextBackgroundColor
+          ? _value.hexTextBackgroundColor
+          : hexTextBackgroundColor // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -187,13 +200,14 @@ class __$$CategoriesModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CategoriesModelImpl implements _CategoriesModel {
-  const _$CategoriesModelImpl(
+  _$CategoriesModelImpl(
       {required this.id,
       required this.documentId,
       required this.categoryTitle,
       required this.categoryImage,
       required this.hexBackgroundColor,
-      required this.hexTitleTextColor});
+      required this.hexTitleTextColor,
+      required this.hexTextBackgroundColor});
 
   factory _$CategoriesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoriesModelImplFromJson(json);
@@ -210,10 +224,12 @@ class _$CategoriesModelImpl implements _CategoriesModel {
   final String hexBackgroundColor;
   @override
   final String hexTitleTextColor;
+  @override
+  final String hexTextBackgroundColor;
 
   @override
   String toString() {
-    return 'CategoriesModel(id: $id, documentId: $documentId, categoryTitle: $categoryTitle, categoryImage: $categoryImage, hexBackgroundColor: $hexBackgroundColor, hexTitleTextColor: $hexTitleTextColor)';
+    return 'CategoriesModel(id: $id, documentId: $documentId, categoryTitle: $categoryTitle, categoryImage: $categoryImage, hexBackgroundColor: $hexBackgroundColor, hexTitleTextColor: $hexTitleTextColor, hexTextBackgroundColor: $hexTextBackgroundColor)';
   }
 
   @override
@@ -231,13 +247,22 @@ class _$CategoriesModelImpl implements _CategoriesModel {
             (identical(other.hexBackgroundColor, hexBackgroundColor) ||
                 other.hexBackgroundColor == hexBackgroundColor) &&
             (identical(other.hexTitleTextColor, hexTitleTextColor) ||
-                other.hexTitleTextColor == hexTitleTextColor));
+                other.hexTitleTextColor == hexTitleTextColor) &&
+            (identical(other.hexTextBackgroundColor, hexTextBackgroundColor) ||
+                other.hexTextBackgroundColor == hexTextBackgroundColor));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, documentId, categoryTitle,
-      categoryImage, hexBackgroundColor, hexTitleTextColor);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      documentId,
+      categoryTitle,
+      categoryImage,
+      hexBackgroundColor,
+      hexTitleTextColor,
+      hexTextBackgroundColor);
 
   /// Create a copy of CategoriesModel
   /// with the given fields replaced by the non-null parameter values.
@@ -257,13 +282,14 @@ class _$CategoriesModelImpl implements _CategoriesModel {
 }
 
 abstract class _CategoriesModel implements CategoriesModel {
-  const factory _CategoriesModel(
+  factory _CategoriesModel(
       {required final int id,
       required final String documentId,
       required final String categoryTitle,
       required final Image categoryImage,
       required final String hexBackgroundColor,
-      required final String hexTitleTextColor}) = _$CategoriesModelImpl;
+      required final String hexTitleTextColor,
+      required final String hexTextBackgroundColor}) = _$CategoriesModelImpl;
 
   factory _CategoriesModel.fromJson(Map<String, dynamic> json) =
       _$CategoriesModelImpl.fromJson;
@@ -280,6 +306,8 @@ abstract class _CategoriesModel implements CategoriesModel {
   String get hexBackgroundColor;
   @override
   String get hexTitleTextColor;
+  @override
+  String get hexTextBackgroundColor;
 
   /// Create a copy of CategoriesModel
   /// with the given fields replaced by the non-null parameter values.
