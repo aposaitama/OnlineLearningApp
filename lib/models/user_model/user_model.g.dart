@@ -22,6 +22,9 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           (json['completed_course_videos'] as List<dynamic>)
               .map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
               .toList(),
+      creditCards: (json['creditCards'] as List<dynamic>)
+          .map((e) => CreditCardModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -33,6 +36,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'user_purchased_courses': instance.user_purchased_courses,
       'favourite_items': instance.favourite_items,
       'completed_course_videos': instance.completed_course_videos,
+      'creditCards': instance.creditCards,
     };
 
 _$CourseIdImpl _$$CourseIdImplFromJson(Map<String, dynamic> json) =>
@@ -45,4 +49,18 @@ Map<String, dynamic> _$$CourseIdImplToJson(_$CourseIdImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'documentId': instance.documentId,
+    };
+
+_$CreditCardModelImpl _$$CreditCardModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CreditCardModelImpl(
+      cardNumber: json['cardNumber'] as String,
+      expDate: json['expDate'] as String,
+    );
+
+Map<String, dynamic> _$$CreditCardModelImplToJson(
+        _$CreditCardModelImpl instance) =>
+    <String, dynamic>{
+      'cardNumber': instance.cardNumber,
+      'expDate': instance.expDate,
     };

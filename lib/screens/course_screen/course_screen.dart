@@ -110,10 +110,10 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 35.0,
+                  height: 27.0,
                 ),
                 SizedBox(
-                  height: 85.0,
+                  height: 90.0,
                   child: ListView.builder(
                     padding: const EdgeInsets.only(
                       left: 20.0,
@@ -122,12 +122,17 @@ class _CourseScreenState extends State<CourseScreen> {
                     itemCount: state.categoriesList.length,
                     itemBuilder: (context, index) {
                       final concreteCategory = state.categoriesList[index];
-                      print(concreteCategory.categoryImage.url);
-                      return CategoriesItemTile(
-                        backgroundColor: '',
-                        textColor: '',
-                        imageUrl: concreteCategory.categoryImage.url,
-                        categoryTitle: concreteCategory.categoryTitle,
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          right: 15.0,
+                        ),
+                        child: CategoriesItemTile(
+                          backgroundColor: concreteCategory.hexBackgroundColor,
+                          textColor: concreteCategory.hexTitleTextColor,
+                          imageUrl: concreteCategory.categoryImage.url,
+                          categoryTitle: concreteCategory.categoryTitle,
+                        ),
                       );
                     },
                   ),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:liqpay/liqpay.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
@@ -9,6 +10,7 @@ import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/utils/extensions.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 class StrapiApiService {
   final SharedPreferences prefs = locator<SharedPreferences>();
@@ -116,11 +118,12 @@ class StrapiApiService {
           },
         ),
         queryParameters: {
-          // 'populate': '*',
+          // 'populate': 'credit_cards',
           'populate': 'user_purchased_courses.courseImage',
           'populate[]': 'favourite_items',
           'populate[][]': 'user_purchased_courses.courseVideoItems.video',
-          'populate[][][]': 'completed_course_videos.video'
+          'populate[][][]': 'completed_course_videos.video',
+          'populate[][][][]': 'creditCards',
         },
       );
 
@@ -275,7 +278,7 @@ class StrapiApiService {
     try {
       final userModel = await getUser();
       final int userID = userModel?.id ?? 0;
-      await dio.put(
+      final response = await dio.put(
         '/users/$userID',
         data: {
           'user_purchased_courses': {
@@ -283,7 +286,11 @@ class StrapiApiService {
           }
         },
       );
-      return true;
+      if (response.data != null) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       return false;
     }
@@ -322,6 +329,27 @@ class StrapiApiService {
     }
   }
 
+  Future<void> addCreditCard(String cardNum, String expDate) async {
+    try {
+      final userModel = await getUser();
+      final int userID = userModel?.id ?? 0;
+      final response = await dio.post(
+        '/credit-cards',
+        data: {
+          "data": {
+            "cardNumber": cardNum,
+            "expDate": expDate,
+          }
+        },
+      );
+      await dio.put('/users/$userID', data: {
+        'credit_cards': {
+          "connect": [response.data['data']['id']]
+        }
+      });
+    } catch (e) {}
+  }
+
   Future<bool> removeFromFavourite(String courseID) async {
     try {
       final userModel = await getUser();
@@ -336,6 +364,38 @@ class StrapiApiService {
       );
       return true;
     } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> buyCourse(
+    String cardNum,
+    String expMonth,
+    String expYear,
+    String cvv,
+    String summ,
+  ) async {
+    try {
+      final liqPay = LiqPay(
+        dotenv.env['LIQPAY_PUBLIC_KEY']!,
+        dotenv.env['LIQPAY_SECRET_KEY']!,
+      );
+      final card = LiqPayCard(cardNum, expMonth, expYear, cvv);
+      final order = LiqPayOrder(
+        const Uuid().v4(),
+        1,
+        'Test',
+        card: card,
+        action: LiqPayAction.pay,
+      );
+      final purchaseResult = await liqPay.purchase(order);
+      if (purchaseResult.status == 'success') {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e);
       return false;
     }
   }

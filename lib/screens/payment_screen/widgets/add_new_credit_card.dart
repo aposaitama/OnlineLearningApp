@@ -3,7 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 
 class AddNewCreditCard extends StatelessWidget {
-  const AddNewCreditCard({super.key});
+  final void Function()? addNewCreditCard;
+  const AddNewCreditCard({super.key, this.addNewCreditCard});
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +18,20 @@ class AddNewCreditCard extends StatelessWidget {
       ),
       child: Center(
         child: SizedBox(
-          child: SvgPicture.asset(
-            height: 50.0,
-            width: 50.0,
-            'assets/icons/AddIcon.svg',
-            colorFilter: ColorFilter.mode(
-              Colors.white.withValues(
-                alpha: 0.3,
+          child: GestureDetector(
+            onTap: addNewCreditCard,
+            child: SvgPicture.asset(
+              height: 50.0,
+              width: 50.0,
+              'assets/icons/AddIcon.svg',
+              colorFilter: ColorFilter.mode(
+                Colors.white.withValues(
+                  alpha: 0.3,
+                ),
+                BlendMode.srcIn,
               ),
-              BlendMode.srcIn,
+              fit: BoxFit.scaleDown,
             ),
-            fit: BoxFit.scaleDown,
           ),
         ),
       ),
