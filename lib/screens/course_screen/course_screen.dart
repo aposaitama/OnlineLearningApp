@@ -35,10 +35,6 @@ class _CourseScreenState extends State<CourseScreen> {
     _courseScreenBloc.add(
       const LoadCourseBasicInfoEvent(),
     );
-
-    // _courseScreenBloc.add(
-    //   const GetCategoriesOnCoursesEvent(),
-    // );
   }
 
   void _showFilterBottomSheet() {
@@ -124,6 +120,8 @@ class _CourseScreenState extends State<CourseScreen> {
                     searchFieldController: _courseScreenTextFieldController,
                     onTapFilters: _showFilterBottomSheet,
                     onSubmitted: (value) => _onSubmitted(value),
+                    updateCourses: _loadInitialData,
+                    onChanged: (value) => _onSubmitted(value),
                   ),
                 ),
                 const SizedBox(

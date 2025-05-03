@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:online_app/bloc/filters_bloc/filters_event.dart';
 import 'package:online_app/bloc/filters_bloc/filters_state.dart';
 import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_event.dart';
@@ -67,15 +68,15 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void _selectCategory(String category) {
+  void _selectCategory(CategoriesModel category) {
     context.read<FiltersBloc>().add(
           SelectCategoriesEvent(
             category: category,
           ),
         );
   }
-
-  Future<void> _onSubmitSearch(String value) async {
+  
+  Future<void> _onChangeSubmitSearch(String value,) async {
     final searchBloc = context.read<SearchScreenBloc>();
     searchBloc.add(
       EnterSearchTextEvent(
@@ -132,8 +133,10 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               SearchTextField(
                 onTapFilters: _showFilterBottomSheet,
-                onSubmitted: (value) => _onSubmitSearch(value),
+                onSubmitted: (value) => _onChangeSubmitSearch(value),
                 searchFieldController: _searchScreenController,
+                onChanged: (value)=> _onChangeSubmitSearch(value),
+                updateCourses: _getSearchedCourses,
               ),
               Padding(
                 padding: const EdgeInsets.only(

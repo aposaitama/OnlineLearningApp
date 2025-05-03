@@ -210,7 +210,7 @@ class StrapiApiService {
   }
 
   Future<List<CourseBasicModel>> filterCourses({
-    required List<String> categories,
+    required List<CategoriesModel> categories,
     String? searchedText,
   }) async {
     try {

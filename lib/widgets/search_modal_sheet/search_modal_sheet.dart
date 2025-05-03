@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/bloc/filters_bloc/filters_event.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -13,13 +14,32 @@ import 'package:online_app/widgets/search_modal_sheet/price_slider.dart';
 import '../../bloc/filters_bloc/filters_bloc.dart';
 import '../../bloc/filters_bloc/filters_state.dart';
 
-class SearchModalSheet extends StatelessWidget {
+class SearchModalSheet extends StatefulWidget {
   final VoidCallback applyFilters;
 
   const SearchModalSheet({
     super.key,
     required this.applyFilters,
   });
+
+  @override
+  State<SearchModalSheet> createState() => _SearchModalSheetState();
+}
+
+class _SearchModalSheetState extends State<SearchModalSheet> {
+  FiltersBloc get _filtersBloc => context.read<FiltersBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+  }
+
+  void _loadCategories() {
+    _filtersBloc.add(
+      const GetCategoriesOnFiltersEvent(),
+    );
+  }
 
   void _selectPriceRange(
     BuildContext context,
@@ -38,7 +58,7 @@ class SearchModalSheet extends StatelessWidget {
         );
   }
 
-  void _selectCategory(BuildContext context, String category) {
+  void _selectCategory(BuildContext context, CategoriesModel category) {
     context.read<FiltersBloc>().add(
           SelectCategoriesEvent(
             category: category,
@@ -203,7 +223,7 @@ class SearchModalSheet extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            onPressed: applyFilters,
+                            onPressed: widget.applyFilters,
                             child: const Text('Apply Filter'),
                           ),
                         ),
