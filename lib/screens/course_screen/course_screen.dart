@@ -36,9 +36,9 @@ class _CourseScreenState extends State<CourseScreen> {
       const LoadCourseBasicInfoEvent(),
     );
 
-    _courseScreenBloc.add(
-      const GetCategoriesOnCoursesEvent(),
-    );
+    // _courseScreenBloc.add(
+    //   const GetCategoriesOnCoursesEvent(),
+    // );
   }
 
   void _showFilterBottomSheet() {
@@ -64,6 +64,14 @@ class _CourseScreenState extends State<CourseScreen> {
     searchBloc.add(
       const GetSearchedByTextCoursesEvent(),
     );
+  }
+
+  void _selectCategory(int categoryId) {
+    context.read<CourseScreenBloc>().add(
+          SelectCategoryOnCoursesEvent(
+            categoryId: categoryId,
+          ),
+        );
   }
 
   final categories = ['All', 'Popular', 'New'];
@@ -121,7 +129,11 @@ class _CourseScreenState extends State<CourseScreen> {
                 const SizedBox(
                   height: 35.0,
                 ),
-                const CategoriesBuilder(),
+                CategoriesBuilder(
+                  selectCategory: (categoryId) => _selectCategory(
+                    categoryId,
+                  ),
+                ),
                 const SizedBox(
                   height: 35.0,
                 ),

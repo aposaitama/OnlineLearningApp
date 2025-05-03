@@ -15,6 +15,7 @@ class CategoriesModel with _$CategoriesModel {
     required String hexBackgroundColor,
     required String hexTitleTextColor,
     required String hexTextBackgroundColor,
+    @JsonKey(name: 'course_items') required List<CourseBasicModel> courseVideoItems,
   }) = _CategoriesModel;
 
   factory CategoriesModel.fromJson(Map<String, dynamic> json) =>

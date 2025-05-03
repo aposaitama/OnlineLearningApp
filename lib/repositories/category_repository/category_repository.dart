@@ -14,7 +14,7 @@ class CategoryRepository {
 
   Future<List<CategoriesModel>> getCategories() async {
     try {
-      const url = '/categories?populate=categoryImage';
+      const url = '/categories?populate[course_items][populate][courseImage]=true&populate[categoryImage]=true';
 
       final response = await _dio.get(url);
 

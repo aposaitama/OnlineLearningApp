@@ -16,7 +16,7 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     on<LoadCourseBasicInfoEvent>(_loadCourseList);
     on<GetSearchedByTextCoursesEvent>(_getSearchedCourses);
     on<EnterTextOnCourseScreenEvent>(_onEnterText);
-    on<GetCategoriesOnCoursesEvent>(_onGetCategories);
+    on<SelectCategoryOnCoursesEvent>(_onSelectCategory);
   }
 
   Future<void> _loadCourseList(
@@ -24,12 +24,14 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     Emitter<CourseScreenState> emit,
   ) async {
     final courseItems = await strapiApiService.fetchCourseItems();
-    final courseCategories = await strapiApiService.fetchCategoriesItems();
+    // final courseCategories = await strapiApiService.fetchCategoriesItems();
+    final categories = await categoryRepository.getCategories();
     emit(
       state.copyWith(
-          loadingStatus: CourseScreenStatus.loaded,
-          courseList: courseItems,
-          categoriesList: courseCategories),
+        loadingStatus: CourseScreenStatus.loaded,
+        courseList: courseItems,
+        categoriesList: categories,
+      ),
     );
   }
 
@@ -64,21 +66,18 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     );
   }
 
-  Future<void> _onGetCategories(
-    GetCategoriesOnCoursesEvent event,
+  void _onSelectCategory(
+    SelectCategoryOnCoursesEvent event,
     Emitter<CourseScreenState> emit,
-  ) async {
-    try {
-      final List<CategoriesModel> categories =
-          await categoryRepository.getCategories();
+  ) {
+    final chosenCategory = state.categoriesList.firstWhere(
+      (category) => category.id == event.categoryId,
+    );
 
-      emit(
-        state.copyWith(
-          categories: categories,
-        ),
-      );
-    } catch (e) {
-      rethrow;
-    }
+    emit(
+      state.copyWith(
+        courseList: chosenCategory.courseVideoItems,
+      ),
+    );
   }
 }

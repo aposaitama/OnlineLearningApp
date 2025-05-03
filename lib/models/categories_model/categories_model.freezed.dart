@@ -27,6 +27,9 @@ mixin _$CategoriesModel {
   String get hexBackgroundColor => throw _privateConstructorUsedError;
   String get hexTitleTextColor => throw _privateConstructorUsedError;
   String get hexTextBackgroundColor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'course_items')
+  List<CourseBasicModel> get courseVideoItems =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this CategoriesModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +54,8 @@ abstract class $CategoriesModelCopyWith<$Res> {
       Image categoryImage,
       String hexBackgroundColor,
       String hexTitleTextColor,
-      String hexTextBackgroundColor});
+      String hexTextBackgroundColor,
+      @JsonKey(name: 'course_items') List<CourseBasicModel> courseVideoItems});
 
   $ImageCopyWith<$Res> get categoryImage;
 }
@@ -78,6 +82,7 @@ class _$CategoriesModelCopyWithImpl<$Res, $Val extends CategoriesModel>
     Object? hexBackgroundColor = null,
     Object? hexTitleTextColor = null,
     Object? hexTextBackgroundColor = null,
+    Object? courseVideoItems = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -108,6 +113,10 @@ class _$CategoriesModelCopyWithImpl<$Res, $Val extends CategoriesModel>
           ? _value.hexTextBackgroundColor
           : hexTextBackgroundColor // ignore: cast_nullable_to_non_nullable
               as String,
+      courseVideoItems: null == courseVideoItems
+          ? _value.courseVideoItems
+          : courseVideoItems // ignore: cast_nullable_to_non_nullable
+              as List<CourseBasicModel>,
     ) as $Val);
   }
 
@@ -137,7 +146,8 @@ abstract class _$$CategoriesModelImplCopyWith<$Res>
       Image categoryImage,
       String hexBackgroundColor,
       String hexTitleTextColor,
-      String hexTextBackgroundColor});
+      String hexTextBackgroundColor,
+      @JsonKey(name: 'course_items') List<CourseBasicModel> courseVideoItems});
 
   @override
   $ImageCopyWith<$Res> get categoryImage;
@@ -163,6 +173,7 @@ class __$$CategoriesModelImplCopyWithImpl<$Res>
     Object? hexBackgroundColor = null,
     Object? hexTitleTextColor = null,
     Object? hexTextBackgroundColor = null,
+    Object? courseVideoItems = null,
   }) {
     return _then(_$CategoriesModelImpl(
       id: null == id
@@ -193,6 +204,10 @@ class __$$CategoriesModelImplCopyWithImpl<$Res>
           ? _value.hexTextBackgroundColor
           : hexTextBackgroundColor // ignore: cast_nullable_to_non_nullable
               as String,
+      courseVideoItems: null == courseVideoItems
+          ? _value._courseVideoItems
+          : courseVideoItems // ignore: cast_nullable_to_non_nullable
+              as List<CourseBasicModel>,
     ));
   }
 }
@@ -207,7 +222,10 @@ class _$CategoriesModelImpl implements _CategoriesModel {
       required this.categoryImage,
       required this.hexBackgroundColor,
       required this.hexTitleTextColor,
-      required this.hexTextBackgroundColor});
+      required this.hexTextBackgroundColor,
+      @JsonKey(name: 'course_items')
+      required final List<CourseBasicModel> courseVideoItems})
+      : _courseVideoItems = courseVideoItems;
 
   factory _$CategoriesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoriesModelImplFromJson(json);
@@ -226,10 +244,19 @@ class _$CategoriesModelImpl implements _CategoriesModel {
   final String hexTitleTextColor;
   @override
   final String hexTextBackgroundColor;
+  final List<CourseBasicModel> _courseVideoItems;
+  @override
+  @JsonKey(name: 'course_items')
+  List<CourseBasicModel> get courseVideoItems {
+    if (_courseVideoItems is EqualUnmodifiableListView)
+      return _courseVideoItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_courseVideoItems);
+  }
 
   @override
   String toString() {
-    return 'CategoriesModel(id: $id, documentId: $documentId, categoryTitle: $categoryTitle, categoryImage: $categoryImage, hexBackgroundColor: $hexBackgroundColor, hexTitleTextColor: $hexTitleTextColor, hexTextBackgroundColor: $hexTextBackgroundColor)';
+    return 'CategoriesModel(id: $id, documentId: $documentId, categoryTitle: $categoryTitle, categoryImage: $categoryImage, hexBackgroundColor: $hexBackgroundColor, hexTitleTextColor: $hexTitleTextColor, hexTextBackgroundColor: $hexTextBackgroundColor, courseVideoItems: $courseVideoItems)';
   }
 
   @override
@@ -249,7 +276,9 @@ class _$CategoriesModelImpl implements _CategoriesModel {
             (identical(other.hexTitleTextColor, hexTitleTextColor) ||
                 other.hexTitleTextColor == hexTitleTextColor) &&
             (identical(other.hexTextBackgroundColor, hexTextBackgroundColor) ||
-                other.hexTextBackgroundColor == hexTextBackgroundColor));
+                other.hexTextBackgroundColor == hexTextBackgroundColor) &&
+            const DeepCollectionEquality()
+                .equals(other._courseVideoItems, _courseVideoItems));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -262,7 +291,8 @@ class _$CategoriesModelImpl implements _CategoriesModel {
       categoryImage,
       hexBackgroundColor,
       hexTitleTextColor,
-      hexTextBackgroundColor);
+      hexTextBackgroundColor,
+      const DeepCollectionEquality().hash(_courseVideoItems));
 
   /// Create a copy of CategoriesModel
   /// with the given fields replaced by the non-null parameter values.
@@ -283,13 +313,16 @@ class _$CategoriesModelImpl implements _CategoriesModel {
 
 abstract class _CategoriesModel implements CategoriesModel {
   factory _CategoriesModel(
-      {required final int id,
-      required final String documentId,
-      required final String categoryTitle,
-      required final Image categoryImage,
-      required final String hexBackgroundColor,
-      required final String hexTitleTextColor,
-      required final String hexTextBackgroundColor}) = _$CategoriesModelImpl;
+          {required final int id,
+          required final String documentId,
+          required final String categoryTitle,
+          required final Image categoryImage,
+          required final String hexBackgroundColor,
+          required final String hexTitleTextColor,
+          required final String hexTextBackgroundColor,
+          @JsonKey(name: 'course_items')
+          required final List<CourseBasicModel> courseVideoItems}) =
+      _$CategoriesModelImpl;
 
   factory _CategoriesModel.fromJson(Map<String, dynamic> json) =
       _$CategoriesModelImpl.fromJson;
@@ -308,6 +341,9 @@ abstract class _CategoriesModel implements CategoriesModel {
   String get hexTitleTextColor;
   @override
   String get hexTextBackgroundColor;
+  @override
+  @JsonKey(name: 'course_items')
+  List<CourseBasicModel> get courseVideoItems;
 
   /// Create a copy of CategoriesModel
   /// with the given fields replaced by the non-null parameter values.

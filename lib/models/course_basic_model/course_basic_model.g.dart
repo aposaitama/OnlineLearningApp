@@ -17,9 +17,10 @@ _$CourseBasicModelImpl _$$CourseBasicModelImplFromJson(
       totalCourseDurationInSeconds:
           (json['totalCourseDurationInSeconds'] as num).toInt(),
       coursePrice: (json['coursePrice'] as num).toDouble(),
-      courseVideoItems: (json['courseVideoItems'] as List<dynamic>)
-          .map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      courseVideoItems: (json['courseVideoItems'] as List<dynamic>?)
+              ?.map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CourseBasicModelImplToJson(

@@ -17,6 +17,9 @@ _$CategoriesModelImpl _$$CategoriesModelImplFromJson(
       hexBackgroundColor: json['hexBackgroundColor'] as String,
       hexTitleTextColor: json['hexTitleTextColor'] as String,
       hexTextBackgroundColor: json['hexTextBackgroundColor'] as String,
+      courseVideoItems: (json['course_items'] as List<dynamic>)
+          .map((e) => CourseBasicModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CategoriesModelImplToJson(
@@ -29,4 +32,5 @@ Map<String, dynamic> _$$CategoriesModelImplToJson(
       'hexBackgroundColor': instance.hexBackgroundColor,
       'hexTitleTextColor': instance.hexTitleTextColor,
       'hexTextBackgroundColor': instance.hexTextBackgroundColor,
+      'course_items': instance.courseVideoItems,
     };
