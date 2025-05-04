@@ -20,6 +20,8 @@ class CourseItemRepository {
     required List<RangeValues> selectedDurations,
     required RangeValues price,
     String? enteredText,
+    required int page,
+    required int pageSize,
   }) async {
     try {
       final Map<String, dynamic> queryParameters = {
@@ -27,6 +29,8 @@ class CourseItemRepository {
         'populate[]': 'courseImage',
         'filters[coursePrice][\$gte]': price.start.round(),
         'filters[coursePrice][\$lte]': price.end.round(),
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize,
       };
 
       if (enteredText != null) {

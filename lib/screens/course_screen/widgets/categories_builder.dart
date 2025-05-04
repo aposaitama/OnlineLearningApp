@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 
 class CategoriesBuilder extends StatelessWidget {
-  final Function(int) selectCategory;
+  final Function(CategoriesModel) selectCategory;
 
   const CategoriesBuilder({
     super.key,
@@ -26,7 +27,7 @@ class CategoriesBuilder extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: GestureDetector(
-                  onTap: () => selectCategory(category.id) ,
+                  onTap: () => selectCategory(category) ,
                   child: CategoriesItemTile(
                     backgroundColor: category.hexBackgroundColor,
                     textColor: category.hexTitleTextColor,

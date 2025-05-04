@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
+import 'package:online_app/bloc/filters_bloc/filters_event.dart';
+import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -62,12 +66,20 @@ class _CourseScreenState extends State<CourseScreen> {
     );
   }
 
-  void _selectCategory(int categoryId) {
-    context.read<CourseScreenBloc>().add(
-          SelectCategoryOnCoursesEvent(
-            categoryId: categoryId,
+  void _selectCategory(CategoriesModel category) async {
+    // context.read<CourseScreenBloc>().add(
+    //       SelectCategoryOnCoursesEvent(
+    //         categoryId: categoryId,
+    //       ),
+    //     );
+
+    context.read<FiltersBloc>().add(
+          SelectCategoriesEvent(
+            category: category,
           ),
         );
+
+    context.push('/search-screen');
   }
 
   final categories = ['All', 'Popular', 'New'];
@@ -100,7 +112,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   right: 21.0,
                 ),
                 child: SvgPicture.asset(
-                  'assets/icons/UserImage.svg',
+                  Assets.icons.userImage,
                 ),
               ),
             ],

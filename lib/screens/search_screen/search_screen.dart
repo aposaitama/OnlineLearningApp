@@ -31,6 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     super.initState();
     _getSearchedCourses();
+    _getCategoriesForFilters();
     _searchScreenController.addListener(() {
       setState(() {});
     });
@@ -51,6 +52,12 @@ class _SearchScreenState extends State<SearchScreen> {
         priceRange: filterState.priceRange,
       ),
     );
+  }
+
+  void _getCategoriesForFilters() {
+    context.read<FiltersBloc>().add(
+          const GetCategoriesOnFiltersEvent(),
+        );
   }
 
   void _showFilterBottomSheet() {
@@ -75,8 +82,10 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         );
   }
-  
-  Future<void> _onChangeSubmitSearch(String value,) async {
+
+  Future<void> _onChangeSubmitSearch(
+    String value,
+  ) async {
     final searchBloc = context.read<SearchScreenBloc>();
     searchBloc.add(
       EnterSearchTextEvent(
@@ -135,7 +144,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 onTapFilters: _showFilterBottomSheet,
                 onSubmitted: (value) => _onChangeSubmitSearch(value),
                 searchFieldController: _searchScreenController,
-                onChanged: (value)=> _onChangeSubmitSearch(value),
+                onChanged: (value) => _onChangeSubmitSearch(value),
                 updateCourses: _getSearchedCourses,
               ),
               Padding(
