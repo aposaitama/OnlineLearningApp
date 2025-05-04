@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/auth_gate_screen.dart';
 import 'package:online_app/screens/course_details_screen/course_details_screen.dart';
+import 'package:online_app/screens/edit_account_screen/edit_account_screen.dart';
 import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
 import 'package:online_app/screens/payment_screen/payment_screen.dart';
 import 'package:online_app/screens/payment_screen/successfull_payment_screen/successfull_payment_screen.dart';
@@ -79,6 +80,15 @@ class SearchScreenRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const SearchScreen();
+}
+
+@TypedGoRoute<EditAccountRoute>(path: '/edit-account')
+class EditAccountRoute extends GoRouteData {
+  const EditAccountRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const EditAccountScreen();
 }
 
 @TypedGoRoute<SuccessfullPaymentScreenRoute>(

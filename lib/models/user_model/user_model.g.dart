@@ -22,6 +22,8 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           (json['completed_course_videos'] as List<dynamic>)
               .map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
               .toList(),
+      avatar: const ImagePathConverter()
+          .fromJson(json['avatar'] as Map<String, dynamic>?),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -33,7 +35,15 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'user_purchased_courses': instance.user_purchased_courses,
       'favourite_items': instance.favourite_items,
       'completed_course_videos': instance.completed_course_videos,
+      'avatar': _$JsonConverterToJson<Map<String, dynamic>?, String>(
+          instance.avatar, const ImagePathConverter().toJson),
     };
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
 
 _$CourseIdImpl _$$CourseIdImplFromJson(Map<String, dynamic> json) =>
     _$CourseIdImpl(

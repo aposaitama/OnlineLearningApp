@@ -7,7 +7,9 @@ import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
 import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
+import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/resources/app_theme.dart';
+import 'package:online_app/screens/account_screen/account_bloc/account_bloc.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
@@ -28,6 +30,9 @@ void main() async {
         ),
         RepositoryProvider(
           create: (_) => CourseItemRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => UserRepository(),
         ),
         BlocProvider(
           create: (_) => NavigationCubit(),
@@ -54,6 +59,11 @@ void main() async {
         BlocProvider(
           create: (context) => SearchScreenBloc(
             courseItemRepository: context.read<CourseItemRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => AccountBloc(
+            userRepository: context.read<UserRepository>(),
           ),
         ),
       ],

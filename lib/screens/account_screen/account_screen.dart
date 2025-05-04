@@ -1,9 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/account_screen/account_bloc/account_bloc.dart';
+import 'package:online_app/screens/account_screen/account_bloc/account_event.dart';
+import 'package:online_app/screens/account_screen/widgets/account_list_item.dart';
 
-class AccountScreen extends StatelessWidget {
+import 'account_bloc/account_state.dart';
+
+class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
+
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
+  AccountBloc get _accountBloc => context.read<AccountBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
+
+  void _getUserData() {
+    _accountBloc.add(
+      const GetUserDataEvent(),
+    );
+  }
+
+  void _editUserData() {
+    context.push('/edit-account');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +54,55 @@ class AccountScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const Center(
-        child: Text('Account'),
+      body: BlocConsumer<AccountBloc, AccountState>(
+        listener: (context, state){
+          if(state.userData != null){
+            _getUserData();
+          }
+        },
+        builder: (context, state) {
+          if (state.userData == null) {
+            return CircularProgressIndicator();
+          } else {
+            return Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: state.userData!.avatar == null
+                        ? SvgPicture.asset(
+                            Assets.icons.avatar,
+                            fit: BoxFit.contain,
+                          )
+                        : SvgPicture.asset(
+                            state.userData!.avatar!,
+                            fit: BoxFit.contain,
+                          ),
+                  ),
+                  AccountListItem(
+                    title: 'Favourite',
+                    onTap: () {},
+                  ),
+                  AccountListItem(
+                    title: 'Edit Account',
+                    onTap: _editUserData,
+                  ),
+                  AccountListItem(
+                    title: 'Settings and Privacy',
+                    onTap: () {},
+                  ),
+                  AccountListItem(
+                    title: 'Help',
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            );
+          }
+        },
       ),
     );
   }

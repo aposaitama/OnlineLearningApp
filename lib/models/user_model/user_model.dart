@@ -2,19 +2,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 
+import '../../utils/converters/image_path_converter.dart';
+
 part 'user_model.freezed.dart';
+
 part 'user_model.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
-  const factory UserModel(
-      {required int id,
-      required String username,
-      required String email,
-      required String? userPhoneNumber,
-      required List<CourseBasicModel> user_purchased_courses,
-      required List<CourseId> favourite_items,
-      required List<CourseVideoItem> completed_course_videos}) = _UserModel;
+  factory UserModel({
+    required int id,
+    required String username,
+    required String email,
+    required String? userPhoneNumber,
+    required List<CourseBasicModel> user_purchased_courses,
+    required List<CourseId> favourite_items,
+    required List<CourseVideoItem> completed_course_videos,
+    @ImagePathConverter() String? avatar,
+  }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
