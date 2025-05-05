@@ -10,11 +10,7 @@ part 'user_model.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
-
-  factory UserModel({
-
   const factory UserModel({
-
     required int id,
     required String username,
     required String email,
@@ -22,11 +18,8 @@ class UserModel with _$UserModel {
     required List<CourseBasicModel> user_purchased_courses,
     required List<CourseId> favourite_items,
     required List<CourseVideoItem> completed_course_videos,
-
     @ImagePathConverter() String? avatar,
-
     required List<CreditCardModel> creditCards,
-
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
