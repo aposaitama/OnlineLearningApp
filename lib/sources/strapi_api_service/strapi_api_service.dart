@@ -57,31 +57,31 @@ class StrapiApiService {
     return prefs.getString('jwt_token');
   }
 
-  Future<String> register(
-    String userName,
-    String email,
-    String password,
-  ) async {
-    try {
-      final response = await dio.post(
-        '/auth/local/register',
-        data: {
-          'username': userName,
-          'email': email,
-          'password': password,
-        },
-      );
-      final token = response.data['jwt'];
-      await saveToken(token);
+  // Future<String> register(
+  //   String userName,
+  //   String email,
+  //   String password,
+  // ) async {
+  //   try {
+  //     final response = await dio.post(
+  //       '/auth/local/register',
+  //       data: {
+  //         'username': userName,
+  //         'email': email,
+  //         'password': password,
+  //       },
+  //     );
+  //     final token = response.data['jwt'];
+  //     await saveToken(token);
 
-      return token;
-    } on DioException catch (e) {
-      final message = e.response?.data['error']['message'] ?? 'Unknown error';
-      throw 'Register failed: $message';
-    } catch (e) {
-      throw 'Register failed';
-    }
-  }
+  //     return token;
+  //   } on DioException catch (e) {
+  //     final message = e.response?.data['error']['message'] ?? 'Unknown error';
+  //     throw 'Register failed: $message';
+  //   } catch (e) {
+  //     throw 'Register failed';
+  //   }
+  // }
 
   // Future<bool> linkPhoneNumber(
   //   String phoneNumber,
@@ -135,42 +135,42 @@ class StrapiApiService {
     }
   }
 
-  Future<String> login(String email, String password) async {
-    try {
-      final response = await dio.post(
-        '/auth/local',
-        data: {'identifier': email, 'password': password},
-      );
+  // Future<String> login(String email, String password) async {
+  //   try {
+  //     final response = await dio.post(
+  //       '/auth/local',
+  //       data: {'identifier': email, 'password': password},
+  //     );
 
-      final token = response.data['jwt'];
+  //     final token = response.data['jwt'];
 
-      await saveToken(token);
-      return token;
-    } on DioException catch (e) {
-      final message = e.response?.data['error']['message'] ?? 'Unknown error';
-      throw 'Login failed: $message';
-    } catch (e) {
-      throw 'Login failed';
-    }
-  }
+  //     await saveToken(token);
+  //     return token;
+  //   } on DioException catch (e) {
+  //     final message = e.response?.data['error']['message'] ?? 'Unknown error';
+  //     throw 'Login failed: $message';
+  //   } catch (e) {
+  //     throw 'Login failed';
+  //   }
+  // }
 
-  Future<List<CourseBasicModel>> fetchCourseItems() async {
-    try {
-      final response = await dio.get('/course-items', queryParameters: {
-        'populate': 'courseVideoItems.video',
-        'populate[]': 'courseImage',
-      });
+  // Future<List<CourseBasicModel>> fetchCourseItems() async {
+  //   try {
+  //     final response = await dio.get('/course-items', queryParameters: {
+  //       'populate': 'courseVideoItems.video',
+  //       'populate[]': 'courseImage',
+  //     });
 
-      final List<dynamic> data = response.data['data'] ?? [];
+  //     final List<dynamic> data = response.data['data'] ?? [];
 
-      return data.map((json) => CourseBasicModel.fromJson(json)).toList();
-    } on DioException catch (e) {
-      final message = e.response?.data['error']['message'] ?? 'Unknown error';
-      throw 'Failed to load data: $message';
-    } catch (e) {
-      throw 'Failed to load data';
-    }
-  }
+  //     return data.map((json) => CourseBasicModel.fromJson(json)).toList();
+  //   } on DioException catch (e) {
+  //     final message = e.response?.data['error']['message'] ?? 'Unknown error';
+  //     throw 'Failed to load data: $message';
+  //   } catch (e) {
+  //     throw 'Failed to load data';
+  //   }
+  // }
 
   Future<List<CategoriesModel>> fetchCategoriesItems() async {
     try {
@@ -189,28 +189,28 @@ class StrapiApiService {
     }
   }
 
-  Future<CourseConcreteModel> fetchConcreteCourse(
-    String documentID,
-  ) async {
-    try {
-      final response = await dio.get(
-        '/course-items/$documentID',
-        queryParameters: {
-          'populate': 'courseVideoItems.video',
-          'populate[]': 'courseImage',
-        },
-      );
+  // Future<CourseConcreteModel> fetchConcreteCourse(
+  //   String documentID,
+  // ) async {
+  //   try {
+  //     final response = await dio.get(
+  //       '/course-items/$documentID',
+  //       queryParameters: {
+  //         'populate': 'courseVideoItems.video',
+  //         'populate[]': 'courseImage',
+  //       },
+  //     );
 
-      return CourseConcreteModel.fromJson(
-        response.data['data'],
-      );
-    } on DioException catch (e) {
-      final message = e.response?.data['error']['message'] ?? 'Unknown error';
-      throw 'Failed to load data: $message';
-    } catch (e) {
-      throw 'Failed to load data';
-    }
-  }
+  //     return CourseConcreteModel.fromJson(
+  //       response.data['data'],
+  //     );
+  //   } on DioException catch (e) {
+  //     final message = e.response?.data['error']['message'] ?? 'Unknown error';
+  //     throw 'Failed to load data: $message';
+  //   } catch (e) {
+  //     throw 'Failed to load data';
+  //   }
+  // }
 
   Future<List<CourseBasicModel>> filterCourses({
     required List<CategoriesModel> categories,
@@ -368,35 +368,35 @@ class StrapiApiService {
     }
   }
 
-  Future<bool> buyCourse(
-    String cardNum,
-    String expMonth,
-    String expYear,
-    String cvv,
-    String summ,
-  ) async {
-    try {
-      final liqPay = LiqPay(
-        dotenv.env['LIQPAY_PUBLIC_KEY']!,
-        dotenv.env['LIQPAY_SECRET_KEY']!,
-      );
-      final card = LiqPayCard(cardNum, expMonth, expYear, cvv);
-      final order = LiqPayOrder(
-        const Uuid().v4(),
-        1,
-        'Test',
-        card: card,
-        action: LiqPayAction.pay,
-      );
-      final purchaseResult = await liqPay.purchase(order);
-      if (purchaseResult.status == 'success') {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
+  // Future<bool> buyCourse(
+  //   String cardNum,
+  //   String expMonth,
+  //   String expYear,
+  //   String cvv,
+  //   String summ,
+  // ) async {
+  //   try {
+  //     final liqPay = LiqPay(
+  //       dotenv.env['LIQPAY_PUBLIC_KEY']!,
+  //       dotenv.env['LIQPAY_SECRET_KEY']!,
+  //     );
+  //     final card = LiqPayCard(cardNum, expMonth, expYear, cvv);
+  //     final order = LiqPayOrder(
+  //       const Uuid().v4(),
+  //       1,
+  //       'Test',
+  //       card: card,
+  //       action: LiqPayAction.pay,
+  //     );
+  //     final purchaseResult = await liqPay.purchase(order);
+  //     if (purchaseResult.status == 'success') {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     return false;
+  //   }
+  // }
 }

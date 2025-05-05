@@ -28,7 +28,8 @@ class UserRepository {
           'populate': 'user_purchased_courses.courseImage',
           'populate[]': 'favourite_items',
           'populate[][]': 'user_purchased_courses.courseVideoItems.video',
-          'populate[][][]': 'completed_course_videos.video'
+          'populate[][][]': 'completed_course_videos.video',
+          'populate[][][][]': 'creditCards',
         },
       );
 
