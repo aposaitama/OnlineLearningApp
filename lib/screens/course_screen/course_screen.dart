@@ -128,6 +128,8 @@ class _CourseScreenState extends State<CourseScreen> {
                           right: 15.0,
                         ),
                         child: CategoriesItemTile(
+                          textBackgroundColor:
+                              concreteCategory.hexBackgroundColor,
                           backgroundColor: concreteCategory.hexBackgroundColor,
                           textColor: concreteCategory.hexTitleTextColor,
                           imageUrl: concreteCategory.categoryImage.url,
