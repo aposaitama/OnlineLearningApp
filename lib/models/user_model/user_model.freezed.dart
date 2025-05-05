@@ -29,6 +29,7 @@ mixin _$UserModel {
   List<CourseId> get favourite_items => throw _privateConstructorUsedError;
   List<CourseVideoItem> get completed_course_videos =>
       throw _privateConstructorUsedError;
+  List<CreditCardModel> get creditCards => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,7 +53,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? userPhoneNumber,
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
-      List<CourseVideoItem> completed_course_videos});
+      List<CourseVideoItem> completed_course_videos,
+      List<CreditCardModel> creditCards});
 }
 
 /// @nodoc
@@ -77,6 +79,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
+    Object? creditCards = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,6 +110,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.completed_course_videos
           : completed_course_videos // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      creditCards: null == creditCards
+          ? _value.creditCards
+          : creditCards // ignore: cast_nullable_to_non_nullable
+              as List<CreditCardModel>,
     ) as $Val);
   }
 }
@@ -126,7 +133,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? userPhoneNumber,
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
-      List<CourseVideoItem> completed_course_videos});
+      List<CourseVideoItem> completed_course_videos,
+      List<CreditCardModel> creditCards});
 }
 
 /// @nodoc
@@ -149,6 +157,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
+    Object? creditCards = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -179,6 +188,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value._completed_course_videos
           : completed_course_videos // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      creditCards: null == creditCards
+          ? _value._creditCards
+          : creditCards // ignore: cast_nullable_to_non_nullable
+              as List<CreditCardModel>,
     ));
   }
 }
@@ -193,10 +206,12 @@ class _$UserModelImpl implements _UserModel {
       required this.userPhoneNumber,
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
-      required final List<CourseVideoItem> completed_course_videos})
+      required final List<CourseVideoItem> completed_course_videos,
+      required final List<CreditCardModel> creditCards})
       : _user_purchased_courses = user_purchased_courses,
         _favourite_items = favourite_items,
-        _completed_course_videos = completed_course_videos;
+        _completed_course_videos = completed_course_videos,
+        _creditCards = creditCards;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -235,9 +250,17 @@ class _$UserModelImpl implements _UserModel {
     return EqualUnmodifiableListView(_completed_course_videos);
   }
 
+  final List<CreditCardModel> _creditCards;
+  @override
+  List<CreditCardModel> get creditCards {
+    if (_creditCards is EqualUnmodifiableListView) return _creditCards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_creditCards);
+  }
+
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, creditCards: $creditCards)';
   }
 
   @override
@@ -256,7 +279,9 @@ class _$UserModelImpl implements _UserModel {
             const DeepCollectionEquality()
                 .equals(other._favourite_items, _favourite_items) &&
             const DeepCollectionEquality().equals(
-                other._completed_course_videos, _completed_course_videos));
+                other._completed_course_videos, _completed_course_videos) &&
+            const DeepCollectionEquality()
+                .equals(other._creditCards, _creditCards));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -269,7 +294,8 @@ class _$UserModelImpl implements _UserModel {
       userPhoneNumber,
       const DeepCollectionEquality().hash(_user_purchased_courses),
       const DeepCollectionEquality().hash(_favourite_items),
-      const DeepCollectionEquality().hash(_completed_course_videos));
+      const DeepCollectionEquality().hash(_completed_course_videos),
+      const DeepCollectionEquality().hash(_creditCards));
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -289,14 +315,14 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-          {required final int id,
-          required final String username,
-          required final String email,
-          required final String? userPhoneNumber,
-          required final List<CourseBasicModel> user_purchased_courses,
-          required final List<CourseId> favourite_items,
-          required final List<CourseVideoItem> completed_course_videos}) =
-      _$UserModelImpl;
+      {required final int id,
+      required final String username,
+      required final String email,
+      required final String? userPhoneNumber,
+      required final List<CourseBasicModel> user_purchased_courses,
+      required final List<CourseId> favourite_items,
+      required final List<CourseVideoItem> completed_course_videos,
+      required final List<CreditCardModel> creditCards}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -315,6 +341,8 @@ abstract class _UserModel implements UserModel {
   List<CourseId> get favourite_items;
   @override
   List<CourseVideoItem> get completed_course_videos;
+  @override
+  List<CreditCardModel> get creditCards;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -488,5 +516,175 @@ abstract class _CourseId implements CourseId {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CourseIdImplCopyWith<_$CourseIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CreditCardModel _$CreditCardModelFromJson(Map<String, dynamic> json) {
+  return _CreditCardModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CreditCardModel {
+  String get cardNumber => throw _privateConstructorUsedError;
+  String get expDate => throw _privateConstructorUsedError;
+
+  /// Serializes this CreditCardModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of CreditCardModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CreditCardModelCopyWith<CreditCardModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreditCardModelCopyWith<$Res> {
+  factory $CreditCardModelCopyWith(
+          CreditCardModel value, $Res Function(CreditCardModel) then) =
+      _$CreditCardModelCopyWithImpl<$Res, CreditCardModel>;
+  @useResult
+  $Res call({String cardNumber, String expDate});
+}
+
+/// @nodoc
+class _$CreditCardModelCopyWithImpl<$Res, $Val extends CreditCardModel>
+    implements $CreditCardModelCopyWith<$Res> {
+  _$CreditCardModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of CreditCardModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cardNumber = null,
+    Object? expDate = null,
+  }) {
+    return _then(_value.copyWith(
+      cardNumber: null == cardNumber
+          ? _value.cardNumber
+          : cardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      expDate: null == expDate
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CreditCardModelImplCopyWith<$Res>
+    implements $CreditCardModelCopyWith<$Res> {
+  factory _$$CreditCardModelImplCopyWith(_$CreditCardModelImpl value,
+          $Res Function(_$CreditCardModelImpl) then) =
+      __$$CreditCardModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String cardNumber, String expDate});
+}
+
+/// @nodoc
+class __$$CreditCardModelImplCopyWithImpl<$Res>
+    extends _$CreditCardModelCopyWithImpl<$Res, _$CreditCardModelImpl>
+    implements _$$CreditCardModelImplCopyWith<$Res> {
+  __$$CreditCardModelImplCopyWithImpl(
+      _$CreditCardModelImpl _value, $Res Function(_$CreditCardModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CreditCardModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cardNumber = null,
+    Object? expDate = null,
+  }) {
+    return _then(_$CreditCardModelImpl(
+      cardNumber: null == cardNumber
+          ? _value.cardNumber
+          : cardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      expDate: null == expDate
+          ? _value.expDate
+          : expDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CreditCardModelImpl implements _CreditCardModel {
+  const _$CreditCardModelImpl(
+      {required this.cardNumber, required this.expDate});
+
+  factory _$CreditCardModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreditCardModelImplFromJson(json);
+
+  @override
+  final String cardNumber;
+  @override
+  final String expDate;
+
+  @override
+  String toString() {
+    return 'CreditCardModel(cardNumber: $cardNumber, expDate: $expDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreditCardModelImpl &&
+            (identical(other.cardNumber, cardNumber) ||
+                other.cardNumber == cardNumber) &&
+            (identical(other.expDate, expDate) || other.expDate == expDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, cardNumber, expDate);
+
+  /// Create a copy of CreditCardModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreditCardModelImplCopyWith<_$CreditCardModelImpl> get copyWith =>
+      __$$CreditCardModelImplCopyWithImpl<_$CreditCardModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CreditCardModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CreditCardModel implements CreditCardModel {
+  const factory _CreditCardModel(
+      {required final String cardNumber,
+      required final String expDate}) = _$CreditCardModelImpl;
+
+  factory _CreditCardModel.fromJson(Map<String, dynamic> json) =
+      _$CreditCardModelImpl.fromJson;
+
+  @override
+  String get cardNumber;
+  @override
+  String get expDate;
+
+  /// Create a copy of CreditCardModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreditCardModelImplCopyWith<_$CreditCardModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
