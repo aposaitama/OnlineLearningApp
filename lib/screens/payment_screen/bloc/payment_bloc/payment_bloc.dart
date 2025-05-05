@@ -1,11 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/repositories/payment_repository/payment_repository.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
   final strapiApiService = locator<StrapiApiService>();
+  final _paymentRepo = locator<PaymentRepository>();
+
   PaymentBloc() : super(const PaymentBlocState()) {
     on<AddCreditCardEvent>(_addCreditCard);
     on<PurchaseCourseEvent>(_purchaseCourse);
@@ -15,7 +18,7 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
     PurchaseCourseEvent event,
     Emitter<PaymentBlocState> emit,
   ) async {
-    final bool purchaseStatus = await strapiApiService.buyCourse(
+    final bool purchaseStatus = await _paymentRepo.buyCourse(
       event.cardNumber,
       event.expMonth,
       event.expYear,

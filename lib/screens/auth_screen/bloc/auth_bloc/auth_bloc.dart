@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc_event.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
+  final _auth = locator<AuthRepository>();
   AuthBloc() : super(const AuthBlocState()) {
     on<RegisterUserBlocEvent>(
       _registerUser,
@@ -29,7 +31,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
           loginStatus: LoginStatus.loading,
         ),
       );
-      await StrapiApiService().login(
+      await _auth.login(
         event.email,
         event.password,
       );
@@ -59,7 +61,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       ),
     );
     try {
-      await StrapiApiService().register(
+      await _auth.register(
         event.userName,
         event.email,
         event.password,
