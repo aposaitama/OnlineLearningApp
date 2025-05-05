@@ -29,27 +29,23 @@ class CategoriesItemTile extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
+        // Background Container
         Padding(
-          padding: const EdgeInsets.only(
-            top: 10.0,
-          ),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Container(
             height: 80.0,
             width: 160.0,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                13.0,
-              ),
+              borderRadius: BorderRadius.circular(13.0),
               color: backgroundColor.toColor(),
             ),
           ),
         ),
 
-        CachedNetworkImage(
-          imageUrl: 'http://localhost:1337$imageUrl',
-          width: 110.0,
-          height: 85.0,
-        ),
+        // Cached Image
+        // SvgPicture.network('http://localhost:1337${imageUrl}'),
+        // Positioned Text Container
+
         Positioned(
           right: 0,
           bottom: 8.0,
@@ -78,37 +74,35 @@ class CategoriesItemTile extends StatelessWidget {
               ),
             ),
 
+          ),
+        ),
+        // Positioned SVG Image
+
         Positioned(
           left: 3,
+          bottom: 0,
           child: SvgPicture.network(
             'http://localhost:1337$imageUrl',
           ),
         ),
+        // Bottom Text Label
         Padding(
-          padding: const EdgeInsets.only(
-            bottom: 10.0,
-          ),
+          padding: const EdgeInsets.only(bottom: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(
-                      20.0,
-                    ),
-                    bottomLeft: Radius.circular(
-                      20.0,
-                    ),
+                    topLeft: Radius.circular(20.0),
+                    bottomLeft: Radius.circular(20.0),
                   ),
                   color: AppColors.lightBlueColor,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 7.0,
-                    right: 3.0,
-                    bottom: 3.0,
-                    top: 3.0,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 7.0,
+                    vertical: 3.0,
                   ),
                   child: Text(
                     categoryTitle,
