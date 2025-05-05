@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
-import 'package:online_app/utils/constants.dart';
 
 import '../../../resources/app_colors.dart';
 import '../../../resources/app_colors_model.dart';
 import '../../../resources/app_fonts.dart';
+import '../../../utils/constants.dart';
 
 class CourseFiltersRow extends StatelessWidget {
   final Function(String) selectFilter;

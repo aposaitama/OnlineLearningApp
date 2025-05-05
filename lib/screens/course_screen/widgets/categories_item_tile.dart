@@ -21,26 +21,27 @@ class CategoriesItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.bottomRight,
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            top: 10.0,
-          ),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Container(
-            height: 90.0,
+            height: 80.0,
             width: 160.0,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                13.0,
-              ),
-              color: backgroundColor.toColor(),
+              borderRadius: BorderRadius.circular(13.0),
+              color: HexColorExtension(backgroundColor).toColor(),
             ),
           ),
         ),
-        CachedNetworkImage(
-          imageUrl: 'http://localhost:1337$imageUrl',
-          width: 110.0,
-          height: 85.0,
+        Positioned(
+          left: 0,
+          child: CachedNetworkImage(
+            imageUrl: 'http://localhost:1337$imageUrl',
+            width: 110.0,
+            height: 85.0,
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
         ),
         Positioned(
           right: 0,
@@ -53,24 +54,24 @@ class CategoriesItemTile extends StatelessWidget {
                 topLeft: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
               ),
-              color: textBackgroundColor.toColor(),
+              color: HexColorExtension(textBackgroundColor).toColor(),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
                     categoryTitle,
                     style: TextStyle(
-                      color: textColor.toColor(),
+                      color: HexColorExtension(textColor).toColor(),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

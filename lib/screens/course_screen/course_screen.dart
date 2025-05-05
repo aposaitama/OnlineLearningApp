@@ -13,6 +13,7 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/categories_builder.dart';
+import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/course_filters_row.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
@@ -143,7 +144,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 35.0,
+                  height: 27.0,
                 ),
                 CategoriesBuilder(
                   selectCategory: (categoryId) => _selectCategory(

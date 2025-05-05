@@ -85,6 +85,10 @@ class CourseItemRepository {
   }
 
   Future<void> getCoursesOnCourseScreen() async {
+    try {
 
+    } catch (e) {
+      rethrow;
+    }
   }
 }
