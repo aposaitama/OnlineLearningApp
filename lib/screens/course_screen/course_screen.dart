@@ -145,33 +145,33 @@ class _CourseScreenState extends State<CourseScreen> {
                     categoryId,
                   ),
                 ),
-                SizedBox(
-                  height: 90.0,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                    ),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: state.categoriesList.length,
-                    itemBuilder: (context, index) {
-                      final concreteCategory = state.categoriesList[index];
+                // SizedBox(
+                //   height: 90.0,
+                //   child: ListView.builder(
+                //     padding: const EdgeInsets.only(
+                //       left: 20.0,
+                //     ),
+                //     scrollDirection: Axis.horizontal,
+                //     itemCount: state.categoriesList.length,
+                //     itemBuilder: (context, index) {
+                //       final concreteCategory = state.categoriesList[index];
 
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          right: 15.0,
-                        ),
-                        child: CategoriesItemTile(
-                          textBackgroundColor:
-                              concreteCategory.hexBackgroundColor,
-                          backgroundColor: concreteCategory.hexBackgroundColor,
-                          textColor: concreteCategory.hexTitleTextColor,
-                          imageUrl: concreteCategory.categoryImage.url,
-                          categoryTitle: concreteCategory.categoryTitle,
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                //       return Padding(
+                //         padding: const EdgeInsets.only(
+                //           right: 15.0,
+                //         ),
+                //         child: CategoriesItemTile(
+                //           textBackgroundColor:
+                //               concreteCategory.hexBackgroundColor,
+                //           backgroundColor: concreteCategory.hexBackgroundColor,
+                //           textColor: concreteCategory.hexTitleTextColor,
+                //           imageUrl: concreteCategory.categoryImage.url,
+                //           categoryTitle: concreteCategory.categoryTitle,
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
                 const SizedBox(
                   height: 35.0,
                 ),
