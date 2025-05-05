@@ -29,12 +29,30 @@ class CourseScreen extends StatefulWidget {
 class _CourseScreenState extends State<CourseScreen> {
   CourseScreenBloc get _courseScreenBloc => context.read<CourseScreenBloc>();
   final TextEditingController _courseScreenTextFieldController =
-      TextEditingController();
+  TextEditingController();
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _loadInitialData();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.removeListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (!_courseScreenBloc.state.hasReachedEnd) {
+      if (_scrollController.position.pixels >
+          _scrollController.position.maxScrollExtent - 200) {
+        _courseScreenBloc.add(const LoadNextCourseListEvent(),);
+      }
+    }
   }
 
   void _loadInitialData() {
@@ -47,11 +65,12 @@ class _CourseScreenState extends State<CourseScreen> {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      builder: (bottomSheetContext) => SearchModalSheet(
-        applyFilters: () {
-          context.push('/search-screen');
-        },
-      ),
+      builder: (bottomSheetContext) =>
+          SearchModalSheet(
+            applyFilters: () {
+              context.push('/search-screen');
+            },
+          ),
     );
   }
 
@@ -76,10 +95,10 @@ class _CourseScreenState extends State<CourseScreen> {
     //     );
 
     context.read<FiltersBloc>().add(
-          SelectCategoriesEvent(
-            category: category,
-          ),
-        );
+      SelectCategoriesEvent(
+        category: category,
+      ),
+    );
 
     context.push('/search-screen');
   }
@@ -90,18 +109,22 @@ class _CourseScreenState extends State<CourseScreen> {
         filter: filter,
       ),
     );
+
+    _loadInitialData();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = Theme
+        .of(context)
+        .brightness == Brightness.dark;
     return BlocBuilder<CourseScreenBloc, CourseScreenState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             toolbarHeight: 85.0,
             backgroundColor:
-                Theme.of(context).extension<AppColorsModel>()!.darkColor,
+            Theme.of(context).extension<AppColorsModel>()!.darkColor,
             centerTitle: false,
             title: Text(
               'Course',
@@ -147,37 +170,11 @@ class _CourseScreenState extends State<CourseScreen> {
                   height: 27.0,
                 ),
                 CategoriesBuilder(
-                  selectCategory: (categoryId) => _selectCategory(
-                    categoryId,
-                  ),
+                  selectCategory: (categoryId) =>
+                      _selectCategory(
+                        categoryId,
+                      ),
                 ),
-                // SizedBox(
-                //   height: 90.0,
-                //   child: ListView.builder(
-                //     padding: const EdgeInsets.only(
-                //       left: 20.0,
-                //     ),
-                //     scrollDirection: Axis.horizontal,
-                //     itemCount: state.categoriesList.length,
-                //     itemBuilder: (context, index) {
-                //       final concreteCategory = state.categoriesList[index];
-
-                //       return Padding(
-                //         padding: const EdgeInsets.only(
-                //           right: 15.0,
-                //         ),
-                //         child: CategoriesItemTile(
-                //           textBackgroundColor:
-                //               concreteCategory.hexBackgroundColor,
-                //           backgroundColor: concreteCategory.hexBackgroundColor,
-                //           textColor: concreteCategory.hexTitleTextColor,
-                //           imageUrl: concreteCategory.categoryImage.url,
-                //           categoryTitle: concreteCategory.categoryTitle,
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // ),
                 const SizedBox(
                   height: 35.0,
                 ),
@@ -188,7 +185,8 @@ class _CourseScreenState extends State<CourseScreen> {
                   child: Text(
                     'Choice your course',
                     style: AppFonts.poppinsMedium.copyWith(
-                      color: Theme.of(context)
+                      color: Theme
+                          .of(context)
                           .extension<AppColorsModel>()
                           ?.mainTextColor,
                       fontSize: 18.0,
@@ -218,19 +216,21 @@ class _CourseScreenState extends State<CourseScreen> {
                       horizontal: 20.0,
                     ),
                     itemCount: state.courseList.length,
+                    controller: _scrollController,
                     itemBuilder: (context, index) {
                       final concreteCourse = state.courseList[index];
                       return GestureDetector(
-                        onTap: () => context.push(
-                          '/course_details/${concreteCourse.documentId}',
-                        ),
+                        onTap: () =>
+                            context.push(
+                              '/course_details/${concreteCourse.documentId}',
+                            ),
                         child: ConcreteCourseItemTile(
                           imageUrl: concreteCourse.courseImage.url,
                           concreteCourseTitle: concreteCourse.courseTitle,
                           concreteCourseAuthor: concreteCourse.courseAuthor,
                           concreteCoursePrice: concreteCourse.coursePrice,
                           concreteCourseDuration:
-                              concreteCourse.totalCourseDurationInSeconds,
+                          concreteCourse.totalCourseDurationInSeconds,
                         ),
                       );
                     },

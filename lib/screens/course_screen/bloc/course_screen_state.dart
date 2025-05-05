@@ -19,5 +19,8 @@ class CourseScreenState with _$CourseScreenState {
     @Default(CourseScreenStatus.initial) CourseScreenStatus loadingStatus,
     String? enteredText,
     @Default('All') String selectedCourseFilter,
+    @Default(1) int page,
+    @Default(10) int pageSize,
+    @Default(false) bool hasReachedEnd,
   }) = _CourseScreenState;
 }

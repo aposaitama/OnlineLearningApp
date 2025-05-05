@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
-import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
+import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
@@ -9,24 +9,32 @@ import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   final strapiApiService = locator<StrapiApiService>();
   final CategoryRepository categoryRepository;
+  final CourseItemRepository courseItemRepository;
 
   CourseScreenBloc({
     required this.categoryRepository,
+    required this.courseItemRepository,
   }) : super(const CourseScreenState()) {
     on<LoadCourseBasicInfoEvent>(_loadCourseList);
     on<GetSearchedByTextCoursesEvent>(_getSearchedCourses);
     on<EnterTextOnCourseScreenEvent>(_onEnterText);
     on<SelectCategoryOnCoursesEvent>(_onSelectCategory);
     on<SelectFilterOnCourseScreenEvent>(_onSelectFilter);
+    on<LoadNextCourseListEvent>(_loadNext);
   }
 
   Future<void> _loadCourseList(
     LoadCourseBasicInfoEvent event,
     Emitter<CourseScreenState> emit,
   ) async {
-    final courseItems = await strapiApiService.fetchCourseItems();
-    // final courseCategories = await strapiApiService.fetchCategoriesItems();
+    final courseItems = await courseItemRepository.getCoursesOnCourseScreen(
+      filter: state.selectedCourseFilter,
+      page: state.page,
+      pageSize: state.pageSize,
+    );
+
     final categories = await categoryRepository.getCategories();
+
     emit(
       state.copyWith(
         loadingStatus: CourseScreenStatus.loaded,
@@ -34,6 +42,43 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
         categoriesList: categories,
       ),
     );
+  }
+
+  Future<void> _loadNext(
+    LoadNextCourseListEvent event,
+    Emitter<CourseScreenState> emit,
+  ) async {
+    try {
+      final nextPage = state.page + 1;
+
+      final moreCourses = await courseItemRepository.getCoursesOnCourseScreen(
+        filter: state.selectedCourseFilter,
+        page: nextPage,
+        pageSize: state.pageSize,
+      );
+
+      final combinedCourses = [
+        ...state.courseList,
+        ...moreCourses,
+      ];
+
+      final uniqueCourses = {
+        for (var course in combinedCourses) course.id: course,
+      }.values.toList();
+
+      final reachedEnd = uniqueCourses.length == state.courseList.length;
+
+      emit(
+        state.copyWith(
+          courseList: uniqueCourses,
+          page: nextPage,
+          loadingStatus: CourseScreenStatus.loaded,
+          hasReachedEnd: reachedEnd,
+        ),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> _getSearchedCourses(
@@ -91,5 +136,6 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
         selectedCourseFilter: event.filter,
       ),
     );
+
   }
 }

@@ -22,6 +22,9 @@ mixin _$CourseScreenState {
   CourseScreenStatus get loadingStatus => throw _privateConstructorUsedError;
   String? get enteredText => throw _privateConstructorUsedError;
   String get selectedCourseFilter => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  int get pageSize => throw _privateConstructorUsedError;
+  bool get hasReachedEnd => throw _privateConstructorUsedError;
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,7 +44,10 @@ abstract class $CourseScreenStateCopyWith<$Res> {
       List<CategoriesModel> categoriesList,
       CourseScreenStatus loadingStatus,
       String? enteredText,
-      String selectedCourseFilter});
+      String selectedCourseFilter,
+      int page,
+      int pageSize,
+      bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -64,6 +70,9 @@ class _$CourseScreenStateCopyWithImpl<$Res, $Val extends CourseScreenState>
     Object? loadingStatus = null,
     Object? enteredText = freezed,
     Object? selectedCourseFilter = null,
+    Object? page = null,
+    Object? pageSize = null,
+    Object? hasReachedEnd = null,
   }) {
     return _then(_value.copyWith(
       courseList: null == courseList
@@ -86,6 +95,18 @@ class _$CourseScreenStateCopyWithImpl<$Res, $Val extends CourseScreenState>
           ? _value.selectedCourseFilter
           : selectedCourseFilter // ignore: cast_nullable_to_non_nullable
               as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasReachedEnd: null == hasReachedEnd
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -103,7 +124,10 @@ abstract class _$$CourseScreenStateImplCopyWith<$Res>
       List<CategoriesModel> categoriesList,
       CourseScreenStatus loadingStatus,
       String? enteredText,
-      String selectedCourseFilter});
+      String selectedCourseFilter,
+      int page,
+      int pageSize,
+      bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -124,6 +148,9 @@ class __$$CourseScreenStateImplCopyWithImpl<$Res>
     Object? loadingStatus = null,
     Object? enteredText = freezed,
     Object? selectedCourseFilter = null,
+    Object? page = null,
+    Object? pageSize = null,
+    Object? hasReachedEnd = null,
   }) {
     return _then(_$CourseScreenStateImpl(
       courseList: null == courseList
@@ -146,6 +173,18 @@ class __$$CourseScreenStateImplCopyWithImpl<$Res>
           ? _value.selectedCourseFilter
           : selectedCourseFilter // ignore: cast_nullable_to_non_nullable
               as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasReachedEnd: null == hasReachedEnd
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -158,7 +197,10 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
       final List<CategoriesModel> categoriesList = const [],
       this.loadingStatus = CourseScreenStatus.initial,
       this.enteredText,
-      this.selectedCourseFilter = 'All'})
+      this.selectedCourseFilter = 'All',
+      this.page = 1,
+      this.pageSize = 10,
+      this.hasReachedEnd = false})
       : _courseList = courseList,
         _categoriesList = categoriesList;
 
@@ -188,10 +230,19 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
   @override
   @JsonKey()
   final String selectedCourseFilter;
+  @override
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final int pageSize;
+  @override
+  @JsonKey()
+  final bool hasReachedEnd;
 
   @override
   String toString() {
-    return 'CourseScreenState(courseList: $courseList, categoriesList: $categoriesList, loadingStatus: $loadingStatus, enteredText: $enteredText, selectedCourseFilter: $selectedCourseFilter)';
+    return 'CourseScreenState(courseList: $courseList, categoriesList: $categoriesList, loadingStatus: $loadingStatus, enteredText: $enteredText, selectedCourseFilter: $selectedCourseFilter, page: $page, pageSize: $pageSize, hasReachedEnd: $hasReachedEnd)';
   }
 
   @override
@@ -208,7 +259,12 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
             (identical(other.enteredText, enteredText) ||
                 other.enteredText == enteredText) &&
             (identical(other.selectedCourseFilter, selectedCourseFilter) ||
-                other.selectedCourseFilter == selectedCourseFilter));
+                other.selectedCourseFilter == selectedCourseFilter) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.hasReachedEnd, hasReachedEnd) ||
+                other.hasReachedEnd == hasReachedEnd));
   }
 
   @override
@@ -218,7 +274,10 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
       const DeepCollectionEquality().hash(_categoriesList),
       loadingStatus,
       enteredText,
-      selectedCourseFilter);
+      selectedCourseFilter,
+      page,
+      pageSize,
+      hasReachedEnd);
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -236,7 +295,10 @@ abstract class _CourseScreenState implements CourseScreenState {
       final List<CategoriesModel> categoriesList,
       final CourseScreenStatus loadingStatus,
       final String? enteredText,
-      final String selectedCourseFilter}) = _$CourseScreenStateImpl;
+      final String selectedCourseFilter,
+      final int page,
+      final int pageSize,
+      final bool hasReachedEnd}) = _$CourseScreenStateImpl;
 
   @override
   List<CourseBasicModel> get courseList;
@@ -248,6 +310,12 @@ abstract class _CourseScreenState implements CourseScreenState {
   String? get enteredText;
   @override
   String get selectedCourseFilter;
+  @override
+  int get page;
+  @override
+  int get pageSize;
+  @override
+  bool get hasReachedEnd;
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.

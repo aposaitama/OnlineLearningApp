@@ -20,4 +20,6 @@ class CourseScreenEvent with _$CourseScreenEvent {
   const factory CourseScreenEvent.selectFilter({
     required String filter,
 }) = SelectFilterOnCourseScreenEvent;
+
+  const factory CourseScreenEvent.loadNextCourseList() = LoadNextCourseListEvent;
 }
