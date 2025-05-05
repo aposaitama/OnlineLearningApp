@@ -14,6 +14,7 @@ List<RouteBase> get $appRoutes => [
       $authGateRoute,
       $myCoursesScreenRoute,
       $searchScreenRoute,
+      $editAccountRoute,
       $successfullPaymentScreenRoute,
       $paymentScreenRoute,
       $courseDetailsRoute,
@@ -166,6 +167,29 @@ extension $SearchScreenRouteExtension on SearchScreenRoute {
 
   String get location => GoRouteData.$location(
         '/search-screen',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $editAccountRoute => GoRouteData.$route(
+      path: '/edit-account',
+      factory: $EditAccountRouteExtension._fromState,
+    );
+
+extension $EditAccountRouteExtension on EditAccountRoute {
+  static EditAccountRoute _fromState(GoRouterState state) =>
+      const EditAccountRoute();
+
+  String get location => GoRouteData.$location(
+        '/edit-account',
       );
 
   void go(BuildContext context) => context.go(location);
