@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/utils/extensions.dart';
 
 class CategoriesItemTile extends StatelessWidget {
   final String backgroundColor;

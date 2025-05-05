@@ -79,7 +79,7 @@ extension HexColorExtension on String {
   Color toColor({Color fallback = Colors.grey}) {
     try {
       String hex = replaceAll('#', '').toUpperCase();
-      print(hex);
+
       if (hex.length == 6) {
         hex = 'FF$hex'; // додаємо альфу
       } else if (hex.length != 8) {

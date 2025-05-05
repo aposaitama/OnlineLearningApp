@@ -55,14 +55,15 @@ void main() async {
         BlocProvider(
           create: (context) => FiltersBloc(
             categoryRepository: context.read<CategoryRepository>(),
-          ),),
-         BlocProvider(
-          create: (_) => PaymentBloc(),
+          ),
         ),
         BlocProvider(
-          create: (_) => FiltersBloc(),
-
+          create: (_) => PaymentBloc(),
         ),
+        // BlocProvider(
+        //   create: (_) => FiltersBloc(),
+
+        // ),
         BlocProvider(
           create: (context) => SearchScreenBloc(
             courseItemRepository: context.read<CourseItemRepository>(),
