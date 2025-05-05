@@ -109,8 +109,6 @@ class _CourseScreenState extends State<CourseScreen> {
         filter: filter,
       ),
     );
-
-    _loadInitialData();
   }
 
   @override

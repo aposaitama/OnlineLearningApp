@@ -29,7 +29,7 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   ) async {
     final courseItems = await courseItemRepository.getCoursesOnCourseScreen(
       filter: state.selectedCourseFilter,
-      page: state.page,
+      page: 1,
       pageSize: state.pageSize,
     );
 
@@ -137,5 +137,8 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
       ),
     );
 
+    add(
+      const LoadCourseBasicInfoEvent(),
+    );
   }
 }
