@@ -29,6 +29,8 @@ mixin _$UserModel {
   List<CourseId> get favourite_items => throw _privateConstructorUsedError;
   List<CourseVideoItem> get completed_course_videos =>
       throw _privateConstructorUsedError;
+  @ImagePathConverter()
+  String? get avatar => throw _privateConstructorUsedError;
   List<CreditCardModel> get creditCards => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
@@ -54,6 +56,7 @@ abstract class $UserModelCopyWith<$Res> {
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
       List<CourseVideoItem> completed_course_videos,
+      @ImagePathConverter() String? avatar,
       List<CreditCardModel> creditCards});
 }
 
@@ -79,6 +82,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
+    Object? avatar = freezed,
     Object? creditCards = null,
   }) {
     return _then(_value.copyWith(
@@ -110,6 +114,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.completed_course_videos
           : completed_course_videos // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
       creditCards: null == creditCards
           ? _value.creditCards
           : creditCards // ignore: cast_nullable_to_non_nullable
@@ -134,6 +142,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
       List<CourseVideoItem> completed_course_videos,
+      @ImagePathConverter() String? avatar,
       List<CreditCardModel> creditCards});
 }
 
@@ -157,6 +166,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
+    Object? avatar = freezed,
     Object? creditCards = null,
   }) {
     return _then(_$UserModelImpl(
@@ -188,6 +198,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value._completed_course_videos
           : completed_course_videos // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
       creditCards: null == creditCards
           ? _value._creditCards
           : creditCards // ignore: cast_nullable_to_non_nullable
@@ -207,6 +221,7 @@ class _$UserModelImpl implements _UserModel {
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
       required final List<CourseVideoItem> completed_course_videos,
+      @ImagePathConverter() this.avatar,
       required final List<CreditCardModel> creditCards})
       : _user_purchased_courses = user_purchased_courses,
         _favourite_items = favourite_items,
@@ -250,6 +265,9 @@ class _$UserModelImpl implements _UserModel {
     return EqualUnmodifiableListView(_completed_course_videos);
   }
 
+  @override
+  @ImagePathConverter()
+  final String? avatar;
   final List<CreditCardModel> _creditCards;
   @override
   List<CreditCardModel> get creditCards {
@@ -260,7 +278,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, creditCards: $creditCards)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, avatar: $avatar, creditCards: $creditCards)';
   }
 
   @override
@@ -280,6 +298,7 @@ class _$UserModelImpl implements _UserModel {
                 .equals(other._favourite_items, _favourite_items) &&
             const DeepCollectionEquality().equals(
                 other._completed_course_videos, _completed_course_videos) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             const DeepCollectionEquality()
                 .equals(other._creditCards, _creditCards));
   }
@@ -295,6 +314,7 @@ class _$UserModelImpl implements _UserModel {
       const DeepCollectionEquality().hash(_user_purchased_courses),
       const DeepCollectionEquality().hash(_favourite_items),
       const DeepCollectionEquality().hash(_completed_course_videos),
+      avatar,
       const DeepCollectionEquality().hash(_creditCards));
 
   /// Create a copy of UserModel
@@ -322,6 +342,7 @@ abstract class _UserModel implements UserModel {
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
       required final List<CourseVideoItem> completed_course_videos,
+      @ImagePathConverter() final String? avatar,
       required final List<CreditCardModel> creditCards}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -341,6 +362,9 @@ abstract class _UserModel implements UserModel {
   List<CourseId> get favourite_items;
   @override
   List<CourseVideoItem> get completed_course_videos;
+  @override
+  @ImagePathConverter()
+  String? get avatar;
   @override
   List<CreditCardModel> get creditCards;
 

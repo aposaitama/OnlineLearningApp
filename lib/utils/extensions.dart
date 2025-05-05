@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -56,30 +58,28 @@ extension DurationToString on Duration {
   String _twoDigits(int n) => n.toString().padLeft(2, '0');
 }
 
+// extension HexToColorExtension on String {
+//   Color toColor() {
+//     String hex = replaceAll('#', '');
 
-extension HexToColorExtension on String {
-  Color toColor() {
-    String hex = replaceAll('#', '');
+//     if (hex.length == 6) {
+//       hex = 'FF$hex';
+//     }
 
-    if (hex.length == 6) {
-      hex = 'FF$hex';
-    }
-
-    return Color(
-      int.parse(
-        hex,
-        radix: 16,
-      ),
-    );
-  }
-}
-
+//     return Color(
+//       int.parse(
+//         hex,
+//         radix: 16,
+//       ),
+//     );
+//   }
+// }
 
 extension HexColorExtension on String {
   Color toColor({Color fallback = Colors.grey}) {
     try {
       String hex = replaceAll('#', '').toUpperCase();
-      print(hex);
+
       if (hex.length == 6) {
         hex = 'FF$hex'; // додаємо альфу
       } else if (hex.length != 8) {
@@ -92,4 +92,3 @@ extension HexColorExtension on String {
     }
   }
 }
-
