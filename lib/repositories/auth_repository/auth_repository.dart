@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/sources/shared_preferences_service/shared_preferences_service.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final SharedPreferences prefs = locator<SharedPreferences>();
+  final SharedPreferencesService _sharedPreferencesService = SharedPreferencesService();
   final Dio dio;
   AuthRepository()
       : dio = Dio(
@@ -68,6 +70,9 @@ class AuthRepository {
         },
       );
       final token = response.data['jwt'];
+      final userId = response.data['user']['id'];
+
+      await _sharedPreferencesService.saveUserId(userId);
       await saveToken(token);
 
       return token;
@@ -87,7 +92,9 @@ class AuthRepository {
       );
 
       final token = response.data['jwt'];
+      final userId = response.data['user']['id'];
 
+      await _sharedPreferencesService.saveUserId(userId);
       await saveToken(token);
       return token;
     } on DioException catch (e) {

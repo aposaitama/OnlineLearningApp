@@ -4,8 +4,12 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to your photo library for caching images.</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Need camera access to take pictures</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Need photo library access to select pictures</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need microphone access to record videos</string>
     <key>NSDocumentsFolderUsageDescription</key>
     <string>We use this to cache images.</string>
 	<key>CFBundleDevelopmentRegion</key>

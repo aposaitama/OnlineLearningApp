@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AccountState {
   UserModel? get userData => throw _privateConstructorUsedError;
+  String? get newAvatarPath => throw _privateConstructorUsedError;
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $AccountStateCopyWith<$Res> {
           AccountState value, $Res Function(AccountState) then) =
       _$AccountStateCopyWithImpl<$Res, AccountState>;
   @useResult
-  $Res call({UserModel? userData});
+  $Res call({UserModel? userData, String? newAvatarPath});
 
   $UserModelCopyWith<$Res>? get userData;
 }
@@ -52,12 +53,17 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
   @override
   $Res call({
     Object? userData = freezed,
+    Object? newAvatarPath = freezed,
   }) {
     return _then(_value.copyWith(
       userData: freezed == userData
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as UserModel?,
+      newAvatarPath: freezed == newAvatarPath
+          ? _value.newAvatarPath
+          : newAvatarPath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -84,7 +90,7 @@ abstract class _$$AccountStateImplCopyWith<$Res>
       __$$AccountStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserModel? userData});
+  $Res call({UserModel? userData, String? newAvatarPath});
 
   @override
   $UserModelCopyWith<$Res>? get userData;
@@ -104,12 +110,17 @@ class __$$AccountStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userData = freezed,
+    Object? newAvatarPath = freezed,
   }) {
     return _then(_$AccountStateImpl(
       userData: freezed == userData
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as UserModel?,
+      newAvatarPath: freezed == newAvatarPath
+          ? _value.newAvatarPath
+          : newAvatarPath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -117,14 +128,16 @@ class __$$AccountStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountStateImpl implements _AccountState {
-  _$AccountStateImpl({this.userData});
+  _$AccountStateImpl({this.userData, this.newAvatarPath});
 
   @override
   final UserModel? userData;
+  @override
+  final String? newAvatarPath;
 
   @override
   String toString() {
-    return 'AccountState(userData: $userData)';
+    return 'AccountState(userData: $userData, newAvatarPath: $newAvatarPath)';
   }
 
   @override
@@ -133,11 +146,13 @@ class _$AccountStateImpl implements _AccountState {
         (other.runtimeType == runtimeType &&
             other is _$AccountStateImpl &&
             (identical(other.userData, userData) ||
-                other.userData == userData));
+                other.userData == userData) &&
+            (identical(other.newAvatarPath, newAvatarPath) ||
+                other.newAvatarPath == newAvatarPath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userData);
+  int get hashCode => Object.hash(runtimeType, userData, newAvatarPath);
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.
@@ -149,10 +164,14 @@ class _$AccountStateImpl implements _AccountState {
 }
 
 abstract class _AccountState implements AccountState {
-  factory _AccountState({final UserModel? userData}) = _$AccountStateImpl;
+  factory _AccountState(
+      {final UserModel? userData,
+      final String? newAvatarPath}) = _$AccountStateImpl;
 
   @override
   UserModel? get userData;
+  @override
+  String? get newAvatarPath;
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.

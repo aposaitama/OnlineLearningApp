@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_event.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_state.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final UserRepository userRepository;
@@ -10,6 +15,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     required this.userRepository,
   }) : super(AccountState()) {
     on<GetUserDataEvent>(_getUserData);
+    on<PickNewAvatarEvent>(_onPickImage);
+    on<EditUserDataEvent>(_onEditUserData);
   }
 
   Future<void> _getUserData(
@@ -23,6 +30,53 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         state.copyWith(
           userData: userData,
         ),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> _onPickImage(
+    PickNewAvatarEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    try {
+      final permissionStatus = await Permission.photos.request();
+      // final mediaLibraryStatus = await Permission.mediaLibrary.request();
+      final picker = ImagePicker();
+      if (permissionStatus.isGranted) {
+        final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+        if (pickedImage != null) {
+          final appDir = await getApplicationDocumentsDirectory();
+
+          final String newPath = '${appDir.path}${pickedImage.name}';
+
+          final File newFile = await File(pickedImage.path).copy(newPath);
+
+          emit(
+            state.copyWith(
+              newAvatarPath: newFile.path,
+            ),
+          );
+        }
+      } else {
+        openAppSettings();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> _onEditUserData(
+    EditUserDataEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    try {
+      await userRepository.editUserData(avatarPath: state.newAvatarPath);
+
+      add(
+        const GetUserDataEvent(),
       );
     } catch (e) {
       rethrow;

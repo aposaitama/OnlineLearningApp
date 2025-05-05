@@ -8,5 +8,6 @@ part 'account_state.freezed.dart';
 class AccountState with _$AccountState {
   factory AccountState({
     UserModel? userData,
+    String? newAvatarPath,
   }) = _AccountState;
 }

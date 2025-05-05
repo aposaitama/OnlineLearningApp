@@ -5,4 +5,8 @@ part 'account_event.freezed.dart';
 @freezed
 class AccountEvent with _$AccountEvent{
   const factory AccountEvent.getUserData() = GetUserDataEvent;
+
+  const factory AccountEvent.pickNewImage() = PickNewAvatarEvent;
+
+  const factory AccountEvent.editUserData() = EditUserDataEvent;
 }
