@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -9,13 +10,16 @@ class CustomTextField extends StatefulWidget {
   final bool? isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  const CustomTextField(
-      {super.key,
-      required this.title,
-      required this.hint,
-      this.isPassword = false,
-      this.controller,
-      this.validator});
+  final List<TextInputFormatter>? inputFormatter;
+  const CustomTextField({
+    super.key,
+    required this.title,
+    required this.hint,
+    this.isPassword = false,
+    this.controller,
+    this.validator,
+    this.inputFormatter,
+  });
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -51,6 +55,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           ),
           child: TextFormField(
+            inputFormatters: widget.inputFormatter ?? [],
             autovalidateMode: AutovalidateMode.onUserInteraction,
             obscureText: widget.isPassword == true ? obscureText : false,
             controller: widget.controller,

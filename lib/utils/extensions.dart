@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 extension SecToHoursExtension on int {
   int toHours() {
@@ -57,6 +58,7 @@ extension DurationToString on Duration {
   String _twoDigits(int n) => n.toString().padLeft(2, '0');
 }
 
+
 extension HexToColorExtension on String {
   Color toColor() {
     String hex = replaceAll('#', '');
@@ -71,6 +73,25 @@ extension HexToColorExtension on String {
         radix: 16,
       ),
     );
+  }
+}
+
+
+extension HexColorExtension on String {
+  Color toColor({Color fallback = Colors.grey}) {
+    try {
+      String hex = replaceAll('#', '').toUpperCase();
+      print(hex);
+      if (hex.length == 6) {
+        hex = 'FF$hex'; // додаємо альфу
+      } else if (hex.length != 8) {
+        return fallback;
+      }
+
+      return Color(int.parse(hex, radix: 16));
+    } catch (e) {
+      return fallback;
+    }
   }
 }
 

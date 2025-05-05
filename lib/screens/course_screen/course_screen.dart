@@ -137,11 +137,34 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 35.0,
+                  height: 27.0,
                 ),
                 CategoriesBuilder(
                   selectCategory: (categoryId) => _selectCategory(
-                    categoryId,
+                    categoryId,),),
+                SizedBox(
+                  height: 90.0,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(
+                      left: 20.0,
+                    ),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.categoriesList.length,
+                    itemBuilder: (context, index) {
+                      final concreteCategory = state.categoriesList[index];
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          right: 15.0,
+                        ),
+                        child: CategoriesItemTile(
+                          backgroundColor: concreteCategory.hexBackgroundColor,
+                          textColor: concreteCategory.hexTitleTextColor,
+                          imageUrl: concreteCategory.categoryImage.url,
+                          categoryTitle: concreteCategory.categoryTitle,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(
