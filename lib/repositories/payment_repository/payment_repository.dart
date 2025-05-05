@@ -30,7 +30,6 @@ class PaymentRepository {
         return false;
       }
     } catch (e) {
-      print(e);
       return false;
     }
   }
