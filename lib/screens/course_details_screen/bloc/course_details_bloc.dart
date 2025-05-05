@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
+import 'package:online_app/repositories/course_repository/course_repository.dart';
+import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
@@ -8,6 +10,9 @@ import 'package:video_player/video_player.dart';
 
 class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   final strapiApiService = locator<StrapiApiService>();
+  final userRepo = locator<UserRepository>();
+  final courseRepo = locator<CourseRepository>();
+
   CourseDetailsBloc() : super(const CourseDetailsState()) {
     on<LoadConcreteCourseInfoEvent>(_loadCourseList);
     on<LoadCourseVideoEvent>(_loadCourseVideo);
@@ -39,7 +44,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   ) async {
     if (state.courseVideo == null) return;
     state.courseVideo!.dispose();
-    await strapiApiService.completeVideo(state.videoPlayingId);
+    await courseRepo.completeVideo(state.videoPlayingId);
     emit(
       state.copyWith(
         videoPlayingId: '',
@@ -53,16 +58,16 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     ToogleFavouriteEvent event,
     Emitter<CourseDetailsState> emit,
   ) async {
-    final currentUser = await strapiApiService.getUser();
+    final currentUser = await userRepo.getUserData();
     final List<CourseId> favorites =
         List.from(currentUser?.favourite_items ?? []);
 
     final exists = favorites.any((item) => item.documentId == event.documentId);
 
     if (exists) {
-      strapiApiService.removeFromFavourite(event.documentId);
+      courseRepo.removeFromFavourite(event.documentId);
     } else {
-      strapiApiService.addToFavourite(event.documentId);
+      courseRepo.addToFavourite(event.documentId);
     }
 
     emit(
@@ -120,10 +125,10 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     LoadConcreteCourseInfoEvent event,
     Emitter<CourseDetailsState> emit,
   ) async {
-    final course = await strapiApiService.fetchConcreteCourse(
+    final course = await courseRepo.fetchConcreteCourse(
       event.documentID,
     );
-    final currentUser = await strapiApiService.getUser();
+    final currentUser = await userRepo.getUserData();
 
     final favorites = List<CourseId>.from(currentUser?.favourite_items ?? []);
     final isFavorite =

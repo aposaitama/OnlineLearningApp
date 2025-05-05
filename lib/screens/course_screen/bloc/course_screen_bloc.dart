@@ -2,12 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
+import 'package:online_app/repositories/course_repository/course_repository.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   final strapiApiService = locator<StrapiApiService>();
+  final courseRepo = locator<CourseRepository>();
   final CategoryRepository categoryRepository;
 
   CourseScreenBloc({
@@ -23,7 +25,7 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     LoadCourseBasicInfoEvent event,
     Emitter<CourseScreenState> emit,
   ) async {
-    final courseItems = await strapiApiService.fetchCourseItems();
+    final courseItems = await courseRepo.fetchCourseItems();
     // final courseCategories = await strapiApiService.fetchCategoriesItems();
     final categories = await categoryRepository.getCategories();
     emit(
