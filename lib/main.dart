@@ -5,6 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
+import 'package:online_app/repositories/category_repository/category_repository.dart';
+import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
 import 'package:online_app/resources/app_theme.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
@@ -22,6 +24,12 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        RepositoryProvider(
+          create: (_) => CategoryRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => CourseItemRepository(),
+        ),
         BlocProvider(
           create: (_) => NavigationCubit(),
         ),
@@ -32,19 +40,28 @@ void main() async {
           create: (_) => HomeScreenBloc(),
         ),
         BlocProvider(
-          create: (_) => CourseScreenBloc(),
+          create: (context) => CourseScreenBloc(
+            categoryRepository: context.read<CategoryRepository>(),
+          ),
         ),
         BlocProvider(
           create: (_) => CourseDetailsBloc(),
         ),
         BlocProvider(
+          create: (context) => FiltersBloc(
+            categoryRepository: context.read<CategoryRepository>(),
+          ),),
+         BlocProvider(
           create: (_) => PaymentBloc(),
         ),
         BlocProvider(
           create: (_) => FiltersBloc(),
+
         ),
         BlocProvider(
-          create: (_) => SearchScreenBloc(),
+          create: (context) => SearchScreenBloc(
+            courseItemRepository: context.read<CourseItemRepository>(),
+          ),
         ),
       ],
       child: const MyApp(),

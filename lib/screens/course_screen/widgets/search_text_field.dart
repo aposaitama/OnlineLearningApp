@@ -15,6 +15,7 @@ class SearchTextField extends StatelessWidget {
   final TextEditingController? searchFieldController;
   final VoidCallback onTapFilters;
   final void Function(String)? onSubmitted;
+  final VoidCallback updateCourses;
 
   const SearchTextField({
     super.key,
@@ -24,6 +25,7 @@ class SearchTextField extends StatelessWidget {
     this.searchFieldController,
     required this.onTapFilters,
     this.onSubmitted,
+    required this.updateCourses,
   });
 
   void _clearTextField(BuildContext context) {
@@ -34,6 +36,8 @@ class SearchTextField extends StatelessWidget {
         );
 
     searchFieldController?.text = '';
+
+    updateCourses();
   }
 
   @override

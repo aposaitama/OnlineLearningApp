@@ -58,6 +58,25 @@ extension DurationToString on Duration {
   String _twoDigits(int n) => n.toString().padLeft(2, '0');
 }
 
+
+extension HexToColorExtension on String {
+  Color toColor() {
+    String hex = replaceAll('#', '');
+
+    if (hex.length == 6) {
+      hex = 'FF$hex';
+    }
+
+    return Color(
+      int.parse(
+        hex,
+        radix: 16,
+      ),
+    );
+  }
+}
+
+
 extension HexColorExtension on String {
   Color toColor({Color fallback = Colors.grey}) {
     try {
@@ -75,3 +94,4 @@ extension HexColorExtension on String {
     }
   }
 }
+

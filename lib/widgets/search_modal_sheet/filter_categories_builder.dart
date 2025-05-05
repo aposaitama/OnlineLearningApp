@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 
 import '../../bloc/filters_bloc/filters_bloc.dart';
 import '../../bloc/filters_bloc/filters_state.dart';
 import '../../resources/app_colors.dart';
 import '../../resources/app_colors_model.dart';
 import '../../resources/app_fonts.dart';
-import '../../utils/constants.dart';
 
 class FilterCategoriesBuilder extends StatelessWidget {
-  final Function(String) selectCategory;
+  final Function(CategoriesModel) selectCategory;
 
   const FilterCategoriesBuilder({
     super.key,
@@ -23,7 +23,7 @@ class FilterCategoriesBuilder extends StatelessWidget {
         return Wrap(
           spacing: 12.0,
           runSpacing: 12.0,
-          children: filterCategories.map(
+          children: state.categories.map(
             (category) {
               return GestureDetector(
                 onTap: () => selectCategory(category),
@@ -40,7 +40,7 @@ class FilterCategoriesBuilder extends StatelessWidget {
                       vertical: 6.0,
                     ),
                     child: Text(
-                      category,
+                      category.categoryTitle,
                       style: AppFonts.poppinsMedium.copyWith(
                         color: state.selectedCategories.contains(category)
                             ? Theme.of(context)

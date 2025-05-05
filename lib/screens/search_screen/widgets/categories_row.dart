@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_app/utils/constants.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 
 import '../../../bloc/filters_bloc/filters_bloc.dart';
 import '../../../bloc/filters_bloc/filters_state.dart';
@@ -9,7 +9,7 @@ import '../../../resources/app_colors_model.dart';
 import '../../../resources/app_fonts.dart';
 
 class CategoriesRow extends StatelessWidget {
-  final Function(String) selectCategory;
+  final Function(CategoriesModel) selectCategory;
 
   const CategoriesRow({
     super.key,
@@ -24,7 +24,7 @@ class CategoriesRow extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              ...filterCategories.map(
+              ...state.categories.map(
                 (category) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: GestureDetector(
@@ -42,7 +42,7 @@ class CategoriesRow extends StatelessWidget {
                           vertical: 6.0,
                         ),
                         child: Text(
-                          category,
+                          category.categoryTitle,
                           style: AppFonts.poppinsMedium.copyWith(
                             color: state.selectedCategories.contains(category)
                                 ? Theme.of(context)

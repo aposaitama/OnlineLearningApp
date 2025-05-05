@@ -222,7 +222,7 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
       required this.courseAuthor,
       required this.totalCourseDurationInSeconds,
       required this.coursePrice,
-      required final List<CourseVideoItem> courseVideoItems})
+      final List<CourseVideoItem> courseVideoItems = const []})
       : _courseVideoItems = courseVideoItems;
 
   factory _$CourseBasicModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -244,6 +244,7 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
   final double coursePrice;
   final List<CourseVideoItem> _courseVideoItems;
   @override
+  @JsonKey()
   List<CourseVideoItem> get courseVideoItems {
     if (_courseVideoItems is EqualUnmodifiableListView)
       return _courseVideoItems;
@@ -312,15 +313,14 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
 
 abstract class _CourseBasicModel implements CourseBasicModel {
   const factory _CourseBasicModel(
-          {required final int id,
-          required final String documentId,
-          required final String courseTitle,
-          required final Image courseImage,
-          required final String courseAuthor,
-          required final int totalCourseDurationInSeconds,
-          required final double coursePrice,
-          required final List<CourseVideoItem> courseVideoItems}) =
-      _$CourseBasicModelImpl;
+      {required final int id,
+      required final String documentId,
+      required final String courseTitle,
+      required final Image courseImage,
+      required final String courseAuthor,
+      required final int totalCourseDurationInSeconds,
+      required final double coursePrice,
+      final List<CourseVideoItem> courseVideoItems}) = _$CourseBasicModelImpl;
 
   factory _CourseBasicModel.fromJson(Map<String, dynamic> json) =
       _$CourseBasicModelImpl.fromJson;

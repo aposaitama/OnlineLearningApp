@@ -1,7 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
+
 import 'package:online_app/utils/extensions.dart';
 
 class CategoriesItemTile extends StatelessWidget {
@@ -9,12 +13,15 @@ class CategoriesItemTile extends StatelessWidget {
   final String textColor;
   final String imageUrl;
   final String categoryTitle;
+  final String textBackgroundColor;
+
   const CategoriesItemTile({
     super.key,
     required this.backgroundColor,
     required this.textColor,
     required this.imageUrl,
     required this.categoryTitle,
+    required this.textBackgroundColor,
   });
 
   @override
@@ -37,6 +44,40 @@ class CategoriesItemTile extends StatelessWidget {
             ),
           ),
         ),
+
+        CachedNetworkImage(
+          imageUrl: 'http://localhost:1337$imageUrl',
+          width: 110.0,
+          height: 85.0,
+        ),
+        Positioned(
+          right: 0,
+          bottom: 8.0,
+          child: Container(
+            width: 82.0,
+            height: 24.0,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(13),
+                bottomLeft: Radius.circular(13),
+              ),
+              color: textBackgroundColor.toColor(),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    categoryTitle,
+                    style: TextStyle(
+                      color: textColor.toColor(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
         Positioned(
           left: 3,
           child: SvgPicture.network(
@@ -79,27 +120,10 @@ class CategoriesItemTile extends StatelessWidget {
                 ),
               )
             ],
+
           ),
         )
       ],
     );
-    // Padding(
-    //   padding: const EdgeInsets.only(
-    //     right: 10.0,
-    //   ),
-    //   child: Container(
-    //     height: 90.0,
-    //     width: 160.0,
-    //     decoration: BoxDecoration(
-    //       borderRadius: BorderRadius.circular(
-    //         13.0,
-    //       ),
-    //       color: AppColors.lightBlueColor,
-    //     ),
-    //     child: Center(
-    //       child: Text(categoryTitle),
-    //     ),
-    //   ),
-    // );
   }
 }
