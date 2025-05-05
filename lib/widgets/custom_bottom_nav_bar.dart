@@ -6,7 +6,11 @@ import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
 import 'package:online_app/widgets/search_modal_sheet/search_modal_sheet.dart';
+
+import '../bloc/filters_bloc/filters_bloc.dart';
+import '../screens/search_screen/search_screen_bloc/search_screen_event.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -17,6 +21,7 @@ class CustomBottomNavBar extends StatefulWidget {
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   bool isBottomSheetOpen = false;
+
   void _onTap(int index) {
     context.read<NavigationCubit>().navigateTo(index);
 
@@ -28,11 +33,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         context.go('/course');
         break;
       case 2:
-        showModalBottomSheet(
-          isScrollControlled: true,
-          context: context,
-          builder: (context) => const SearchModalSheet(),
-        );
+        _showFilterBottomSheet();
 
         break;
       case 3:
@@ -42,6 +43,30 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         context.go('/account');
         break;
     }
+  }
+
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (bottomSheetContext) {
+        return SearchModalSheet(
+          applyFilters: () {
+            final filterState = context.read<FiltersBloc>().state;
+            context.read<SearchScreenBloc>().add(
+              GetSearchedCoursesEvent(
+                    categories: filterState.selectedCategories,
+                    durations: filterState.selectedDurations,
+                    priceRange: filterState.priceRange,
+                  ),
+                );
+            bottomSheetContext.pop();
+
+            context.push('/search-screen');
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -151,11 +176,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                   bottom: 53.0,
                 ),
                 child: GestureDetector(
-                  onTap: () => showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => const SearchModalSheet(),
-                  ),
+                  onTap: () => _showFilterBottomSheet(),
                   child: Container(
                     height: 62.0,
                     width: 62.0,

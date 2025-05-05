@@ -3,6 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/utils/extensions.dart';
+
+import '../../../gen/assets.gen.dart';
 
 class ConcreteCourseItemTile extends StatelessWidget {
   final String imageUrl;
@@ -104,7 +107,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        'assets/icons/Union.svg',
+                        Assets.icons.union,
                       ),
                       const SizedBox(
                         width: 6.0,
@@ -152,7 +155,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            '${concreteCourseDuration.toString()} hours',
+                            '${concreteCourseDuration.toHours().toString()} hours',
                             style: AppFonts.poppinsRegular.copyWith(
                               color: AppColors.orangeProgressBarColor,
                               fontSize: 10.0,

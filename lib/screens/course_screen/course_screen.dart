@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
+import 'package:online_app/bloc/filters_bloc/filters_event.dart';
+import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
+import 'package:online_app/screens/course_screen/widgets/categories_builder.dart';
+import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
+import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
@@ -19,15 +26,66 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
+  CourseScreenBloc get _courseScreenBloc => context.read<CourseScreenBloc>();
+  final TextEditingController _courseScreenTextFieldController =
+      TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    context.read<CourseScreenBloc>().add(const LoadCourseBasicInfoEvent());
+    _loadInitialData();
+  }
+
+  void _loadInitialData() {
+    _courseScreenBloc.add(
+      const LoadCourseBasicInfoEvent(),
+    );
+  }
+
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (bottomSheetContext) => SearchModalSheet(
+        applyFilters: () {
+          context.push('/search-screen');
+        },
+      ),
+    );
+  }
+
+  void _onSubmitted(String value) {
+    final searchBloc = context.read<CourseScreenBloc>();
+    searchBloc.add(
+      EnterTextOnCourseScreenEvent(
+        enteredText: value,
+      ),
+    );
+
+    searchBloc.add(
+      const GetSearchedByTextCoursesEvent(),
+    );
+  }
+
+  void _selectCategory(CategoriesModel category) async {
+    // context.read<CourseScreenBloc>().add(
+    //       SelectCategoryOnCoursesEvent(
+    //         categoryId: categoryId,
+    //       ),
+    //     );
+
+    context.read<FiltersBloc>().add(
+          SelectCategoriesEvent(
+            category: category,
+          ),
+        );
+
+    context.push('/search-screen');
   }
 
   final categories = ['All', 'Popular', 'New'];
   String selectedCategory = 'All';
-  final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -55,7 +113,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   right: 21.0,
                 ),
                 child: SvgPicture.asset(
-                  'assets/icons/UserImage.svg',
+                  Assets.icons.userImage,
                 ),
               ),
             ],
@@ -72,39 +130,48 @@ class _CourseScreenState extends State<CourseScreen> {
                     horizontal: 20.0,
                   ),
                   child: SearchTextField(
-                    searchFieldController: searchController,
+                    searchFieldController: _courseScreenTextFieldController,
+                    onTapFilters: _showFilterBottomSheet,
+                    onSubmitted: (value) => _onSubmitted(value),
+                    updateCourses: _loadInitialData,
+                    onChanged: (value) => _onSubmitted(value),
                   ),
                 ),
                 const SizedBox(
-                  height: 35.0,
+                  height: 27.0,
                 ),
-                SizedBox(
-                  height: 85.0,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                    ),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          right: 10.0,
-                        ),
-                        child: Container(
-                          height: 77.0,
-                          width: 160.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              13.0,
-                            ),
-                            color: AppColors.lightBlueColor,
-                          ),
-                        ),
-                      );
-                    },
+                CategoriesBuilder(
+                  selectCategory: (categoryId) => _selectCategory(
+                    categoryId,
                   ),
                 ),
+                // SizedBox(
+                //   height: 90.0,
+                //   child: ListView.builder(
+                //     padding: const EdgeInsets.only(
+                //       left: 20.0,
+                //     ),
+                //     scrollDirection: Axis.horizontal,
+                //     itemCount: state.categoriesList.length,
+                //     itemBuilder: (context, index) {
+                //       final concreteCategory = state.categoriesList[index];
+
+                //       return Padding(
+                //         padding: const EdgeInsets.only(
+                //           right: 15.0,
+                //         ),
+                //         child: CategoriesItemTile(
+                //           textBackgroundColor:
+                //               concreteCategory.hexBackgroundColor,
+                //           backgroundColor: concreteCategory.hexBackgroundColor,
+                //           textColor: concreteCategory.hexTitleTextColor,
+                //           imageUrl: concreteCategory.categoryImage.url,
+                //           categoryTitle: concreteCategory.categoryTitle,
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // ),
                 const SizedBox(
                   height: 35.0,
                 ),

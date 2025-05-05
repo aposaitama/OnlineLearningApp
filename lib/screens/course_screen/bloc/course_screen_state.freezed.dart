@@ -17,7 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CourseScreenState {
   List<CourseBasicModel> get courseList => throw _privateConstructorUsedError;
+  List<CategoriesModel> get categoriesList =>
+      throw _privateConstructorUsedError;
   CourseScreenStatus get loadingStatus => throw _privateConstructorUsedError;
+  String? get enteredText => throw _privateConstructorUsedError;
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +36,10 @@ abstract class $CourseScreenStateCopyWith<$Res> {
       _$CourseScreenStateCopyWithImpl<$Res, CourseScreenState>;
   @useResult
   $Res call(
-      {List<CourseBasicModel> courseList, CourseScreenStatus loadingStatus});
+      {List<CourseBasicModel> courseList,
+      List<CategoriesModel> categoriesList,
+      CourseScreenStatus loadingStatus,
+      String? enteredText});
 }
 
 /// @nodoc
@@ -52,17 +58,27 @@ class _$CourseScreenStateCopyWithImpl<$Res, $Val extends CourseScreenState>
   @override
   $Res call({
     Object? courseList = null,
+    Object? categoriesList = null,
     Object? loadingStatus = null,
+    Object? enteredText = freezed,
   }) {
     return _then(_value.copyWith(
       courseList: null == courseList
           ? _value.courseList
           : courseList // ignore: cast_nullable_to_non_nullable
               as List<CourseBasicModel>,
+      categoriesList: null == categoriesList
+          ? _value.categoriesList
+          : categoriesList // ignore: cast_nullable_to_non_nullable
+              as List<CategoriesModel>,
       loadingStatus: null == loadingStatus
           ? _value.loadingStatus
           : loadingStatus // ignore: cast_nullable_to_non_nullable
               as CourseScreenStatus,
+      enteredText: freezed == enteredText
+          ? _value.enteredText
+          : enteredText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -76,7 +92,10 @@ abstract class _$$CourseScreenStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CourseBasicModel> courseList, CourseScreenStatus loadingStatus});
+      {List<CourseBasicModel> courseList,
+      List<CategoriesModel> categoriesList,
+      CourseScreenStatus loadingStatus,
+      String? enteredText});
 }
 
 /// @nodoc
@@ -93,17 +112,27 @@ class __$$CourseScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? courseList = null,
+    Object? categoriesList = null,
     Object? loadingStatus = null,
+    Object? enteredText = freezed,
   }) {
     return _then(_$CourseScreenStateImpl(
       courseList: null == courseList
           ? _value._courseList
           : courseList // ignore: cast_nullable_to_non_nullable
               as List<CourseBasicModel>,
+      categoriesList: null == categoriesList
+          ? _value._categoriesList
+          : categoriesList // ignore: cast_nullable_to_non_nullable
+              as List<CategoriesModel>,
       loadingStatus: null == loadingStatus
           ? _value.loadingStatus
           : loadingStatus // ignore: cast_nullable_to_non_nullable
               as CourseScreenStatus,
+      enteredText: freezed == enteredText
+          ? _value.enteredText
+          : enteredText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -113,8 +142,11 @@ class __$$CourseScreenStateImplCopyWithImpl<$Res>
 class _$CourseScreenStateImpl implements _CourseScreenState {
   const _$CourseScreenStateImpl(
       {final List<CourseBasicModel> courseList = const [],
-      this.loadingStatus = CourseScreenStatus.initial})
-      : _courseList = courseList;
+      final List<CategoriesModel> categoriesList = const [],
+      this.loadingStatus = CourseScreenStatus.initial,
+      this.enteredText})
+      : _courseList = courseList,
+        _categoriesList = categoriesList;
 
   final List<CourseBasicModel> _courseList;
   @override
@@ -125,13 +157,24 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
     return EqualUnmodifiableListView(_courseList);
   }
 
+  final List<CategoriesModel> _categoriesList;
+  @override
+  @JsonKey()
+  List<CategoriesModel> get categoriesList {
+    if (_categoriesList is EqualUnmodifiableListView) return _categoriesList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categoriesList);
+  }
+
   @override
   @JsonKey()
   final CourseScreenStatus loadingStatus;
+  @override
+  final String? enteredText;
 
   @override
   String toString() {
-    return 'CourseScreenState(courseList: $courseList, loadingStatus: $loadingStatus)';
+    return 'CourseScreenState(courseList: $courseList, categoriesList: $categoriesList, loadingStatus: $loadingStatus, enteredText: $enteredText)';
   }
 
   @override
@@ -141,13 +184,21 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
             other is _$CourseScreenStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._courseList, _courseList) &&
+            const DeepCollectionEquality()
+                .equals(other._categoriesList, _categoriesList) &&
             (identical(other.loadingStatus, loadingStatus) ||
-                other.loadingStatus == loadingStatus));
+                other.loadingStatus == loadingStatus) &&
+            (identical(other.enteredText, enteredText) ||
+                other.enteredText == enteredText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_courseList), loadingStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_courseList),
+      const DeepCollectionEquality().hash(_categoriesList),
+      loadingStatus,
+      enteredText);
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -162,12 +213,18 @@ class _$CourseScreenStateImpl implements _CourseScreenState {
 abstract class _CourseScreenState implements CourseScreenState {
   const factory _CourseScreenState(
       {final List<CourseBasicModel> courseList,
-      final CourseScreenStatus loadingStatus}) = _$CourseScreenStateImpl;
+      final List<CategoriesModel> categoriesList,
+      final CourseScreenStatus loadingStatus,
+      final String? enteredText}) = _$CourseScreenStateImpl;
 
   @override
   List<CourseBasicModel> get courseList;
   @override
+  List<CategoriesModel> get categoriesList;
+  @override
   CourseScreenStatus get loadingStatus;
+  @override
+  String? get enteredText;
 
   /// Create a copy of CourseScreenState
   /// with the given fields replaced by the non-null parameter values.

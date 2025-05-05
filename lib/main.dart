@@ -5,12 +5,19 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
+import 'package:online_app/repositories/category_repository/category_repository.dart';
+import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
+import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/resources/app_theme.dart';
+import 'package:online_app/screens/account_screen/account_bloc/account_bloc.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
+import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
 
+import 'bloc/filters_bloc/filters_bloc.dart';
 
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
@@ -19,6 +26,15 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        RepositoryProvider(
+          create: (_) => CategoryRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => CourseItemRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => UserRepository(),
+        ),
         BlocProvider(
           create: (_) => NavigationCubit(),
         ),
@@ -29,10 +45,34 @@ void main() async {
           create: (_) => HomeScreenBloc(),
         ),
         BlocProvider(
-          create: (_) => CourseScreenBloc(),
+          create: (context) => CourseScreenBloc(
+            categoryRepository: context.read<CategoryRepository>(),
+          ),
         ),
         BlocProvider(
           create: (_) => CourseDetailsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => FiltersBloc(
+            categoryRepository: context.read<CategoryRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => PaymentBloc(),
+        ),
+        // BlocProvider(
+        //   create: (_) => FiltersBloc(),
+
+        // ),
+        BlocProvider(
+          create: (context) => SearchScreenBloc(
+            courseItemRepository: context.read<CourseItemRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => AccountBloc(
+            userRepository: context.read<UserRepository>(),
+          ),
         ),
       ],
       child: const MyApp(),

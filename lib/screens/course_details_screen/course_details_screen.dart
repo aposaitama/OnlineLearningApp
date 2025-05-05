@@ -1,21 +1,24 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
-import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
 import 'package:online_app/screens/course_details_screen/widgets/buy_bottom_bar.dart';
 import 'package:online_app/screens/course_details_screen/widgets/course_info_widget.dart';
-import 'package:online_app/screens/course_details_screen/widgets/course_video_item_tile.dart';
 import 'package:online_app/screens/course_details_screen/widgets/course_videos_builder.dart';
 import 'package:online_app/screens/course_details_screen/widgets/custom_overlays_controls.dart';
-import 'package:video_player/video_player.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final String courseId;
+
   const CourseDetailsScreen({
     super.key,
     required this.courseId,
@@ -53,13 +56,37 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                   if (state.videoLoadingStatus ==
                       CourseLoadingVideoStatus.initial) {
                     return course != null
-                        ? SizedBox(
-                            width: double.infinity,
-                            height: imageHeight,
-                            child: Image.network(
-                              fit: BoxFit.cover,
-                              'http://localhost:1337${course.courseImage.url}',
-                            ),
+                        ? Stack(
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                height: imageHeight,
+                                child: Image.network(
+                                  fit: BoxFit.cover,
+                                  'http://localhost:1337${course.courseImage.url}',
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 35.0,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      context.pop();
+                                    },
+                                    icon: SvgPicture.asset(
+                                      'assets/icons/ArrowBack.svg',
+                                      colorFilter: const ColorFilter.mode(
+                                        AppColors.darkColor,
+                                        BlendMode.srcIn,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           )
                         : Container();
                   }
@@ -68,17 +95,17 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                     return state.courseVideo != null
                         ? BlocListener<CourseDetailsBloc, CourseDetailsState>(
                             listener: (context, state) {
-                              // Якщо змінився режим fullScreen, оновлюємо контролер
                               if (state.isFullScreen !=
                                   context
                                       .read<CourseDetailsBloc>()
                                       .state
                                       .isFullScreen) {
-                                setState(() {
-                                  // Оновлюємо орієнтацію та fullScreen
-                                });
+                                setState(
+                                  () {},
+                                );
                               }
                             },
+                            //safearea
                             child: SizedBox(
                               width: double.infinity,
                               height: imageHeight,
@@ -140,35 +167,78 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                             ),
                             Expanded(
                               child: CourseVideosBuilder(
-                                  videoList:
-                                      state.course?.courseVideoItems ?? [],
-                                  onPlayPressed: (index) async {
-                                    context.read<CourseDetailsBloc>().add(
-                                          LoadCourseVideoEvent(
-                                            state
-                                                    .course
-                                                    ?.courseVideoItems[index]
-                                                    .video
-                                                    .url ??
-                                                '',
-                                          ),
-                                        );
-                                    context
-                                        .read<CourseDetailsBloc>()
-                                        .add(const PlayVideoEvent());
-                                  }),
+                                courseId: widget.courseId,
+                                videoList: state.course?.courseVideoItems ?? [],
+                                onLockPressed: (index) {
+                                  BotToast.showText(
+                                    text: 'You have to buy course',
+                                  );
+                                },
+                                onPlayPressed: (index) async {
+                                  // context.read<CourseDetailsBloc>().add(
+                                  //       PlayVideoEvent(
+                                  //         state.course?.courseVideoItems[index]
+                                  //                 .id
+                                  //                 .toString() ??
+                                  //             '',
+                                  //       ),
+                                  //     );
+                                  context.read<CourseDetailsBloc>().add(
+                                        LoadCourseVideoEvent(
+                                          state.course?.courseVideoItems[index]
+                                                  .video.url ??
+                                              '',
+                                          state.course?.courseVideoItems[index]
+                                                  .id
+                                                  .toString() ??
+                                              '',
+                                        ),
+                                      );
+                                },
+                              ),
                             ),
                             GestureDetector(
-                              onTap: () => context
-                                  .read<CourseDetailsBloc>()
-                                  .add(PauseVideoEvent()),
+                              onTap: () =>
+                                  context.read<CourseDetailsBloc>().add(
+                                        const PauseVideoEvent(),
+                                      ),
                               child: Container(
                                 height: 50.0,
                                 width: 50.0,
                                 color: Colors.amber,
                               ),
                             ),
-                            const BuyBottomBar(),
+                            BlocBuilder<HomeScreenBloc, HomeScreenState>(
+                              builder: (context, state) {
+                                if (state.userInfo?.user_purchased_courses.any(
+                                      (course) {
+                                        return course.documentId ==
+                                            widget.courseId;
+                                      },
+                                    ) ??
+                                    false) {
+                                  return const SizedBox.shrink();
+                                }
+
+                                return BlocBuilder<CourseDetailsBloc,
+                                    CourseDetailsState>(
+                                  builder: (context, state) {
+                                    return BuyBottomBar(
+                                      onToogleFavourite: () => context
+                                          .read<CourseDetailsBloc>()
+                                          .add(
+                                            ToogleFavouriteEvent(
+                                                state.course?.id.toString() ??
+                                                    ''),
+                                          ),
+                                      onBuyButtonPressed: () => context.push(
+                                        '/payment-screen/${course?.id ?? 0}',
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ),

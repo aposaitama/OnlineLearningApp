@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc_event.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc_state.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/progress_widget_with_bg.dart';
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -127,7 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(
                             height: 25.0,
                           ),
-                          LearningPlanWidget(),
+                          LearningPlanWidget(
+                            completedVideos:
+                                state.userInfo?.completed_course_videos ?? [],
+                            coursesList:
+                                state.userInfo?.user_purchased_courses ?? [],
+                          ),
                           SizedBox(
                             height: 14.0,
                           ),

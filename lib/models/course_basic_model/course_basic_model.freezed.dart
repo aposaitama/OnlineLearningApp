@@ -20,12 +20,15 @@ CourseBasicModel _$CourseBasicModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseBasicModel {
+  int get id => throw _privateConstructorUsedError;
   String get documentId => throw _privateConstructorUsedError;
   String get courseTitle => throw _privateConstructorUsedError;
   Image get courseImage => throw _privateConstructorUsedError;
   String get courseAuthor => throw _privateConstructorUsedError;
   int get totalCourseDurationInSeconds => throw _privateConstructorUsedError;
   double get coursePrice => throw _privateConstructorUsedError;
+  List<CourseVideoItem> get courseVideoItems =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this CourseBasicModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,12 +47,14 @@ abstract class $CourseBasicModelCopyWith<$Res> {
       _$CourseBasicModelCopyWithImpl<$Res, CourseBasicModel>;
   @useResult
   $Res call(
-      {String documentId,
+      {int id,
+      String documentId,
       String courseTitle,
       Image courseImage,
       String courseAuthor,
       int totalCourseDurationInSeconds,
-      double coursePrice});
+      double coursePrice,
+      List<CourseVideoItem> courseVideoItems});
 
   $ImageCopyWith<$Res> get courseImage;
 }
@@ -69,14 +74,20 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? documentId = null,
     Object? courseTitle = null,
     Object? courseImage = null,
     Object? courseAuthor = null,
     Object? totalCourseDurationInSeconds = null,
     Object? coursePrice = null,
+    Object? courseVideoItems = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       documentId: null == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
@@ -101,6 +112,10 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
           ? _value.coursePrice
           : coursePrice // ignore: cast_nullable_to_non_nullable
               as double,
+      courseVideoItems: null == courseVideoItems
+          ? _value.courseVideoItems
+          : courseVideoItems // ignore: cast_nullable_to_non_nullable
+              as List<CourseVideoItem>,
     ) as $Val);
   }
 
@@ -124,12 +139,14 @@ abstract class _$$CourseBasicModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String documentId,
+      {int id,
+      String documentId,
       String courseTitle,
       Image courseImage,
       String courseAuthor,
       int totalCourseDurationInSeconds,
-      double coursePrice});
+      double coursePrice,
+      List<CourseVideoItem> courseVideoItems});
 
   @override
   $ImageCopyWith<$Res> get courseImage;
@@ -148,14 +165,20 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? documentId = null,
     Object? courseTitle = null,
     Object? courseImage = null,
     Object? courseAuthor = null,
     Object? totalCourseDurationInSeconds = null,
     Object? coursePrice = null,
+    Object? courseVideoItems = null,
   }) {
     return _then(_$CourseBasicModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       documentId: null == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
@@ -180,6 +203,10 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
           ? _value.coursePrice
           : coursePrice // ignore: cast_nullable_to_non_nullable
               as double,
+      courseVideoItems: null == courseVideoItems
+          ? _value._courseVideoItems
+          : courseVideoItems // ignore: cast_nullable_to_non_nullable
+              as List<CourseVideoItem>,
     ));
   }
 }
@@ -188,16 +215,21 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CourseBasicModelImpl implements _CourseBasicModel {
   const _$CourseBasicModelImpl(
-      {required this.documentId,
+      {required this.id,
+      required this.documentId,
       required this.courseTitle,
       required this.courseImage,
       required this.courseAuthor,
       required this.totalCourseDurationInSeconds,
-      required this.coursePrice});
+      required this.coursePrice,
+      final List<CourseVideoItem> courseVideoItems = const []})
+      : _courseVideoItems = courseVideoItems;
 
   factory _$CourseBasicModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CourseBasicModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String documentId;
   @override
@@ -210,10 +242,19 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
   final int totalCourseDurationInSeconds;
   @override
   final double coursePrice;
+  final List<CourseVideoItem> _courseVideoItems;
+  @override
+  @JsonKey()
+  List<CourseVideoItem> get courseVideoItems {
+    if (_courseVideoItems is EqualUnmodifiableListView)
+      return _courseVideoItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_courseVideoItems);
+  }
 
   @override
   String toString() {
-    return 'CourseBasicModel(documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice)';
+    return 'CourseBasicModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice, courseVideoItems: $courseVideoItems)';
   }
 
   @override
@@ -221,6 +262,7 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CourseBasicModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.documentId, documentId) ||
                 other.documentId == documentId) &&
             (identical(other.courseTitle, courseTitle) ||
@@ -234,13 +276,23 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
                 other.totalCourseDurationInSeconds ==
                     totalCourseDurationInSeconds) &&
             (identical(other.coursePrice, coursePrice) ||
-                other.coursePrice == coursePrice));
+                other.coursePrice == coursePrice) &&
+            const DeepCollectionEquality()
+                .equals(other._courseVideoItems, _courseVideoItems));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, documentId, courseTitle,
-      courseImage, courseAuthor, totalCourseDurationInSeconds, coursePrice);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      documentId,
+      courseTitle,
+      courseImage,
+      courseAuthor,
+      totalCourseDurationInSeconds,
+      coursePrice,
+      const DeepCollectionEquality().hash(_courseVideoItems));
 
   /// Create a copy of CourseBasicModel
   /// with the given fields replaced by the non-null parameter values.
@@ -261,16 +313,20 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
 
 abstract class _CourseBasicModel implements CourseBasicModel {
   const factory _CourseBasicModel(
-      {required final String documentId,
+      {required final int id,
+      required final String documentId,
       required final String courseTitle,
       required final Image courseImage,
       required final String courseAuthor,
       required final int totalCourseDurationInSeconds,
-      required final double coursePrice}) = _$CourseBasicModelImpl;
+      required final double coursePrice,
+      final List<CourseVideoItem> courseVideoItems}) = _$CourseBasicModelImpl;
 
   factory _CourseBasicModel.fromJson(Map<String, dynamic> json) =
       _$CourseBasicModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get documentId;
   @override
@@ -283,6 +339,8 @@ abstract class _CourseBasicModel implements CourseBasicModel {
   int get totalCourseDurationInSeconds;
   @override
   double get coursePrice;
+  @override
+  List<CourseVideoItem> get courseVideoItems;
 
   /// Create a copy of CourseBasicModel
   /// with the given fields replaced by the non-null parameter values.

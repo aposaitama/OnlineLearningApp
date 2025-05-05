@@ -11,6 +11,7 @@ class CourseItemStat extends StatelessWidget {
   final String concreteCourseItemTitle;
   final int totalTasksCount;
   final int completedTasks;
+  final void Function()? onPlayPressed;
   const CourseItemStat({
     super.key,
     required this.totalTasksCount,
@@ -18,6 +19,7 @@ class CourseItemStat extends StatelessWidget {
     required this.concreteCourseItemTitle,
     required this.backgroundColor,
     required this.backgroundButtonColor,
+    this.onPlayPressed,
   });
 
   @override
@@ -53,9 +55,9 @@ class CourseItemStat extends StatelessWidget {
                 ),
               ),
             ),
-            const GradientProgressBar(
+            GradientProgressBar(
               isBackGroundWhite: true,
-              value: 0.9,
+              value: completedTasks / totalTasksCount,
             ),
             const SizedBox(
               height: 10.0,
@@ -99,16 +101,19 @@ class CourseItemStat extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  height: 44.0,
-                  width: 44.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: backgroundButtonColor,
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      'assets/icons/Polygon.svg',
+                GestureDetector(
+                  onTap: onPlayPressed,
+                  child: Container(
+                    height: 44.0,
+                    width: 44.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: backgroundButtonColor,
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/icons/Polygon.svg',
+                      ),
                     ),
                   ),
                 ),

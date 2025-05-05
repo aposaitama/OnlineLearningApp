@@ -13,6 +13,10 @@ List<RouteBase> get $appRoutes => [
       $phoneVerifyRoute,
       $authGateRoute,
       $myCoursesScreenRoute,
+      $searchScreenRoute,
+      $editAccountRoute,
+      $successfullPaymentScreenRoute,
+      $paymentScreenRoute,
       $courseDetailsRoute,
       $rootShellRoute,
     ];
@@ -140,6 +144,101 @@ extension $MyCoursesScreenRouteExtension on MyCoursesScreenRoute {
 
   String get location => GoRouteData.$location(
         '/my_courses',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $searchScreenRoute => GoRouteData.$route(
+      path: '/search-screen',
+      factory: $SearchScreenRouteExtension._fromState,
+    );
+
+extension $SearchScreenRouteExtension on SearchScreenRoute {
+  static SearchScreenRoute _fromState(GoRouterState state) =>
+      const SearchScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/search-screen',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $editAccountRoute => GoRouteData.$route(
+      path: '/edit-account',
+      factory: $EditAccountRouteExtension._fromState,
+    );
+
+extension $EditAccountRouteExtension on EditAccountRoute {
+  static EditAccountRoute _fromState(GoRouterState state) =>
+      const EditAccountRoute();
+
+  String get location => GoRouteData.$location(
+        '/edit-account',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $successfullPaymentScreenRoute => GoRouteData.$route(
+      path: '/successfull_payment_screen',
+      factory: $SuccessfullPaymentScreenRouteExtension._fromState,
+    );
+
+extension $SuccessfullPaymentScreenRouteExtension
+    on SuccessfullPaymentScreenRoute {
+  static SuccessfullPaymentScreenRoute _fromState(GoRouterState state) =>
+      const SuccessfullPaymentScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/successfull_payment_screen',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $paymentScreenRoute => GoRouteData.$route(
+      path: '/payment-screen/:courseId',
+      factory: $PaymentScreenRouteExtension._fromState,
+    );
+
+extension $PaymentScreenRouteExtension on PaymentScreenRoute {
+  static PaymentScreenRoute _fromState(GoRouterState state) =>
+      PaymentScreenRoute(
+        state.pathParameters['courseId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/payment-screen/${Uri.encodeComponent(courseId)}',
       );
 
   void go(BuildContext context) => context.go(location);

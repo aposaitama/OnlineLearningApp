@@ -9,6 +9,7 @@ part of 'course_basic_model.dart';
 _$CourseBasicModelImpl _$$CourseBasicModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CourseBasicModelImpl(
+      id: (json['id'] as num).toInt(),
       documentId: json['documentId'] as String,
       courseTitle: json['courseTitle'] as String,
       courseImage: Image.fromJson(json['courseImage'] as Map<String, dynamic>),
@@ -16,17 +17,23 @@ _$CourseBasicModelImpl _$$CourseBasicModelImplFromJson(
       totalCourseDurationInSeconds:
           (json['totalCourseDurationInSeconds'] as num).toInt(),
       coursePrice: (json['coursePrice'] as num).toDouble(),
+      courseVideoItems: (json['courseVideoItems'] as List<dynamic>?)
+              ?.map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$CourseBasicModelImplToJson(
         _$CourseBasicModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'documentId': instance.documentId,
       'courseTitle': instance.courseTitle,
       'courseImage': instance.courseImage,
       'courseAuthor': instance.courseAuthor,
       'totalCourseDurationInSeconds': instance.totalCourseDurationInSeconds,
       'coursePrice': instance.coursePrice,
+      'courseVideoItems': instance.courseVideoItems,
     };
 
 _$ImageImpl _$$ImageImplFromJson(Map<String, dynamic> json) => _$ImageImpl(

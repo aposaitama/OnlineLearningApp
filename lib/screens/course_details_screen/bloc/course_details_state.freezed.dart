@@ -22,6 +22,8 @@ mixin _$CourseDetailsState {
   CourseLoadingVideoStatus get videoLoadingStatus =>
       throw _privateConstructorUsedError;
   bool get isFullScreen => throw _privateConstructorUsedError;
+  bool get isInFavourite => throw _privateConstructorUsedError;
+  String get videoPlayingId => throw _privateConstructorUsedError;
   VideoPlayerController? get courseVideo => throw _privateConstructorUsedError;
 
   /// Create a copy of CourseDetailsState
@@ -42,6 +44,8 @@ abstract class $CourseDetailsStateCopyWith<$Res> {
       CourseDetailsLoadingStatus loadingStatus,
       CourseLoadingVideoStatus videoLoadingStatus,
       bool isFullScreen,
+      bool isInFavourite,
+      String videoPlayingId,
       VideoPlayerController? courseVideo});
 
   $CourseConcreteModelCopyWith<$Res>? get course;
@@ -66,6 +70,8 @@ class _$CourseDetailsStateCopyWithImpl<$Res, $Val extends CourseDetailsState>
     Object? loadingStatus = null,
     Object? videoLoadingStatus = null,
     Object? isFullScreen = null,
+    Object? isInFavourite = null,
+    Object? videoPlayingId = null,
     Object? courseVideo = freezed,
   }) {
     return _then(_value.copyWith(
@@ -85,6 +91,14 @@ class _$CourseDetailsStateCopyWithImpl<$Res, $Val extends CourseDetailsState>
           ? _value.isFullScreen
           : isFullScreen // ignore: cast_nullable_to_non_nullable
               as bool,
+      isInFavourite: null == isInFavourite
+          ? _value.isInFavourite
+          : isInFavourite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      videoPlayingId: null == videoPlayingId
+          ? _value.videoPlayingId
+          : videoPlayingId // ignore: cast_nullable_to_non_nullable
+              as String,
       courseVideo: freezed == courseVideo
           ? _value.courseVideo
           : courseVideo // ignore: cast_nullable_to_non_nullable
@@ -120,6 +134,8 @@ abstract class _$$CourseDetailsStateImplCopyWith<$Res>
       CourseDetailsLoadingStatus loadingStatus,
       CourseLoadingVideoStatus videoLoadingStatus,
       bool isFullScreen,
+      bool isInFavourite,
+      String videoPlayingId,
       VideoPlayerController? courseVideo});
 
   @override
@@ -143,6 +159,8 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
     Object? loadingStatus = null,
     Object? videoLoadingStatus = null,
     Object? isFullScreen = null,
+    Object? isInFavourite = null,
+    Object? videoPlayingId = null,
     Object? courseVideo = freezed,
   }) {
     return _then(_$CourseDetailsStateImpl(
@@ -162,6 +180,14 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
           ? _value.isFullScreen
           : isFullScreen // ignore: cast_nullable_to_non_nullable
               as bool,
+      isInFavourite: null == isInFavourite
+          ? _value.isInFavourite
+          : isInFavourite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      videoPlayingId: null == videoPlayingId
+          ? _value.videoPlayingId
+          : videoPlayingId // ignore: cast_nullable_to_non_nullable
+              as String,
       courseVideo: freezed == courseVideo
           ? _value.courseVideo
           : courseVideo // ignore: cast_nullable_to_non_nullable
@@ -178,6 +204,8 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
       this.loadingStatus = CourseDetailsLoadingStatus.initial,
       this.videoLoadingStatus = CourseLoadingVideoStatus.initial,
       this.isFullScreen = false,
+      this.isInFavourite = false,
+      this.videoPlayingId = '',
       this.courseVideo});
 
   @override
@@ -192,11 +220,17 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
   @JsonKey()
   final bool isFullScreen;
   @override
+  @JsonKey()
+  final bool isInFavourite;
+  @override
+  @JsonKey()
+  final String videoPlayingId;
+  @override
   final VideoPlayerController? courseVideo;
 
   @override
   String toString() {
-    return 'CourseDetailsState(course: $course, loadingStatus: $loadingStatus, videoLoadingStatus: $videoLoadingStatus, isFullScreen: $isFullScreen, courseVideo: $courseVideo)';
+    return 'CourseDetailsState(course: $course, loadingStatus: $loadingStatus, videoLoadingStatus: $videoLoadingStatus, isFullScreen: $isFullScreen, isInFavourite: $isInFavourite, videoPlayingId: $videoPlayingId, courseVideo: $courseVideo)';
   }
 
   @override
@@ -211,13 +245,24 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
                 other.videoLoadingStatus == videoLoadingStatus) &&
             (identical(other.isFullScreen, isFullScreen) ||
                 other.isFullScreen == isFullScreen) &&
+            (identical(other.isInFavourite, isInFavourite) ||
+                other.isInFavourite == isInFavourite) &&
+            (identical(other.videoPlayingId, videoPlayingId) ||
+                other.videoPlayingId == videoPlayingId) &&
             (identical(other.courseVideo, courseVideo) ||
                 other.courseVideo == courseVideo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, course, loadingStatus,
-      videoLoadingStatus, isFullScreen, courseVideo);
+  int get hashCode => Object.hash(
+      runtimeType,
+      course,
+      loadingStatus,
+      videoLoadingStatus,
+      isFullScreen,
+      isInFavourite,
+      videoPlayingId,
+      courseVideo);
 
   /// Create a copy of CourseDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -235,6 +280,8 @@ abstract class _CourseDetailsState implements CourseDetailsState {
       final CourseDetailsLoadingStatus loadingStatus,
       final CourseLoadingVideoStatus videoLoadingStatus,
       final bool isFullScreen,
+      final bool isInFavourite,
+      final String videoPlayingId,
       final VideoPlayerController? courseVideo}) = _$CourseDetailsStateImpl;
 
   @override
@@ -245,6 +292,10 @@ abstract class _CourseDetailsState implements CourseDetailsState {
   CourseLoadingVideoStatus get videoLoadingStatus;
   @override
   bool get isFullScreen;
+  @override
+  bool get isInFavourite;
+  @override
+  String get videoPlayingId;
   @override
   VideoPlayerController? get courseVideo;
 

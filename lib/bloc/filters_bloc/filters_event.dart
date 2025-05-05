@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 
 part 'filters_event.freezed.dart';
 
@@ -10,10 +11,14 @@ class FiltersEvent with _$FiltersEvent {
   }) = SelectPriceRangeEvent;
 
   const factory FiltersEvent.selectCategories({
-    required String category,
+    required CategoriesModel category,
   }) = SelectCategoriesEvent;
 
   const factory FiltersEvent.selectDurations({
     required RangeValues duration,
   }) = SelectDurationEvent;
+
+  const factory FiltersEvent.clearFiltersState() = ClearFiltersStateEvent;
+
+  const factory FiltersEvent.getCategories() = GetCategoriesOnFiltersEvent;
 }

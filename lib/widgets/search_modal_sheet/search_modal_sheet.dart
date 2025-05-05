@@ -2,31 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
 import 'package:online_app/bloc/filters_bloc/filters_event.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
-import 'package:online_app/utils/constants.dart';
 import 'package:online_app/widgets/search_modal_sheet/filter_categories_builder.dart';
 import 'package:online_app/widgets/search_modal_sheet/filter_durations_builder.dart';
 import 'package:online_app/widgets/search_modal_sheet/price_slider.dart';
 
+import '../../bloc/filters_bloc/filters_bloc.dart';
 import '../../bloc/filters_bloc/filters_state.dart';
 
-class SearchModalSheet extends StatelessWidget {
-  const SearchModalSheet({super.key});
+class SearchModalSheet extends StatefulWidget {
+  final VoidCallback applyFilters;
+
+  const SearchModalSheet({
+    super.key,
+    required this.applyFilters,
+  });
+
+  @override
+  State<SearchModalSheet> createState() => _SearchModalSheetState();
+}
+
+class _SearchModalSheetState extends State<SearchModalSheet> {
+  FiltersBloc get _filtersBloc => context.read<FiltersBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+  }
+
+  void _loadCategories() {
+    _filtersBloc.add(
+      const GetCategoriesOnFiltersEvent(),
+    );
+  }
 
   void _selectPriceRange(
     BuildContext context,
     RangeValues priceRange,
   ) {
     context.read<FiltersBloc>().add(
-          SelectPriceRangeEvent(priceRange: priceRange),
+          SelectPriceRangeEvent(
+            priceRange: priceRange,
+          ),
         );
   }
 
-  void _selectCategory(BuildContext context, String category) {
+  void _clearFilters(BuildContext context) {
+    context.read<FiltersBloc>().add(
+          const ClearFiltersStateEvent(),
+        );
+  }
+
+  void _selectCategory(BuildContext context, CategoriesModel category) {
     context.read<FiltersBloc>().add(
           SelectCategoriesEvent(
             category: category,
@@ -36,16 +68,17 @@ class SearchModalSheet extends StatelessWidget {
 
   void _selectDuration(BuildContext context, RangeValues duration) {
     context.read<FiltersBloc>().add(
-          SelectDurationEvent(duration: duration),
+          SelectDurationEvent(
+            duration: duration,
+          ),
         );
   }
 
   @override
   Widget build(BuildContext context) {
     final appColorsModel = Theme.of(context).extension<AppColorsModel>();
-    return BlocProvider(
-      create: (context) => FiltersBloc(),
-      child: BlocBuilder<FiltersBloc, FiltersState>(builder: (context, state) {
+    return BlocBuilder<FiltersBloc, FiltersState>(
+      builder: (context, state) {
         return Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -146,13 +179,13 @@ class SearchModalSheet extends StatelessWidget {
                     duration,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40.0),
+                const Spacer(),
+                SafeArea(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => _clearFilters(context),
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.transparent,
@@ -190,7 +223,7 @@ class SearchModalSheet extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: widget.applyFilters,
                             child: const Text('Apply Filter'),
                           ),
                         ),
@@ -202,7 +235,7 @@ class SearchModalSheet extends StatelessWidget {
             ),
           ),
         );
-      }),
+      },
     );
   }
 }

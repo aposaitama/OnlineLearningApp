@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/auth_gate_screen.dart';
 import 'package:online_app/screens/course_details_screen/course_details_screen.dart';
+import 'package:online_app/screens/edit_account_screen/edit_account_screen.dart';
 import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
+import 'package:online_app/screens/payment_screen/payment_screen.dart';
+import 'package:online_app/screens/payment_screen/successfull_payment_screen/successfull_payment_screen.dart';
 import 'package:online_app/screens/root_screen/root_screen.dart';
 import 'package:online_app/screens/home_screen/home_screen.dart';
 import 'package:online_app/screens/course_screen/course_screen.dart';
@@ -12,6 +15,7 @@ import 'package:online_app/screens/auth_screen/login_screen/login_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/register_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/phone_linking_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/verify_phone_screen.dart';
+import 'package:online_app/screens/search_screen/search_screen.dart';
 
 part 'routes.g.dart';
 
@@ -67,6 +71,44 @@ class MyCoursesScreenRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const MyCoursesScreen();
+}
+
+@TypedGoRoute<SearchScreenRoute>(path: '/search-screen')
+class SearchScreenRoute extends GoRouteData {
+  const SearchScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SearchScreen();
+}
+
+@TypedGoRoute<EditAccountRoute>(path: '/edit-account')
+class EditAccountRoute extends GoRouteData {
+  const EditAccountRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const EditAccountScreen();
+}
+
+@TypedGoRoute<SuccessfullPaymentScreenRoute>(
+    path: '/successfull_payment_screen')
+class SuccessfullPaymentScreenRoute extends GoRouteData {
+  const SuccessfullPaymentScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SuccessfullPaymentScreen();
+}
+
+@TypedGoRoute<PaymentScreenRoute>(path: '/payment-screen/:courseId')
+class PaymentScreenRoute extends GoRouteData {
+  final String courseId;
+  const PaymentScreenRoute(this.courseId);
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      PaymentScreen(courseId: courseId);
 }
 
 @TypedGoRoute<CourseDetailsRoute>(
