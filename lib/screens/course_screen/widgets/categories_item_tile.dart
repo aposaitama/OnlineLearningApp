@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
+
 import 'package:online_app/utils/extensions.dart';
 
 class CategoriesItemTile extends StatelessWidget {
@@ -38,9 +41,11 @@ class CategoriesItemTile extends StatelessWidget {
             ),
           ),
         ),
+
         // Cached Image
         // SvgPicture.network('http://localhost:1337${imageUrl}'),
         // Positioned Text Container
+
         Positioned(
           right: 0,
           bottom: 8.0,
@@ -68,9 +73,11 @@ class CategoriesItemTile extends StatelessWidget {
                 ),
               ),
             ),
+
           ),
         ),
         // Positioned SVG Image
+
         Positioned(
           left: 3,
           bottom: 0,
@@ -107,6 +114,7 @@ class CategoriesItemTile extends StatelessWidget {
                 ),
               )
             ],
+
           ),
         )
       ],

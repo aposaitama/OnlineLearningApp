@@ -1,16 +1,22 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/categories_model/categories_model.dart';
+import 'package:online_app/repositories/category_repository/category_repository.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   final strapiApiService = locator<StrapiApiService>();
+  final CategoryRepository categoryRepository;
 
-  CourseScreenBloc() : super(const CourseScreenState()) {
+  CourseScreenBloc({
+    required this.categoryRepository,
+  }) : super(const CourseScreenState()) {
     on<LoadCourseBasicInfoEvent>(_loadCourseList);
     on<GetSearchedByTextCoursesEvent>(_getSearchedCourses);
     on<EnterTextOnCourseScreenEvent>(_onEnterText);
+    on<SelectCategoryOnCoursesEvent>(_onSelectCategory);
   }
 
   Future<void> _loadCourseList(
@@ -18,12 +24,14 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     Emitter<CourseScreenState> emit,
   ) async {
     final courseItems = await strapiApiService.fetchCourseItems();
-    final courseCategories = await strapiApiService.fetchCategoriesItems();
+    // final courseCategories = await strapiApiService.fetchCategoriesItems();
+    final categories = await categoryRepository.getCategories();
     emit(
       state.copyWith(
-          loadingStatus: CourseScreenStatus.loaded,
-          courseList: courseItems,
-          categoriesList: courseCategories),
+        loadingStatus: CourseScreenStatus.loaded,
+        courseList: courseItems,
+        categoriesList: categories,
+      ),
     );
   }
 
@@ -54,6 +62,21 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     emit(
       state.copyWith(
         enteredText: event.enteredText,
+      ),
+    );
+  }
+
+  void _onSelectCategory(
+    SelectCategoryOnCoursesEvent event,
+    Emitter<CourseScreenState> emit,
+  ) {
+    final chosenCategory = state.categoriesList.firstWhere(
+      (category) => category.id == event.categoryId,
+    );
+
+    emit(
+      state.copyWith(
+        courseList: chosenCategory.courseVideoItems,
       ),
     );
   }

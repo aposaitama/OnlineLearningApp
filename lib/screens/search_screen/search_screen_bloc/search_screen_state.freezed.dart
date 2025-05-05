@@ -20,6 +20,9 @@ mixin _$SearchScreenState {
   SearchListStatus get coursesListStatus => throw _privateConstructorUsedError;
   String? get searchText => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  int get pageSize => throw _privateConstructorUsedError;
+  bool get hasReachedEnd => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +41,10 @@ abstract class $SearchScreenStateCopyWith<$Res> {
       {List<CourseBasicModel> coursesList,
       SearchListStatus coursesListStatus,
       String? searchText,
-      String? errorMessage});
+      String? errorMessage,
+      int page,
+      int pageSize,
+      bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -60,6 +66,9 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
     Object? coursesListStatus = null,
     Object? searchText = freezed,
     Object? errorMessage = freezed,
+    Object? page = null,
+    Object? pageSize = null,
+    Object? hasReachedEnd = null,
   }) {
     return _then(_value.copyWith(
       coursesList: null == coursesList
@@ -78,6 +87,18 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasReachedEnd: null == hasReachedEnd
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -94,7 +115,10 @@ abstract class _$$SearchScreenStateImplCopyWith<$Res>
       {List<CourseBasicModel> coursesList,
       SearchListStatus coursesListStatus,
       String? searchText,
-      String? errorMessage});
+      String? errorMessage,
+      int page,
+      int pageSize,
+      bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -114,6 +138,9 @@ class __$$SearchScreenStateImplCopyWithImpl<$Res>
     Object? coursesListStatus = null,
     Object? searchText = freezed,
     Object? errorMessage = freezed,
+    Object? page = null,
+    Object? pageSize = null,
+    Object? hasReachedEnd = null,
   }) {
     return _then(_$SearchScreenStateImpl(
       coursesList: null == coursesList
@@ -132,6 +159,18 @@ class __$$SearchScreenStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasReachedEnd: null == hasReachedEnd
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -143,7 +182,10 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
       {final List<CourseBasicModel> coursesList = const [],
       this.coursesListStatus = SearchListStatus.initial,
       this.searchText,
-      this.errorMessage})
+      this.errorMessage,
+      this.page = 1,
+      this.pageSize = 10,
+      this.hasReachedEnd = false})
       : _coursesList = coursesList;
 
   final List<CourseBasicModel> _coursesList;
@@ -162,10 +204,19 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
   final String? searchText;
   @override
   final String? errorMessage;
+  @override
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final int pageSize;
+  @override
+  @JsonKey()
+  final bool hasReachedEnd;
 
   @override
   String toString() {
-    return 'SearchScreenState(coursesList: $coursesList, coursesListStatus: $coursesListStatus, searchText: $searchText, errorMessage: $errorMessage)';
+    return 'SearchScreenState(coursesList: $coursesList, coursesListStatus: $coursesListStatus, searchText: $searchText, errorMessage: $errorMessage, page: $page, pageSize: $pageSize, hasReachedEnd: $hasReachedEnd)';
   }
 
   @override
@@ -180,7 +231,12 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
             (identical(other.searchText, searchText) ||
                 other.searchText == searchText) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.hasReachedEnd, hasReachedEnd) ||
+                other.hasReachedEnd == hasReachedEnd));
   }
 
   @override
@@ -189,7 +245,10 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
       const DeepCollectionEquality().hash(_coursesList),
       coursesListStatus,
       searchText,
-      errorMessage);
+      errorMessage,
+      page,
+      pageSize,
+      hasReachedEnd);
 
   /// Create a copy of SearchScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -206,7 +265,10 @@ abstract class _SearchScreenState implements SearchScreenState {
       {final List<CourseBasicModel> coursesList,
       final SearchListStatus coursesListStatus,
       final String? searchText,
-      final String? errorMessage}) = _$SearchScreenStateImpl;
+      final String? errorMessage,
+      final int page,
+      final int pageSize,
+      final bool hasReachedEnd}) = _$SearchScreenStateImpl;
 
   @override
   List<CourseBasicModel> get coursesList;
@@ -216,6 +278,12 @@ abstract class _SearchScreenState implements SearchScreenState {
   String? get searchText;
   @override
   String? get errorMessage;
+  @override
+  int get page;
+  @override
+  int get pageSize;
+  @override
+  bool get hasReachedEnd;
 
   /// Create a copy of SearchScreenState
   /// with the given fields replaced by the non-null parameter values.

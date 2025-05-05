@@ -14,7 +14,7 @@ class CourseBasicModel with _$CourseBasicModel {
     required String courseAuthor,
     required int totalCourseDurationInSeconds,
     required double coursePrice,
-    required List<CourseVideoItem> courseVideoItems,
+    @Default([]) List<CourseVideoItem> courseVideoItems,
     // required String courseType,
     // required String courseTitle,
     // required String email,

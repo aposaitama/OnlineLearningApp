@@ -17,5 +17,8 @@ class SearchScreenState with _$SearchScreenState {
     @Default(SearchListStatus.initial) SearchListStatus coursesListStatus,
     String? searchText,
     String? errorMessage,
+    @Default(1) int page,
+    @Default(10) int pageSize,
+    @Default(false) bool hasReachedEnd,
 }) = _SearchScreenState;
 }
