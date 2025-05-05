@@ -22,6 +22,7 @@ mixin _$CourseScreenEvent {
     required TResult Function() getCoursesByText,
     required TResult Function(String? enteredText) enterText,
     required TResult Function(int categoryId) selectCategory,
+    required TResult Function(String filter) selectFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$CourseScreenEvent {
     TResult? Function()? getCoursesByText,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function(int categoryId)? selectCategory,
+    TResult? Function(String filter)? selectFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$CourseScreenEvent {
     TResult Function()? getCoursesByText,
     TResult Function(String? enteredText)? enterText,
     TResult Function(int categoryId)? selectCategory,
+    TResult Function(String filter)? selectFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +52,8 @@ mixin _$CourseScreenEvent {
     required TResult Function(EnterTextOnCourseScreenEvent value) enterText,
     required TResult Function(SelectCategoryOnCoursesEvent value)
         selectCategory,
+    required TResult Function(SelectFilterOnCourseScreenEvent value)
+        selectFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$CourseScreenEvent {
     TResult? Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult? Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult? Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult? Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +71,7 @@ mixin _$CourseScreenEvent {
     TResult Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +147,7 @@ class _$LoadCourseBasicInfoEventImpl implements LoadCourseBasicInfoEvent {
     required TResult Function() getCoursesByText,
     required TResult Function(String? enteredText) enterText,
     required TResult Function(int categoryId) selectCategory,
+    required TResult Function(String filter) selectFilter,
   }) {
     return loadCourseList();
   }
@@ -151,6 +159,7 @@ class _$LoadCourseBasicInfoEventImpl implements LoadCourseBasicInfoEvent {
     TResult? Function()? getCoursesByText,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function(int categoryId)? selectCategory,
+    TResult? Function(String filter)? selectFilter,
   }) {
     return loadCourseList?.call();
   }
@@ -162,6 +171,7 @@ class _$LoadCourseBasicInfoEventImpl implements LoadCourseBasicInfoEvent {
     TResult Function()? getCoursesByText,
     TResult Function(String? enteredText)? enterText,
     TResult Function(int categoryId)? selectCategory,
+    TResult Function(String filter)? selectFilter,
     required TResult orElse(),
   }) {
     if (loadCourseList != null) {
@@ -179,6 +189,8 @@ class _$LoadCourseBasicInfoEventImpl implements LoadCourseBasicInfoEvent {
     required TResult Function(EnterTextOnCourseScreenEvent value) enterText,
     required TResult Function(SelectCategoryOnCoursesEvent value)
         selectCategory,
+    required TResult Function(SelectFilterOnCourseScreenEvent value)
+        selectFilter,
   }) {
     return loadCourseList(this);
   }
@@ -190,6 +202,7 @@ class _$LoadCourseBasicInfoEventImpl implements LoadCourseBasicInfoEvent {
     TResult? Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult? Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult? Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult? Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
   }) {
     return loadCourseList?.call(this);
   }
@@ -201,6 +214,7 @@ class _$LoadCourseBasicInfoEventImpl implements LoadCourseBasicInfoEvent {
     TResult Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
     required TResult orElse(),
   }) {
     if (loadCourseList != null) {
@@ -264,6 +278,7 @@ class _$GetSearchedByTextCoursesEventImpl
     required TResult Function() getCoursesByText,
     required TResult Function(String? enteredText) enterText,
     required TResult Function(int categoryId) selectCategory,
+    required TResult Function(String filter) selectFilter,
   }) {
     return getCoursesByText();
   }
@@ -275,6 +290,7 @@ class _$GetSearchedByTextCoursesEventImpl
     TResult? Function()? getCoursesByText,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function(int categoryId)? selectCategory,
+    TResult? Function(String filter)? selectFilter,
   }) {
     return getCoursesByText?.call();
   }
@@ -286,6 +302,7 @@ class _$GetSearchedByTextCoursesEventImpl
     TResult Function()? getCoursesByText,
     TResult Function(String? enteredText)? enterText,
     TResult Function(int categoryId)? selectCategory,
+    TResult Function(String filter)? selectFilter,
     required TResult orElse(),
   }) {
     if (getCoursesByText != null) {
@@ -303,6 +320,8 @@ class _$GetSearchedByTextCoursesEventImpl
     required TResult Function(EnterTextOnCourseScreenEvent value) enterText,
     required TResult Function(SelectCategoryOnCoursesEvent value)
         selectCategory,
+    required TResult Function(SelectFilterOnCourseScreenEvent value)
+        selectFilter,
   }) {
     return getCoursesByText(this);
   }
@@ -314,6 +333,7 @@ class _$GetSearchedByTextCoursesEventImpl
     TResult? Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult? Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult? Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult? Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
   }) {
     return getCoursesByText?.call(this);
   }
@@ -325,6 +345,7 @@ class _$GetSearchedByTextCoursesEventImpl
     TResult Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
     required TResult orElse(),
   }) {
     if (getCoursesByText != null) {
@@ -418,6 +439,7 @@ class _$EnterTextOnCourseScreenEventImpl
     required TResult Function() getCoursesByText,
     required TResult Function(String? enteredText) enterText,
     required TResult Function(int categoryId) selectCategory,
+    required TResult Function(String filter) selectFilter,
   }) {
     return enterText(enteredText);
   }
@@ -429,6 +451,7 @@ class _$EnterTextOnCourseScreenEventImpl
     TResult? Function()? getCoursesByText,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function(int categoryId)? selectCategory,
+    TResult? Function(String filter)? selectFilter,
   }) {
     return enterText?.call(enteredText);
   }
@@ -440,6 +463,7 @@ class _$EnterTextOnCourseScreenEventImpl
     TResult Function()? getCoursesByText,
     TResult Function(String? enteredText)? enterText,
     TResult Function(int categoryId)? selectCategory,
+    TResult Function(String filter)? selectFilter,
     required TResult orElse(),
   }) {
     if (enterText != null) {
@@ -457,6 +481,8 @@ class _$EnterTextOnCourseScreenEventImpl
     required TResult Function(EnterTextOnCourseScreenEvent value) enterText,
     required TResult Function(SelectCategoryOnCoursesEvent value)
         selectCategory,
+    required TResult Function(SelectFilterOnCourseScreenEvent value)
+        selectFilter,
   }) {
     return enterText(this);
   }
@@ -468,6 +494,7 @@ class _$EnterTextOnCourseScreenEventImpl
     TResult? Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult? Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult? Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult? Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
   }) {
     return enterText?.call(this);
   }
@@ -479,6 +506,7 @@ class _$EnterTextOnCourseScreenEventImpl
     TResult Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
     required TResult orElse(),
   }) {
     if (enterText != null) {
@@ -581,6 +609,7 @@ class _$SelectCategoryOnCoursesEventImpl
     required TResult Function() getCoursesByText,
     required TResult Function(String? enteredText) enterText,
     required TResult Function(int categoryId) selectCategory,
+    required TResult Function(String filter) selectFilter,
   }) {
     return selectCategory(categoryId);
   }
@@ -592,6 +621,7 @@ class _$SelectCategoryOnCoursesEventImpl
     TResult? Function()? getCoursesByText,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function(int categoryId)? selectCategory,
+    TResult? Function(String filter)? selectFilter,
   }) {
     return selectCategory?.call(categoryId);
   }
@@ -603,6 +633,7 @@ class _$SelectCategoryOnCoursesEventImpl
     TResult Function()? getCoursesByText,
     TResult Function(String? enteredText)? enterText,
     TResult Function(int categoryId)? selectCategory,
+    TResult Function(String filter)? selectFilter,
     required TResult orElse(),
   }) {
     if (selectCategory != null) {
@@ -620,6 +651,8 @@ class _$SelectCategoryOnCoursesEventImpl
     required TResult Function(EnterTextOnCourseScreenEvent value) enterText,
     required TResult Function(SelectCategoryOnCoursesEvent value)
         selectCategory,
+    required TResult Function(SelectFilterOnCourseScreenEvent value)
+        selectFilter,
   }) {
     return selectCategory(this);
   }
@@ -631,6 +664,7 @@ class _$SelectCategoryOnCoursesEventImpl
     TResult? Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult? Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult? Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult? Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
   }) {
     return selectCategory?.call(this);
   }
@@ -642,6 +676,7 @@ class _$SelectCategoryOnCoursesEventImpl
     TResult Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
     TResult Function(EnterTextOnCourseScreenEvent value)? enterText,
     TResult Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
     required TResult orElse(),
   }) {
     if (selectCategory != null) {
@@ -662,5 +697,174 @@ abstract class SelectCategoryOnCoursesEvent implements CourseScreenEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectCategoryOnCoursesEventImplCopyWith<
           _$SelectCategoryOnCoursesEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectFilterOnCourseScreenEventImplCopyWith<$Res> {
+  factory _$$SelectFilterOnCourseScreenEventImplCopyWith(
+          _$SelectFilterOnCourseScreenEventImpl value,
+          $Res Function(_$SelectFilterOnCourseScreenEventImpl) then) =
+      __$$SelectFilterOnCourseScreenEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String filter});
+}
+
+/// @nodoc
+class __$$SelectFilterOnCourseScreenEventImplCopyWithImpl<$Res>
+    extends _$CourseScreenEventCopyWithImpl<$Res,
+        _$SelectFilterOnCourseScreenEventImpl>
+    implements _$$SelectFilterOnCourseScreenEventImplCopyWith<$Res> {
+  __$$SelectFilterOnCourseScreenEventImplCopyWithImpl(
+      _$SelectFilterOnCourseScreenEventImpl _value,
+      $Res Function(_$SelectFilterOnCourseScreenEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$SelectFilterOnCourseScreenEventImpl(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectFilterOnCourseScreenEventImpl
+    implements SelectFilterOnCourseScreenEvent {
+  const _$SelectFilterOnCourseScreenEventImpl({required this.filter});
+
+  @override
+  final String filter;
+
+  @override
+  String toString() {
+    return 'CourseScreenEvent.selectFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectFilterOnCourseScreenEventImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  /// Create a copy of CourseScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectFilterOnCourseScreenEventImplCopyWith<
+          _$SelectFilterOnCourseScreenEventImpl>
+      get copyWith => __$$SelectFilterOnCourseScreenEventImplCopyWithImpl<
+          _$SelectFilterOnCourseScreenEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadCourseList,
+    required TResult Function() getCoursesByText,
+    required TResult Function(String? enteredText) enterText,
+    required TResult Function(int categoryId) selectCategory,
+    required TResult Function(String filter) selectFilter,
+  }) {
+    return selectFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadCourseList,
+    TResult? Function()? getCoursesByText,
+    TResult? Function(String? enteredText)? enterText,
+    TResult? Function(int categoryId)? selectCategory,
+    TResult? Function(String filter)? selectFilter,
+  }) {
+    return selectFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadCourseList,
+    TResult Function()? getCoursesByText,
+    TResult Function(String? enteredText)? enterText,
+    TResult Function(int categoryId)? selectCategory,
+    TResult Function(String filter)? selectFilter,
+    required TResult orElse(),
+  }) {
+    if (selectFilter != null) {
+      return selectFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadCourseBasicInfoEvent value) loadCourseList,
+    required TResult Function(GetSearchedByTextCoursesEvent value)
+        getCoursesByText,
+    required TResult Function(EnterTextOnCourseScreenEvent value) enterText,
+    required TResult Function(SelectCategoryOnCoursesEvent value)
+        selectCategory,
+    required TResult Function(SelectFilterOnCourseScreenEvent value)
+        selectFilter,
+  }) {
+    return selectFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadCourseBasicInfoEvent value)? loadCourseList,
+    TResult? Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
+    TResult? Function(EnterTextOnCourseScreenEvent value)? enterText,
+    TResult? Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult? Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
+  }) {
+    return selectFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadCourseBasicInfoEvent value)? loadCourseList,
+    TResult Function(GetSearchedByTextCoursesEvent value)? getCoursesByText,
+    TResult Function(EnterTextOnCourseScreenEvent value)? enterText,
+    TResult Function(SelectCategoryOnCoursesEvent value)? selectCategory,
+    TResult Function(SelectFilterOnCourseScreenEvent value)? selectFilter,
+    required TResult orElse(),
+  }) {
+    if (selectFilter != null) {
+      return selectFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectFilterOnCourseScreenEvent implements CourseScreenEvent {
+  const factory SelectFilterOnCourseScreenEvent(
+      {required final String filter}) = _$SelectFilterOnCourseScreenEventImpl;
+
+  String get filter;
+
+  /// Create a copy of CourseScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectFilterOnCourseScreenEventImplCopyWith<
+          _$SelectFilterOnCourseScreenEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

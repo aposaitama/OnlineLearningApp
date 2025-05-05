@@ -14,6 +14,7 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/categories_builder.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
+import 'package:online_app/screens/course_screen/widgets/course_filters_row.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
 
@@ -82,8 +83,13 @@ class _CourseScreenState extends State<CourseScreen> {
     context.push('/search-screen');
   }
 
-  final categories = ['All', 'Popular', 'New'];
-  String selectedCategory = 'All';
+  void _selectFilter(String filter) {
+    _courseScreenBloc.add(
+      SelectFilterOnCourseScreenEvent(
+        filter: filter,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -170,49 +176,8 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                   child: SizedBox(
                     height: 28.0,
-                    child: Wrap(
-                      spacing: 17.0,
-                      runSpacing: 20.0,
-                      children: categories.map((category) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(
-                              () {
-                                selectedCategory = category;
-                              },
-                            );
-                          },
-                          child: Container(
-                            height: 28.0,
-                            width: 73.0,
-                            decoration: BoxDecoration(
-                              color: category == selectedCategory
-                                  ? AppColors.deepBlueColor
-                                  : isDark
-                                      ? AppColors.darkHintTextColor
-                                      : Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                13.0,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                category,
-                                style: AppFonts.poppinsRegular.copyWith(
-                                  color: category == selectedCategory
-                                      ? Colors.white
-                                      : Theme.of(
-                                          context,
-                                        )
-                                          .extension<AppColorsModel>()
-                                          ?.hintTextColor,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                    child: CourseFiltersRow(
+                      selectFilter: (filter) => _selectFilter(filter),
                     ),
                   ),
                 ),
@@ -227,7 +192,6 @@ class _CourseScreenState extends State<CourseScreen> {
                     itemCount: state.courseList.length,
                     itemBuilder: (context, index) {
                       final concreteCourse = state.courseList[index];
-
                       return GestureDetector(
                         onTap: () => context.push(
                           '/course_details/${concreteCourse.documentId}',

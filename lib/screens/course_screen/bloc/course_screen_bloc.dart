@@ -17,6 +17,7 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     on<GetSearchedByTextCoursesEvent>(_getSearchedCourses);
     on<EnterTextOnCourseScreenEvent>(_onEnterText);
     on<SelectCategoryOnCoursesEvent>(_onSelectCategory);
+    on<SelectFilterOnCourseScreenEvent>(_onSelectFilter);
   }
 
   Future<void> _loadCourseList(
@@ -77,6 +78,17 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     emit(
       state.copyWith(
         courseList: chosenCategory.courseVideoItems,
+      ),
+    );
+  }
+
+  void _onSelectFilter(
+    SelectFilterOnCourseScreenEvent event,
+    Emitter<CourseScreenState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        selectedCourseFilter: event.filter,
       ),
     );
   }

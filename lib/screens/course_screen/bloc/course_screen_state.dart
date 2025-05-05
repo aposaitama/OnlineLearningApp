@@ -18,6 +18,6 @@ class CourseScreenState with _$CourseScreenState {
     @Default([]) List<CategoriesModel> categoriesList,
     @Default(CourseScreenStatus.initial) CourseScreenStatus loadingStatus,
     String? enteredText,
-    // @Default([]) List<CategoriesModel> categories,
+    @Default('All') String selectedCourseFilter,
   }) = _CourseScreenState;
 }

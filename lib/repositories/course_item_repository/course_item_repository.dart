@@ -83,4 +83,8 @@ class CourseItemRepository {
       throw Exception(e);
     }
   }
+
+  Future<void> getCoursesOnCourseScreen() async {
+
+  }
 }

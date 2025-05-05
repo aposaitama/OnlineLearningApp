@@ -16,4 +16,8 @@ class CourseScreenEvent with _$CourseScreenEvent {
   const factory CourseScreenEvent.selectCategory({
     required int categoryId,
   }) = SelectCategoryOnCoursesEvent;
+
+  const factory CourseScreenEvent.selectFilter({
+    required String filter,
+}) = SelectFilterOnCourseScreenEvent;
 }
