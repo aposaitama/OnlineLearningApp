@@ -47,6 +47,7 @@ void main() async {
         BlocProvider(
           create: (context) => CourseScreenBloc(
             categoryRepository: context.read<CategoryRepository>(),
+            courseItemRepository: context.read<CourseItemRepository>(),
           ),
         ),
         BlocProvider(

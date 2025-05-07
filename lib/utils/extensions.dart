@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +7,7 @@ extension SecToHoursExtension on int {
   }
 }
 
-extension ResponseExtension on Response {
+extension ResponseExtension on Response{
   bool get isSuccess => statusCode == 200;
 }
 

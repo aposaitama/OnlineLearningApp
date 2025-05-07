@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-const List<String> filterCategories = [
-  'Design',
-  'Painting',
-  'Coding',
-  'Music',
-  'Visual identity',
-  'Mathematics',
+const List<String> filtersOnCourseScreen = [
+  'All',
+  'Popular',
+  'New',
 ];
 
 const List<RangeValues> filterDurations = [

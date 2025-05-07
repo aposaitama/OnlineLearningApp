@@ -20,5 +20,6 @@ class SearchScreenState with _$SearchScreenState {
     @Default(1) int page,
     @Default(10) int pageSize,
     @Default(false) bool hasReachedEnd,
+    @Default(false) bool isLoadingNext,
 }) = _SearchScreenState;
 }

@@ -10,6 +10,7 @@ class SearchScreenEvent with _$SearchScreenEvent {
     required List<CategoriesModel> categories,
     required List<RangeValues> durations,
     required RangeValues priceRange,
+    required bool refresh,
   }) = GetSearchedCoursesEvent;
 
   const factory SearchScreenEvent.enterText({
@@ -17,10 +18,4 @@ class SearchScreenEvent with _$SearchScreenEvent {
   }) = EnterSearchTextEvent;
 
   const factory SearchScreenEvent.clearState() = ClearSearchStateEvent;
-
-  const factory SearchScreenEvent.loadNextCourses({
-    required List<CategoriesModel> categories,
-    required List<RangeValues> durations,
-    required RangeValues priceRange,
-}) = LoadNextSearchedCourses;
 }
