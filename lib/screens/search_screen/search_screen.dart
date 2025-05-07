@@ -50,6 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
         categories: filterState.selectedCategories,
         durations: filterState.selectedDurations,
         priceRange: filterState.priceRange,
+        refresh: true,
       ),
     );
   }
@@ -81,6 +82,8 @@ class _SearchScreenState extends State<SearchScreen> {
             category: category,
           ),
         );
+
+    _getSearchedCourses();
   }
 
   Future<void> _onChangeSubmitSearch(

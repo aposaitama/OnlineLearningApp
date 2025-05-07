@@ -4,7 +4,9 @@ part 'course_screen_event.freezed.dart';
 
 @freezed
 class CourseScreenEvent with _$CourseScreenEvent {
-  const factory CourseScreenEvent.loadCourseList() = LoadCourseBasicInfoEvent;
+  const factory CourseScreenEvent.loadCourseList({
+    required bool refresh,
+}) = LoadCourseBasicInfoEvent;
 
   const factory CourseScreenEvent.getCoursesByText() =
       GetSearchedByTextCoursesEvent;
@@ -20,6 +22,4 @@ class CourseScreenEvent with _$CourseScreenEvent {
   const factory CourseScreenEvent.selectFilter({
     required String filter,
 }) = SelectFilterOnCourseScreenEvent;
-
-  const factory CourseScreenEvent.loadNextCourseList() = LoadNextCourseListEvent;
 }

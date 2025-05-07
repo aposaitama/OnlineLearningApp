@@ -58,6 +58,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                     categories: filterState.selectedCategories,
                     durations: filterState.selectedDurations,
                     priceRange: filterState.priceRange,
+                    refresh: true,
                   ),
                 );
             bottomSheetContext.pop();

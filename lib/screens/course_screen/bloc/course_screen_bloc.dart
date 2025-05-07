@@ -20,63 +20,49 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     on<EnterTextOnCourseScreenEvent>(_onEnterText);
     on<SelectCategoryOnCoursesEvent>(_onSelectCategory);
     on<SelectFilterOnCourseScreenEvent>(_onSelectFilter);
-    on<LoadNextCourseListEvent>(_loadNext);
   }
 
   Future<void> _loadCourseList(
-    LoadCourseBasicInfoEvent event,
-    Emitter<CourseScreenState> emit,
-  ) async {
-    final courseItems = await courseItemRepository.getCoursesOnCourseScreen(
-      filter: state.selectedCourseFilter,
-      page: 1,
-      pageSize: state.pageSize,
-    );
+      LoadCourseBasicInfoEvent event,
+      Emitter<CourseScreenState> emit,
+      ) async {
+    if (state.isLoadingNext && !event.refresh) return;
 
-    final categories = await categoryRepository.getCategories();
+    final isFirstLoad = event.refresh;
 
-    emit(
-      state.copyWith(
-        loadingStatus: CourseScreenStatus.loaded,
-        courseList: courseItems,
-        categoriesList: categories,
-      ),
-    );
-  }
+    if (!isFirstLoad) {
+      emit(state.copyWith(isLoadingNext: true));
+    }
 
-  Future<void> _loadNext(
-    LoadNextCourseListEvent event,
-    Emitter<CourseScreenState> emit,
-  ) async {
     try {
-      final nextPage = state.page + 1;
+      final nextPage = isFirstLoad ? 1 : state.page + 1;
 
-      final moreCourses = await courseItemRepository.getCoursesOnCourseScreen(
+      final newCourses = await courseItemRepository.getCoursesOnCourseScreen(
         filter: state.selectedCourseFilter,
         page: nextPage,
         pageSize: state.pageSize,
       );
 
-      final combinedCourses = [
-        ...state.courseList,
-        ...moreCourses,
-      ];
+      final combinedCourses = isFirstLoad
+          ? newCourses
+          : [...state.courseList, ...newCourses];
 
-      final uniqueCourses = {
-        for (var course in combinedCourses) course.id: course,
-      }.values.toList();
+      final reachedEnd = newCourses.length < state.pageSize;
 
-      final reachedEnd = uniqueCourses.length == state.courseList.length;
+      final categories = isFirstLoad
+          ? await categoryRepository.getCategories()
+          : state.categoriesList;
 
-      emit(
-        state.copyWith(
-          courseList: uniqueCourses,
-          page: nextPage,
-          loadingStatus: CourseScreenStatus.loaded,
-          hasReachedEnd: reachedEnd,
-        ),
-      );
+      emit(state.copyWith(
+        loadingStatus: CourseScreenStatus.loaded,
+        courseList: combinedCourses,
+        categoriesList: categories,
+        page: nextPage,
+        isLoadingNext: false,
+        hasReachedEnd: reachedEnd,
+      ));
     } catch (e) {
+      emit(state.copyWith(isLoadingNext: false));
       rethrow;
     }
   }
@@ -138,7 +124,9 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
     );
 
     add(
-      const LoadCourseBasicInfoEvent(),
+      const LoadCourseBasicInfoEvent(
+        refresh: true,
+      ),
     );
   }
 }

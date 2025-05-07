@@ -274,8 +274,6 @@ class StrapiApiService {
     }
   }
 
-  ///
-
   Future<bool> purchaseCourse(String courseID) async {
     try {
       final userModel = await getUser();
