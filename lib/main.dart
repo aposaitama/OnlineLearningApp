@@ -1,8 +1,10 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/firebase_options.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
@@ -22,6 +24,9 @@ import 'bloc/filters_bloc/filters_bloc.dart';
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await setupLocator();
   runApp(
     MultiBlocProvider(
