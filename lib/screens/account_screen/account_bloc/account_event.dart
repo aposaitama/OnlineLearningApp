@@ -9,4 +9,10 @@ class AccountEvent with _$AccountEvent{
   const factory AccountEvent.pickNewImage() = PickNewAvatarEvent;
 
   const factory AccountEvent.editUserData() = EditUserDataEvent;
+
+  const factory AccountEvent.enterNewUsername(
+      String? newUsername,
+      ) = EnterNewUsernameEvent;
+
+  const factory AccountEvent.clearState() = ClearAccountStateEvent;
 }

@@ -9,5 +9,6 @@ class AccountState with _$AccountState {
   factory AccountState({
     UserModel? userData,
     String? newAvatarPath,
+    String? newUsername,
   }) = _AccountState;
 }

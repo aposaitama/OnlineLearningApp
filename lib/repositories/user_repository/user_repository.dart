@@ -45,10 +45,6 @@ class UserRepository {
           );
 
   Future<UserModel?> getUserData() async {
-    final token = await StrapiApiService().getToken();
-
-    if (token == null) return null;
-
     final userId = await _sharedPreferencesService.getUserId();
 
     try {
@@ -113,10 +109,21 @@ class UserRepository {
 
   Future<void> editUserData({
     required String? avatarPath,
+    required String? username,
   }) async {
     try {
       final userId = await _sharedPreferencesService.getUserId();
       var formData = FormData();
+
+      final body =
+      {
+        if (username != null) 'username': username,
+      };
+
+      final response = await _dio.put(
+        '/users/$userId',
+        data: body,
+      );
 
       if (avatarPath != null) {
         formData = FormData.fromMap(
@@ -132,7 +139,7 @@ class UserRepository {
         );
 
         await _dio.post(
-          'upload',
+          '/upload',
           data: formData,
         );
       }

@@ -33,15 +33,16 @@ class EditAvatar extends StatelessWidget {
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(Colors.black.withValues(alpha: 0.4), BlendMode.darken),
                     ),
                   ),
                   child: const Icon(
                     Icons.camera_alt_outlined,
-                    color: AppColors.grayProgressColor,
+                    color: AppColors.lightGreyColor,
                     size: 40.0,
                   ),
                 ),
-                imageUrl: state.newAvatarPath!,
+                imageUrl: state.userData!.avatar!,
               );
       },
     );

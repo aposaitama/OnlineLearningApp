@@ -18,18 +18,32 @@ class EditAccountScreen extends StatelessWidget {
   const EditAccountScreen({super.key});
 
   void _back(BuildContext context) {
+    context.read<AccountBloc>().add(
+          const ClearAccountStateEvent(),
+        );
+
     context.pop();
   }
 
   void _pickNewAvatar(BuildContext context) {
     context.read<AccountBloc>().add(
-          PickNewAvatarEvent(),
+          const PickNewAvatarEvent(),
         );
   }
 
   void _editUserData(BuildContext context) {
     context.read<AccountBloc>().add(
           const EditUserDataEvent(),
+        );
+
+    context.pop();
+  }
+
+  void _onEnterUsername(BuildContext context, String value) {
+    context.read<AccountBloc>().add(
+          EnterNewUsernameEvent(
+            value,
+          ),
         );
   }
 
@@ -65,31 +79,35 @@ class EditAccountScreen extends StatelessWidget {
           )
         ],
       ),
-      body: BlocBuilder<AccountBloc, AccountState>(builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () => _pickNewAvatar(context),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
+      body: BlocBuilder<AccountBloc, AccountState>(
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () => _pickNewAvatar(context),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: state.userData!.avatar == null ||
+                            state.userData!.avatar!.isEmpty
+                        ? const ImagePlaceholder()
+                        : const EditAvatar(),
                   ),
-                  child: state.userData!.avatar == null ||
-                          state.userData!.avatar!.isEmpty
-                      ? const ImagePlaceholder()
-                      : const EditAvatar(),
                 ),
-              ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              const EditAccountTextField(),
-            ],
-          ),
-        );
-      }),
+                const SizedBox(
+                  height: 24.0,
+                ),
+                EditAccountTextField(
+                  onChanged: (value) => _onEnterUsername(context, value),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -17,6 +17,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<GetUserDataEvent>(_getUserData);
     on<PickNewAvatarEvent>(_onPickImage);
     on<EditUserDataEvent>(_onEditUserData);
+    on<EnterNewUsernameEvent>(_enterUsername);
+    on<ClearAccountStateEvent>(_clearState);
   }
 
   Future<void> _getUserData(
@@ -73,7 +75,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     try {
-      await userRepository.editUserData(avatarPath: state.newAvatarPath);
+      await userRepository.editUserData(
+        avatarPath: state.newAvatarPath,
+        username: state.newUsername,
+      );
 
       add(
         const GetUserDataEvent(),
@@ -81,5 +86,28 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     } catch (e) {
       rethrow;
     }
+  }
+
+  void _enterUsername(
+    EnterNewUsernameEvent event,
+    Emitter<AccountState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        newUsername: event.newUsername,
+      ),
+    );
+  }
+
+  void _clearState(
+    ClearAccountStateEvent event,
+    Emitter<AccountState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        newUsername: null,
+        newAvatarPath: null,
+      ),
+    );
   }
 }

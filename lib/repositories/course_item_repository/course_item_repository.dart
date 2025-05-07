@@ -7,7 +7,7 @@ import 'package:online_app/utils/extensions.dart';
 
 class CourseItemRepository {
   static final CourseItemRepository _instance =
-      CourseItemRepository._internal();
+  CourseItemRepository._internal();
 
   factory CourseItemRepository() => _instance;
 
@@ -39,7 +39,7 @@ class CourseItemRepository {
 
       if (selectedCategories.isNotEmpty) {
         final List<int> categoriesId =
-            selectedCategories.map((category) => category.id).toList();
+        selectedCategories.map((category) => category.id).toList();
 
         queryParameters['filters[category][id][\$in]'] = categoriesId;
       }
@@ -48,7 +48,7 @@ class CourseItemRepository {
         final durationsIntSec = selectedDurations
             .map(
               (range) => RangeValues(range.start * 3600, range.end * 3600),
-            )
+        )
             .toList();
 
         final List<Map<String, dynamic>> durationFilters = [];
@@ -74,7 +74,7 @@ class CourseItemRepository {
         return (response.data['data'] as List)
             .map(
               (json) => CourseBasicModel.fromJson(json),
-            )
+        )
             .toList();
       } else {
         return [];

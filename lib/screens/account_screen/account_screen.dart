@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,14 +56,14 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
       ),
       body: BlocConsumer<AccountBloc, AccountState>(
-        listener: (context, state){
-          if(state.userData != null){
-            _getUserData();
+        listener: (context, state) {
+          if (state.userData != null) {
+            // _getUserData()ж
           }
         },
         builder: (context, state) {
           if (state.userData == null) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else {
             return Padding(
               padding: const EdgeInsets.only(left: 20.0),
@@ -72,15 +73,20 @@ class _AccountScreenState extends State<AccountScreen> {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: state.userData!.avatar == null || state.userData!.avatar == ''
+                    child: state.userData!.avatar == null ||
+                            state.userData!.avatar == ''
                         ? SvgPicture.asset(
                             Assets.icons.avatar,
                             fit: BoxFit.contain,
                           )
-                        : SvgPicture.asset(
-                            state.userData!.avatar!,
-                            fit: BoxFit.contain,
+                        : ClipOval(
+                          child: CachedNetworkImage(
+                            imageUrl: state.userData!.avatar!,
+                            fit: BoxFit.cover,
+                            width: 89.0,
+                            height: 89.0,
                           ),
+                        ),
                   ),
                   AccountListItem(
                     title: 'Favourite',
