@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
 
@@ -71,7 +72,7 @@ class MeetupWidget extends StatelessWidget {
             ),
             child: SvgPicture.asset(
               fit: BoxFit.scaleDown,
-              'assets/icons/Meetup_icon.svg',
+              Assets.icons.meetupIcon,
             ),
           ),
         ],

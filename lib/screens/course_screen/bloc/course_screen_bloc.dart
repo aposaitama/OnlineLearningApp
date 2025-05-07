@@ -1,13 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
+
 import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
+
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   final strapiApiService = locator<StrapiApiService>();
+  final courseRepo = locator<CourseRepository>();
   final CategoryRepository categoryRepository;
   final CourseItemRepository courseItemRepository;
 
@@ -23,6 +26,7 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   }
 
   Future<void> _loadCourseList(
+
       LoadCourseBasicInfoEvent event,
       Emitter<CourseScreenState> emit,
       ) async {
@@ -54,6 +58,7 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
           : state.categoriesList;
 
       emit(state.copyWith(
+
         loadingStatus: CourseScreenStatus.loaded,
         courseList: combinedCourses,
         categoriesList: categories,

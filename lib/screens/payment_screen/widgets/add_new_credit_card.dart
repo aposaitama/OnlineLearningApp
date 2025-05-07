@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 
 class AddNewCreditCard extends StatelessWidget {
@@ -23,7 +24,7 @@ class AddNewCreditCard extends StatelessWidget {
             child: SvgPicture.asset(
               height: 50.0,
               width: 50.0,
-              'assets/icons/AddIcon.svg',
+              Assets.icons.addIcon,
               colorFilter: ColorFilter.mode(
                 Colors.white.withValues(
                   alpha: 0.3,

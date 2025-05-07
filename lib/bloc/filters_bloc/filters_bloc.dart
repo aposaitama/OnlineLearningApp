@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
-import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 
 import 'filters_event.dart';
 import 'filters_state.dart';

@@ -112,68 +112,14 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/Account.svg
-  String get account => 'assets/icons/Account.svg';
+  /// File path: assets/icons/account.svg
+  String get account => 'assets/icons/account.svg';
 
-  /// File path: assets/icons/AddIcon.svg
-  String get addIcon => 'assets/icons/AddIcon.svg';
+  /// File path: assets/icons/add_icon.svg
+  String get addIcon => 'assets/icons/add_icon.svg';
 
-  /// File path: assets/icons/ArrowBack.svg
-  String get arrowBack => 'assets/icons/ArrowBack.svg';
-
-  /// File path: assets/icons/Course.svg
-  String get course => 'assets/icons/Course.svg';
-
-  /// File path: assets/icons/DateTime.svg
-  String get dateTime => 'assets/icons/DateTime.svg';
-
-  /// File path: assets/icons/Filter.svg
-  String get filter => 'assets/icons/Filter.svg';
-
-  /// File path: assets/icons/FullScreen.svg
-  String get fullScreen => 'assets/icons/FullScreen.svg';
-
-  /// File path: assets/icons/Hide.svg
-  String get hide => 'assets/icons/Hide.svg';
-
-  /// File path: assets/icons/Home.svg
-  String get home => 'assets/icons/Home.svg';
-
-  /// File path: assets/icons/LinkPhone.svg
-  String get linkPhone => 'assets/icons/LinkPhone.svg';
-
-  /// File path: assets/icons/Meetup_icon.svg
-  String get meetupIcon => 'assets/icons/Meetup_icon.svg';
-
-  /// File path: assets/icons/Message.svg
-  String get message => 'assets/icons/Message.svg';
-
-  /// File path: assets/icons/Pause.svg
-  String get pause => 'assets/icons/Pause.svg';
-
-  /// File path: assets/icons/Polygon.svg
-  String get polygon => 'assets/icons/Polygon.svg';
-
-  /// File path: assets/icons/PolygonBig.svg
-  String get polygonBig => 'assets/icons/PolygonBig.svg';
-
-  /// File path: assets/icons/Search.svg
-  String get search => 'assets/icons/Search.svg';
-
-  /// File path: assets/icons/Star.svg
-  String get star => 'assets/icons/Star.svg';
-
-  /// File path: assets/icons/Success.svg
-  String get success => 'assets/icons/Success.svg';
-
-  /// File path: assets/icons/SuccessfullPayment.svg
-  String get successfullPayment => 'assets/icons/SuccessfullPayment.svg';
-
-  /// File path: assets/icons/Union.svg
-  String get union => 'assets/icons/Union.svg';
-
-  /// File path: assets/icons/UserImage.svg
-  String get userImage => 'assets/icons/UserImage.svg';
+  /// File path: assets/icons/arrow_back.svg
+  String get arrowBack => 'assets/icons/arrow_back.svg';
 
   /// File path: assets/icons/avatar.svg
   String get avatar => 'assets/icons/avatar.svg';
@@ -184,27 +130,87 @@ class $AssetsIconsGen {
   /// File path: assets/icons/close.svg
   String get close => 'assets/icons/close.svg';
 
+  /// File path: assets/icons/course.svg
+  String get course => 'assets/icons/course.svg';
+
+  /// File path: assets/icons/date_time.svg
+  String get dateTime => 'assets/icons/date_time.svg';
+
   /// File path: assets/icons/favourite_filled.svg
   String get favouriteFilled => 'assets/icons/favourite_filled.svg';
+
+  /// File path: assets/icons/filter.svg
+  String get filter => 'assets/icons/filter.svg';
+
+  /// File path: assets/icons/full_screen.svg
+  String get fullScreen => 'assets/icons/full_screen.svg';
+
+  /// File path: assets/icons/hide.svg
+  String get hide => 'assets/icons/hide.svg';
+
+  /// File path: assets/icons/home.svg
+  String get home => 'assets/icons/home.svg';
 
   /// File path: assets/icons/icon_done.svg
   String get iconDone => 'assets/icons/icon_done.svg';
 
+  /// File path: assets/icons/link_phone.svg
+  String get linkPhone => 'assets/icons/link_phone.svg';
+
   /// File path: assets/icons/lock_icon.svg
   String get lockIcon => 'assets/icons/lock_icon.svg';
+
+  /// File path: assets/icons/meetup_icon.svg
+  String get meetupIcon => 'assets/icons/meetup_icon.svg';
+
+  /// File path: assets/icons/message.svg
+  String get message => 'assets/icons/message.svg';
+
+  /// File path: assets/icons/pause.svg
+  String get pause => 'assets/icons/pause.svg';
+
+  /// File path: assets/icons/polygon.svg
+  String get polygon => 'assets/icons/polygon.svg';
+
+  /// File path: assets/icons/polygon_big.svg
+  String get polygonBig => 'assets/icons/polygon_big.svg';
+
+  /// File path: assets/icons/search.svg
+  String get search => 'assets/icons/search.svg';
+
+  /// File path: assets/icons/star.svg
+  String get star => 'assets/icons/star.svg';
+
+  /// File path: assets/icons/success.svg
+  String get success => 'assets/icons/success.svg';
+
+  /// File path: assets/icons/successfull_payment.svg
+  String get successfullPayment => 'assets/icons/successfull_payment.svg';
+
+  /// File path: assets/icons/union.svg
+  String get union => 'assets/icons/union.svg';
+
+  /// File path: assets/icons/user_image.svg
+  String get userImage => 'assets/icons/user_image.svg';
 
   /// List of all assets
   List<String> get values => [
     account,
     addIcon,
     arrowBack,
+    avatar,
+    clearText,
+    close,
     course,
     dateTime,
+    favouriteFilled,
     filter,
     fullScreen,
     hide,
     home,
+    iconDone,
     linkPhone,
+    lockIcon,
     meetupIcon,
     message,
     pause,
@@ -216,12 +222,6 @@ class $AssetsIconsGen {
     successfullPayment,
     union,
     userImage,
-    avatar,
-    clearText,
-    close,
-    favouriteFilled,
-    iconDone,
-    lockIcon,
   ];
 }
 

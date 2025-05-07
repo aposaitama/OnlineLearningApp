@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 
@@ -33,7 +34,7 @@ class SearchModalSheet extends StatelessWidget {
                 GestureDetector(
                   onTap: () => context.pop(),
                   child: SvgPicture.asset(
-                    'assets/icons/close.svg',
+                    Assets.icons.close,
                     colorFilter: ColorFilter.mode(
                       Theme.of(context)
                           .extension<AppColorsModel>()!

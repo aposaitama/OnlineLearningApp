@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -112,7 +113,7 @@ class CourseItemStat extends StatelessWidget {
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                        'assets/icons/Polygon.svg',
+                        Assets.icons.polygon,
                       ),
                     ),
                   ),

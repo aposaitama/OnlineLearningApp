@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:online_app/resources/app_colors_model.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
@@ -33,40 +36,57 @@ class _EnterCvvCodeSheetState extends State<EnterCvvCodeSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PaymentBloc, PaymentBlocState>(
-      builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              20.0,
-            ),
-            color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
+    return BlocListener<PaymentBloc, PaymentBlocState>(
+      listener: (context, state) {
+        if (state.paymentStatus == PaymentStatus.success) {
+          context.pop();
+          context.read<HomeScreenBloc>().add(
+                const LoadUserHomeScreenBlocEvent(),
+              );
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            20.0,
           ),
-          height: MediaQuery.of(context).size.height / 1.4,
+          color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
+        ),
+        height: MediaQuery.of(context).size.height / 1.4,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 40.0,
+          ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomTextField(
                 controller: cvvController,
                 title: 'Enter cvv code',
                 hint: '',
               ),
-              CustomFilledButton(
-                onTap: () => context.read<PaymentBloc>().add(
-                      PurchaseCourseEvent(
-                        widget.cardNumber,
-                        widget.expMonth,
-                        widget.expYear,
-                        cvvController.text,
-                        widget.courseID,
-                        widget.summ,
-                      ),
-                    ),
-                buttonTitle: 'Purchase Course',
+              BlocBuilder<PaymentBloc, PaymentBlocState>(
+                builder: (context, state) {
+                  return CustomFilledButton(
+                    onTap: () => context.read<PaymentBloc>().add(
+                          PurchaseCourseEvent(
+                            widget.cardNumber,
+                            widget.expMonth,
+                            widget.expYear,
+                            cvvController.text,
+                            widget.courseID,
+                            widget.summ,
+                          ),
+                        ),
+                    buttonTitle: 'Purchase Course',
+                  );
+                },
               )
             ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
