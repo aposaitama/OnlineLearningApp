@@ -18,6 +18,10 @@ class CourseScreenState with _$CourseScreenState {
     @Default([]) List<CategoriesModel> categoriesList,
     @Default(CourseScreenStatus.initial) CourseScreenStatus loadingStatus,
     String? enteredText,
-    // @Default([]) List<CategoriesModel> categories,
+    @Default('All') String selectedCourseFilter,
+    @Default(1) int page,
+    @Default(10) int pageSize,
+    @Default(false) bool hasReachedEnd,
+    @Default(false) bool isLoadingNext,
   }) = _CourseScreenState;
 }

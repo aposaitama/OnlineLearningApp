@@ -38,10 +38,11 @@ class _SearchedCoursesBuilderState extends State<SearchedCoursesBuilder> {
       if (_scrollController.position.pixels >
           _scrollController.position.maxScrollExtent - 200) {
         context.read<SearchScreenBloc>().add(
-              LoadNextSearchedCourses(
+              GetSearchedCoursesEvent(
                 categories: filtersState.selectedCategories,
                 durations: filtersState.selectedDurations,
                 priceRange: filtersState.priceRange,
+                refresh: false,
               ),
             );
       }

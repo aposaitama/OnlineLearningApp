@@ -83,4 +83,40 @@ class CourseItemRepository {
       throw Exception(e);
     }
   }
+
+  Future<List<CourseBasicModel>> getCoursesOnCourseScreen({
+    required String filter,
+    required int page,
+    required int pageSize,
+  }) async {
+    try {
+      final queryParameters = {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize,
+      };
+      if (filter == 'Popular') {
+      } else if (filter == 'New') {
+        queryParameters['sort'] = 'publishedAt:desc';
+      }
+
+      final response = await _dio.get(
+        '/course-items',
+        queryParameters: queryParameters,
+      );
+
+      if (response.isSuccess) {
+        return (response.data['data'] as List)
+            .map(
+              (json) => CourseBasicModel.fromJson(json),
+            )
+            .toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

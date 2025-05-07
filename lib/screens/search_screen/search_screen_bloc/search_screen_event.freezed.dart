@@ -19,7 +19,7 @@ mixin _$SearchScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)
         loadSearchedCourses,
     required TResult Function(String? enteredText) enterText,
     required TResult Function() clearState,
@@ -31,7 +31,7 @@ mixin _$SearchScreenEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function()? clearState,
@@ -43,7 +43,7 @@ mixin _$SearchScreenEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult Function(String? enteredText)? enterText,
     TResult Function()? clearState,
@@ -112,7 +112,8 @@ abstract class _$$GetSearchedCoursesEventImplCopyWith<$Res> {
   $Res call(
       {List<CategoriesModel> categories,
       List<RangeValues> durations,
-      RangeValues priceRange});
+      RangeValues priceRange,
+      bool refresh});
 }
 
 /// @nodoc
@@ -132,6 +133,7 @@ class __$$GetSearchedCoursesEventImplCopyWithImpl<$Res>
     Object? categories = null,
     Object? durations = null,
     Object? priceRange = null,
+    Object? refresh = null,
   }) {
     return _then(_$GetSearchedCoursesEventImpl(
       categories: null == categories
@@ -146,6 +148,10 @@ class __$$GetSearchedCoursesEventImplCopyWithImpl<$Res>
           ? _value.priceRange
           : priceRange // ignore: cast_nullable_to_non_nullable
               as RangeValues,
+      refresh: null == refresh
+          ? _value.refresh
+          : refresh // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -156,7 +162,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
   _$GetSearchedCoursesEventImpl(
       {required final List<CategoriesModel> categories,
       required final List<RangeValues> durations,
-      required this.priceRange})
+      required this.priceRange,
+      required this.refresh})
       : _categories = categories,
         _durations = durations;
 
@@ -178,10 +185,12 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
 
   @override
   final RangeValues priceRange;
+  @override
+  final bool refresh;
 
   @override
   String toString() {
-    return 'SearchScreenEvent.loadSearchedCourses(categories: $categories, durations: $durations, priceRange: $priceRange)';
+    return 'SearchScreenEvent.loadSearchedCourses(categories: $categories, durations: $durations, priceRange: $priceRange, refresh: $refresh)';
   }
 
   @override
@@ -194,7 +203,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
             const DeepCollectionEquality()
                 .equals(other._durations, _durations) &&
             (identical(other.priceRange, priceRange) ||
-                other.priceRange == priceRange));
+                other.priceRange == priceRange) &&
+            (identical(other.refresh, refresh) || other.refresh == refresh));
   }
 
   @override
@@ -202,7 +212,8 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
       runtimeType,
       const DeepCollectionEquality().hash(_categories),
       const DeepCollectionEquality().hash(_durations),
-      priceRange);
+      priceRange,
+      refresh);
 
   /// Create a copy of SearchScreenEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -217,7 +228,7 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)
         loadSearchedCourses,
     required TResult Function(String? enteredText) enterText,
     required TResult Function() clearState,
@@ -225,14 +236,14 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
             List<RangeValues> durations, RangeValues priceRange)
         loadNextCourses,
   }) {
-    return loadSearchedCourses(categories, durations, priceRange);
+    return loadSearchedCourses(categories, durations, priceRange, refresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function()? clearState,
@@ -240,14 +251,15 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
             List<RangeValues> durations, RangeValues priceRange)?
         loadNextCourses,
   }) {
-    return loadSearchedCourses?.call(categories, durations, priceRange);
+    return loadSearchedCourses?.call(
+        categories, durations, priceRange, refresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult Function(String? enteredText)? enterText,
     TResult Function()? clearState,
@@ -257,7 +269,7 @@ class _$GetSearchedCoursesEventImpl implements GetSearchedCoursesEvent {
     required TResult orElse(),
   }) {
     if (loadSearchedCourses != null) {
-      return loadSearchedCourses(categories, durations, priceRange);
+      return loadSearchedCourses(categories, durations, priceRange, refresh);
     }
     return orElse();
   }
@@ -305,11 +317,13 @@ abstract class GetSearchedCoursesEvent implements SearchScreenEvent {
   factory GetSearchedCoursesEvent(
       {required final List<CategoriesModel> categories,
       required final List<RangeValues> durations,
-      required final RangeValues priceRange}) = _$GetSearchedCoursesEventImpl;
+      required final RangeValues priceRange,
+      required final bool refresh}) = _$GetSearchedCoursesEventImpl;
 
   List<CategoriesModel> get categories;
   List<RangeValues> get durations;
   RangeValues get priceRange;
+  bool get refresh;
 
   /// Create a copy of SearchScreenEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -390,7 +404,7 @@ class _$EnterSearchTextEventImpl implements EnterSearchTextEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)
         loadSearchedCourses,
     required TResult Function(String? enteredText) enterText,
     required TResult Function() clearState,
@@ -405,7 +419,7 @@ class _$EnterSearchTextEventImpl implements EnterSearchTextEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function()? clearState,
@@ -420,7 +434,7 @@ class _$EnterSearchTextEventImpl implements EnterSearchTextEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult Function(String? enteredText)? enterText,
     TResult Function()? clearState,
@@ -531,7 +545,7 @@ class _$ClearSearchStateEventImpl implements ClearSearchStateEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)
         loadSearchedCourses,
     required TResult Function(String? enteredText) enterText,
     required TResult Function() clearState,
@@ -546,7 +560,7 @@ class _$ClearSearchStateEventImpl implements ClearSearchStateEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function()? clearState,
@@ -561,7 +575,7 @@ class _$ClearSearchStateEventImpl implements ClearSearchStateEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult Function(String? enteredText)? enterText,
     TResult Function()? clearState,
@@ -734,7 +748,7 @@ class _$LoadNextSearchedCoursesImpl implements LoadNextSearchedCourses {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)
         loadSearchedCourses,
     required TResult Function(String? enteredText) enterText,
     required TResult Function() clearState,
@@ -749,7 +763,7 @@ class _$LoadNextSearchedCoursesImpl implements LoadNextSearchedCourses {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult? Function(String? enteredText)? enterText,
     TResult? Function()? clearState,
@@ -764,7 +778,7 @@ class _$LoadNextSearchedCoursesImpl implements LoadNextSearchedCourses {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<CategoriesModel> categories,
-            List<RangeValues> durations, RangeValues priceRange)?
+            List<RangeValues> durations, RangeValues priceRange, bool refresh)?
         loadSearchedCourses,
     TResult Function(String? enteredText)? enterText,
     TResult Function()? clearState,
