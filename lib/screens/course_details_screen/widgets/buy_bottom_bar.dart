@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
@@ -59,8 +60,8 @@ class BuyBottomBar extends StatelessWidget {
                       onTap: onToogleFavourite,
                       child: SvgPicture.asset(
                         state.isInFavourite
-                            ? 'assets/icons/favourite_filled.svg'
-                            : 'assets/icons/Star.svg',
+                            ? Assets.icons.favouriteFilled
+                            : Assets.icons.star,
                       ),
                     ),
                   ),

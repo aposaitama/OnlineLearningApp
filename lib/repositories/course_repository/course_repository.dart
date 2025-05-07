@@ -116,11 +116,11 @@ class CourseRepository {
     }
   }
 
-  Future<void> completeVideo(String videoID) async {
+  Future<bool> completeVideo(String videoID) async {
     try {
       final userModel = await userRepo.getUserData();
       final int userID = userModel?.id ?? 0;
-      await dio.put(
+      final response = await dio.put(
         '/users/$userID',
         data: {
           'completed_course_videos': {
@@ -128,6 +128,13 @@ class CourseRepository {
           }
         },
       );
-    } catch (e) {}
+      if (response.data != null) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
 }

@@ -21,6 +21,8 @@ mixin _$CourseDetailsState {
       throw _privateConstructorUsedError;
   CourseLoadingVideoStatus get videoLoadingStatus =>
       throw _privateConstructorUsedError;
+  CourseVideoStatus get videoWatchingStatus =>
+      throw _privateConstructorUsedError;
   bool get isFullScreen => throw _privateConstructorUsedError;
   bool get isInFavourite => throw _privateConstructorUsedError;
   String get videoPlayingId => throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ abstract class $CourseDetailsStateCopyWith<$Res> {
       {CourseConcreteModel? course,
       CourseDetailsLoadingStatus loadingStatus,
       CourseLoadingVideoStatus videoLoadingStatus,
+      CourseVideoStatus videoWatchingStatus,
       bool isFullScreen,
       bool isInFavourite,
       String videoPlayingId,
@@ -69,6 +72,7 @@ class _$CourseDetailsStateCopyWithImpl<$Res, $Val extends CourseDetailsState>
     Object? course = freezed,
     Object? loadingStatus = null,
     Object? videoLoadingStatus = null,
+    Object? videoWatchingStatus = null,
     Object? isFullScreen = null,
     Object? isInFavourite = null,
     Object? videoPlayingId = null,
@@ -87,6 +91,10 @@ class _$CourseDetailsStateCopyWithImpl<$Res, $Val extends CourseDetailsState>
           ? _value.videoLoadingStatus
           : videoLoadingStatus // ignore: cast_nullable_to_non_nullable
               as CourseLoadingVideoStatus,
+      videoWatchingStatus: null == videoWatchingStatus
+          ? _value.videoWatchingStatus
+          : videoWatchingStatus // ignore: cast_nullable_to_non_nullable
+              as CourseVideoStatus,
       isFullScreen: null == isFullScreen
           ? _value.isFullScreen
           : isFullScreen // ignore: cast_nullable_to_non_nullable
@@ -133,6 +141,7 @@ abstract class _$$CourseDetailsStateImplCopyWith<$Res>
       {CourseConcreteModel? course,
       CourseDetailsLoadingStatus loadingStatus,
       CourseLoadingVideoStatus videoLoadingStatus,
+      CourseVideoStatus videoWatchingStatus,
       bool isFullScreen,
       bool isInFavourite,
       String videoPlayingId,
@@ -158,6 +167,7 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
     Object? course = freezed,
     Object? loadingStatus = null,
     Object? videoLoadingStatus = null,
+    Object? videoWatchingStatus = null,
     Object? isFullScreen = null,
     Object? isInFavourite = null,
     Object? videoPlayingId = null,
@@ -176,6 +186,10 @@ class __$$CourseDetailsStateImplCopyWithImpl<$Res>
           ? _value.videoLoadingStatus
           : videoLoadingStatus // ignore: cast_nullable_to_non_nullable
               as CourseLoadingVideoStatus,
+      videoWatchingStatus: null == videoWatchingStatus
+          ? _value.videoWatchingStatus
+          : videoWatchingStatus // ignore: cast_nullable_to_non_nullable
+              as CourseVideoStatus,
       isFullScreen: null == isFullScreen
           ? _value.isFullScreen
           : isFullScreen // ignore: cast_nullable_to_non_nullable
@@ -203,6 +217,7 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
       {this.course,
       this.loadingStatus = CourseDetailsLoadingStatus.initial,
       this.videoLoadingStatus = CourseLoadingVideoStatus.initial,
+      this.videoWatchingStatus = CourseVideoStatus.initial,
       this.isFullScreen = false,
       this.isInFavourite = false,
       this.videoPlayingId = '',
@@ -218,6 +233,9 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
   final CourseLoadingVideoStatus videoLoadingStatus;
   @override
   @JsonKey()
+  final CourseVideoStatus videoWatchingStatus;
+  @override
+  @JsonKey()
   final bool isFullScreen;
   @override
   @JsonKey()
@@ -230,7 +248,7 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
 
   @override
   String toString() {
-    return 'CourseDetailsState(course: $course, loadingStatus: $loadingStatus, videoLoadingStatus: $videoLoadingStatus, isFullScreen: $isFullScreen, isInFavourite: $isInFavourite, videoPlayingId: $videoPlayingId, courseVideo: $courseVideo)';
+    return 'CourseDetailsState(course: $course, loadingStatus: $loadingStatus, videoLoadingStatus: $videoLoadingStatus, videoWatchingStatus: $videoWatchingStatus, isFullScreen: $isFullScreen, isInFavourite: $isInFavourite, videoPlayingId: $videoPlayingId, courseVideo: $courseVideo)';
   }
 
   @override
@@ -243,6 +261,8 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
                 other.loadingStatus == loadingStatus) &&
             (identical(other.videoLoadingStatus, videoLoadingStatus) ||
                 other.videoLoadingStatus == videoLoadingStatus) &&
+            (identical(other.videoWatchingStatus, videoWatchingStatus) ||
+                other.videoWatchingStatus == videoWatchingStatus) &&
             (identical(other.isFullScreen, isFullScreen) ||
                 other.isFullScreen == isFullScreen) &&
             (identical(other.isInFavourite, isInFavourite) ||
@@ -259,6 +279,7 @@ class _$CourseDetailsStateImpl implements _CourseDetailsState {
       course,
       loadingStatus,
       videoLoadingStatus,
+      videoWatchingStatus,
       isFullScreen,
       isInFavourite,
       videoPlayingId,
@@ -279,6 +300,7 @@ abstract class _CourseDetailsState implements CourseDetailsState {
       {final CourseConcreteModel? course,
       final CourseDetailsLoadingStatus loadingStatus,
       final CourseLoadingVideoStatus videoLoadingStatus,
+      final CourseVideoStatus videoWatchingStatus,
       final bool isFullScreen,
       final bool isInFavourite,
       final String videoPlayingId,
@@ -290,6 +312,8 @@ abstract class _CourseDetailsState implements CourseDetailsState {
   CourseDetailsLoadingStatus get loadingStatus;
   @override
   CourseLoadingVideoStatus get videoLoadingStatus;
+  @override
+  CourseVideoStatus get videoWatchingStatus;
   @override
   bool get isFullScreen;
   @override

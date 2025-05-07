@@ -27,11 +27,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
     context.pop();
   }
 
-  //Mock data
-  final List<String> cards = [
-    // 'Card 1',
-    // 'Card 2',
-  ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    context.read<HomeScreenBloc>().add(LoadUserHomeScreenBlocEvent());
+  }
 
   void _showAddNewCreditCardBottomSheet() {
     showModalBottomSheet(
@@ -109,7 +109,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       if (state.userInfo != null) {
                         if (index < (state.userInfo?.creditCards.length ?? 0)) {
                           return Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.blueAccent,
                               borderRadius: BorderRadius.circular(20),
@@ -160,7 +162,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 selectedCard.expDate.substring(0, 2),
                                 selectedCard.expDate.substring(2, 4),
                                 widget.courseId,
-                                '70', // або введи суму вручну
+                                '70',
                               );
                             }
                           },

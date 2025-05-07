@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
@@ -21,7 +23,7 @@ class SuccessfullPaymentScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/icons/SuccessfullPayment.svg',
+              Assets.icons.successfullPayment,
             ),
             const SizedBox(
               height: 20.0,

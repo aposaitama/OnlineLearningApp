@@ -13,7 +13,6 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/categories_builder.dart';
-import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -23,7 +24,7 @@ class MyCoursesScreen extends StatelessWidget {
         leading: GestureDetector(
           onTap: () => context.pop(),
           child: SvgPicture.asset(
-            'assets/icons/ArrowBack.svg',
+            Assets.icons.arrowBack,
             fit: BoxFit.scaleDown,
             colorFilter: ColorFilter.mode(
               Theme.of(context).extension<AppColorsModel>()!.mainTextColor,

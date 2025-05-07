@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
@@ -30,7 +31,7 @@ class SuccessRegistration {
             mainAxisSize: MainAxisSize.min,
             children: [
               SvgPicture.asset(
-                'assets/icons/Success.svg',
+                Assets.icons.success,
               ),
               const SizedBox(
                 height: 19.0,
