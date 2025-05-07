@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "927278841786",
+    "project_id": "learningappnotif",
+    "storage_bucket": "learningappnotif.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927278841786:android:d595f162678f3e6c746783",
+        "android_client_info": {
+          "package_name": "com.example.online_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbjIg2aCIr8f-OrCmNWF4zZQueFyLulTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
