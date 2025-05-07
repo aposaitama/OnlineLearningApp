@@ -38,6 +38,14 @@ class _AccountScreenState extends State<AccountScreen> {
     context.push('/edit-account');
   }
 
+  void _settingsPrivacy() {
+    context.push('/settings-privacy');
+  }
+
+  void _help() {
+    context.push('/help-screen');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,13 +88,13 @@ class _AccountScreenState extends State<AccountScreen> {
                             fit: BoxFit.contain,
                           )
                         : ClipOval(
-                          child: CachedNetworkImage(
-                            imageUrl: state.userData!.avatar!,
-                            fit: BoxFit.cover,
-                            width: 89.0,
-                            height: 89.0,
+                            child: CachedNetworkImage(
+                              imageUrl: state.userData!.avatar!,
+                              fit: BoxFit.cover,
+                              width: 89.0,
+                              height: 89.0,
+                            ),
                           ),
-                        ),
                   ),
                   AccountListItem(
                     title: 'Favourite',
@@ -98,11 +106,28 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                   AccountListItem(
                     title: 'Settings and Privacy',
-                    onTap: () {},
+                    onTap: _settingsPrivacy,
                   ),
                   AccountListItem(
                     title: 'Help',
-                    onTap: () {},
+                    onTap: _help,
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(right: 10),
+                    title: Text(
+                      'Notifications',
+                      style: AppFonts.poppinsMedium.copyWith(
+                        color: Theme.of(context)
+                            .extension<AppColorsModel>()
+                            ?.mainTextColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: Switch(
+                      value: (false),
+                      onChanged: (isOn) {},
+                    ),
                   ),
                 ],
               ),
