@@ -10,7 +10,7 @@ import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 
 class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   final strapiApiService = locator<StrapiApiService>();
-  final courseRepo = locator<CourseRepository>();
+  // final courseRepo = locator<CourseRepository>();
   final CategoryRepository categoryRepository;
   final CourseItemRepository courseItemRepository;
 
