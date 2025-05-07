@@ -3,6 +3,7 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
 
 import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
+import 'package:online_app/repositories/course_repository/course_repository.dart';
 
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
@@ -26,10 +27,9 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
   }
 
   Future<void> _loadCourseList(
-
-      LoadCourseBasicInfoEvent event,
-      Emitter<CourseScreenState> emit,
-      ) async {
+    LoadCourseBasicInfoEvent event,
+    Emitter<CourseScreenState> emit,
+  ) async {
     if (state.isLoadingNext && !event.refresh) return;
 
     final isFirstLoad = event.refresh;
@@ -47,9 +47,8 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
         pageSize: state.pageSize,
       );
 
-      final combinedCourses = isFirstLoad
-          ? newCourses
-          : [...state.courseList, ...newCourses];
+      final combinedCourses =
+          isFirstLoad ? newCourses : [...state.courseList, ...newCourses];
 
       final reachedEnd = newCourses.length < state.pageSize;
 
@@ -58,7 +57,6 @@ class CourseScreenBloc extends Bloc<CourseScreenEvent, CourseScreenState> {
           : state.categoriesList;
 
       emit(state.copyWith(
-
         loadingStatus: CourseScreenStatus.loaded,
         courseList: combinedCourses,
         categoriesList: categories,
