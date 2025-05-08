@@ -3,7 +3,7 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_event.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 import '../../../models/course_basic_model/course_basic_model.dart';
 
@@ -47,7 +47,6 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
           event.refresh ? [...result] : [...state.coursesList, ...result];
 
       final reachedEnd = result.length < state.pageSize;
-
 
       if (result.isEmpty) {
         emit(

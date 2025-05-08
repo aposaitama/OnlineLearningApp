@@ -5,7 +5,7 @@ import 'package:online_app/repositories/course_repository/course_repository.dart
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:video_player/video_player.dart';
 
 class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {

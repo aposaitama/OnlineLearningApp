@@ -18,16 +18,29 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
+import 'package:online_app/services/firebase_api_service/firebase_api_service.dart';
+import 'package:online_app/widgets/notification_dialog.dart';
 
 import 'bloc/filters_bloc/filters_bloc.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   await Firebase.initializeApp(
+    name: 'LearningApp',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await setupLocator();
+  FirebaseApiService(
+    (message) {
+      NotificationDialog.showNotificationDialog(
+        navigatorKey.currentContext!,
+        message,
+      );
+    },
+  ).initNotif();
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -86,9 +99,14 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -97,7 +115,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalTheme.lightTheme,
       darkTheme: GlobalTheme.darkTheme,
       themeMode: ThemeMode.system,
-      routerConfig: AppRouter().createRouter(),
+      routerConfig: AppRouter(navigatorKey).createRouter(),
     );
   }
 }

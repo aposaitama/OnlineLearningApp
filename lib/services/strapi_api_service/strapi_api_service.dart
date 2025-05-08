@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -17,7 +19,9 @@ class StrapiApiService {
   StrapiApiService()
       : dio = Dio(
           BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
+            baseUrl: Platform.isAndroid
+                ? 'http://10.0.2.2:1337/api'
+                : 'http://localhost:1337/api',
             headers: {
               'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
               'Content-Type': 'application/json',
