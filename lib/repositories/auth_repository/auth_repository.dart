@@ -7,37 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final SharedPreferences prefs = locator<SharedPreferences>();
-  final Dio dio;
-  AuthRepository()
-      : dio = Dio(
-          BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
-            headers: {
-              'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
-              'Content-Type': 'application/json',
-            },
-          ),
-        )..interceptors.addAll(
-            [
-              PrettyDioLogger(
-                requestHeader: true,
-                requestBody: true,
-                responseBody: true,
-                responseHeader: false,
-                error: true,
-                compact: true,
-                maxWidth: 90,
-                enabled: kDebugMode,
-              ),
-              QueuedInterceptorsWrapper(
-                onError: (exception, handler) {
-                  return handler.next(
-                    exception,
-                  );
-                },
-              ),
-            ],
-          );
+  final Dio _dio = locator<Dio>();
+
 
   Future<void> saveToken(String token) async {
     await prefs.setString('jwt_token', token);
@@ -59,7 +30,7 @@ class AuthRepository {
     String password,
   ) async {
     try {
-      final response = await dio.post(
+      final response = await _dio.post(
         '/auth/local/register',
         data: {
           'username': userName,
@@ -81,7 +52,7 @@ class AuthRepository {
 
   Future<String> login(String email, String password) async {
     try {
-      final response = await dio.post(
+      final response = await _dio.post(
         '/auth/local',
         data: {'identifier': email, 'password': password},
       );

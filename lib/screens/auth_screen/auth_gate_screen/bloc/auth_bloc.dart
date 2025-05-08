@@ -3,7 +3,7 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/bloc/auth_bloc_event.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/bloc/auth_bloc_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 class AuthGateBloc extends Bloc<AuthGateBlocEvent, AuthGateBlocState> {
   final strapiApiService = locator<StrapiApiService>();

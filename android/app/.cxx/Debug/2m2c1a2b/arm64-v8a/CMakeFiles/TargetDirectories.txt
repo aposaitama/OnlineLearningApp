@@ -1,0 +1,2 @@
+/Users/gist/avada_media/learning_app/online_app/android/app/.cxx/Debug/2m2c1a2b/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/gist/avada_media/learning_app/online_app/android/app/.cxx/Debug/2m2c1a2b/arm64-v8a/CMakeFiles/rebuild_cache.dir

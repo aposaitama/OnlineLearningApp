@@ -10,7 +10,7 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/payment_screen/widgets/add_new_card_sheet.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
 import 'package:online_app/screens/payment_screen/widgets/enter_cvv_code_sheet.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

@@ -22,6 +22,9 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           (json['completed_course_videos'] as List<dynamic>)
               .map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
               .toList(),
+      message_notifications: (json['message_notifications'] as List<dynamic>)
+          .map((e) => MessageNotification.fromJson(e as Map<String, dynamic>))
+          .toList(),
       avatar: const ImagePathConverter()
           .fromJson(json['avatar'] as Map<String, dynamic>?),
       creditCards: (json['creditCards'] as List<dynamic>)
@@ -38,6 +41,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'user_purchased_courses': instance.user_purchased_courses,
       'favourite_items': instance.favourite_items,
       'completed_course_videos': instance.completed_course_videos,
+      'message_notifications': instance.message_notifications,
       'avatar': _$JsonConverterToJson<Map<String, dynamic>?, String>(
           instance.avatar, const ImagePathConverter().toJson),
       'creditCards': instance.creditCards,
@@ -59,6 +63,28 @@ Map<String, dynamic> _$$CourseIdImplToJson(_$CourseIdImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'documentId': instance.documentId,
+    };
+
+_$MessageNotificationImpl _$$MessageNotificationImplFromJson(
+        Map<String, dynamic> json) =>
+    _$MessageNotificationImpl(
+      id: (json['id'] as num).toInt(),
+      documentId: json['documentId'] as String,
+      notificationAuthor: json['notificationAuthor'] as String,
+      notificationDescription: json['notificationDescription'] as String,
+      notificationAuthorImageUrl: json['notificationAuthorImageUrl'] as String,
+      notificationImageUrl: json['notificationImageUrl'] as String,
+    );
+
+Map<String, dynamic> _$$MessageNotificationImplToJson(
+        _$MessageNotificationImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'documentId': instance.documentId,
+      'notificationAuthor': instance.notificationAuthor,
+      'notificationDescription': instance.notificationDescription,
+      'notificationAuthorImageUrl': instance.notificationAuthorImageUrl,
+      'notificationImageUrl': instance.notificationImageUrl,
     };
 
 _$CreditCardModelImpl _$$CreditCardModelImplFromJson(

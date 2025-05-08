@@ -9,42 +9,17 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class CourseRepository {
   final userRepo = locator<UserRepository>();
-  final Dio dio;
-  CourseRepository()
-      : dio = Dio(
-          BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
-            headers: {
-              'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
-              'Content-Type': 'application/json',
-            },
-          ),
-        )..interceptors.addAll(
-            [
-              PrettyDioLogger(
-                requestHeader: true,
-                requestBody: true,
-                responseBody: true,
-                responseHeader: false,
-                error: true,
-                compact: true,
-                maxWidth: 90,
-                enabled: kDebugMode,
-              ),
-              QueuedInterceptorsWrapper(
-                onError: (exception, handler) {
-                  return handler.next(exception);
-                },
-              ),
-            ],
-          );
+  final Dio dio = locator<Dio>();
 
   Future<List<CourseBasicModel>> fetchCourseItems() async {
     try {
-      final response = await dio.get('/course-items', queryParameters: {
-        'populate': 'courseVideoItems.video',
-        'populate[]': 'courseImage',
-      });
+      final response = await dio.get(
+        '/course-items',
+        queryParameters: {
+          'populate': 'courseVideoItems.video',
+          'populate[]': 'courseImage',
+        },
+      );
 
       final List<dynamic> data = response.data['data'] ?? [];
 
