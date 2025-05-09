@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       context.go('/account');
                     },
                     child: SvgPicture.asset(
-                      'assets/icons/UserImage.svg',
+                      Assets.icons.userImage,
                     ),
                   ),
                 ),

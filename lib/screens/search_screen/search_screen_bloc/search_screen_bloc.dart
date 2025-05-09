@@ -3,7 +3,7 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_event.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 import '../../../models/course_basic_model/course_basic_model.dart';
 
@@ -18,7 +18,6 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
     on<GetSearchedCoursesEvent>(_onGetSearchedCourses);
     on<EnterSearchTextEvent>(_onEnterText);
     on<ClearSearchStateEvent>(_onClearState);
-    on<LoadNextSearchedCourses>(_onLoadNext);
   }
 
   Future<void> _onGetSearchedCourses(
@@ -26,11 +25,13 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
     Emitter<SearchScreenState> emit,
   ) async {
     try {
-      emit(
-        state.copyWith(
-          coursesListStatus: SearchListStatus.loading,
-        ),
-      );
+      if (state.isLoadingNext && !event.refresh) return;
+
+      if (!event.refresh) {
+        emit(state.copyWith(isLoadingNext: true));
+      }
+
+      final nextPage = event.refresh ? 1 : state.page + 1;
 
       final List<CourseBasicModel> result =
           await courseItemRepository.getFilteredCourses(
@@ -38,9 +39,14 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
         selectedDurations: event.durations,
         price: event.priceRange,
         enteredText: state.searchText,
-        page: 1,
+        page: nextPage,
         pageSize: 10,
       );
+
+      final combinedCourses =
+          event.refresh ? [...result] : [...state.coursesList, ...result];
+
+      final reachedEnd = result.length < state.pageSize;
 
       if (result.isEmpty) {
         emit(
@@ -54,49 +60,16 @@ class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
 
       emit(
         state.copyWith(
-          coursesList: result,
+          coursesList: combinedCourses,
           coursesListStatus: SearchListStatus.successful,
-          page: 1,
+          page: nextPage,
+          isLoadingNext: false,
+          hasReachedEnd: reachedEnd,
         ),
       );
     } catch (e) {
       rethrow;
     }
-  }
-
-  Future<void> _onLoadNext(
-    LoadNextSearchedCourses event,
-    Emitter<SearchScreenState> emit,
-  ) async {
-    final nextPage = state.page + 1;
-
-    final moreCourses = await courseItemRepository.getFilteredCourses(
-      selectedCategories: event.categories,
-      selectedDurations: event.durations,
-      price: event.priceRange,
-      enteredText: state.searchText,
-      page: nextPage,
-      pageSize: state.pageSize,
-    );
-
-    final combinedCourses = [
-      ...state.coursesList,
-      ...moreCourses,
-    ];
-
-    final uniqueCourses = {
-      for(var course in combinedCourses) course.id: course,
-    }.values.toList();
-
-    final reachedEnd = uniqueCourses.length == state.coursesList.length;
-
-    emit(
-      state.copyWith(
-        coursesList: uniqueCourses,
-        hasReachedEnd: reachedEnd,
-        page: nextPage,
-      ),
-    );
   }
 
   void _onEnterText(

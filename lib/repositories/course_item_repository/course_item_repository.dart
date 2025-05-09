@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
+
+import '../../di/service_locator.dart';
 
 class CourseItemRepository {
   static final CourseItemRepository _instance =
@@ -13,7 +15,7 @@ class CourseItemRepository {
 
   CourseItemRepository._internal();
 
-  final Dio _dio = StrapiApiService().dio;
+  final Dio _dio = locator<Dio>();
 
   Future<List<CourseBasicModel>> getFilteredCourses({
     required List<CategoriesModel> selectedCategories,
@@ -81,6 +83,42 @@ class CourseItemRepository {
       }
     } catch (e) {
       throw Exception(e);
+    }
+  }
+
+  Future<List<CourseBasicModel>> getCoursesOnCourseScreen({
+    required String filter,
+    required int page,
+    required int pageSize,
+  }) async {
+    try {
+      final queryParameters = {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize,
+      };
+      if (filter == 'Popular') {
+      } else if (filter == 'New') {
+        queryParameters['sort'] = 'publishedAt:desc';
+      }
+
+      final response = await _dio.get(
+        '/course-items',
+        queryParameters: queryParameters,
+      );
+
+      if (response.isSuccess) {
+        return (response.data['data'] as List)
+            .map(
+              (json) => CourseBasicModel.fromJson(json),
+            )
+            .toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 }

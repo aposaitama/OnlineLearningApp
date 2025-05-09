@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 extension SecToHoursExtension on int {
   int toHours() {
@@ -72,6 +73,12 @@ extension DurationToString on Duration {
 //     );
 //   }
 // }
+
+extension TimeToStringExtension on DateTime {
+  String timeToString() {
+    return DateFormat.jm().format(this);
+  }
+}
 
 extension HexColorExtension on String {
   Color toColor({Color fallback = Colors.grey}) {

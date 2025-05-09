@@ -5,7 +5,7 @@ import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
   final strapiApiService = locator<StrapiApiService>();

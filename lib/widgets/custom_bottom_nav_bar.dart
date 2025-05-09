@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
@@ -54,10 +55,11 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           applyFilters: () {
             final filterState = context.read<FiltersBloc>().state;
             context.read<SearchScreenBloc>().add(
-              GetSearchedCoursesEvent(
+                  GetSearchedCoursesEvent(
                     categories: filterState.selectedCategories,
                     durations: filterState.selectedDurations,
                     priceRange: filterState.priceRange,
+                    refresh: true,
                   ),
                 );
             bottomSheetContext.pop();
@@ -110,13 +112,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                             children: [
                               _buildNavItem(
                                 0,
-                                'assets/icons/Home.svg',
+                                Assets.icons.home,
                                 'Home',
                                 state.currentIndex,
                               ),
                               _buildNavItem(
                                 1,
-                                'assets/icons/Course.svg',
+                                Assets.icons.course,
                                 'Course',
                                 state.currentIndex,
                               ),
@@ -125,7 +127,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                         ),
                         _buildNavItem(
                           2,
-                          'assets/icons/Search.svg',
+                          Assets.icons.search,
                           'Search',
                           state.currentIndex,
                         ),
@@ -136,13 +138,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                             children: [
                               _buildNavItem(
                                 3,
-                                'assets/icons/Message.svg',
+                                Assets.icons.message,
                                 'Message',
                                 state.currentIndex,
                               ),
                               _buildNavItem(
                                 4,
-                                'assets/icons/Account.svg',
+                                Assets.icons.account,
                                 'Account',
                                 state.currentIndex,
                               ),
@@ -198,7 +200,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                         ),
                         child: SvgPicture.asset(
                           fit: BoxFit.scaleDown,
-                          'assets/icons/Search.svg',
+                          Assets.icons.search,
                           colorFilter: const ColorFilter.mode(
                             AppColors.deepBlueColor,
                             BlendMode.srcIn,

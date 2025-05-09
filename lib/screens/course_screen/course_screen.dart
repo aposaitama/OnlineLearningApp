@@ -13,8 +13,8 @@ import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_event.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_state.dart';
 import 'package:online_app/screens/course_screen/widgets/categories_builder.dart';
-import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
+import 'package:online_app/screens/course_screen/widgets/course_filters_row.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
 
@@ -30,15 +30,37 @@ class _CourseScreenState extends State<CourseScreen> {
   final TextEditingController _courseScreenTextFieldController =
       TextEditingController();
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     _loadInitialData();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.removeListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (!_courseScreenBloc.state.hasReachedEnd) {
+      if (_scrollController.position.pixels >
+          _scrollController.position.maxScrollExtent - 200) {
+        _courseScreenBloc.add(
+          const LoadCourseBasicInfoEvent(refresh: false),
+        );
+      }
+    }
   }
 
   void _loadInitialData() {
     _courseScreenBloc.add(
-      const LoadCourseBasicInfoEvent(),
+      const LoadCourseBasicInfoEvent(
+        refresh: true,
+      ),
     );
   }
 
@@ -83,8 +105,13 @@ class _CourseScreenState extends State<CourseScreen> {
     context.push('/search-screen');
   }
 
-  final categories = ['All', 'Popular', 'New'];
-  String selectedCategory = 'All';
+  void _selectFilter(String filter) {
+    _courseScreenBloc.add(
+      SelectFilterOnCourseScreenEvent(
+        filter: filter,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,33 +172,6 @@ class _CourseScreenState extends State<CourseScreen> {
                     categoryId,
                   ),
                 ),
-                // SizedBox(
-                //   height: 90.0,
-                //   child: ListView.builder(
-                //     padding: const EdgeInsets.only(
-                //       left: 20.0,
-                //     ),
-                //     scrollDirection: Axis.horizontal,
-                //     itemCount: state.categoriesList.length,
-                //     itemBuilder: (context, index) {
-                //       final concreteCategory = state.categoriesList[index];
-
-                //       return Padding(
-                //         padding: const EdgeInsets.only(
-                //           right: 15.0,
-                //         ),
-                //         child: CategoriesItemTile(
-                //           textBackgroundColor:
-                //               concreteCategory.hexBackgroundColor,
-                //           backgroundColor: concreteCategory.hexBackgroundColor,
-                //           textColor: concreteCategory.hexTitleTextColor,
-                //           imageUrl: concreteCategory.categoryImage.url,
-                //           categoryTitle: concreteCategory.categoryTitle,
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // ),
                 const SizedBox(
                   height: 35.0,
                 ),
@@ -198,49 +198,8 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                   child: SizedBox(
                     height: 28.0,
-                    child: Wrap(
-                      spacing: 17.0,
-                      runSpacing: 20.0,
-                      children: categories.map((category) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(
-                              () {
-                                selectedCategory = category;
-                              },
-                            );
-                          },
-                          child: Container(
-                            height: 28.0,
-                            width: 73.0,
-                            decoration: BoxDecoration(
-                              color: category == selectedCategory
-                                  ? AppColors.deepBlueColor
-                                  : isDark
-                                      ? AppColors.darkHintTextColor
-                                      : Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                13.0,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                category,
-                                style: AppFonts.poppinsRegular.copyWith(
-                                  color: category == selectedCategory
-                                      ? Colors.white
-                                      : Theme.of(
-                                          context,
-                                        )
-                                          .extension<AppColorsModel>()
-                                          ?.hintTextColor,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                    child: CourseFiltersRow(
+                      selectFilter: (filter) => _selectFilter(filter),
                     ),
                   ),
                 ),
@@ -253,9 +212,9 @@ class _CourseScreenState extends State<CourseScreen> {
                       horizontal: 20.0,
                     ),
                     itemCount: state.courseList.length,
+                    controller: _scrollController,
                     itemBuilder: (context, index) {
                       final concreteCourse = state.courseList[index];
-
                       return GestureDetector(
                         onTap: () => context.push(
                           '/course_details/${concreteCourse.documentId}',

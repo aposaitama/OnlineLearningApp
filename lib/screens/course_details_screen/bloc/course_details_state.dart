@@ -18,6 +18,11 @@ enum CourseLoadingVideoStatus {
   error,
 }
 
+enum CourseVideoStatus {
+  initial,
+  finished,
+}
+
 @freezed
 class CourseDetailsState with _$CourseDetailsState {
   const factory CourseDetailsState({
@@ -30,6 +35,10 @@ class CourseDetailsState with _$CourseDetailsState {
       CourseLoadingVideoStatus.initial,
     )
     CourseLoadingVideoStatus videoLoadingStatus,
+    @Default(
+      CourseVideoStatus.initial,
+    )
+    CourseVideoStatus videoWatchingStatus,
     @Default(false) bool isFullScreen,
     @Default(false) bool isInFavourite,
     @Default('') String videoPlayingId,

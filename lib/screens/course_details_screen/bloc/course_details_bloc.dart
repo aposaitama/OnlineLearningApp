@@ -5,7 +5,7 @@ import 'package:online_app/repositories/course_repository/course_repository.dart
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:video_player/video_player.dart';
 
 class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
@@ -44,7 +44,22 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   ) async {
     if (state.courseVideo == null) return;
     state.courseVideo!.dispose();
-    await courseRepo.completeVideo(state.videoPlayingId);
+    final response = await courseRepo.completeVideo(state.videoPlayingId);
+    if (response == true) {
+      emit(
+        state.copyWith(
+          videoWatchingStatus: CourseVideoStatus.finished,
+        ),
+      );
+      emit(
+        state.copyWith(
+          videoPlayingId: '',
+          videoLoadingStatus: CourseLoadingVideoStatus.initial,
+          videoWatchingStatus: CourseVideoStatus.initial,
+          courseVideo: null,
+        ),
+      );
+    }
     emit(
       state.copyWith(
         videoPlayingId: '',
@@ -62,7 +77,9 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     final List<CourseId> favorites =
         List.from(currentUser?.favourite_items ?? []);
 
-    final exists = favorites.any((item) => item.documentId == event.documentId);
+    final exists = favorites.any(
+      (item) => item.id.toString() == event.documentId,
+    );
 
     if (exists) {
       courseRepo.removeFromFavourite(event.documentId);

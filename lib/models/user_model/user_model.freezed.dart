@@ -29,6 +29,8 @@ mixin _$UserModel {
   List<CourseId> get favourite_items => throw _privateConstructorUsedError;
   List<CourseVideoItem> get completed_course_videos =>
       throw _privateConstructorUsedError;
+  List<MessageNotification> get message_notifications =>
+      throw _privateConstructorUsedError;
   @ImagePathConverter()
   String? get avatar => throw _privateConstructorUsedError;
   List<CreditCardModel> get creditCards => throw _privateConstructorUsedError;
@@ -56,6 +58,7 @@ abstract class $UserModelCopyWith<$Res> {
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
       List<CourseVideoItem> completed_course_videos,
+      List<MessageNotification> message_notifications,
       @ImagePathConverter() String? avatar,
       List<CreditCardModel> creditCards});
 }
@@ -82,6 +85,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
+    Object? message_notifications = null,
     Object? avatar = freezed,
     Object? creditCards = null,
   }) {
@@ -114,6 +118,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.completed_course_videos
           : completed_course_videos // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      message_notifications: null == message_notifications
+          ? _value.message_notifications
+          : message_notifications // ignore: cast_nullable_to_non_nullable
+              as List<MessageNotification>,
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -142,6 +150,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
       List<CourseVideoItem> completed_course_videos,
+      List<MessageNotification> message_notifications,
       @ImagePathConverter() String? avatar,
       List<CreditCardModel> creditCards});
 }
@@ -166,6 +175,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
+    Object? message_notifications = null,
     Object? avatar = freezed,
     Object? creditCards = null,
   }) {
@@ -198,6 +208,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value._completed_course_videos
           : completed_course_videos // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      message_notifications: null == message_notifications
+          ? _value._message_notifications
+          : message_notifications // ignore: cast_nullable_to_non_nullable
+              as List<MessageNotification>,
       avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -221,11 +235,13 @@ class _$UserModelImpl implements _UserModel {
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
       required final List<CourseVideoItem> completed_course_videos,
+      required final List<MessageNotification> message_notifications,
       @ImagePathConverter() this.avatar,
       required final List<CreditCardModel> creditCards})
       : _user_purchased_courses = user_purchased_courses,
         _favourite_items = favourite_items,
         _completed_course_videos = completed_course_videos,
+        _message_notifications = message_notifications,
         _creditCards = creditCards;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -265,6 +281,15 @@ class _$UserModelImpl implements _UserModel {
     return EqualUnmodifiableListView(_completed_course_videos);
   }
 
+  final List<MessageNotification> _message_notifications;
+  @override
+  List<MessageNotification> get message_notifications {
+    if (_message_notifications is EqualUnmodifiableListView)
+      return _message_notifications;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_message_notifications);
+  }
+
   @override
   @ImagePathConverter()
   final String? avatar;
@@ -278,7 +303,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, avatar: $avatar, creditCards: $creditCards)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
   }
 
   @override
@@ -298,6 +323,8 @@ class _$UserModelImpl implements _UserModel {
                 .equals(other._favourite_items, _favourite_items) &&
             const DeepCollectionEquality().equals(
                 other._completed_course_videos, _completed_course_videos) &&
+            const DeepCollectionEquality()
+                .equals(other._message_notifications, _message_notifications) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             const DeepCollectionEquality()
                 .equals(other._creditCards, _creditCards));
@@ -314,6 +341,7 @@ class _$UserModelImpl implements _UserModel {
       const DeepCollectionEquality().hash(_user_purchased_courses),
       const DeepCollectionEquality().hash(_favourite_items),
       const DeepCollectionEquality().hash(_completed_course_videos),
+      const DeepCollectionEquality().hash(_message_notifications),
       avatar,
       const DeepCollectionEquality().hash(_creditCards));
 
@@ -342,6 +370,7 @@ abstract class _UserModel implements UserModel {
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
       required final List<CourseVideoItem> completed_course_videos,
+      required final List<MessageNotification> message_notifications,
       @ImagePathConverter() final String? avatar,
       required final List<CreditCardModel> creditCards}) = _$UserModelImpl;
 
@@ -362,6 +391,8 @@ abstract class _UserModel implements UserModel {
   List<CourseId> get favourite_items;
   @override
   List<CourseVideoItem> get completed_course_videos;
+  @override
+  List<MessageNotification> get message_notifications;
   @override
   @ImagePathConverter()
   String? get avatar;
@@ -540,6 +571,275 @@ abstract class _CourseId implements CourseId {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CourseIdImplCopyWith<_$CourseIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+MessageNotification _$MessageNotificationFromJson(Map<String, dynamic> json) {
+  return _MessageNotification.fromJson(json);
+}
+
+/// @nodoc
+mixin _$MessageNotification {
+  int get id => throw _privateConstructorUsedError;
+  String get documentId => throw _privateConstructorUsedError;
+  String get notificationAuthor => throw _privateConstructorUsedError;
+  String get notificationDescription => throw _privateConstructorUsedError;
+  String get notificationAuthorImageUrl => throw _privateConstructorUsedError;
+  String get notificationImageUrl => throw _privateConstructorUsedError;
+
+  /// Serializes this MessageNotification to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of MessageNotification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $MessageNotificationCopyWith<MessageNotification> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MessageNotificationCopyWith<$Res> {
+  factory $MessageNotificationCopyWith(
+          MessageNotification value, $Res Function(MessageNotification) then) =
+      _$MessageNotificationCopyWithImpl<$Res, MessageNotification>;
+  @useResult
+  $Res call(
+      {int id,
+      String documentId,
+      String notificationAuthor,
+      String notificationDescription,
+      String notificationAuthorImageUrl,
+      String notificationImageUrl});
+}
+
+/// @nodoc
+class _$MessageNotificationCopyWithImpl<$Res, $Val extends MessageNotification>
+    implements $MessageNotificationCopyWith<$Res> {
+  _$MessageNotificationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of MessageNotification
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? documentId = null,
+    Object? notificationAuthor = null,
+    Object? notificationDescription = null,
+    Object? notificationAuthorImageUrl = null,
+    Object? notificationImageUrl = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      documentId: null == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationAuthor: null == notificationAuthor
+          ? _value.notificationAuthor
+          : notificationAuthor // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationDescription: null == notificationDescription
+          ? _value.notificationDescription
+          : notificationDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationAuthorImageUrl: null == notificationAuthorImageUrl
+          ? _value.notificationAuthorImageUrl
+          : notificationAuthorImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationImageUrl: null == notificationImageUrl
+          ? _value.notificationImageUrl
+          : notificationImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MessageNotificationImplCopyWith<$Res>
+    implements $MessageNotificationCopyWith<$Res> {
+  factory _$$MessageNotificationImplCopyWith(_$MessageNotificationImpl value,
+          $Res Function(_$MessageNotificationImpl) then) =
+      __$$MessageNotificationImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String documentId,
+      String notificationAuthor,
+      String notificationDescription,
+      String notificationAuthorImageUrl,
+      String notificationImageUrl});
+}
+
+/// @nodoc
+class __$$MessageNotificationImplCopyWithImpl<$Res>
+    extends _$MessageNotificationCopyWithImpl<$Res, _$MessageNotificationImpl>
+    implements _$$MessageNotificationImplCopyWith<$Res> {
+  __$$MessageNotificationImplCopyWithImpl(_$MessageNotificationImpl _value,
+      $Res Function(_$MessageNotificationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MessageNotification
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? documentId = null,
+    Object? notificationAuthor = null,
+    Object? notificationDescription = null,
+    Object? notificationAuthorImageUrl = null,
+    Object? notificationImageUrl = null,
+  }) {
+    return _then(_$MessageNotificationImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      documentId: null == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationAuthor: null == notificationAuthor
+          ? _value.notificationAuthor
+          : notificationAuthor // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationDescription: null == notificationDescription
+          ? _value.notificationDescription
+          : notificationDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationAuthorImageUrl: null == notificationAuthorImageUrl
+          ? _value.notificationAuthorImageUrl
+          : notificationAuthorImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      notificationImageUrl: null == notificationImageUrl
+          ? _value.notificationImageUrl
+          : notificationImageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MessageNotificationImpl implements _MessageNotification {
+  const _$MessageNotificationImpl(
+      {required this.id,
+      required this.documentId,
+      required this.notificationAuthor,
+      required this.notificationDescription,
+      required this.notificationAuthorImageUrl,
+      required this.notificationImageUrl});
+
+  factory _$MessageNotificationImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MessageNotificationImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String documentId;
+  @override
+  final String notificationAuthor;
+  @override
+  final String notificationDescription;
+  @override
+  final String notificationAuthorImageUrl;
+  @override
+  final String notificationImageUrl;
+
+  @override
+  String toString() {
+    return 'MessageNotification(id: $id, documentId: $documentId, notificationAuthor: $notificationAuthor, notificationDescription: $notificationDescription, notificationAuthorImageUrl: $notificationAuthorImageUrl, notificationImageUrl: $notificationImageUrl)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MessageNotificationImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.documentId, documentId) ||
+                other.documentId == documentId) &&
+            (identical(other.notificationAuthor, notificationAuthor) ||
+                other.notificationAuthor == notificationAuthor) &&
+            (identical(
+                    other.notificationDescription, notificationDescription) ||
+                other.notificationDescription == notificationDescription) &&
+            (identical(other.notificationAuthorImageUrl,
+                    notificationAuthorImageUrl) ||
+                other.notificationAuthorImageUrl ==
+                    notificationAuthorImageUrl) &&
+            (identical(other.notificationImageUrl, notificationImageUrl) ||
+                other.notificationImageUrl == notificationImageUrl));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      documentId,
+      notificationAuthor,
+      notificationDescription,
+      notificationAuthorImageUrl,
+      notificationImageUrl);
+
+  /// Create a copy of MessageNotification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MessageNotificationImplCopyWith<_$MessageNotificationImpl> get copyWith =>
+      __$$MessageNotificationImplCopyWithImpl<_$MessageNotificationImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MessageNotificationImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _MessageNotification implements MessageNotification {
+  const factory _MessageNotification(
+      {required final int id,
+      required final String documentId,
+      required final String notificationAuthor,
+      required final String notificationDescription,
+      required final String notificationAuthorImageUrl,
+      required final String notificationImageUrl}) = _$MessageNotificationImpl;
+
+  factory _MessageNotification.fromJson(Map<String, dynamic> json) =
+      _$MessageNotificationImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get documentId;
+  @override
+  String get notificationAuthor;
+  @override
+  String get notificationDescription;
+  @override
+  String get notificationAuthorImageUrl;
+  @override
+  String get notificationImageUrl;
+
+  /// Create a copy of MessageNotification
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MessageNotificationImplCopyWith<_$MessageNotificationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -9,42 +9,17 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class CourseRepository {
   final userRepo = locator<UserRepository>();
-  final Dio dio;
-  CourseRepository()
-      : dio = Dio(
-          BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
-            headers: {
-              'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
-              'Content-Type': 'application/json',
-            },
-          ),
-        )..interceptors.addAll(
-            [
-              PrettyDioLogger(
-                requestHeader: true,
-                requestBody: true,
-                responseBody: true,
-                responseHeader: false,
-                error: true,
-                compact: true,
-                maxWidth: 90,
-                enabled: kDebugMode,
-              ),
-              QueuedInterceptorsWrapper(
-                onError: (exception, handler) {
-                  return handler.next(exception);
-                },
-              ),
-            ],
-          );
+  final Dio dio = locator<Dio>();
 
   Future<List<CourseBasicModel>> fetchCourseItems() async {
     try {
-      final response = await dio.get('/course-items', queryParameters: {
-        'populate': 'courseVideoItems.video',
-        'populate[]': 'courseImage',
-      });
+      final response = await dio.get(
+        '/course-items',
+        queryParameters: {
+          'populate': 'courseVideoItems.video',
+          'populate[]': 'courseImage',
+        },
+      );
 
       final List<dynamic> data = response.data['data'] ?? [];
 
@@ -116,11 +91,11 @@ class CourseRepository {
     }
   }
 
-  Future<void> completeVideo(String videoID) async {
+  Future<bool> completeVideo(String videoID) async {
     try {
       final userModel = await userRepo.getUserData();
       final int userID = userModel?.id ?? 0;
-      await dio.put(
+      final response = await dio.put(
         '/users/$userID',
         data: {
           'completed_course_videos': {
@@ -128,6 +103,13 @@ class CourseRepository {
           }
         },
       );
-    } catch (e) {}
+      if (response.data != null) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
 }

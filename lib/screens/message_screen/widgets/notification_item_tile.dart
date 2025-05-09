@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -70,7 +71,7 @@ class NotificationItemTile extends StatelessWidget {
                     Row(
                       children: [
                         SvgPicture.asset(
-                          'assets/icons/DateTime.svg',
+                          Assets.icons.dateTime,
                         ),
                         const SizedBox(
                           width: 4.5,
