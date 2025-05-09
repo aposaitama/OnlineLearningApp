@@ -216,12 +216,14 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                 color: Colors.white,
                 onPressed: () {
                   if (videoController.value.isPlaying) {
-                    videoController.pause();
+                    // videoController.pause();
+                    context.read<CourseDetailsBloc>().add(PauseVideoEvent());
                     setState(
                       () {},
                     );
                   } else {
-                    videoController.play();
+                    // videoController.play();
+                    context.read<CourseDetailsBloc>().add(ResumeVideoEvent());
                     setState(
                       () {},
                     );

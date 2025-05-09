@@ -42,6 +42,7 @@ class CourseDetailsState with _$CourseDetailsState {
     @Default(false) bool isFullScreen,
     @Default(false) bool isInFavourite,
     @Default('') String videoPlayingId,
+    @Default(0) int userLearningTime,
     VideoPlayerController? courseVideo,
   }) = _CourseDetailsState;
 }

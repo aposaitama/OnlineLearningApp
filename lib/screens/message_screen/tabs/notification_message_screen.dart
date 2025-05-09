@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/screens/message_screen/widgets/message_notification_item_tile.dart';
 
-class NotificationMessageScreen extends StatelessWidget {
+class NotificationMessageScreen extends StatefulWidget {
   const NotificationMessageScreen({super.key});
+
+  @override
+  State<NotificationMessageScreen> createState() =>
+      _NotificationMessageScreenState();
+}
+
+class _NotificationMessageScreenState extends State<NotificationMessageScreen> {
+  @override
+  void initState() {
+    // context.read<HomeScreenBloc>().add(LoadUserHomeScreenBlocEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +38,20 @@ class NotificationMessageScreen extends StatelessWidget {
                     final message =
                         state.userInfo?.message_notifications[index];
                     if (state.userInfo?.message_notifications[index] != null) {
-                      return MessageNotificationItemTile(
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 10.0,
+                        ),
+                        child: MessageNotificationItemTile(
+                          notificationAuthorImageUrl:
+                              message?.notificationAuthorImageUrl ?? '',
+                          imageUrl: message?.notificationImageUrl ?? '',
                           notificationAuthor: message?.notificationAuthor ?? '',
                           notificationDescription:
                               message?.notificationDescription ?? '',
-                          date: 'date');
+                          date: message!.createdAt,
+                        ),
+                      );
                     }
                   })
               // Column(

@@ -12,6 +12,12 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       username: json['username'] as String,
       email: json['email'] as String,
       userPhoneNumber: json['userPhoneNumber'] as String?,
+      totallyLearningDays: (json['totallyLearningDays'] as num).toInt(),
+      totallyLearningHours: (json['totallyLearningHours'] as num).toDouble(),
+      learnedToday: (json['learnedToday'] as num).toDouble(),
+      lastTimeCheckout: json['lastTimeCheckout'] == null
+          ? null
+          : DateTime.parse(json['lastTimeCheckout'] as String),
       user_purchased_courses: (json['user_purchased_courses'] as List<dynamic>)
           .map((e) => CourseBasicModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -38,6 +44,10 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'username': instance.username,
       'email': instance.email,
       'userPhoneNumber': instance.userPhoneNumber,
+      'totallyLearningDays': instance.totallyLearningDays,
+      'totallyLearningHours': instance.totallyLearningHours,
+      'learnedToday': instance.learnedToday,
+      'lastTimeCheckout': instance.lastTimeCheckout?.toIso8601String(),
       'user_purchased_courses': instance.user_purchased_courses,
       'favourite_items': instance.favourite_items,
       'completed_course_videos': instance.completed_course_videos,
@@ -74,6 +84,7 @@ _$MessageNotificationImpl _$$MessageNotificationImplFromJson(
       notificationDescription: json['notificationDescription'] as String,
       notificationAuthorImageUrl: json['notificationAuthorImageUrl'] as String,
       notificationImageUrl: json['notificationImageUrl'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$$MessageNotificationImplToJson(
@@ -85,6 +96,7 @@ Map<String, dynamic> _$$MessageNotificationImplToJson(
       'notificationDescription': instance.notificationDescription,
       'notificationAuthorImageUrl': instance.notificationAuthorImageUrl,
       'notificationImageUrl': instance.notificationImageUrl,
+      'createdAt': instance.createdAt.toIso8601String(),
     };
 
 _$CreditCardModelImpl _$$CreditCardModelImplFromJson(
