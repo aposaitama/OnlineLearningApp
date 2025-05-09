@@ -28,6 +28,9 @@ mixin _$CourseDetailsEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +44,9 @@ mixin _$CourseDetailsEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +60,9 @@ mixin _$CourseDetailsEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +77,9 @@ mixin _$CourseDetailsEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +93,9 @@ mixin _$CourseDetailsEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +109,9 @@ mixin _$CourseDetailsEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -203,6 +221,9 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return loadCourseInfo(documentID);
   }
@@ -219,6 +240,9 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return loadCourseInfo?.call(documentID);
   }
@@ -235,6 +259,9 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -255,6 +282,9 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return loadCourseInfo(this);
   }
@@ -271,6 +301,9 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return loadCourseInfo?.call(this);
   }
@@ -287,6 +320,9 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -399,6 +435,9 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return loadCourseVideo(videoUrl, videoPlayingId);
   }
@@ -415,6 +454,9 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return loadCourseVideo?.call(videoUrl, videoPlayingId);
   }
@@ -431,6 +473,9 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -451,6 +496,9 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return loadCourseVideo(this);
   }
@@ -467,6 +515,9 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return loadCourseVideo?.call(this);
   }
@@ -483,6 +534,9 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -587,6 +641,9 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return playVideo(videoPlayingId);
   }
@@ -603,6 +660,9 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return playVideo?.call(videoPlayingId);
   }
@@ -619,6 +679,9 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -639,6 +702,9 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return playVideo(this);
   }
@@ -655,6 +721,9 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return playVideo?.call(this);
   }
@@ -671,6 +740,9 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -744,6 +816,9 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return pauseVideo();
   }
@@ -760,6 +835,9 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return pauseVideo?.call();
   }
@@ -776,6 +854,9 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -796,6 +877,9 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return pauseVideo(this);
   }
@@ -812,6 +896,9 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return pauseVideo?.call(this);
   }
@@ -828,6 +915,9 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -892,6 +982,9 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return resumeVideo();
   }
@@ -908,6 +1001,9 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return resumeVideo?.call();
   }
@@ -924,6 +1020,9 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -944,6 +1043,9 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return resumeVideo(this);
   }
@@ -960,6 +1062,9 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return resumeVideo?.call(this);
   }
@@ -976,6 +1081,9 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -1040,6 +1148,9 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return closeVideo();
   }
@@ -1056,6 +1167,9 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return closeVideo?.call();
   }
@@ -1072,6 +1186,9 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -1092,6 +1209,9 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return closeVideo(this);
   }
@@ -1108,6 +1228,9 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return closeVideo?.call(this);
   }
@@ -1124,6 +1247,9 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -1188,6 +1314,9 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return finishedVideo();
   }
@@ -1204,6 +1333,9 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return finishedVideo?.call();
   }
@@ -1220,6 +1352,9 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (finishedVideo != null) {
@@ -1240,6 +1375,9 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return finishedVideo(this);
   }
@@ -1256,6 +1394,9 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return finishedVideo?.call(this);
   }
@@ -1272,6 +1413,9 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (finishedVideo != null) {
@@ -1336,6 +1480,9 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return fullScreen();
   }
@@ -1352,6 +1499,9 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return fullScreen?.call();
   }
@@ -1368,6 +1518,9 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (fullScreen != null) {
@@ -1388,6 +1541,9 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return fullScreen(this);
   }
@@ -1404,6 +1560,9 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return fullScreen?.call(this);
   }
@@ -1420,6 +1579,9 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (fullScreen != null) {
@@ -1514,6 +1676,9 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     required TResult Function() finishedVideo,
     required TResult Function() fullScreen,
     required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
   }) {
     return toogleFavourite(documentId);
   }
@@ -1530,6 +1695,9 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult? Function()? finishedVideo,
     TResult? Function()? fullScreen,
     TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
   }) {
     return toogleFavourite?.call(documentId);
   }
@@ -1546,6 +1714,9 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult Function()? finishedVideo,
     TResult Function()? fullScreen,
     TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
     required TResult orElse(),
   }) {
     if (toogleFavourite != null) {
@@ -1566,6 +1737,9 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     required TResult Function(FinishedVideoEvent value) finishedVideo,
     required TResult Function(FullScreenEvent value) fullScreen,
     required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
   }) {
     return toogleFavourite(this);
   }
@@ -1582,6 +1756,9 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult? Function(FinishedVideoEvent value)? finishedVideo,
     TResult? Function(FullScreenEvent value)? fullScreen,
     TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
   }) {
     return toogleFavourite?.call(this);
   }
@@ -1598,6 +1775,9 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult Function(FinishedVideoEvent value)? finishedVideo,
     TResult Function(FullScreenEvent value)? fullScreen,
     TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
     required TResult orElse(),
   }) {
     if (toogleFavourite != null) {
@@ -1618,4 +1798,502 @@ abstract class ToogleFavouriteEvent implements CourseDetailsEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToogleFavouriteEventImplCopyWith<_$ToogleFavouriteEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$StartTimerEventImplCopyWith<$Res> {
+  factory _$$StartTimerEventImplCopyWith(_$StartTimerEventImpl value,
+          $Res Function(_$StartTimerEventImpl) then) =
+      __$$StartTimerEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartTimerEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$StartTimerEventImpl>
+    implements _$$StartTimerEventImplCopyWith<$Res> {
+  __$$StartTimerEventImplCopyWithImpl(
+      _$StartTimerEventImpl _value, $Res Function(_$StartTimerEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$StartTimerEventImpl implements StartTimerEvent {
+  const _$StartTimerEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.startTimer()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartTimerEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
+    required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
+  }) {
+    return startTimer();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
+    TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
+  }) {
+    return startTimer?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
+    TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
+    required TResult orElse(),
+  }) {
+    if (startTimer != null) {
+      return startTimer();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
+  }) {
+    return startTimer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
+  }) {
+    return startTimer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
+    required TResult orElse(),
+  }) {
+    if (startTimer != null) {
+      return startTimer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StartTimerEvent implements CourseDetailsEvent {
+  const factory StartTimerEvent() = _$StartTimerEventImpl;
+}
+
+/// @nodoc
+abstract class _$$AddTickTimerEventImplCopyWith<$Res> {
+  factory _$$AddTickTimerEventImplCopyWith(_$AddTickTimerEventImpl value,
+          $Res Function(_$AddTickTimerEventImpl) then) =
+      __$$AddTickTimerEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AddTickTimerEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$AddTickTimerEventImpl>
+    implements _$$AddTickTimerEventImplCopyWith<$Res> {
+  __$$AddTickTimerEventImplCopyWithImpl(_$AddTickTimerEventImpl _value,
+      $Res Function(_$AddTickTimerEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AddTickTimerEventImpl implements AddTickTimerEvent {
+  const _$AddTickTimerEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.addTickTimer()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AddTickTimerEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
+    required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
+  }) {
+    return addTickTimer();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
+    TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
+  }) {
+    return addTickTimer?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
+    TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
+    required TResult orElse(),
+  }) {
+    if (addTickTimer != null) {
+      return addTickTimer();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
+  }) {
+    return addTickTimer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
+  }) {
+    return addTickTimer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
+    required TResult orElse(),
+  }) {
+    if (addTickTimer != null) {
+      return addTickTimer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddTickTimerEvent implements CourseDetailsEvent {
+  const factory AddTickTimerEvent() = _$AddTickTimerEventImpl;
+}
+
+/// @nodoc
+abstract class _$$CloseTimerEventImplCopyWith<$Res> {
+  factory _$$CloseTimerEventImplCopyWith(_$CloseTimerEventImpl value,
+          $Res Function(_$CloseTimerEventImpl) then) =
+      __$$CloseTimerEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CloseTimerEventImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$CloseTimerEventImpl>
+    implements _$$CloseTimerEventImplCopyWith<$Res> {
+  __$$CloseTimerEventImplCopyWithImpl(
+      _$CloseTimerEventImpl _value, $Res Function(_$CloseTimerEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CloseTimerEventImpl implements CloseTimerEvent {
+  const _$CloseTimerEventImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.closeTimer()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CloseTimerEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
+    required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
+  }) {
+    return closeTimer();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
+    TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
+  }) {
+    return closeTimer?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
+    TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
+    required TResult orElse(),
+  }) {
+    if (closeTimer != null) {
+      return closeTimer();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
+  }) {
+    return closeTimer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
+  }) {
+    return closeTimer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
+    required TResult orElse(),
+  }) {
+    if (closeTimer != null) {
+      return closeTimer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CloseTimerEvent implements CourseDetailsEvent {
+  const factory CloseTimerEvent() = _$CloseTimerEventImpl;
 }

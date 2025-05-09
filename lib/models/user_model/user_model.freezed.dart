@@ -24,6 +24,10 @@ mixin _$UserModel {
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get userPhoneNumber => throw _privateConstructorUsedError;
+  int get totallyLearningDays => throw _privateConstructorUsedError;
+  double get totallyLearningHours => throw _privateConstructorUsedError;
+  double get learnedToday => throw _privateConstructorUsedError;
+  DateTime? get lastTimeCheckout => throw _privateConstructorUsedError;
   List<CourseBasicModel> get user_purchased_courses =>
       throw _privateConstructorUsedError;
   List<CourseId> get favourite_items => throw _privateConstructorUsedError;
@@ -55,6 +59,10 @@ abstract class $UserModelCopyWith<$Res> {
       String username,
       String email,
       String? userPhoneNumber,
+      int totallyLearningDays,
+      double totallyLearningHours,
+      double learnedToday,
+      DateTime? lastTimeCheckout,
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
       List<CourseVideoItem> completed_course_videos,
@@ -82,6 +90,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? username = null,
     Object? email = null,
     Object? userPhoneNumber = freezed,
+    Object? totallyLearningDays = null,
+    Object? totallyLearningHours = null,
+    Object? learnedToday = null,
+    Object? lastTimeCheckout = freezed,
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
@@ -106,6 +118,22 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.userPhoneNumber
           : userPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      totallyLearningDays: null == totallyLearningDays
+          ? _value.totallyLearningDays
+          : totallyLearningDays // ignore: cast_nullable_to_non_nullable
+              as int,
+      totallyLearningHours: null == totallyLearningHours
+          ? _value.totallyLearningHours
+          : totallyLearningHours // ignore: cast_nullable_to_non_nullable
+              as double,
+      learnedToday: null == learnedToday
+          ? _value.learnedToday
+          : learnedToday // ignore: cast_nullable_to_non_nullable
+              as double,
+      lastTimeCheckout: freezed == lastTimeCheckout
+          ? _value.lastTimeCheckout
+          : lastTimeCheckout // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       user_purchased_courses: null == user_purchased_courses
           ? _value.user_purchased_courses
           : user_purchased_courses // ignore: cast_nullable_to_non_nullable
@@ -147,6 +175,10 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String username,
       String email,
       String? userPhoneNumber,
+      int totallyLearningDays,
+      double totallyLearningHours,
+      double learnedToday,
+      DateTime? lastTimeCheckout,
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
       List<CourseVideoItem> completed_course_videos,
@@ -172,6 +204,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? username = null,
     Object? email = null,
     Object? userPhoneNumber = freezed,
+    Object? totallyLearningDays = null,
+    Object? totallyLearningHours = null,
+    Object? learnedToday = null,
+    Object? lastTimeCheckout = freezed,
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
     Object? completed_course_videos = null,
@@ -196,6 +232,22 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.userPhoneNumber
           : userPhoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      totallyLearningDays: null == totallyLearningDays
+          ? _value.totallyLearningDays
+          : totallyLearningDays // ignore: cast_nullable_to_non_nullable
+              as int,
+      totallyLearningHours: null == totallyLearningHours
+          ? _value.totallyLearningHours
+          : totallyLearningHours // ignore: cast_nullable_to_non_nullable
+              as double,
+      learnedToday: null == learnedToday
+          ? _value.learnedToday
+          : learnedToday // ignore: cast_nullable_to_non_nullable
+              as double,
+      lastTimeCheckout: freezed == lastTimeCheckout
+          ? _value.lastTimeCheckout
+          : lastTimeCheckout // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       user_purchased_courses: null == user_purchased_courses
           ? _value._user_purchased_courses
           : user_purchased_courses // ignore: cast_nullable_to_non_nullable
@@ -232,6 +284,10 @@ class _$UserModelImpl implements _UserModel {
       required this.username,
       required this.email,
       required this.userPhoneNumber,
+      required this.totallyLearningDays,
+      required this.totallyLearningHours,
+      required this.learnedToday,
+      required this.lastTimeCheckout,
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
       required final List<CourseVideoItem> completed_course_videos,
@@ -255,6 +311,14 @@ class _$UserModelImpl implements _UserModel {
   final String email;
   @override
   final String? userPhoneNumber;
+  @override
+  final int totallyLearningDays;
+  @override
+  final double totallyLearningHours;
+  @override
+  final double learnedToday;
+  @override
+  final DateTime? lastTimeCheckout;
   final List<CourseBasicModel> _user_purchased_courses;
   @override
   List<CourseBasicModel> get user_purchased_courses {
@@ -303,7 +367,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
   }
 
   @override
@@ -317,6 +381,14 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.userPhoneNumber, userPhoneNumber) ||
                 other.userPhoneNumber == userPhoneNumber) &&
+            (identical(other.totallyLearningDays, totallyLearningDays) ||
+                other.totallyLearningDays == totallyLearningDays) &&
+            (identical(other.totallyLearningHours, totallyLearningHours) ||
+                other.totallyLearningHours == totallyLearningHours) &&
+            (identical(other.learnedToday, learnedToday) ||
+                other.learnedToday == learnedToday) &&
+            (identical(other.lastTimeCheckout, lastTimeCheckout) ||
+                other.lastTimeCheckout == lastTimeCheckout) &&
             const DeepCollectionEquality().equals(
                 other._user_purchased_courses, _user_purchased_courses) &&
             const DeepCollectionEquality()
@@ -338,6 +410,10 @@ class _$UserModelImpl implements _UserModel {
       username,
       email,
       userPhoneNumber,
+      totallyLearningDays,
+      totallyLearningHours,
+      learnedToday,
+      lastTimeCheckout,
       const DeepCollectionEquality().hash(_user_purchased_courses),
       const DeepCollectionEquality().hash(_favourite_items),
       const DeepCollectionEquality().hash(_completed_course_videos),
@@ -367,6 +443,10 @@ abstract class _UserModel implements UserModel {
       required final String username,
       required final String email,
       required final String? userPhoneNumber,
+      required final int totallyLearningDays,
+      required final double totallyLearningHours,
+      required final double learnedToday,
+      required final DateTime? lastTimeCheckout,
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
       required final List<CourseVideoItem> completed_course_videos,
@@ -385,6 +465,14 @@ abstract class _UserModel implements UserModel {
   String get email;
   @override
   String? get userPhoneNumber;
+  @override
+  int get totallyLearningDays;
+  @override
+  double get totallyLearningHours;
+  @override
+  double get learnedToday;
+  @override
+  DateTime? get lastTimeCheckout;
   @override
   List<CourseBasicModel> get user_purchased_courses;
   @override
@@ -586,6 +674,7 @@ mixin _$MessageNotification {
   String get notificationDescription => throw _privateConstructorUsedError;
   String get notificationAuthorImageUrl => throw _privateConstructorUsedError;
   String get notificationImageUrl => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this MessageNotification to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -609,7 +698,8 @@ abstract class $MessageNotificationCopyWith<$Res> {
       String notificationAuthor,
       String notificationDescription,
       String notificationAuthorImageUrl,
-      String notificationImageUrl});
+      String notificationImageUrl,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -633,6 +723,7 @@ class _$MessageNotificationCopyWithImpl<$Res, $Val extends MessageNotification>
     Object? notificationDescription = null,
     Object? notificationAuthorImageUrl = null,
     Object? notificationImageUrl = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -659,6 +750,10 @@ class _$MessageNotificationCopyWithImpl<$Res, $Val extends MessageNotification>
           ? _value.notificationImageUrl
           : notificationImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -677,7 +772,8 @@ abstract class _$$MessageNotificationImplCopyWith<$Res>
       String notificationAuthor,
       String notificationDescription,
       String notificationAuthorImageUrl,
-      String notificationImageUrl});
+      String notificationImageUrl,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -699,6 +795,7 @@ class __$$MessageNotificationImplCopyWithImpl<$Res>
     Object? notificationDescription = null,
     Object? notificationAuthorImageUrl = null,
     Object? notificationImageUrl = null,
+    Object? createdAt = null,
   }) {
     return _then(_$MessageNotificationImpl(
       id: null == id
@@ -725,6 +822,10 @@ class __$$MessageNotificationImplCopyWithImpl<$Res>
           ? _value.notificationImageUrl
           : notificationImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -738,7 +839,8 @@ class _$MessageNotificationImpl implements _MessageNotification {
       required this.notificationAuthor,
       required this.notificationDescription,
       required this.notificationAuthorImageUrl,
-      required this.notificationImageUrl});
+      required this.notificationImageUrl,
+      required this.createdAt});
 
   factory _$MessageNotificationImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageNotificationImplFromJson(json);
@@ -755,10 +857,12 @@ class _$MessageNotificationImpl implements _MessageNotification {
   final String notificationAuthorImageUrl;
   @override
   final String notificationImageUrl;
+  @override
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'MessageNotification(id: $id, documentId: $documentId, notificationAuthor: $notificationAuthor, notificationDescription: $notificationDescription, notificationAuthorImageUrl: $notificationAuthorImageUrl, notificationImageUrl: $notificationImageUrl)';
+    return 'MessageNotification(id: $id, documentId: $documentId, notificationAuthor: $notificationAuthor, notificationDescription: $notificationDescription, notificationAuthorImageUrl: $notificationAuthorImageUrl, notificationImageUrl: $notificationImageUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -779,7 +883,9 @@ class _$MessageNotificationImpl implements _MessageNotification {
                 other.notificationAuthorImageUrl ==
                     notificationAuthorImageUrl) &&
             (identical(other.notificationImageUrl, notificationImageUrl) ||
-                other.notificationImageUrl == notificationImageUrl));
+                other.notificationImageUrl == notificationImageUrl) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -791,7 +897,8 @@ class _$MessageNotificationImpl implements _MessageNotification {
       notificationAuthor,
       notificationDescription,
       notificationAuthorImageUrl,
-      notificationImageUrl);
+      notificationImageUrl,
+      createdAt);
 
   /// Create a copy of MessageNotification
   /// with the given fields replaced by the non-null parameter values.
@@ -817,7 +924,8 @@ abstract class _MessageNotification implements MessageNotification {
       required final String notificationAuthor,
       required final String notificationDescription,
       required final String notificationAuthorImageUrl,
-      required final String notificationImageUrl}) = _$MessageNotificationImpl;
+      required final String notificationImageUrl,
+      required final DateTime createdAt}) = _$MessageNotificationImpl;
 
   factory _MessageNotification.fromJson(Map<String, dynamic> json) =
       _$MessageNotificationImpl.fromJson;
@@ -834,6 +942,8 @@ abstract class _MessageNotification implements MessageNotification {
   String get notificationAuthorImageUrl;
   @override
   String get notificationImageUrl;
+  @override
+  DateTime get createdAt;
 
   /// Create a copy of MessageNotification
   /// with the given fields replaced by the non-null parameter values.

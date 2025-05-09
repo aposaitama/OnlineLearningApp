@@ -1,9 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/utils/extensions.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../di/service_locator.dart';
 

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:intl/intl.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
@@ -62,5 +63,56 @@ class UserRepository {
     } catch (e) {
       return false;
     }
+  }
+
+  Future<void> updateUserStatInfo({
+    int? totallyLearningDays,
+    DateTime? lastTimeCheckout,
+    double? totallyLearningHours,
+    double? learnedToday,
+  }) async {
+    try {
+      final userModel = await getUserData();
+      final int userID = userModel?.id ?? 0;
+      final double totallyUserLearningHours =
+          userModel?.totallyLearningHours ?? 0.0;
+      final double totallyUserLearnedToday = userModel?.learnedToday ?? 0.0;
+      final DateTime? lastTimeUserCheckout = userModel?.lastTimeCheckout;
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final last = lastTimeUserCheckout != null
+          ? DateTime(
+              lastTimeUserCheckout.year,
+              lastTimeUserCheckout.month,
+              lastTimeUserCheckout.day,
+            )
+          : null;
+
+      final Map<String, dynamic> data = {};
+
+      if (totallyLearningDays != null) {
+        data['totallyLearningDays'] = totallyLearningDays;
+      }
+
+      if (lastTimeCheckout != null) {
+        data['lastTimeCheckout'] = lastTimeCheckout.toIso8601String();
+      }
+
+      if (totallyLearningHours != null) {
+        data['totallyLearningHours'] =
+            totallyUserLearningHours + totallyLearningHours;
+      }
+
+      if (totallyLearningHours != null) {
+        // lastTimeUserCheckout !=null ?
+        data['learnedToday'] =
+            totallyUserLearnedToday + (totallyLearningHours * 60);
+      }
+      print(data);
+      await _dio.put(
+        '/users/$userID',
+        data: data,
+      );
+    } catch (e) {}
   }
 }

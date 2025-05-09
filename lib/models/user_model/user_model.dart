@@ -15,6 +15,10 @@ class UserModel with _$UserModel {
     required String username,
     required String email,
     required String? userPhoneNumber,
+    required int totallyLearningDays,
+    required double totallyLearningHours,
+    required double learnedToday,
+    required DateTime? lastTimeCheckout,
     required List<CourseBasicModel> user_purchased_courses,
     required List<CourseId> favourite_items,
     required List<CourseVideoItem> completed_course_videos,
@@ -47,6 +51,7 @@ class MessageNotification with _$MessageNotification {
     required String notificationDescription,
     required String notificationAuthorImageUrl,
     required String notificationImageUrl,
+    required DateTime createdAt,
   }) = _MessageNotification;
 
   factory MessageNotification.fromJson(Map<String, dynamic> json) =>
