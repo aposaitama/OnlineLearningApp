@@ -40,7 +40,9 @@ class CategoriesItemTile extends StatelessWidget {
             imageUrl: 'http://localhost:1337$imageUrl',
             width: 110.0,
             height: 85.0,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            // errorWidget: (context, url, error) {
+            //   return const Icon(Icons.error);
+            // },
           ),
         ),
         Positioned(

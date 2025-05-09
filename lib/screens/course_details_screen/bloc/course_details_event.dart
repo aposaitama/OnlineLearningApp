@@ -21,4 +21,7 @@ class CourseDetailsEvent with _$CourseDetailsEvent {
   const factory CourseDetailsEvent.fullScreen() = FullScreenEvent;
   const factory CourseDetailsEvent.toogleFavourite(String documentId) =
       ToogleFavouriteEvent;
+  const factory CourseDetailsEvent.startTimer() = StartTimerEvent;
+  const factory CourseDetailsEvent.addTickTimer() = AddTickTimerEvent;
+  const factory CourseDetailsEvent.closeTimer() = CloseTimerEvent;
 }

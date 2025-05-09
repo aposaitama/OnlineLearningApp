@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
+import 'package:online_app/utils/extensions.dart';
 
 class MessageNotificationItemTile extends StatelessWidget {
   final String notificationAuthor;
   final String notificationDescription;
-  final String date;
+  final DateTime date;
   final String? imageUrl;
+  final String? notificationAuthorImageUrl;
   const MessageNotificationItemTile({
     super.key,
     required this.notificationAuthor,
     required this.notificationDescription,
     required this.date,
     this.imageUrl,
+    this.notificationAuthorImageUrl,
   });
 
   @override
@@ -51,16 +54,38 @@ class MessageNotificationItemTile extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        13.0,
-                      ),
-                      color: AppColors.deepBlueColor,
-                    ),
-                  ),
+                  notificationAuthorImageUrl != null
+                      ? (notificationAuthorImageUrl!.isNotEmpty)
+                          ? Container(
+                              width: 48.0,
+                              height: 48.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  13.0,
+                                ),
+                                color: AppColors.deepBlueColor,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  13.0,
+                                ),
+                                child: Image.network(
+                                  notificationAuthorImageUrl!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink()
+                      : Container(
+                          width: 48.0,
+                          height: 48.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              13.0,
+                            ),
+                            color: AppColors.deepBlueColor,
+                          ),
+                        ),
                   const SizedBox(
                     width: 12.0,
                   ),
@@ -86,7 +111,7 @@ class MessageNotificationItemTile extends StatelessWidget {
                   top: 3.0,
                 ),
                 child: Text(
-                  date,
+                  date.timeToString(),
                   style: AppFonts.poppinsRegular.copyWith(
                     color: Theme.of(context)
                         .extension<AppColorsModel>()
@@ -109,14 +134,34 @@ class MessageNotificationItemTile extends StatelessWidget {
             ),
           ),
           imageUrl != null
-              ? Container(
-                  height: 145.0,
-                  decoration: BoxDecoration(
-                      color: AppColors.pinkColor,
-                      borderRadius: BorderRadius.circular(
-                        13.0,
-                      )),
-                )
+              ? imageUrl!.isNotEmpty
+                  ? Column(
+                      children: [
+                        const SizedBox(
+                          height: 13.0,
+                        ),
+                        Container(
+                          height: 145.0,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.pinkColor,
+                            borderRadius: BorderRadius.circular(
+                              13.0,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              13.0,
+                            ),
+                            child: Image.network(
+                              imageUrl!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink()
               : const SizedBox.shrink()
         ],
       ),
