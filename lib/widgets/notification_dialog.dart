@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:online_app/utils/extensions.dart';
@@ -68,18 +69,25 @@ class NotificationDialog {
                           borderRadius: BorderRadius.circular(
                             13.0,
                           ),
-                          color: AppColors.deepBlueColor,
+                          color: Colors.transparent,
                         ),
                         child: (authorImageUrl.isNotEmpty)
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(
                                   13.0,
                                 ),
-                                child: Image.network(
-                                  authorImageUrl,
+                                child: CachedNetworkImage(
+                                  imageUrl: authorImageUrl,
                                   fit: BoxFit.cover,
-                                ),
-                              )
+                                  errorWidget: (context, url, error) {
+                                    return const Icon(Icons.error);
+                                  },
+                                )
+                                // Image.network(
+                                //   authorImageUrl,
+                                //   fit: BoxFit.cover,
+                                // ),
+                                )
                             : const SizedBox.shrink(),
                       ),
                       const SizedBox(
@@ -137,20 +145,27 @@ class NotificationDialog {
                       height: 145.0,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: AppColors.pinkColor,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.circular(
                           13.0,
                         ),
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          13.0,
-                        ),
-                        child: Image.network(
-                          messageImageUrl,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(
+                            13.0,
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: messageImageUrl,
+                            fit: BoxFit.cover,
+                            errorWidget: (context, url, error) {
+                              return const Icon(Icons.error);
+                            },
+                          )
+                          // Image.network(
+                          //   messageImageUrl,
+                          //   fit: BoxFit.cover,
+                          // ),
+                          ),
                     )
                   : const SizedBox.shrink()
             ],

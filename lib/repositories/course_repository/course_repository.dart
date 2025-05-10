@@ -1,11 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class CourseRepository {
   final userRepo = locator<UserRepository>();

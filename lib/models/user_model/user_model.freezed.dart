@@ -27,6 +27,7 @@ mixin _$UserModel {
   int get totallyLearningDays => throw _privateConstructorUsedError;
   double get totallyLearningHours => throw _privateConstructorUsedError;
   double get learnedToday => throw _privateConstructorUsedError;
+  int get userLearningStreak => throw _privateConstructorUsedError;
   DateTime? get lastTimeCheckout => throw _privateConstructorUsedError;
   List<CourseBasicModel> get user_purchased_courses =>
       throw _privateConstructorUsedError;
@@ -62,6 +63,7 @@ abstract class $UserModelCopyWith<$Res> {
       int totallyLearningDays,
       double totallyLearningHours,
       double learnedToday,
+      int userLearningStreak,
       DateTime? lastTimeCheckout,
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
@@ -93,6 +95,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? totallyLearningDays = null,
     Object? totallyLearningHours = null,
     Object? learnedToday = null,
+    Object? userLearningStreak = null,
     Object? lastTimeCheckout = freezed,
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
@@ -130,6 +133,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.learnedToday
           : learnedToday // ignore: cast_nullable_to_non_nullable
               as double,
+      userLearningStreak: null == userLearningStreak
+          ? _value.userLearningStreak
+          : userLearningStreak // ignore: cast_nullable_to_non_nullable
+              as int,
       lastTimeCheckout: freezed == lastTimeCheckout
           ? _value.lastTimeCheckout
           : lastTimeCheckout // ignore: cast_nullable_to_non_nullable
@@ -178,6 +185,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       int totallyLearningDays,
       double totallyLearningHours,
       double learnedToday,
+      int userLearningStreak,
       DateTime? lastTimeCheckout,
       List<CourseBasicModel> user_purchased_courses,
       List<CourseId> favourite_items,
@@ -207,6 +215,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? totallyLearningDays = null,
     Object? totallyLearningHours = null,
     Object? learnedToday = null,
+    Object? userLearningStreak = null,
     Object? lastTimeCheckout = freezed,
     Object? user_purchased_courses = null,
     Object? favourite_items = null,
@@ -244,6 +253,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.learnedToday
           : learnedToday // ignore: cast_nullable_to_non_nullable
               as double,
+      userLearningStreak: null == userLearningStreak
+          ? _value.userLearningStreak
+          : userLearningStreak // ignore: cast_nullable_to_non_nullable
+              as int,
       lastTimeCheckout: freezed == lastTimeCheckout
           ? _value.lastTimeCheckout
           : lastTimeCheckout // ignore: cast_nullable_to_non_nullable
@@ -287,6 +300,7 @@ class _$UserModelImpl implements _UserModel {
       required this.totallyLearningDays,
       required this.totallyLearningHours,
       required this.learnedToday,
+      required this.userLearningStreak,
       required this.lastTimeCheckout,
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
@@ -317,6 +331,8 @@ class _$UserModelImpl implements _UserModel {
   final double totallyLearningHours;
   @override
   final double learnedToday;
+  @override
+  final int userLearningStreak;
   @override
   final DateTime? lastTimeCheckout;
   final List<CourseBasicModel> _user_purchased_courses;
@@ -367,7 +383,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, userLearningStreak: $userLearningStreak, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
   }
 
   @override
@@ -387,6 +403,8 @@ class _$UserModelImpl implements _UserModel {
                 other.totallyLearningHours == totallyLearningHours) &&
             (identical(other.learnedToday, learnedToday) ||
                 other.learnedToday == learnedToday) &&
+            (identical(other.userLearningStreak, userLearningStreak) ||
+                other.userLearningStreak == userLearningStreak) &&
             (identical(other.lastTimeCheckout, lastTimeCheckout) ||
                 other.lastTimeCheckout == lastTimeCheckout) &&
             const DeepCollectionEquality().equals(
@@ -413,6 +431,7 @@ class _$UserModelImpl implements _UserModel {
       totallyLearningDays,
       totallyLearningHours,
       learnedToday,
+      userLearningStreak,
       lastTimeCheckout,
       const DeepCollectionEquality().hash(_user_purchased_courses),
       const DeepCollectionEquality().hash(_favourite_items),
@@ -446,6 +465,7 @@ abstract class _UserModel implements UserModel {
       required final int totallyLearningDays,
       required final double totallyLearningHours,
       required final double learnedToday,
+      required final int userLearningStreak,
       required final DateTime? lastTimeCheckout,
       required final List<CourseBasicModel> user_purchased_courses,
       required final List<CourseId> favourite_items,
@@ -471,6 +491,8 @@ abstract class _UserModel implements UserModel {
   double get totallyLearningHours;
   @override
   double get learnedToday;
+  @override
+  int get userLearningStreak;
   @override
   DateTime? get lastTimeCheckout;
   @override

@@ -31,6 +31,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +48,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +65,7 @@ mixin _$CourseDetailsEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +83,7 @@ mixin _$CourseDetailsEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +100,7 @@ mixin _$CourseDetailsEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,6 +117,7 @@ mixin _$CourseDetailsEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -224,6 +230,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return loadCourseInfo(documentID);
   }
@@ -243,6 +250,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return loadCourseInfo?.call(documentID);
   }
@@ -262,6 +270,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -285,6 +294,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return loadCourseInfo(this);
   }
@@ -304,6 +314,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return loadCourseInfo?.call(this);
   }
@@ -323,6 +334,7 @@ class _$LoadConcreteCourseInfoEventImpl implements LoadConcreteCourseInfoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (loadCourseInfo != null) {
@@ -438,6 +450,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return loadCourseVideo(videoUrl, videoPlayingId);
   }
@@ -457,6 +470,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return loadCourseVideo?.call(videoUrl, videoPlayingId);
   }
@@ -476,6 +490,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -499,6 +514,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return loadCourseVideo(this);
   }
@@ -518,6 +534,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return loadCourseVideo?.call(this);
   }
@@ -537,6 +554,7 @@ class _$LoadCourseVideoEventImpl implements LoadCourseVideoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (loadCourseVideo != null) {
@@ -644,6 +662,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return playVideo(videoPlayingId);
   }
@@ -663,6 +682,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return playVideo?.call(videoPlayingId);
   }
@@ -682,6 +702,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -705,6 +726,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return playVideo(this);
   }
@@ -724,6 +746,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return playVideo?.call(this);
   }
@@ -743,6 +766,7 @@ class _$PlayVideoEventImpl implements PlayVideoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (playVideo != null) {
@@ -819,6 +843,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return pauseVideo();
   }
@@ -838,6 +863,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return pauseVideo?.call();
   }
@@ -857,6 +883,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -880,6 +907,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return pauseVideo(this);
   }
@@ -899,6 +927,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return pauseVideo?.call(this);
   }
@@ -918,6 +947,7 @@ class _$PauseVideoEventImpl implements PauseVideoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (pauseVideo != null) {
@@ -985,6 +1015,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return resumeVideo();
   }
@@ -1004,6 +1035,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return resumeVideo?.call();
   }
@@ -1023,6 +1055,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -1046,6 +1079,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return resumeVideo(this);
   }
@@ -1065,6 +1099,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return resumeVideo?.call(this);
   }
@@ -1084,6 +1119,7 @@ class _$ResumeVideoEventImpl implements ResumeVideoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (resumeVideo != null) {
@@ -1151,6 +1187,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return closeVideo();
   }
@@ -1170,6 +1207,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return closeVideo?.call();
   }
@@ -1189,6 +1227,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -1212,6 +1251,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return closeVideo(this);
   }
@@ -1231,6 +1271,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return closeVideo?.call(this);
   }
@@ -1250,6 +1291,7 @@ class _$CloseVideoEventImpl implements CloseVideoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (closeVideo != null) {
@@ -1317,6 +1359,7 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return finishedVideo();
   }
@@ -1336,6 +1379,7 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return finishedVideo?.call();
   }
@@ -1355,6 +1399,7 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (finishedVideo != null) {
@@ -1378,6 +1423,7 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return finishedVideo(this);
   }
@@ -1397,6 +1443,7 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return finishedVideo?.call(this);
   }
@@ -1416,6 +1463,7 @@ class _$FinishedVideoEventImpl implements FinishedVideoEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (finishedVideo != null) {
@@ -1483,6 +1531,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return fullScreen();
   }
@@ -1502,6 +1551,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return fullScreen?.call();
   }
@@ -1521,6 +1571,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (fullScreen != null) {
@@ -1544,6 +1595,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return fullScreen(this);
   }
@@ -1563,6 +1615,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return fullScreen?.call(this);
   }
@@ -1582,6 +1635,7 @@ class _$FullScreenEventImpl implements FullScreenEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (fullScreen != null) {
@@ -1679,6 +1733,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return toogleFavourite(documentId);
   }
@@ -1698,6 +1753,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return toogleFavourite?.call(documentId);
   }
@@ -1717,6 +1773,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (toogleFavourite != null) {
@@ -1740,6 +1797,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return toogleFavourite(this);
   }
@@ -1759,6 +1817,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return toogleFavourite?.call(this);
   }
@@ -1778,6 +1837,7 @@ class _$ToogleFavouriteEventImpl implements ToogleFavouriteEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (toogleFavourite != null) {
@@ -1854,6 +1914,7 @@ class _$StartTimerEventImpl implements StartTimerEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return startTimer();
   }
@@ -1873,6 +1934,7 @@ class _$StartTimerEventImpl implements StartTimerEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return startTimer?.call();
   }
@@ -1892,6 +1954,7 @@ class _$StartTimerEventImpl implements StartTimerEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (startTimer != null) {
@@ -1915,6 +1978,7 @@ class _$StartTimerEventImpl implements StartTimerEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return startTimer(this);
   }
@@ -1934,6 +1998,7 @@ class _$StartTimerEventImpl implements StartTimerEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return startTimer?.call(this);
   }
@@ -1953,6 +2018,7 @@ class _$StartTimerEventImpl implements StartTimerEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (startTimer != null) {
@@ -2020,6 +2086,7 @@ class _$AddTickTimerEventImpl implements AddTickTimerEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return addTickTimer();
   }
@@ -2039,6 +2106,7 @@ class _$AddTickTimerEventImpl implements AddTickTimerEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return addTickTimer?.call();
   }
@@ -2058,6 +2126,7 @@ class _$AddTickTimerEventImpl implements AddTickTimerEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (addTickTimer != null) {
@@ -2081,6 +2150,7 @@ class _$AddTickTimerEventImpl implements AddTickTimerEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return addTickTimer(this);
   }
@@ -2100,6 +2170,7 @@ class _$AddTickTimerEventImpl implements AddTickTimerEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return addTickTimer?.call(this);
   }
@@ -2119,6 +2190,7 @@ class _$AddTickTimerEventImpl implements AddTickTimerEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (addTickTimer != null) {
@@ -2186,6 +2258,7 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
     required TResult Function() startTimer,
     required TResult Function() addTickTimer,
     required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
   }) {
     return closeTimer();
   }
@@ -2205,6 +2278,7 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
     TResult? Function()? startTimer,
     TResult? Function()? addTickTimer,
     TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
   }) {
     return closeTimer?.call();
   }
@@ -2224,6 +2298,7 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
     TResult Function()? startTimer,
     TResult Function()? addTickTimer,
     TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (closeTimer != null) {
@@ -2247,6 +2322,7 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
     required TResult Function(StartTimerEvent value) startTimer,
     required TResult Function(AddTickTimerEvent value) addTickTimer,
     required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
   }) {
     return closeTimer(this);
   }
@@ -2266,6 +2342,7 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
     TResult? Function(StartTimerEvent value)? startTimer,
     TResult? Function(AddTickTimerEvent value)? addTickTimer,
     TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
   }) {
     return closeTimer?.call(this);
   }
@@ -2285,6 +2362,7 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
     TResult Function(StartTimerEvent value)? startTimer,
     TResult Function(AddTickTimerEvent value)? addTickTimer,
     TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
     required TResult orElse(),
   }) {
     if (closeTimer != null) {
@@ -2296,4 +2374,176 @@ class _$CloseTimerEventImpl implements CloseTimerEvent {
 
 abstract class CloseTimerEvent implements CourseDetailsEvent {
   const factory CloseTimerEvent() = _$CloseTimerEventImpl;
+}
+
+/// @nodoc
+abstract class _$$TestFinishedVideoImplCopyWith<$Res> {
+  factory _$$TestFinishedVideoImplCopyWith(_$TestFinishedVideoImpl value,
+          $Res Function(_$TestFinishedVideoImpl) then) =
+      __$$TestFinishedVideoImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TestFinishedVideoImplCopyWithImpl<$Res>
+    extends _$CourseDetailsEventCopyWithImpl<$Res, _$TestFinishedVideoImpl>
+    implements _$$TestFinishedVideoImplCopyWith<$Res> {
+  __$$TestFinishedVideoImplCopyWithImpl(_$TestFinishedVideoImpl _value,
+      $Res Function(_$TestFinishedVideoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CourseDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$TestFinishedVideoImpl implements TestFinishedVideo {
+  const _$TestFinishedVideoImpl();
+
+  @override
+  String toString() {
+    return 'CourseDetailsEvent.testFinishedVideo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TestFinishedVideoImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String documentID) loadCourseInfo,
+    required TResult Function(String videoUrl, String videoPlayingId)
+        loadCourseVideo,
+    required TResult Function(String videoPlayingId) playVideo,
+    required TResult Function() pauseVideo,
+    required TResult Function() resumeVideo,
+    required TResult Function() closeVideo,
+    required TResult Function() finishedVideo,
+    required TResult Function() fullScreen,
+    required TResult Function(String documentId) toogleFavourite,
+    required TResult Function() startTimer,
+    required TResult Function() addTickTimer,
+    required TResult Function() closeTimer,
+    required TResult Function() testFinishedVideo,
+  }) {
+    return testFinishedVideo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String documentID)? loadCourseInfo,
+    TResult? Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult? Function(String videoPlayingId)? playVideo,
+    TResult? Function()? pauseVideo,
+    TResult? Function()? resumeVideo,
+    TResult? Function()? closeVideo,
+    TResult? Function()? finishedVideo,
+    TResult? Function()? fullScreen,
+    TResult? Function(String documentId)? toogleFavourite,
+    TResult? Function()? startTimer,
+    TResult? Function()? addTickTimer,
+    TResult? Function()? closeTimer,
+    TResult? Function()? testFinishedVideo,
+  }) {
+    return testFinishedVideo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String documentID)? loadCourseInfo,
+    TResult Function(String videoUrl, String videoPlayingId)? loadCourseVideo,
+    TResult Function(String videoPlayingId)? playVideo,
+    TResult Function()? pauseVideo,
+    TResult Function()? resumeVideo,
+    TResult Function()? closeVideo,
+    TResult Function()? finishedVideo,
+    TResult Function()? fullScreen,
+    TResult Function(String documentId)? toogleFavourite,
+    TResult Function()? startTimer,
+    TResult Function()? addTickTimer,
+    TResult Function()? closeTimer,
+    TResult Function()? testFinishedVideo,
+    required TResult orElse(),
+  }) {
+    if (testFinishedVideo != null) {
+      return testFinishedVideo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadConcreteCourseInfoEvent value) loadCourseInfo,
+    required TResult Function(LoadCourseVideoEvent value) loadCourseVideo,
+    required TResult Function(PlayVideoEvent value) playVideo,
+    required TResult Function(PauseVideoEvent value) pauseVideo,
+    required TResult Function(ResumeVideoEvent value) resumeVideo,
+    required TResult Function(CloseVideoEvent value) closeVideo,
+    required TResult Function(FinishedVideoEvent value) finishedVideo,
+    required TResult Function(FullScreenEvent value) fullScreen,
+    required TResult Function(ToogleFavouriteEvent value) toogleFavourite,
+    required TResult Function(StartTimerEvent value) startTimer,
+    required TResult Function(AddTickTimerEvent value) addTickTimer,
+    required TResult Function(CloseTimerEvent value) closeTimer,
+    required TResult Function(TestFinishedVideo value) testFinishedVideo,
+  }) {
+    return testFinishedVideo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult? Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult? Function(PlayVideoEvent value)? playVideo,
+    TResult? Function(PauseVideoEvent value)? pauseVideo,
+    TResult? Function(ResumeVideoEvent value)? resumeVideo,
+    TResult? Function(CloseVideoEvent value)? closeVideo,
+    TResult? Function(FinishedVideoEvent value)? finishedVideo,
+    TResult? Function(FullScreenEvent value)? fullScreen,
+    TResult? Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult? Function(StartTimerEvent value)? startTimer,
+    TResult? Function(AddTickTimerEvent value)? addTickTimer,
+    TResult? Function(CloseTimerEvent value)? closeTimer,
+    TResult? Function(TestFinishedVideo value)? testFinishedVideo,
+  }) {
+    return testFinishedVideo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadConcreteCourseInfoEvent value)? loadCourseInfo,
+    TResult Function(LoadCourseVideoEvent value)? loadCourseVideo,
+    TResult Function(PlayVideoEvent value)? playVideo,
+    TResult Function(PauseVideoEvent value)? pauseVideo,
+    TResult Function(ResumeVideoEvent value)? resumeVideo,
+    TResult Function(CloseVideoEvent value)? closeVideo,
+    TResult Function(FinishedVideoEvent value)? finishedVideo,
+    TResult Function(FullScreenEvent value)? fullScreen,
+    TResult Function(ToogleFavouriteEvent value)? toogleFavourite,
+    TResult Function(StartTimerEvent value)? startTimer,
+    TResult Function(AddTickTimerEvent value)? addTickTimer,
+    TResult Function(CloseTimerEvent value)? closeTimer,
+    TResult Function(TestFinishedVideo value)? testFinishedVideo,
+    required TResult orElse(),
+  }) {
+    if (testFinishedVideo != null) {
+      return testFinishedVideo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TestFinishedVideo implements CourseDetailsEvent {
+  const factory TestFinishedVideo() = _$TestFinishedVideoImpl;
 }

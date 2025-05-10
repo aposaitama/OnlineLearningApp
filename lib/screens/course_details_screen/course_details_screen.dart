@@ -17,6 +17,7 @@ import 'package:online_app/screens/course_details_screen/widgets/custom_overlays
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
+import 'package:online_app/widgets/clocking_in_widget.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final String courseId;
@@ -48,6 +49,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
     return BlocListener<CourseDetailsBloc, CourseDetailsState>(
       listener: (context, state) {
         if (state.videoWatchingStatus == CourseVideoStatus.finished) {
+          ClockingInWidget.showUserStatDialog(context);
           context.read<HomeScreenBloc>().add(
                 const LoadUserHomeScreenBlocEvent(),
               );
@@ -175,9 +177,20 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 courseVideoLength:
                                     course?.courseVideoItems.length ?? 0,
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 height: 20.0,
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      context.read<CourseDetailsBloc>().add(
+                                            const TestFinishedVideo(),
+                                          ),
+                                  child: Container(
+                                    color: Colors.amber,
+                                    child: const Text('press'),
+                                  ),
+                                ),
                               ),
+
                               Expanded(
                                 child: CourseVideosBuilder(
                                   courseId: widget.courseId,
