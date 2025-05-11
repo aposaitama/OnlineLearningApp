@@ -1,32 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:intl/intl.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
-import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class UserRepository {
   final Dio _dio = locator<Dio>();
   final authRepo = locator<AuthRepository>();
 
   Future<UserModel?> getUserData() async {
-    // final token = await StrapiApiService().getToken();
-    //
-    // if (token == null) return null;
-
     final userId = await authRepo.getUserId();
 
     try {
       final response = await _dio.get(
         '/users/$userId',
-        // options: Options(
-        //   headers: {
-        //     'Authorization': 'Bearer $token',
-        //   },
-        // ),
         queryParameters: {
           'populate': {
             'user_purchased_courses': {

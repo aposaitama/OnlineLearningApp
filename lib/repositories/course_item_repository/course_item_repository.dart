@@ -124,24 +124,43 @@ class CourseItemRepository {
   }
 
   Future<CourseBasicModel?> getCourseById({
-    required String courseDocId,
+    required String courseId,
   }) async {
     try {
-      final url = '/course-items$courseDocId';
+      final url = '/course-items?filters[id]=$courseId&populate=courseImage';
 
       final response = await _dio.get(url);
 
       if (response.isSuccess) {
         return CourseBasicModel.fromJson(
-          response.data['data'],
+          response.data['data'][0],
         );
-      }
-      else{
+      } else {
         throw Exception('There is no such course!');
         return null;
       }
     } catch (e) {
       rethrow;
+    }
+  }
+
+  Future<void> salesCountIncrease({
+    required String courseDocId,
+    required int salesCount,
+  }) async {
+    try {
+      final url = '/course-items/$courseDocId';
+
+      final body = {
+        'data': {'salesCount': salesCount}
+      };
+
+      await _dio.put(
+        url,
+        data: body,
+      );
+    } catch (e) {
+      throw Exception('Somehow we cant increase sales count');
     }
   }
 }

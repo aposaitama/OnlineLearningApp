@@ -218,35 +218,21 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                               //   ),
                               // ),
                               //buy course bottom section
-                              BlocBuilder<HomeScreenBloc, HomeScreenState>(
+                              //Ira: I changed some logic here to make sure that user can add course to favorites after purchase
+                              BlocBuilder<CourseDetailsBloc,
+                                  CourseDetailsState>(
                                 builder: (context, state) {
-                                  if (state.userInfo?.user_purchased_courses
-                                          .any(
-                                        (course) {
-                                          return course.documentId ==
-                                              widget.courseId;
-                                        },
-                                      ) ??
-                                      false) {
-                                    return const SizedBox.shrink();
-                                  }
-
-                                  return BlocBuilder<CourseDetailsBloc,
-                                      CourseDetailsState>(
-                                    builder: (context, state) {
-                                      return BuyBottomBar(
-                                        onToogleFavourite: () => context
-                                            .read<CourseDetailsBloc>()
-                                            .add(
+                                  return BuyBottomBar(
+                                    onToggleFavourite: () =>
+                                        context.read<CourseDetailsBloc>().add(
                                               ToogleFavouriteEvent(
                                                   state.course?.id.toString() ??
                                                       ''),
                                             ),
-                                        onBuyButtonPressed: () => context.push(
-                                          '/payment-screen/${course?.id ?? 0}',
-                                        ),
-                                      );
-                                    },
+                                    onBuyButtonPressed: () => context.push(
+                                      '/payment-screen/${course?.id ?? 0}',
+                                    ),
+                                    courseId: widget.courseId,
                                   );
                                 },
                               ),
