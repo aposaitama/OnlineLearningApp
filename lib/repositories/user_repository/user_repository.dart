@@ -13,29 +13,46 @@ class UserRepository {
   final authRepo = locator<AuthRepository>();
 
   Future<UserModel?> getUserData() async {
-    final token = await StrapiApiService().getToken();
+    // final token = await StrapiApiService().getToken();
+    //
+    // if (token == null) return null;
 
-    if (token == null) return null;
+    final userId = await authRepo.getUserId();
 
     try {
       final response = await _dio.get(
-        '/users/me',
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
+        '/users/$userId',
+        // options: Options(
+        //   headers: {
+        //     'Authorization': 'Bearer $token',
+        //   },
+        // ),
         queryParameters: {
-          'populate': 'user_purchased_courses.courseImage',
-          'populate[]': 'favourite_items',
-          'populate[][]': 'user_purchased_courses.courseVideoItems.video',
-          'populate[][][]': 'completed_course_videos.video',
-          'populate[][][][]': 'creditCards',
-          'populate[][][][][]': 'message_notifications',
+          'populate': {
+            'user_purchased_courses': {
+              'populate': {
+                'courseImage': true,
+                'courseVideoItems': {
+                  'populate': {
+                    'video': true,
+                  },
+                },
+              },
+            },
+            'completed_course_videos': {
+              'populate': {
+                'video': true,
+              },
+            },
+            'favourite_items': true,
+            'creditCards': true,
+            'message_notifications': true,
+            'avatar': true,
+          },
         },
       );
 
-      return UserModel.fromJson(
+    return UserModel.fromJson(
         response.data,
       );
     } catch (e) {

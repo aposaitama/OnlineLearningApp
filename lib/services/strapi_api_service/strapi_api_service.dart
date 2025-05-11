@@ -59,6 +59,8 @@ class StrapiApiService {
     return prefs.getString('jwt_token');
   }
 
+
+
   Future<List<CourseBasicModel>> filterCourses({
     required List<CategoriesModel> categories,
     String? searchedText,

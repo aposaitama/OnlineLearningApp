@@ -24,6 +24,18 @@ class AuthRepository {
     return prefs.getString('jwt_token');
   }
 
+  Future<void> saveUserId(int userId) async {
+
+    await prefs.setInt('user_id', userId,);
+
+  }
+
+  Future<int?> getUserId() async {
+
+    return prefs.getInt('user_id');
+  }
+
+
   Future<String> register(
     String userName,
     String email,
@@ -39,6 +51,9 @@ class AuthRepository {
         },
       );
       final token = response.data['jwt'];
+      final userId = response.data['user']['id'];
+
+      await saveUserId(userId);
       await saveToken(token);
 
       return token;
@@ -58,7 +73,9 @@ class AuthRepository {
       );
 
       final token = response.data['jwt'];
+      final userId = response.data['user']['id'];
 
+      await saveUserId(userId);
       await saveToken(token);
       return token;
     } on DioException catch (e) {

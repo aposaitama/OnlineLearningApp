@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
 
 import '../../models/course_concrete_model.dart/course_concrete_model.dart';
+import '../../services/strapi_api_service/strapi_api_service.dart';
 
 class CourseItemsRepository {
   static final CourseItemsRepository _instance =
