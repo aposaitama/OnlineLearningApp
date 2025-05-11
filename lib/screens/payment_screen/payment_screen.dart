@@ -16,6 +16,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PaymentScreen extends StatefulWidget {
   final String courseId;
+
   const PaymentScreen({super.key, required this.courseId});
 
   @override
@@ -29,8 +30,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    context.read<HomeScreenBloc>().add(LoadUserHomeScreenBlocEvent());
+    super.initState();
+    context.read<HomeScreenBloc>().add(
+          const LoadUserHomeScreenBlocEvent(),
+        );
   }
 
   void _showAddNewCreditCardBottomSheet() {

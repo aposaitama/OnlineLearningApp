@@ -99,6 +99,7 @@ class CourseItemRepository {
         'pagination[pageSize]': pageSize,
       };
       if (filter == 'Popular') {
+        queryParameters['sort'] = 'salesCount:desc';
       } else if (filter == 'New') {
         queryParameters['sort'] = 'publishedAt:desc';
       }
@@ -116,6 +117,28 @@ class CourseItemRepository {
             .toList();
       } else {
         return [];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<CourseBasicModel?> getCourseById({
+    required String courseDocId,
+  }) async {
+    try {
+      final url = '/course-items$courseDocId';
+
+      final response = await _dio.get(url);
+
+      if (response.isSuccess) {
+        return CourseBasicModel.fromJson(
+          response.data['data'],
+        );
+      }
+      else{
+        throw Exception('There is no such course!');
+        return null;
       }
     } catch (e) {
       rethrow;
