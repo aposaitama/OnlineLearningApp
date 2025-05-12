@@ -86,9 +86,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-
-                    child: state.userData!.avatar == null || state.userData!.avatar!.isEmpty
-
+                    child: state.userData!.avatar == null ||
+                            state.userData!.avatar!.isEmpty
                         ? SvgPicture.asset(
                             Assets.icons.avatar,
                             fit: BoxFit.contain,

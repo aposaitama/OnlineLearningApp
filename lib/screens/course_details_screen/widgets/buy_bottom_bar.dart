@@ -7,77 +7,98 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 
 class BuyBottomBar extends StatelessWidget {
   final void Function()? onBuyButtonPressed;
   final void Function()? onToogleFavourite;
-  const BuyBottomBar(
-      {super.key, this.onBuyButtonPressed, this.onToogleFavourite});
+  final String courseId;
+
+  const BuyBottomBar({
+    super.key,
+    this.onBuyButtonPressed,
+    this.onToogleFavourite,
+    required this.courseId,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
-      builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).extension<AppColorsModel>()!.onSurface,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.darkHintTextColor.withValues(
-                  alpha: 0.1,
-                ),
-                spreadRadius: 2,
-                blurRadius: 10,
-                offset: const Offset(
-                  -2,
-                  -5,
-                ),
-              ),
-            ],
-          ),
-          height: 98.0,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 14.0,
-              left: 20.0,
-              right: 20.0,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 89.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      13.0,
+    return BlocBuilder<HomeScreenBloc, HomeScreenState>(
+      builder: (context, homeScreenState) {
+        return BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
+          builder: (context, state) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).extension<AppColorsModel>()!.onSurface,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.darkHintTextColor.withValues(
+                      alpha: 0.1,
                     ),
-                    color: AppColors.pinkColor,
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: const Offset(
+                      -2,
+                      -5,
+                    ),
                   ),
-                  child: Center(
-                    child: GestureDetector(
-                      onTap: onToogleFavourite,
-                      child: SvgPicture.asset(
-                        state.isInFavourite
-                            ? Assets.icons.favouriteFilled
-                            : Assets.icons.star,
+                ],
+              ),
+              height: 98.0,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 14.0,
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 89.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          13.0,
+                        ),
+                        color: AppColors.pinkColor,
+                      ),
+                      child: Center(
+                        child: GestureDetector(
+                          onTap: onToogleFavourite,
+                          child: SvgPicture.asset(
+                            state.isInFavourite
+                                ? Assets.icons.favouriteFilled
+                                : Assets.icons.star,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(
+                      width: 14.0,
+                    ),
+                    Expanded(
+                      child:
+                          (homeScreenState.userInfo?.user_purchased_courses.any(
+                                    (course) {
+                                      return course.documentId == courseId;
+                                    },
+                                  ) ??
+                                  false)
+                              ? CustomFilledButton(
+                                  onTap: () {}, buttonTitle: 'Already bought')
+                              : CustomFilledButton(
+                                  onTap: onBuyButtonPressed,
+                                  buttonTitle: 'Buy Now',
+                                ),
+                    )
+                  ],
                 ),
-                const SizedBox(
-                  width: 14.0,
-                ),
-                Expanded(
-                  child: CustomFilledButton(
-                    onTap: onBuyButtonPressed,
-                    buttonTitle: 'Buy Now',
-                  ),
-                )
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );
