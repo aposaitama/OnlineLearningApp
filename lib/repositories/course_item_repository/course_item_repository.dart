@@ -2,18 +2,24 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
+import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
 
+import '../../di/service_locator.dart';
+import '../../sources/shared_preferences_service/shared_preferences_service.dart';
+
 class CourseItemRepository {
   static final CourseItemRepository _instance =
-  CourseItemRepository._internal();
+      CourseItemRepository._internal();
 
   factory CourseItemRepository() => _instance;
 
   CourseItemRepository._internal();
 
   final Dio _dio = StrapiApiService().dio;
+  final SharedPreferencesService _sharedPreferencesService = SharedPreferencesService();
+
 
   Future<List<CourseBasicModel>> getFilteredCourses({
     required List<CategoriesModel> selectedCategories,
@@ -39,7 +45,7 @@ class CourseItemRepository {
 
       if (selectedCategories.isNotEmpty) {
         final List<int> categoriesId =
-        selectedCategories.map((category) => category.id).toList();
+            selectedCategories.map((category) => category.id).toList();
 
         queryParameters['filters[category][id][\$in]'] = categoriesId;
       }
@@ -48,7 +54,7 @@ class CourseItemRepository {
         final durationsIntSec = selectedDurations
             .map(
               (range) => RangeValues(range.start * 3600, range.end * 3600),
-        )
+            )
             .toList();
 
         final List<Map<String, dynamic>> durationFilters = [];
@@ -74,13 +80,45 @@ class CourseItemRepository {
         return (response.data['data'] as List)
             .map(
               (json) => CourseBasicModel.fromJson(json),
-        )
+            )
             .toList();
       } else {
         return [];
       }
     } catch (e) {
       throw Exception(e);
+    }
+  }
+
+  Future<List<CourseBasicModel>> getFavourites() async {
+    try {
+      final int? userId = await _sharedPreferencesService.getUserId();
+
+      final url = '/course-items?filters[favourite_users]=$userId';
+
+      final queryParameters = {
+        'populate': 'courseVideoItems.video',
+        'populate[]': 'courseImage',
+      };
+
+      final response = await _dio.get(
+        url,
+        queryParameters: queryParameters,
+      );
+
+      if (response.isSuccess) {
+        return (response.data['data'] as List)
+            .map(
+              (json) => CourseBasicModel.fromJson(
+                json as Map<String, dynamic>,
+              ),
+            )
+            .toList();
+      } else{
+        return [];
+      }
+    } catch (e) {
+      throw Exception('Something went wrong during loading favourites: $e');
     }
   }
 }

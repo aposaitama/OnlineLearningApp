@@ -47,6 +47,10 @@ class _AccountScreenState extends State<AccountScreen> {
     context.push('/help-screen');
   }
 
+  void _favourites() {
+    context.push('/favourites');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +87,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       shape: BoxShape.circle,
                     ),
                     child: state.userData!.avatar == null ||
-                            state.userData!.avatar == ''
+                            state.userData!.avatar!.isEmpty
                         ? SvgPicture.asset(
                             Assets.icons.avatar,
                             fit: BoxFit.contain,
@@ -99,7 +103,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                   AccountListItem(
                     title: 'Favourite',
-                    onTap: () {},
+                    onTap: _favourites,
                   ),
                   AccountListItem(
                     title: 'Edit Account',

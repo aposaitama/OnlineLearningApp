@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
+import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
 import 'package:online_app/repositories/course_repository/course_repository.dart';
 import 'package:online_app/repositories/payment_repository/payment_repository.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
@@ -18,4 +19,5 @@ Future<void> setupLocator() async {
   locator.registerSingleton<PaymentRepository>(PaymentRepository());
   locator.registerSingleton<CourseRepository>(CourseRepository());
   locator.registerSingleton<CategoryRepository>(CategoryRepository());
+  locator.registerSingleton<CourseItemRepository>(CourseItemRepository());
 }
