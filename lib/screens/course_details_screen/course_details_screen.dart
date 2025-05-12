@@ -60,218 +60,184 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
           if (state.loadingStatus == CourseDetailsLoadingStatus.loaded) {
             final course = state.course;
             return Scaffold(
-                body: Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
-                  builder: (context, state) {
-                    if (state.videoLoadingStatus ==
-                        CourseLoadingVideoStatus.initial) {
-                      return course != null
-                          ? Stack(
-                              children: [
-                                SizedBox(
-                                  width: double.infinity,
-                                  height: imageHeight,
-                                  child: Image.network(
-                                    fit: BoxFit.cover,
-                                    'http://localhost:1337${course.courseImage.url}',
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 35.0,
+              body: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
+                    builder: (context, state) {
+                      if (state.videoLoadingStatus ==
+                          CourseLoadingVideoStatus.initial) {
+                        return course != null
+                            ? Stack(
+                                children: [
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: imageHeight,
+                                    child: Image.network(
+                                      fit: BoxFit.cover,
+                                      'http://localhost:1337${course.courseImage.url}',
                                     ),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        context.pop();
-                                      },
-                                      icon: SvgPicture.asset(
-                                        Assets.icons.arrowBack,
-                                        colorFilter: const ColorFilter.mode(
-                                          AppColors.darkColor,
-                                          BlendMode.srcIn,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 35.0,
+                                      ),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          context.pop();
+                                        },
+                                        icon: SvgPicture.asset(
+                                          Assets.icons.arrowBack,
+                                          colorFilter: const ColorFilter.mode(
+                                            AppColors.darkColor,
+                                            BlendMode.srcIn,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            )
-                          : Container();
-                    }
-                    if (state.videoLoadingStatus ==
-                        CourseLoadingVideoStatus.loaded) {
-                      return state.courseVideo != null
-                          ? BlocListener<CourseDetailsBloc, CourseDetailsState>(
-                              listener: (context, state) {
-                                if (state.isFullScreen !=
-                                    context
-                                        .read<CourseDetailsBloc>()
-                                        .state
-                                        .isFullScreen) {
-                                  setState(
-                                    () {},
-                                  );
-                                }
-                              },
-                              //safearea
-                              child: SafeArea(
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: imageHeight - 22,
-                                  child: Chewie(
-                                    controller: ChewieController(
-                                      fullScreenByDefault: state.isFullScreen,
-                                      videoPlayerController: state.courseVideo!,
-                                      customControls:
-                                          const CustomOverlayControls(),
+                                ],
+                              )
+                            : Container();
+                      }
+                      if (state.videoLoadingStatus ==
+                          CourseLoadingVideoStatus.loaded) {
+                        return state.courseVideo != null
+                            ? BlocListener<CourseDetailsBloc,
+                                CourseDetailsState>(
+                                listener: (context, state) {
+                                  if (state.isFullScreen !=
+                                      context
+                                          .read<CourseDetailsBloc>()
+                                          .state
+                                          .isFullScreen) {
+                                    setState(
+                                      () {},
+                                    );
+                                  }
+                                },
+                                //safearea
+                                child: SafeArea(
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    height: imageHeight - 22,
+                                    child: Chewie(
+                                      controller: ChewieController(
+                                        fullScreenByDefault: state.isFullScreen,
+                                        videoPlayerController:
+                                            state.courseVideo!,
+                                        customControls:
+                                            const CustomOverlayControls(),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          : const SizedBox();
-                    }
-                    return Container();
-                  },
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: imageHeight - 22,
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .extension<AppColorsModel>()!
-                              .onSurface,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(
-                              25.0,
-                            ),
-                            topRight: Radius.circular(
-                              25.0,
-                            ),
-                          ),
+                              )
+                            : const SizedBox();
+                      }
+                      return Container();
+                    },
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: imageHeight - 22,
                         ),
-                        height: height - imageHeight + 22,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 35.0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .extension<AppColorsModel>()!
+                                .onSurface,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(
+                                25.0,
+                              ),
+                              topRight: Radius.circular(
+                                25.0,
+                              ),
+                            ),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CourseInfoWidget(
-                                courseTitle: course?.courseTitle ?? '',
-                                courseDescription:
-                                    course?.courseDescription ?? '',
-                                coursePrice: course?.coursePrice ?? 0.0,
-                                courseDuration:
-                                    course?.totalCourseDurationInSeconds ?? 0,
-                                courseVideoLength:
-                                    course?.courseVideoItems.length ?? 0,
-                              ),
-                              SizedBox(
-                                height: 20.0,
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      context.read<CourseDetailsBloc>().add(
-                                            const TestFinishedVideo(),
-                                          ),
-                                  child: Container(
-                                    color: Colors.amber,
-                                    child: const Text('press'),
-                                  ),
+                          height: height - imageHeight + 22,
+                          width: double.infinity,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 35.0,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CourseInfoWidget(
+                                  courseTitle: course?.courseTitle ?? '',
+                                  courseDescription:
+                                      course?.courseDescription ?? '',
+                                  coursePrice: course?.coursePrice ?? 0.0,
+                                  courseDuration:
+                                      course?.totalCourseDurationInSeconds ?? 0,
+                                  courseVideoLength:
+                                      course?.courseVideoItems.length ?? 0,
                                 ),
-                              ),
-
-                              Expanded(
-                                child: CourseVideosBuilder(
-                                  courseId: widget.courseId,
-                                  videoList:
-                                      state.course?.courseVideoItems ?? [],
-                                  onLockPressed: (index) {
-                                    BotToast.showText(
-                                      text: 'You have to buy course',
-                                    );
-                                  },
-                                  onPlayPressed: (index) async {
-                                    context.read<CourseDetailsBloc>().add(
-                                          LoadCourseVideoEvent(
-                                            state
-                                                    .course
-                                                    ?.courseVideoItems[index]
-                                                    .video
-                                                    .url ??
-                                                '',
-                                            state.course
-                                                    ?.courseVideoItems[index].id
-                                                    .toString() ??
-                                                '',
-                                          ),
-                                        );
-                                  },
-                                ),
-                              ),
-                              // GestureDetector(
-                              //   onTap: () =>
-                              //       context.read<CourseDetailsBloc>().add(
-                              //             const PauseVideoEvent(),
-                              //           ),
-                              //   child: Container(
-                              //     height: 50.0,
-                              //     width: 50.0,
-                              //     color: Colors.amber,
-                              //   ),
-                              // ),
-                              //buy course bottom section
-                              BlocBuilder<HomeScreenBloc, HomeScreenState>(
-                                builder: (context, state) {
-                                  if (state.userInfo?.user_purchased_courses
-                                          .any(
-                                        (course) {
-                                          return course.documentId ==
-                                              widget.courseId;
-                                        },
-                                      ) ??
-                                      false) {
-                                    return const SizedBox.shrink();
-                                  }
-
-                                  return BlocBuilder<CourseDetailsBloc,
-                                      CourseDetailsState>(
-                                    builder: (context, state) {
-                                      return BuyBottomBar(
-                                        onToogleFavourite: () => context
-                                            .read<CourseDetailsBloc>()
-                                            .add(
-                                              ToogleFavouriteEvent(
-                                                  state.course?.id.toString() ??
-                                                      ''),
-                                            ),
-                                        onBuyButtonPressed: () => context.push(
-                                          '/payment-screen/${course?.id ?? 0}',
-                                        ),
+                                Expanded(
+                                  child: CourseVideosBuilder(
+                                    courseId: widget.courseId,
+                                    videoList:
+                                        state.course?.courseVideoItems ?? [],
+                                    onLockPressed: (index) {
+                                      BotToast.showText(
+                                        text: 'You have to buy course',
                                       );
                                     },
-                                  );
-                                },
-                              ),
-                            ],
+                                    onPlayPressed: (index) async {
+                                      context.read<CourseDetailsBloc>().add(
+                                            LoadCourseVideoEvent(
+                                              state
+                                                      .course
+                                                      ?.courseVideoItems[index]
+                                                      .video
+                                                      .url ??
+                                                  '',
+                                              state
+                                                      .course
+                                                      ?.courseVideoItems[index]
+                                                      .id
+                                                      .toString() ??
+                                                  '',
+                                            ),
+                                          );
+                                    },
+                                  ),
+                                ),
+                                //buy course bottom section
+                                BlocBuilder<CourseDetailsBloc,
+                                    CourseDetailsState>(
+                                  builder: (context, state) {
+                                    return BuyBottomBar(
+                                      courseId: widget.courseId,
+                                      onToogleFavourite: () => context
+                                          .read<CourseDetailsBloc>()
+                                          .add(
+                                            ToogleFavouriteEvent(
+                                                state.course?.id.toString() ??
+                                                    ''),
+                                          ),
+                                      onBuyButtonPressed: () => context.push(
+                                        '/payment-screen/${course?.id ?? 0}',
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ));
+                    ],
+                  )
+                ],
+              ),
+            );
           } else {
             return const SizedBox();
           }

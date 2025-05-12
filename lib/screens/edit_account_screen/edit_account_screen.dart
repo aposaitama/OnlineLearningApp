@@ -97,17 +97,7 @@ class EditAccountScreen extends StatelessWidget {
                         : const EditAvatar(),
                   ),
                 ),
-
-                child: state.userData!.avatar == null || state.userData!.avatar!.isEmpty
-                    ? SvgPicture.asset(
-                  Assets.icons.avatar,
-                  fit: BoxFit.contain,
-                )
-                    : SvgPicture.asset(
-                  state.userData!.avatar!,
-                  fit: BoxFit.contain,
-
-                ),
+                const SizedBox(height: 30.0,),
                 EditAccountTextField(
                   onChanged: (value) => _onEnterUsername(context, value),
                 ),

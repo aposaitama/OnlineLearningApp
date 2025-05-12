@@ -3,26 +3,18 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/utils/extensions.dart';
 
 class UserRepository {
   final Dio _dio = locator<Dio>();
   final authRepo = locator<AuthRepository>();
 
   Future<UserModel?> getUserData() async {
-    // final token = await StrapiApiService().getToken();
-    //
-    // if (token == null) return null;
-
     final userId = await authRepo.getUserId();
 
     try {
       final response = await _dio.get(
         '/users/$userId',
-        // options: Options(
-        //   headers: {
-        //     'Authorization': 'Bearer $token',
-        //   },
-        // ),
         queryParameters: {
           'populate': {
             'user_purchased_courses': {
@@ -138,5 +130,50 @@ class UserRepository {
         data: data,
       );
     } catch (e) {}
+  }
+
+
+  Future<UserModel?> editUserData({
+    String? username,
+    String? avatarPath,
+  }) async {
+    try {
+      final userId = await authRepo.getUserId();
+      final url = '/users/$userId';
+
+      var formData = FormData();
+
+      final body =
+      {
+        if (username != null) 'username': username,
+      };
+
+      await _dio.put(
+        url,
+        data: body,
+      );
+
+      if (avatarPath != null) {
+        formData = FormData.fromMap(
+          {
+            'files': await MultipartFile.fromFile(
+              avatarPath,
+              filename: avatarPath.split('/').last,
+            ),
+            'ref': 'plugin::users-permissions.user',
+            'refId': userId,
+            'field': 'avatar',
+          },
+        );
+
+        await _dio.post(
+          '/upload',
+          data: formData,
+        );
+      }
+
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }
