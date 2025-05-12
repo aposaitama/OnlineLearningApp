@@ -1,45 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
-import 'package:online_app/sources/shared_preferences_service/shared_preferences_service.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final SharedPreferences prefs = locator<SharedPreferences>();
-  final SharedPreferencesService _sharedPreferencesService = SharedPreferencesService();
-  final Dio dio;
-  AuthRepository()
-      : dio = Dio(
-          BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
-            headers: {
-              'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
-              'Content-Type': 'application/json',
-            },
-          ),
-        )..interceptors.addAll(
-            [
-              PrettyDioLogger(
-                requestHeader: true,
-                requestBody: true,
-                responseBody: true,
-                responseHeader: false,
-                error: true,
-                compact: true,
-                maxWidth: 90,
-                enabled: kDebugMode,
-              ),
-              QueuedInterceptorsWrapper(
-                onError: (exception, handler) {
-                  return handler.next(
-                    exception,
-                  );
-                },
-              ),
-            ],
-          );
+  final Dio _dio = locator<Dio>();
 
   Future<void> saveToken(String token) async {
     await prefs.setString('jwt_token', token);
@@ -55,13 +20,25 @@ class AuthRepository {
     return prefs.getString('jwt_token');
   }
 
+  Future<void> saveUserId(int userId) async {
+
+    await prefs.setInt('user_id', userId,);
+
+  }
+
+  Future<int?> getUserId() async {
+
+    return prefs.getInt('user_id');
+  }
+
+
   Future<String> register(
     String userName,
     String email,
     String password,
   ) async {
     try {
-      final response = await dio.post(
+      final response = await _dio.post(
         '/auth/local/register',
         data: {
           'username': userName,
@@ -72,7 +49,7 @@ class AuthRepository {
       final token = response.data['jwt'];
       final userId = response.data['user']['id'];
 
-      await _sharedPreferencesService.saveUserId(userId);
+      await saveUserId(userId);
       await saveToken(token);
 
       return token;
@@ -86,7 +63,7 @@ class AuthRepository {
 
   Future<String> login(String email, String password) async {
     try {
-      final response = await dio.post(
+      final response = await _dio.post(
         '/auth/local',
         data: {'identifier': email, 'password': password},
       );
@@ -94,7 +71,7 @@ class AuthRepository {
       final token = response.data['jwt'];
       final userId = response.data['user']['id'];
 
-      await _sharedPreferencesService.saveUserId(userId);
+      await saveUserId(userId);
       await saveToken(token);
       return token;
     } on DioException catch (e) {

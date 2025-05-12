@@ -1,41 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/utils/extensions.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+import '../../di/service_locator.dart';
 
 class CategoryRepository {
-  final Dio _dio;
-
-  CategoryRepository()
-      : _dio = Dio(
-          BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
-            headers: {
-              'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
-              'Content-Type': 'application/json',
-            },
-          ),
-        )..interceptors.addAll(
-            [
-              PrettyDioLogger(
-                requestHeader: true,
-                requestBody: true,
-                responseBody: true,
-                responseHeader: false,
-                error: true,
-                compact: true,
-                maxWidth: 90,
-                enabled: kDebugMode,
-              ),
-              QueuedInterceptorsWrapper(
-                onError: (exception, handler) {
-                  return handler.next(exception);
-                },
-              ),
-            ],
-          );
+  final Dio _dio = locator<Dio>();
 
   Future<List<CategoriesModel>> getCategories() async {
     try {

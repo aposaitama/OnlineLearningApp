@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
   final strapiApiService = locator<StrapiApiService>();
@@ -19,10 +20,44 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
     Emitter<HomeScreenState> emit,
   ) async {
     final userInfoModel = await userRepo.getUserData();
+    if (userInfoModel != null) {
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final daybefore = DateTime(now.year, now.month, now.day - 1);
+      final last = DateTime(
+        userInfoModel.lastTimeCheckout!.year,
+        userInfoModel.lastTimeCheckout!.month,
+        userInfoModel.lastTimeCheckout!.day,
+      );
+      final userCheckoutCurrentStreak = userInfoModel.userLearningStreak;
+      userInfoModel.lastTimeCheckout != null
+          ? today == last
+              ? print('true')
+              : daybefore == last
+                  ? await userRepo.updateUserStatInfo(
+                      lastTimeCheckout: DateTime.now(),
+                      totallyLearningDays:
+                          userInfoModel.totallyLearningDays + 1,
+                      learnedToday: 0.0,
+                      userCurrentStreak: userCheckoutCurrentStreak + 1,
+                    )
+                  : await userRepo.updateUserStatInfo(
+                      lastTimeCheckout: DateTime.now(),
+                      totallyLearningDays:
+                          userInfoModel.totallyLearningDays + 1,
+                      learnedToday: 0.0,
+                      userCurrentStreak: 0,
+                    )
+          : await userRepo.updateUserStatInfo(
+              lastTimeCheckout: DateTime.now(),
+              totallyLearningDays: 1,
+            );
+    }
+    final userInfoChangedModel = await userRepo.getUserData();
     emit(
       state.copyWith(
         loadingStatus: HomeScreenStatus.loaded,
-        userInfo: userInfoModel,
+        userInfo: userInfoChangedModel,
       ),
     );
   }

@@ -46,30 +46,44 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
             color: Theme.of(context).extension<AppColorsModel>()?.onSurface,
           ),
           height: MediaQuery.of(context).size.height / 1.4,
-          child: Column(
-            children: [
-              CustomTextField(
-                controller: cardNumberController,
-                inputFormatter: [maskCardNumFormatter],
-                title: 'Enter card number',
-                hint: '',
-              ),
-              CustomTextField(
-                controller: cardExpController,
-                inputFormatter: [maskExpDateFormatter],
-                title: 'Enter exp date',
-                hint: '',
-              ),
-              CustomFilledButton(
-                onTap: () => context.read<PaymentBloc>().add(
-                      AddCreditCardEvent(
-                        maskCardNumFormatter.getMaskedText(),
-                        maskExpDateFormatter.getUnmaskedText(),
-                      ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 40.0,
+              horizontal: 20.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    CustomTextField(
+                      controller: cardNumberController,
+                      inputFormatter: [maskCardNumFormatter],
+                      title: 'Enter card number',
+                      hint: '',
                     ),
-                buttonTitle: 'Add new card',
-              )
-            ],
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    CustomTextField(
+                      controller: cardExpController,
+                      inputFormatter: [maskExpDateFormatter],
+                      title: 'Enter exp date',
+                      hint: '',
+                    ),
+                  ],
+                ),
+                CustomFilledButton(
+                  onTap: () => context.read<PaymentBloc>().add(
+                        AddCreditCardEvent(
+                          maskCardNumFormatter.getMaskedText(),
+                          maskExpDateFormatter.getUnmaskedText(),
+                        ),
+                      ),
+                  buttonTitle: 'Add new card',
+                )
+              ],
+            ),
           ),
         );
       },

@@ -1,8 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:online_app/resources/app_colors.dart';
-import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/utils/extensions.dart';
 
 class CategoriesItemTile extends StatelessWidget {
@@ -26,7 +23,6 @@ class CategoriesItemTile extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        // Background Container
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Container(
@@ -34,15 +30,21 @@ class CategoriesItemTile extends StatelessWidget {
             width: 160.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13.0),
-              color: backgroundColor.toColor(),
+              color: HexColorExtension(backgroundColor).toColor(),
             ),
           ),
         ),
-
-        // Cached Image
-        // SvgPicture.network('http://localhost:1337${imageUrl}'),
-        // Positioned Text Container
-
+        Positioned(
+          left: 0,
+          child: CachedNetworkImage(
+            imageUrl: 'http://localhost:1337$imageUrl',
+            width: 110.0,
+            height: 85.0,
+            errorWidget: (context, url, error) {
+              return const Icon(Icons.error);
+            },
+          ),
+        ),
         Positioned(
           right: 0,
           bottom: 8.0,
@@ -54,17 +56,17 @@ class CategoriesItemTile extends StatelessWidget {
                 topLeft: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
               ),
-              color: textBackgroundColor.toColor(),
+              color: HexColorExtension(textBackgroundColor).toColor(),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
                     categoryTitle,
                     style: TextStyle(
-                      color: textColor.toColor(),
+                      color: HexColorExtension(textColor).toColor(),
                     ),
                   ),
                 ),
@@ -72,46 +74,6 @@ class CategoriesItemTile extends StatelessWidget {
             ),
           ),
         ),
-        // Positioned SVG Image
-
-        Positioned(
-          left: 3,
-          bottom: 0,
-          child: SvgPicture.network(
-            'http://localhost:1337$imageUrl',
-          ),
-        ),
-        // Bottom Text Label
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    bottomLeft: Radius.circular(20.0),
-                  ),
-                  color: AppColors.lightBlueColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 7.0,
-                    vertical: 3.0,
-                  ),
-                  child: Text(
-                    categoryTitle,
-                    style: AppFonts.poppinsMedium.copyWith(
-                      color: textColor.toColor(),
-                      fontSize: 14.0,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        )
       ],
     );
   }

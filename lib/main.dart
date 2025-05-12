@@ -1,8 +1,10 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/firebase_options.dart';
 import 'package:online_app/navigation/app_router.dart';
 import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/repositories/category_repository/category_repository.dart';
@@ -17,13 +19,29 @@ import 'package:online_app/screens/favourites_screen/favourites_bloc/favourites_
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
+import 'package:online_app/services/firebase_api_service/firebase_api_service.dart';
+import 'package:online_app/widgets/notification_dialog.dart';
 
 import 'bloc/filters_bloc/filters_bloc.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
+  await Firebase.initializeApp(
+    name: 'LearningApp',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseApiService(
+    (message) {
+      NotificationDialog.showNotificationDialog(
+        navigatorKey.currentContext!,
+        message,
+      );
+    },
+  ).initNotif();
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -48,6 +66,7 @@ void main() async {
         BlocProvider(
           create: (context) => CourseScreenBloc(
             categoryRepository: context.read<CategoryRepository>(),
+            courseItemRepository: context.read<CourseItemRepository>(),
           ),
         ),
         BlocProvider(
@@ -84,9 +103,14 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -95,7 +119,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalTheme.lightTheme,
       darkTheme: GlobalTheme.darkTheme,
       themeMode: ThemeMode.system,
-      routerConfig: AppRouter().createRouter(),
+      routerConfig: AppRouter(navigatorKey).createRouter(),
     );
   }
 }

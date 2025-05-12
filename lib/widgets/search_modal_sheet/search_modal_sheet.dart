@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/bloc/filters_bloc/filters_event.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
@@ -105,7 +106,7 @@ class _SearchModalSheetState extends State<SearchModalSheet> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 5.0),
                         child: SvgPicture.asset(
-                          'assets/icons/close.svg',
+                          Assets.icons.close,
                           colorFilter: ColorFilter.mode(
                             appColorsModel!.mainTextColor,
                             BlendMode.srcIn,

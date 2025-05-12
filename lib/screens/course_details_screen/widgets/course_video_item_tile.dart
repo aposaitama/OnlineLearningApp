@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
@@ -121,11 +122,11 @@ class _CourseVideoItemTileState extends State<CourseVideoItemTile> {
                     return state.videoPlayingId ==
                             widget.videoModel.id.toString()
                         ? VideoPlayableButton(
-                            imagePath: 'assets/icons/Pause.svg',
+                            imagePath: Assets.icons.pause,
                             onPlayPressed: widget.onPlayPressed,
                           )
                         : VideoPlayableButton(
-                            imagePath: 'assets/icons/Polygon.svg',
+                            imagePath: Assets.icons.polygon,
                             onPlayPressed: widget.onPlayPressed,
                           );
                   },
@@ -149,11 +150,11 @@ class _CourseVideoItemTileState extends State<CourseVideoItemTile> {
                             return state.videoPlayingId ==
                                     widget.videoModel.id.toString()
                                 ? VideoPlayableButton(
-                                    imagePath: 'assets/icons/Pause.svg',
+                                    imagePath: Assets.icons.pause,
                                     onPlayPressed: widget.onPlayPressed,
                                   )
                                 : VideoPlayableButton(
-                                    imagePath: 'assets/icons/Polygon.svg',
+                                    imagePath: Assets.icons.polygon,
                                     onPlayPressed: widget.onPlayPressed,
                                   );
                           },
@@ -162,7 +163,7 @@ class _CourseVideoItemTileState extends State<CourseVideoItemTile> {
                     )
                   : VideoPlayableButton(
                       isLocked: true,
-                      imagePath: 'assets/icons/lock_icon.svg',
+                      imagePath: Assets.icons.lockIcon,
                       onPlayPressed: widget.onLockPressed,
                     );
             },

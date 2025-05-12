@@ -23,6 +23,7 @@ mixin _$SearchScreenState {
   int get page => throw _privateConstructorUsedError;
   int get pageSize => throw _privateConstructorUsedError;
   bool get hasReachedEnd => throw _privateConstructorUsedError;
+  bool get isLoadingNext => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +45,8 @@ abstract class $SearchScreenStateCopyWith<$Res> {
       String? errorMessage,
       int page,
       int pageSize,
-      bool hasReachedEnd});
+      bool hasReachedEnd,
+      bool isLoadingNext});
 }
 
 /// @nodoc
@@ -69,6 +71,7 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
     Object? page = null,
     Object? pageSize = null,
     Object? hasReachedEnd = null,
+    Object? isLoadingNext = null,
   }) {
     return _then(_value.copyWith(
       coursesList: null == coursesList
@@ -99,6 +102,10 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
           ? _value.hasReachedEnd
           : hasReachedEnd // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoadingNext: null == isLoadingNext
+          ? _value.isLoadingNext
+          : isLoadingNext // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -118,7 +125,8 @@ abstract class _$$SearchScreenStateImplCopyWith<$Res>
       String? errorMessage,
       int page,
       int pageSize,
-      bool hasReachedEnd});
+      bool hasReachedEnd,
+      bool isLoadingNext});
 }
 
 /// @nodoc
@@ -141,6 +149,7 @@ class __$$SearchScreenStateImplCopyWithImpl<$Res>
     Object? page = null,
     Object? pageSize = null,
     Object? hasReachedEnd = null,
+    Object? isLoadingNext = null,
   }) {
     return _then(_$SearchScreenStateImpl(
       coursesList: null == coursesList
@@ -171,6 +180,10 @@ class __$$SearchScreenStateImplCopyWithImpl<$Res>
           ? _value.hasReachedEnd
           : hasReachedEnd // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoadingNext: null == isLoadingNext
+          ? _value.isLoadingNext
+          : isLoadingNext // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -185,7 +198,8 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
       this.errorMessage,
       this.page = 1,
       this.pageSize = 10,
-      this.hasReachedEnd = false})
+      this.hasReachedEnd = false,
+      this.isLoadingNext = false})
       : _coursesList = coursesList;
 
   final List<CourseBasicModel> _coursesList;
@@ -213,10 +227,13 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
   @override
   @JsonKey()
   final bool hasReachedEnd;
+  @override
+  @JsonKey()
+  final bool isLoadingNext;
 
   @override
   String toString() {
-    return 'SearchScreenState(coursesList: $coursesList, coursesListStatus: $coursesListStatus, searchText: $searchText, errorMessage: $errorMessage, page: $page, pageSize: $pageSize, hasReachedEnd: $hasReachedEnd)';
+    return 'SearchScreenState(coursesList: $coursesList, coursesListStatus: $coursesListStatus, searchText: $searchText, errorMessage: $errorMessage, page: $page, pageSize: $pageSize, hasReachedEnd: $hasReachedEnd, isLoadingNext: $isLoadingNext)';
   }
 
   @override
@@ -236,7 +253,9 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
             (identical(other.pageSize, pageSize) ||
                 other.pageSize == pageSize) &&
             (identical(other.hasReachedEnd, hasReachedEnd) ||
-                other.hasReachedEnd == hasReachedEnd));
+                other.hasReachedEnd == hasReachedEnd) &&
+            (identical(other.isLoadingNext, isLoadingNext) ||
+                other.isLoadingNext == isLoadingNext));
   }
 
   @override
@@ -248,7 +267,8 @@ class _$SearchScreenStateImpl implements _SearchScreenState {
       errorMessage,
       page,
       pageSize,
-      hasReachedEnd);
+      hasReachedEnd,
+      isLoadingNext);
 
   /// Create a copy of SearchScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -268,7 +288,8 @@ abstract class _SearchScreenState implements SearchScreenState {
       final String? errorMessage,
       final int page,
       final int pageSize,
-      final bool hasReachedEnd}) = _$SearchScreenStateImpl;
+      final bool hasReachedEnd,
+      final bool isLoadingNext}) = _$SearchScreenStateImpl;
 
   @override
   List<CourseBasicModel> get coursesList;
@@ -284,6 +305,8 @@ abstract class _SearchScreenState implements SearchScreenState {
   int get pageSize;
   @override
   bool get hasReachedEnd;
+  @override
+  bool get isLoadingNext;
 
   /// Create a copy of SearchScreenState
   /// with the given fields replaced by the non-null parameter values.

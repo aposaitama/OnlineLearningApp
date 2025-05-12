@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
@@ -5,13 +7,14 @@ import 'package:online_app/repositories/course_repository/course_repository.dart
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_event.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:video_player/video_player.dart';
 
 class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   final strapiApiService = locator<StrapiApiService>();
   final userRepo = locator<UserRepository>();
   final courseRepo = locator<CourseRepository>();
+  Timer? _timer;
 
   CourseDetailsBloc() : super(const CourseDetailsState()) {
     on<LoadConcreteCourseInfoEvent>(_loadCourseList);
@@ -23,6 +26,62 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     on<FullScreenEvent>(_fullScreen);
     on<ToogleFavouriteEvent>(_toogleFavourite);
     on<FinishedVideoEvent>(_finishedPlayingVideo);
+    on<StartTimerEvent>(_startTimer);
+    on<CloseTimerEvent>(_closeTimer);
+    on<AddTickTimerEvent>(_addTickTimer);
+    on<TestFinishedVideo>(_testFinishedVideo);
+  }
+
+  Future<void> _testFinishedVideo(
+    TestFinishedVideo event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    emit(
+      state.copyWith(videoWatchingStatus: CourseVideoStatus.finished),
+    );
+    emit(
+      state.copyWith(videoWatchingStatus: CourseVideoStatus.initial),
+    );
+  }
+
+  Future<void> _startTimer(
+    StartTimerEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    _timer?.cancel();
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (second) {
+        add(const AddTickTimerEvent());
+      },
+    );
+  }
+
+  Future<void> _addTickTimer(
+    AddTickTimerEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    print(state.userLearningTime);
+    emit(
+      state.copyWith(
+        userLearningTime: state.userLearningTime + 1,
+      ),
+    );
+  }
+
+  Future<void> _closeTimer(
+    CloseTimerEvent event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    _timer?.cancel();
+    userRepo.updateUserStatInfo(
+      totallyLearningHours: (state.userLearningTime / 3600),
+    );
+    emit(
+      state.copyWith(
+        userLearningTime: 0,
+      ),
+    );
   }
 
   Future<void> _playVideo(
@@ -31,6 +90,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   ) async {
     if (state.courseVideo == null) return;
     state.courseVideo!.play();
+
     emit(
       state.copyWith(
         videoPlayingId: event.videoPlayingId,
@@ -43,8 +103,24 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     Emitter<CourseDetailsState> emit,
   ) async {
     if (state.courseVideo == null) return;
-    state.courseVideo!.dispose();
-    await courseRepo.completeVideo(state.videoPlayingId);
+    add(CloseTimerEvent());
+    // state.courseVideo!.dispose();
+    final response = await courseRepo.completeVideo(state.videoPlayingId);
+    if (response == true) {
+      emit(
+        state.copyWith(
+          videoWatchingStatus: CourseVideoStatus.finished,
+        ),
+      );
+      emit(
+        state.copyWith(
+          videoPlayingId: '',
+          videoLoadingStatus: CourseLoadingVideoStatus.initial,
+          videoWatchingStatus: CourseVideoStatus.initial,
+          courseVideo: null,
+        ),
+      );
+    }
     emit(
       state.copyWith(
         videoPlayingId: '',
@@ -62,7 +138,9 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     final List<CourseId> favorites =
         List.from(currentUser?.favourite_items ?? []);
 
-    final exists = favorites.any((item) => item.documentId == event.documentId);
+    final exists = favorites.any(
+      (item) => item.id.toString() == event.documentId,
+    );
 
     if (exists) {
       courseRepo.removeFromFavourite(event.documentId);
@@ -110,6 +188,8 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     Emitter<CourseDetailsState> emit,
   ) async {
     if (state.courseVideo == null) return;
+    add(const CloseTimerEvent());
+
     state.courseVideo!.pause();
   }
 
@@ -118,6 +198,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     Emitter<CourseDetailsState> emit,
   ) async {
     if (state.courseVideo == null) return;
+    add(const StartTimerEvent());
     state.courseVideo!.play();
   }
 
@@ -157,7 +238,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     );
     await controller.initialize();
     controller.play();
-
+    add(const StartTimerEvent());
     emit(
       state.copyWith(
         videoPlayingId: event.videoPlayingId,
@@ -169,5 +250,11 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     // strapiApiService.fetchConcreteCourse(
     //   event.videoUrl,
     // );
+  }
+
+  @override
+  Future<void> close() {
+    _timer?.cancel();
+    return super.close();
   }
 }

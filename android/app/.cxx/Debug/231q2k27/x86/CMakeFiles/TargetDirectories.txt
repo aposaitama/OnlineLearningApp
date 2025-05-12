@@ -1,0 +1,2 @@
+/Users/iimironchuk/StudioProjects/online_learning/OnlineLearningApp/android/app/.cxx/Debug/231q2k27/x86/CMakeFiles/edit_cache.dir
+/Users/iimironchuk/StudioProjects/online_learning/OnlineLearningApp/android/app/.cxx/Debug/231q2k27/x86/CMakeFiles/rebuild_cache.dir

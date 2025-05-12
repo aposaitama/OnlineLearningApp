@@ -10,12 +10,13 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/payment_screen/widgets/add_new_card_sheet.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
 import 'package:online_app/screens/payment_screen/widgets/enter_cvv_code_sheet.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PaymentScreen extends StatefulWidget {
   final String courseId;
+
   const PaymentScreen({super.key, required this.courseId});
 
   @override
@@ -27,11 +28,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
     context.pop();
   }
 
-  //Mock data
-  final List<String> cards = [
-    // 'Card 1',
-    // 'Card 2',
-  ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeScreenBloc>().add(
+          const LoadUserHomeScreenBlocEvent(),
+        );
+  }
 
   void _showAddNewCreditCardBottomSheet() {
     showModalBottomSheet(
@@ -109,7 +112,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       if (state.userInfo != null) {
                         if (index < (state.userInfo?.creditCards.length ?? 0)) {
                           return Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.blueAccent,
                               borderRadius: BorderRadius.circular(20),
@@ -160,7 +165,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 selectedCard.expDate.substring(0, 2),
                                 selectedCard.expDate.substring(2, 4),
                                 widget.courseId,
-                                '70', // або введи суму вручну
+                                '70',
                               );
                             }
                           },

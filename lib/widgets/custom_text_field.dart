@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_fonts.dart';
 
@@ -80,7 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       padding: const EdgeInsets.only(right: 10.0),
                       child: IconButton(
                         icon: SvgPicture.asset(
-                          'assets/icons/Hide.svg',
+                          Assets.icons.hide,
                         ),
                         onPressed: () {
                           setState(() {

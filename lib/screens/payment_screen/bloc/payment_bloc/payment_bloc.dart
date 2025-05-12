@@ -3,7 +3,7 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/repositories/payment_repository/payment_repository.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
-import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
   final strapiApiService = locator<StrapiApiService>();

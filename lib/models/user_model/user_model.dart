@@ -15,9 +15,15 @@ class UserModel with _$UserModel {
     required String username,
     required String email,
     required String? userPhoneNumber,
+    required int totallyLearningDays,
+    required double totallyLearningHours,
+    required double learnedToday,
+    required int userLearningStreak,
+    required DateTime? lastTimeCheckout,
     required List<CourseBasicModel> user_purchased_courses,
     required List<CourseId> favourite_items,
     required List<CourseVideoItem> completed_course_videos,
+    required List<MessageNotification> message_notifications,
     @ImagePathConverter() String? avatar,
     required List<CreditCardModel> creditCards,
   }) = _UserModel;
@@ -35,6 +41,22 @@ class CourseId with _$CourseId {
 
   factory CourseId.fromJson(Map<String, dynamic> json) =>
       _$CourseIdFromJson(json);
+}
+
+@freezed
+class MessageNotification with _$MessageNotification {
+  const factory MessageNotification({
+    required int id,
+    required String documentId,
+    required String notificationAuthor,
+    required String notificationDescription,
+    required String notificationAuthorImageUrl,
+    required String notificationImageUrl,
+    required DateTime createdAt,
+  }) = _MessageNotification;
+
+  factory MessageNotification.fromJson(Map<String, dynamic> json) =>
+      _$MessageNotificationFromJson(json);
 }
 
 @freezed

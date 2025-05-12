@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_app/gen/assets.gen.dart';
 
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_details_screen/bloc/course_details_bloc.dart';
@@ -104,7 +105,7 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                         const CloseVideoEvent(),
                       ),
                   icon: SvgPicture.asset(
-                    'assets/icons/ArrowBack.svg',
+                    Assets.icons.arrowBack,
                     colorFilter: const ColorFilter.mode(
                       Colors.white,
                       BlendMode.srcIn,
@@ -133,7 +134,7 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                                     const FullScreenEvent(),
                                   ),
                           icon: SvgPicture.asset(
-                            'assets/icons/FullScreen.svg',
+                            Assets.icons.fullScreen,
                           ),
                         ),
                       ],
@@ -194,7 +195,7 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                         child: Center(
                           child: SvgPicture.asset(
                             fit: BoxFit.scaleDown,
-                            'assets/icons/Pause.svg',
+                            Assets.icons.pause,
                           ),
                         ),
                       )
@@ -209,18 +210,20 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                         ),
                         child: SvgPicture.asset(
                           fit: BoxFit.scaleDown,
-                          'assets/icons/PolygonBig.svg',
+                          Assets.icons.polygonBig,
                         ),
                       ),
                 color: Colors.white,
                 onPressed: () {
                   if (videoController.value.isPlaying) {
-                    videoController.pause();
+                    // videoController.pause();
+                    context.read<CourseDetailsBloc>().add(PauseVideoEvent());
                     setState(
                       () {},
                     );
                   } else {
-                    videoController.play();
+                    // videoController.play();
+                    context.read<CourseDetailsBloc>().add(ResumeVideoEvent());
                     setState(
                       () {},
                     );
