@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
-import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
 
 import '../../di/service_locator.dart';

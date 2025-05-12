@@ -23,19 +23,31 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
     if (userInfoModel != null) {
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
+      final daybefore = DateTime(now.year, now.month, now.day - 1);
       final last = DateTime(
         userInfoModel.lastTimeCheckout!.year,
         userInfoModel.lastTimeCheckout!.month,
         userInfoModel.lastTimeCheckout!.day,
       );
+      final userCheckoutCurrentStreak = userInfoModel.userLearningStreak;
       userInfoModel.lastTimeCheckout != null
           ? today == last
               ? print('true')
-              : await userRepo.updateUserStatInfo(
-                  lastTimeCheckout: DateTime.now(),
-                  totallyLearningDays: userInfoModel.totallyLearningDays + 1,
-                  learnedToday: 0.0,
-                )
+              : daybefore == last
+                  ? await userRepo.updateUserStatInfo(
+                      lastTimeCheckout: DateTime.now(),
+                      totallyLearningDays:
+                          userInfoModel.totallyLearningDays + 1,
+                      learnedToday: 0.0,
+                      userCurrentStreak: userCheckoutCurrentStreak + 1,
+                    )
+                  : await userRepo.updateUserStatInfo(
+                      lastTimeCheckout: DateTime.now(),
+                      totallyLearningDays:
+                          userInfoModel.totallyLearningDays + 1,
+                      learnedToday: 0.0,
+                      userCurrentStreak: 0,
+                    )
           : await userRepo.updateUserStatInfo(
               lastTimeCheckout: DateTime.now(),
               totallyLearningDays: 1,

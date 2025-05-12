@@ -1,14 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_app/di/service_locator.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final SharedPreferences prefs = locator<SharedPreferences>();
   final Dio _dio = locator<Dio>();
-
 
   Future<void> saveToken(String token) async {
     await prefs.setString('jwt_token', token);

@@ -1,12 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:intl/intl.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class UserRepository {
   final Dio _dio = locator<Dio>();
@@ -83,6 +79,7 @@ class UserRepository {
   }
 
   Future<void> updateUserStatInfo({
+    int? userCurrentStreak,
     int? totallyLearningDays,
     DateTime? lastTimeCheckout,
     double? totallyLearningHours,
@@ -124,6 +121,16 @@ class UserRepository {
         // lastTimeUserCheckout !=null ?
         data['learnedToday'] =
             totallyUserLearnedToday + (totallyLearningHours * 60);
+      }
+
+      if (learnedToday != null) {
+        // lastTimeUserCheckout !=null ?
+        data['learnedToday'] = learnedToday;
+      }
+
+      if (userCurrentStreak != null) {
+        // lastTimeUserCheckout !=null ?
+        data['userLearningStreak'] = userCurrentStreak;
       }
       print(data);
       await _dio.put(

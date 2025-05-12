@@ -24,4 +24,5 @@ class CourseDetailsEvent with _$CourseDetailsEvent {
   const factory CourseDetailsEvent.startTimer() = StartTimerEvent;
   const factory CourseDetailsEvent.addTickTimer() = AddTickTimerEvent;
   const factory CourseDetailsEvent.closeTimer() = CloseTimerEvent;
+  const factory CourseDetailsEvent.testFinishedVideo() = TestFinishedVideo;
 }
