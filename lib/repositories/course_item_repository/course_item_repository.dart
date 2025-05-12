@@ -18,8 +18,8 @@ class CourseItemRepository {
   CourseItemRepository._internal();
 
   final Dio _dio = StrapiApiService().dio;
-  final SharedPreferencesService _sharedPreferencesService = SharedPreferencesService();
-
+  final SharedPreferencesService _sharedPreferencesService =
+      SharedPreferencesService();
 
   Future<List<CourseBasicModel>> getFilteredCourses({
     required List<CategoriesModel> selectedCategories,
@@ -114,11 +114,45 @@ class CourseItemRepository {
               ),
             )
             .toList();
-      } else{
+      } else {
         return [];
       }
     } catch (e) {
       throw Exception('Something went wrong during loading favourites: $e');
+    }
+  }
+
+  Future<List<CourseBasicModel>> getCoursesOnCourseScreen({
+    required String filter,
+    required int page,
+    required int pageSize,
+  }) async {
+    final queryParameters = {
+      'populate': 'courseVideoItems.video',
+      'populate[]': 'courseImage',
+      'pagination[page]': page,
+      'pagination[pageSize]': pageSize,
+    };
+
+    if (filter == 'New') {
+      queryParameters['sort'] = 'publishedAt:desc';
+    } else if (filter == 'Popular') {
+      queryParameters['sort'] = 'salesCount:desc';
+    }
+
+    final response = await _dio.get(
+      '/course-items',
+      queryParameters: queryParameters,
+    );
+
+    if (response.isSuccess) {
+      return (response.data['data'] as List)
+          .map(
+            (json) => CourseBasicModel.fromJson(json as Map<String, dynamic>),
+          )
+          .toList();
+    } else{
+      return [];
     }
   }
 }

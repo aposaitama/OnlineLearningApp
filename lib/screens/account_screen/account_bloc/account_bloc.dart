@@ -75,10 +75,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     try {
-      await userRepository.editUserData(
-        avatarPath: state.newAvatarPath,
-        username: state.newUsername,
-      );
+      // await userRepository.editUserData(
+      //   avatarPath: state.newAvatarPath,
+      //   username: state.newUsername,
+      // );
 
       add(
         const GetUserDataEvent(),

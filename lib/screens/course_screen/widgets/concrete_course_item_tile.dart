@@ -14,6 +14,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
   final String concreteCourseAuthor;
   final double concreteCoursePrice;
   final int concreteCourseDuration;
+
   const ConcreteCourseItemTile({
     super.key,
     required this.concreteCourseTitle,
@@ -73,8 +74,8 @@ class ConcreteCourseItemTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                         13.0,
                       ),
-                      child: SvgPicture.network(
-                        'http://localhost:1337$imageUrl',
+                      child: CachedNetworkImage(
+                        imageUrl: 'http://localhost:1337$imageUrl',
                         height: 68.0,
                         width: 68.0,
                         fit: BoxFit.cover,
