@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.onlineAppAvada</string>
+	<string>com.example.onlineAppAvadaIra</string>
 	<key>PROJECT_ID</key>
 	<string>onlinelearningappnotiff</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:364725710523:ios:bf02503211510dfe2dc39e</string>
+	<string>1:364725710523:ios:6ec2132dfa40d53a2dc39e</string>
 </dict>
 </plist>

@@ -148,6 +148,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/hide.svg
   String get hide => 'assets/icons/hide.svg';
 
+  /// File path: assets/icons/hide_image.svg
+  String get hideImage => 'assets/icons/hide_image.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -207,6 +210,7 @@ class $AssetsIconsGen {
     filter,
     fullScreen,
     hide,
+    hideImage,
     home,
     iconDone,
     linkPhone,
