@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_bloc.dart';
@@ -37,6 +39,18 @@ class _AccountScreenState extends State<AccountScreen> {
     context.push('/edit-account');
   }
 
+  void _settingsPrivacy() {
+    context.push('/settings-privacy');
+  }
+
+  void _help() {
+    context.push('/help-screen');
+  }
+
+  void _favourites() {
+    context.push('/favourites');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,14 +69,14 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
       ),
       body: BlocConsumer<AccountBloc, AccountState>(
-        listener: (context, state){
-          if(state.userData != null){
-            _getUserData();
+        listener: (context, state) {
+          if (state.userData != null) {
+            // _getUserData()ж
           }
         },
         builder: (context, state) {
           if (state.userData == null) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else {
             return Padding(
               padding: const EdgeInsets.only(left: 20.0),
@@ -72,19 +86,25 @@ class _AccountScreenState extends State<AccountScreen> {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
+
                     child: state.userData!.avatar == null || state.userData!.avatar!.isEmpty
+
                         ? SvgPicture.asset(
                             Assets.icons.avatar,
                             fit: BoxFit.contain,
                           )
-                        : SvgPicture.asset(
-                            state.userData!.avatar!,
-                            fit: BoxFit.contain,
+                        : ClipOval(
+                            child: CachedNetworkImage(
+                              imageUrl: state.userData!.avatar!,
+                              fit: BoxFit.cover,
+                              width: 89.0,
+                              height: 89.0,
+                            ),
                           ),
                   ),
                   AccountListItem(
                     title: 'Favourite',
-                    onTap: () {},
+                    onTap: _favourites,
                   ),
                   AccountListItem(
                     title: 'Edit Account',
@@ -92,11 +112,32 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                   AccountListItem(
                     title: 'Settings and Privacy',
-                    onTap: () {},
+                    onTap: _settingsPrivacy,
                   ),
                   AccountListItem(
                     title: 'Help',
-                    onTap: () {},
+                    onTap: _help,
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(right: 10),
+                    title: Text(
+                      'Notifications',
+                      style: AppFonts.poppinsMedium.copyWith(
+                        color: Theme.of(context)
+                            .extension<AppColorsModel>()
+                            ?.mainTextColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: Switch(
+                      activeTrackColor: AppColors.deepBlueColor,
+                      inactiveTrackColor: AppColors.lightGreyColor,
+                      activeColor: AppColors.darkBlue,
+                      inactiveThumbColor: AppColors.grayProgressColor,
+                      value: (false),
+                      onChanged: (isOn) {},
+                    ),
                   ),
                 ],
               ),

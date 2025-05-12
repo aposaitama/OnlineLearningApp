@@ -2,9 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
+import 'package:online_app/repositories/auth_repository/auth_repository.dart';
+import 'package:online_app/sources/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
 
 import '../../di/service_locator.dart';
+import '../../sources/shared_preferences_service/shared_preferences_service.dart';
 
 class CourseItemRepository {
   static final CourseItemRepository _instance =
@@ -14,7 +17,9 @@ class CourseItemRepository {
 
   CourseItemRepository._internal();
 
-  final Dio _dio = locator<Dio>();
+  final Dio _dio = StrapiApiService().dio;
+  final SharedPreferencesService _sharedPreferencesService = SharedPreferencesService();
+
 
   Future<List<CourseBasicModel>> getFilteredCourses({
     required List<CategoriesModel> selectedCategories,
@@ -85,62 +90,35 @@ class CourseItemRepository {
     }
   }
 
-  Future<List<CourseBasicModel>> getCoursesOnCourseScreen({
-    required String filter,
-    required int page,
-    required int pageSize,
-  }) async {
+  Future<List<CourseBasicModel>> getFavourites() async {
     try {
+      final int? userId = await _sharedPreferencesService.getUserId();
+
+      final url = '/course-items?filters[favourite_users]=$userId';
+
       final queryParameters = {
         'populate': 'courseVideoItems.video',
         'populate[]': 'courseImage',
-        'pagination[page]': page,
-        'pagination[pageSize]': pageSize,
       };
-      if (filter == 'Popular') {
-        queryParameters['sort'] = 'salesCount:desc';
-      } else if (filter == 'New') {
-        queryParameters['sort'] = 'publishedAt:desc';
-      }
 
       final response = await _dio.get(
-        '/course-items',
+        url,
         queryParameters: queryParameters,
       );
 
       if (response.isSuccess) {
         return (response.data['data'] as List)
             .map(
-              (json) => CourseBasicModel.fromJson(json),
+              (json) => CourseBasicModel.fromJson(
+                json as Map<String, dynamic>,
+              ),
             )
             .toList();
-      } else {
+      } else{
         return [];
       }
     } catch (e) {
-      rethrow;
-    }
-  }
-
-  Future<CourseBasicModel?> getCourseById({
-    required String courseDocId,
-  }) async {
-    try {
-      final url = '/course-items$courseDocId';
-
-      final response = await _dio.get(url);
-
-      if (response.isSuccess) {
-        return CourseBasicModel.fromJson(
-          response.data['data'],
-        );
-      }
-      else{
-        throw Exception('There is no such course!');
-        return null;
-      }
-    } catch (e) {
-      rethrow;
+      throw Exception('Something went wrong during loading favourites: $e');
     }
   }
 }

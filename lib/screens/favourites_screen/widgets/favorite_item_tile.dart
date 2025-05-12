@@ -8,13 +8,13 @@ import 'package:online_app/utils/extensions.dart';
 
 import '../../../gen/assets.gen.dart';
 
-class ConcreteCourseItemTile extends StatelessWidget {
+class FavoriteItemTile extends StatelessWidget {
   final String imageUrl;
   final String concreteCourseTitle;
   final String concreteCourseAuthor;
   final double concreteCoursePrice;
   final int concreteCourseDuration;
-  const ConcreteCourseItemTile({
+  const FavoriteItemTile({
     super.key,
     required this.concreteCourseTitle,
     required this.concreteCourseAuthor,
@@ -60,26 +60,26 @@ class ConcreteCourseItemTile extends StatelessWidget {
             children: [
               imageUrl.isEmpty
                   ? Container(
-                      height: 68.0,
-                      width: 68.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          13.0,
-                        ),
-                        color: AppColors.darkHintTextColor,
-                      ),
-                    )
+                height: 68.0,
+                width: 68.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    13.0,
+                  ),
+                  color: AppColors.darkHintTextColor,
+                ),
+              )
                   : ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        13.0,
-                      ),
-                      child: SvgPicture.network(
-                        'http://localhost:1337$imageUrl',
-                        height: 68.0,
-                        width: 68.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                borderRadius: BorderRadius.circular(
+                  13.0,
+                ),
+                child: CachedNetworkImage(
+                  imageUrl:  'http://localhost:1337$imageUrl',
+                  height: 68.0,
+                  width: 68.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
               const SizedBox(
                 width: 35.0,
               ),
