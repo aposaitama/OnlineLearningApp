@@ -32,7 +32,7 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
       final userCheckoutCurrentStreak = userInfoModel.userLearningStreak;
       userInfoModel.lastTimeCheckout != null
           ? today == last
-              ? print('true')
+              ? null
               : daybefore == last
                   ? await userRepo.updateUserStatInfo(
                       lastTimeCheckout: DateTime.now(),
@@ -46,7 +46,7 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
                       totallyLearningDays:
                           userInfoModel.totallyLearningDays + 1,
                       learnedToday: 0.0,
-                      userCurrentStreak: 0,
+                      userCurrentStreak: 1,
                     )
           : await userRepo.updateUserStatInfo(
               lastTimeCheckout: DateTime.now(),
