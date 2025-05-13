@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
@@ -25,6 +26,8 @@ class ClockingInWidget {
                     .toStringAsFixed(0);
             final String totallyDays =
                 (state.userInfo?.totallyLearningDays ?? 0.0).toStringAsFixed(0);
+            final int userCurrentLearingnStreak =
+                (state.userInfo?.userLearningStreak ?? 0);
             return Stack(
               alignment: Alignment.bottomCenter,
               clipBehavior: Clip.none,
@@ -107,7 +110,7 @@ class ClockingInWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Record of this week',
+                                'Record of learning',
                                 style: AppFonts.poppinsRegular.copyWith(
                                   color: Theme.of(context)
                                       .extension<AppColorsModel>()
@@ -120,34 +123,33 @@ class ClockingInWidget {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 14.0,
                       ),
-                      // Row(
-                      //   children: List.generate(
-                      //     7,
-                      //     (index) {
-                      //       return Padding(
-                      //         padding: EdgeInsets.only(
-                      //           right: index == 7
-                      //               ? 0
-                      //               : ((MediaQuery.of(context).size.width -
-                      //                           32) -
-                      //                       28 * 7) /
-                      //                   6,
-                      //         ),
-                      //         child: Container(
-                      //           width: 28.0,
-                      //           height: 28.0,
-                      //           decoration: const BoxDecoration(
-                      //             shape: BoxShape.circle,
-                      //             color: Colors.blue,
-                      //           ),
-                      //         ),
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: List.generate(
+                          7,
+                          (index) {
+                            return Container(
+                              width: 28.0,
+                              height: 28.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.deepBlueColor,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                       const Spacer(),
                       const CustomFilledButton(buttonTitle: 'Share'),
                     ],

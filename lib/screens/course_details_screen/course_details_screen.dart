@@ -34,6 +34,7 @@ class CourseDetailsScreen extends StatefulWidget {
 class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
   @override
   void initState() {
+    context.read<HomeScreenBloc>().add(LoadUserHomeScreenBlocEvent());
     context.read<CourseDetailsBloc>().add(
           LoadConcreteCourseInfoEvent(
             widget.courseId,
