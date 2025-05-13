@@ -21,6 +21,7 @@ _$CourseBasicModelImpl _$$CourseBasicModelImplFromJson(
               ?.map((e) => CourseVideoItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      salesCount: (json['salesCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CourseBasicModelImplToJson(
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$CourseBasicModelImplToJson(
       'totalCourseDurationInSeconds': instance.totalCourseDurationInSeconds,
       'coursePrice': instance.coursePrice,
       'courseVideoItems': instance.courseVideoItems,
+      'salesCount': instance.salesCount,
     };
 
 _$ImageImpl _$$ImageImplFromJson(Map<String, dynamic> json) => _$ImageImpl(

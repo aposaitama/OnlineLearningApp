@@ -29,6 +29,7 @@ mixin _$CourseBasicModel {
   double get coursePrice => throw _privateConstructorUsedError;
   List<CourseVideoItem> get courseVideoItems =>
       throw _privateConstructorUsedError;
+  int get salesCount => throw _privateConstructorUsedError;
 
   /// Serializes this CourseBasicModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +55,8 @@ abstract class $CourseBasicModelCopyWith<$Res> {
       String courseAuthor,
       int totalCourseDurationInSeconds,
       double coursePrice,
-      List<CourseVideoItem> courseVideoItems});
+      List<CourseVideoItem> courseVideoItems,
+      int salesCount});
 
   $ImageCopyWith<$Res> get courseImage;
 }
@@ -82,6 +84,7 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
     Object? totalCourseDurationInSeconds = null,
     Object? coursePrice = null,
     Object? courseVideoItems = null,
+    Object? salesCount = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -116,6 +119,10 @@ class _$CourseBasicModelCopyWithImpl<$Res, $Val extends CourseBasicModel>
           ? _value.courseVideoItems
           : courseVideoItems // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      salesCount: null == salesCount
+          ? _value.salesCount
+          : salesCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -146,7 +153,8 @@ abstract class _$$CourseBasicModelImplCopyWith<$Res>
       String courseAuthor,
       int totalCourseDurationInSeconds,
       double coursePrice,
-      List<CourseVideoItem> courseVideoItems});
+      List<CourseVideoItem> courseVideoItems,
+      int salesCount});
 
   @override
   $ImageCopyWith<$Res> get courseImage;
@@ -173,6 +181,7 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
     Object? totalCourseDurationInSeconds = null,
     Object? coursePrice = null,
     Object? courseVideoItems = null,
+    Object? salesCount = null,
   }) {
     return _then(_$CourseBasicModelImpl(
       id: null == id
@@ -207,6 +216,10 @@ class __$$CourseBasicModelImplCopyWithImpl<$Res>
           ? _value._courseVideoItems
           : courseVideoItems // ignore: cast_nullable_to_non_nullable
               as List<CourseVideoItem>,
+      salesCount: null == salesCount
+          ? _value.salesCount
+          : salesCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -222,7 +235,8 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
       required this.courseAuthor,
       required this.totalCourseDurationInSeconds,
       required this.coursePrice,
-      final List<CourseVideoItem> courseVideoItems = const []})
+      final List<CourseVideoItem> courseVideoItems = const [],
+      required this.salesCount})
       : _courseVideoItems = courseVideoItems;
 
   factory _$CourseBasicModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -253,8 +267,11 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
   }
 
   @override
+  final int salesCount;
+
+  @override
   String toString() {
-    return 'CourseBasicModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice, courseVideoItems: $courseVideoItems)';
+    return 'CourseBasicModel(id: $id, documentId: $documentId, courseTitle: $courseTitle, courseImage: $courseImage, courseAuthor: $courseAuthor, totalCourseDurationInSeconds: $totalCourseDurationInSeconds, coursePrice: $coursePrice, courseVideoItems: $courseVideoItems, salesCount: $salesCount)';
   }
 
   @override
@@ -278,7 +295,9 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
             (identical(other.coursePrice, coursePrice) ||
                 other.coursePrice == coursePrice) &&
             const DeepCollectionEquality()
-                .equals(other._courseVideoItems, _courseVideoItems));
+                .equals(other._courseVideoItems, _courseVideoItems) &&
+            (identical(other.salesCount, salesCount) ||
+                other.salesCount == salesCount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -292,7 +311,8 @@ class _$CourseBasicModelImpl implements _CourseBasicModel {
       courseAuthor,
       totalCourseDurationInSeconds,
       coursePrice,
-      const DeepCollectionEquality().hash(_courseVideoItems));
+      const DeepCollectionEquality().hash(_courseVideoItems),
+      salesCount);
 
   /// Create a copy of CourseBasicModel
   /// with the given fields replaced by the non-null parameter values.
@@ -320,7 +340,8 @@ abstract class _CourseBasicModel implements CourseBasicModel {
       required final String courseAuthor,
       required final int totalCourseDurationInSeconds,
       required final double coursePrice,
-      final List<CourseVideoItem> courseVideoItems}) = _$CourseBasicModelImpl;
+      final List<CourseVideoItem> courseVideoItems,
+      required final int salesCount}) = _$CourseBasicModelImpl;
 
   factory _CourseBasicModel.fromJson(Map<String, dynamic> json) =
       _$CourseBasicModelImpl.fromJson;
@@ -341,6 +362,8 @@ abstract class _CourseBasicModel implements CourseBasicModel {
   double get coursePrice;
   @override
   List<CourseVideoItem> get courseVideoItems;
+  @override
+  int get salesCount;
 
   /// Create a copy of CourseBasicModel
   /// with the given fields replaced by the non-null parameter values.

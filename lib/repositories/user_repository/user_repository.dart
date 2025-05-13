@@ -2,8 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
+
+
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
+
 
 class UserRepository {
   final Dio _dio = locator<Dio>();

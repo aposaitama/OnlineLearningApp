@@ -179,6 +179,23 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   courseVideoLength:
                                       course?.courseVideoItems.length ?? 0,
                                 ),
+
+                              ),
+                              // GestureDetector(
+                              //   onTap: () =>
+                              //       context.read<CourseDetailsBloc>().add(
+                              //             const PauseVideoEvent(),
+                              //           ),
+                              //   child: Container(
+                              //     height: 50.0,
+                              //     width: 50.0,
+                              //     color: Colors.amber,
+                              //   ),
+                              // ),
+                              //buy course bottom section
+                              //Ira: I changed some logic here to make sure that user can add course to favorites after purchase
+                              
+
                                 Expanded(
                                   child: CourseVideosBuilder(
                                     courseId: widget.courseId,
@@ -211,25 +228,25 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 ),
                                 //buy course bottom section
                                 BlocBuilder<CourseDetailsBloc,
-                                    CourseDetailsState>(
-                                  builder: (context, state) {
-                                    return BuyBottomBar(
-                                      courseId: widget.courseId,
-                                      onToogleFavourite: () => context
-                                          .read<CourseDetailsBloc>()
-                                          .add(
-                                            ToogleFavouriteEvent(
-                                                state.course?.id.toString() ??
-                                                    ''),
-                                          ),
-                                      onBuyButtonPressed: () => context.push(
-                                        '/payment-screen/${course?.id ?? 0}',
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
+                                  CourseDetailsState>(
+                                builder: (context, state) {
+                                  return BuyBottomBar(
+                                    onToggleFavourite: () =>
+                                        context.read<CourseDetailsBloc>().add(
+                                              ToogleFavouriteEvent(
+                                                  state.course?.id.toString() ??
+                                                      ''),
+                                            ),
+                                    onBuyButtonPressed: () => context.push(
+                                      '/payment-screen/${course?.id ?? 0}',
+                                    ),
+                                    courseId: widget.courseId,
+                                  );
+                                },
+                              ),
+                            ],
                             ),
+
                           ),
                         ),
                       ),
