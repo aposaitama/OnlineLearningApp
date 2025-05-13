@@ -18,6 +18,7 @@ class UserModel with _$UserModel {
     required int totallyLearningDays,
     required double totallyLearningHours,
     required double learnedToday,
+    required int userLearningStreak,
     required DateTime? lastTimeCheckout,
     required List<CourseBasicModel> user_purchased_courses,
     required List<CourseId> favourite_items,

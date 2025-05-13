@@ -19,32 +19,56 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +137,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
   }) {
     return getUserData();
   }
@@ -121,6 +149,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
   }) {
     return getUserData?.call();
   }
@@ -129,6 +161,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -141,6 +177,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
   }) {
     return getUserData(this);
   }
@@ -149,6 +189,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
   }) {
     return getUserData?.call(this);
   }
@@ -157,6 +201,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -168,4 +216,538 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
 
 abstract class GetUserDataEvent implements AccountEvent {
   const factory GetUserDataEvent() = _$GetUserDataEventImpl;
+}
+
+/// @nodoc
+abstract class _$$PickNewAvatarEventImplCopyWith<$Res> {
+  factory _$$PickNewAvatarEventImplCopyWith(_$PickNewAvatarEventImpl value,
+          $Res Function(_$PickNewAvatarEventImpl) then) =
+      __$$PickNewAvatarEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PickNewAvatarEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$PickNewAvatarEventImpl>
+    implements _$$PickNewAvatarEventImplCopyWith<$Res> {
+  __$$PickNewAvatarEventImplCopyWithImpl(_$PickNewAvatarEventImpl _value,
+      $Res Function(_$PickNewAvatarEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
+  const _$PickNewAvatarEventImpl();
+
+  @override
+  String toString() {
+    return 'AccountEvent.pickNewImage()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PickNewAvatarEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+  }) {
+    return pickNewImage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+  }) {
+    return pickNewImage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (pickNewImage != null) {
+      return pickNewImage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+  }) {
+    return pickNewImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+  }) {
+    return pickNewImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (pickNewImage != null) {
+      return pickNewImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PickNewAvatarEvent implements AccountEvent {
+  const factory PickNewAvatarEvent() = _$PickNewAvatarEventImpl;
+}
+
+/// @nodoc
+abstract class _$$EditUserDataEventImplCopyWith<$Res> {
+  factory _$$EditUserDataEventImplCopyWith(_$EditUserDataEventImpl value,
+          $Res Function(_$EditUserDataEventImpl) then) =
+      __$$EditUserDataEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EditUserDataEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$EditUserDataEventImpl>
+    implements _$$EditUserDataEventImplCopyWith<$Res> {
+  __$$EditUserDataEventImplCopyWithImpl(_$EditUserDataEventImpl _value,
+      $Res Function(_$EditUserDataEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$EditUserDataEventImpl implements EditUserDataEvent {
+  const _$EditUserDataEventImpl();
+
+  @override
+  String toString() {
+    return 'AccountEvent.editUserData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EditUserDataEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+  }) {
+    return editUserData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+  }) {
+    return editUserData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (editUserData != null) {
+      return editUserData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+  }) {
+    return editUserData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+  }) {
+    return editUserData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (editUserData != null) {
+      return editUserData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditUserDataEvent implements AccountEvent {
+  const factory EditUserDataEvent() = _$EditUserDataEventImpl;
+}
+
+/// @nodoc
+abstract class _$$EnterNewUsernameEventImplCopyWith<$Res> {
+  factory _$$EnterNewUsernameEventImplCopyWith(
+          _$EnterNewUsernameEventImpl value,
+          $Res Function(_$EnterNewUsernameEventImpl) then) =
+      __$$EnterNewUsernameEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? newUsername});
+}
+
+/// @nodoc
+class __$$EnterNewUsernameEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$EnterNewUsernameEventImpl>
+    implements _$$EnterNewUsernameEventImplCopyWith<$Res> {
+  __$$EnterNewUsernameEventImplCopyWithImpl(_$EnterNewUsernameEventImpl _value,
+      $Res Function(_$EnterNewUsernameEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newUsername = freezed,
+  }) {
+    return _then(_$EnterNewUsernameEventImpl(
+      freezed == newUsername
+          ? _value.newUsername
+          : newUsername // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
+  const _$EnterNewUsernameEventImpl(this.newUsername);
+
+  @override
+  final String? newUsername;
+
+  @override
+  String toString() {
+    return 'AccountEvent.enterNewUsername(newUsername: $newUsername)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterNewUsernameEventImpl &&
+            (identical(other.newUsername, newUsername) ||
+                other.newUsername == newUsername));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newUsername);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterNewUsernameEventImplCopyWith<_$EnterNewUsernameEventImpl>
+      get copyWith => __$$EnterNewUsernameEventImplCopyWithImpl<
+          _$EnterNewUsernameEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+  }) {
+    return enterNewUsername(newUsername);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+  }) {
+    return enterNewUsername?.call(newUsername);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (enterNewUsername != null) {
+      return enterNewUsername(newUsername);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+  }) {
+    return enterNewUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+  }) {
+    return enterNewUsername?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (enterNewUsername != null) {
+      return enterNewUsername(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterNewUsernameEvent implements AccountEvent {
+  const factory EnterNewUsernameEvent(final String? newUsername) =
+      _$EnterNewUsernameEventImpl;
+
+  String? get newUsername;
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterNewUsernameEventImplCopyWith<_$EnterNewUsernameEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearAccountStateEventImplCopyWith<$Res> {
+  factory _$$ClearAccountStateEventImplCopyWith(
+          _$ClearAccountStateEventImpl value,
+          $Res Function(_$ClearAccountStateEventImpl) then) =
+      __$$ClearAccountStateEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearAccountStateEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$ClearAccountStateEventImpl>
+    implements _$$ClearAccountStateEventImplCopyWith<$Res> {
+  __$$ClearAccountStateEventImplCopyWithImpl(
+      _$ClearAccountStateEventImpl _value,
+      $Res Function(_$ClearAccountStateEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
+  const _$ClearAccountStateEventImpl();
+
+  @override
+  String toString() {
+    return 'AccountEvent.clearState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearAccountStateEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+  }) {
+    return clearState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+  }) {
+    return clearState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (clearState != null) {
+      return clearState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+  }) {
+    return clearState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+  }) {
+    return clearState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (clearState != null) {
+      return clearState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClearAccountStateEvent implements AccountEvent {
+  const factory ClearAccountStateEvent() = _$ClearAccountStateEventImpl;
 }

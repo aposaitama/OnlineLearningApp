@@ -8,7 +8,7 @@ extension SecToHoursExtension on int {
   }
 }
 
-extension ResponseExtension on Response {
+extension ResponseExtension on Response{
   bool get isSuccess => statusCode == 200;
 }
 

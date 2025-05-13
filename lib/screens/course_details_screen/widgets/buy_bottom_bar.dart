@@ -13,19 +13,25 @@ import 'package:online_app/widgets/custom_filled_button.dart';
 
 class BuyBottomBar extends StatelessWidget {
   final void Function()? onBuyButtonPressed;
+
   final void Function()? onToggleFavourite;
+
+
   final String courseId;
 
   const BuyBottomBar({
     super.key,
     this.onBuyButtonPressed,
+
     this.onToggleFavourite,
+
     required this.courseId,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeScreenBloc, HomeScreenState>(
+
         builder: (context, homeScreenState) {
       return BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
         builder: (context, state) {
@@ -103,5 +109,6 @@ class BuyBottomBar extends StatelessWidget {
         },
       );
     });
+
   }
 }

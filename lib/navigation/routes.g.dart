@@ -12,7 +12,10 @@ List<RouteBase> get $appRoutes => [
       $phoneLinkingRoute,
       $phoneVerifyRoute,
       $authGateRoute,
+      $settingsPrivacyRoute,
+      $helpRoute,
       $myCoursesScreenRoute,
+      $favouriteScreenRoute,
       $searchScreenRoute,
       $editAccountRoute,
       $successfullPaymentScreenRoute,
@@ -133,6 +136,51 @@ extension $AuthGateRouteExtension on AuthGateRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $settingsPrivacyRoute => GoRouteData.$route(
+      path: '/settings-privacy',
+      factory: $SettingsPrivacyRouteExtension._fromState,
+    );
+
+extension $SettingsPrivacyRouteExtension on SettingsPrivacyRoute {
+  static SettingsPrivacyRoute _fromState(GoRouterState state) =>
+      const SettingsPrivacyRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings-privacy',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $helpRoute => GoRouteData.$route(
+      path: '/help-screen',
+      factory: $HelpRouteExtension._fromState,
+    );
+
+extension $HelpRouteExtension on HelpRoute {
+  static HelpRoute _fromState(GoRouterState state) => const HelpRoute();
+
+  String get location => GoRouteData.$location(
+        '/help-screen',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $myCoursesScreenRoute => GoRouteData.$route(
       path: '/my_courses',
       factory: $MyCoursesScreenRouteExtension._fromState,
@@ -144,6 +192,29 @@ extension $MyCoursesScreenRouteExtension on MyCoursesScreenRoute {
 
   String get location => GoRouteData.$location(
         '/my_courses',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $favouriteScreenRoute => GoRouteData.$route(
+      path: '/favourites',
+      factory: $FavouriteScreenRouteExtension._fromState,
+    );
+
+extension $FavouriteScreenRouteExtension on FavouriteScreenRoute {
+  static FavouriteScreenRoute _fromState(GoRouterState state) =>
+      const FavouriteScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/favourites',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -3,6 +3,11 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 
+
+import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/utils/extensions.dart';
+
+
 class UserRepository {
   final Dio _dio = locator<Dio>();
   final authRepo = locator<AuthRepository>();
@@ -69,6 +74,7 @@ class UserRepository {
   }
 
   Future<void> updateUserStatInfo({
+    int? userCurrentStreak,
     int? totallyLearningDays,
     DateTime? lastTimeCheckout,
     double? totallyLearningHours,
@@ -111,11 +117,66 @@ class UserRepository {
         data['learnedToday'] =
             totallyUserLearnedToday + (totallyLearningHours * 60);
       }
+
+      if (learnedToday != null) {
+        // lastTimeUserCheckout !=null ?
+        data['learnedToday'] = learnedToday;
+      }
+
+      if (userCurrentStreak != null) {
+        // lastTimeUserCheckout !=null ?
+        data['userLearningStreak'] = userCurrentStreak;
+      }
       print(data);
       await _dio.put(
         '/users/$userID',
         data: data,
       );
     } catch (e) {}
+  }
+
+
+  Future<UserModel?> editUserData({
+    String? username,
+    String? avatarPath,
+  }) async {
+    try {
+      final userId = await authRepo.getUserId();
+      final url = '/users/$userId';
+
+      var formData = FormData();
+
+      final body =
+      {
+        if (username != null) 'username': username,
+      };
+
+      await _dio.put(
+        url,
+        data: body,
+      );
+
+      if (avatarPath != null) {
+        formData = FormData.fromMap(
+          {
+            'files': await MultipartFile.fromFile(
+              avatarPath,
+              filename: avatarPath.split('/').last,
+            ),
+            'ref': 'plugin::users-permissions.user',
+            'refId': userId,
+            'field': 'avatar',
+          },
+        );
+
+        await _dio.post(
+          '/upload',
+          data: formData,
+        );
+      }
+
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }

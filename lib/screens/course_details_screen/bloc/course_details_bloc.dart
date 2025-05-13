@@ -29,6 +29,19 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     on<StartTimerEvent>(_startTimer);
     on<CloseTimerEvent>(_closeTimer);
     on<AddTickTimerEvent>(_addTickTimer);
+    on<TestFinishedVideo>(_testFinishedVideo);
+  }
+
+  Future<void> _testFinishedVideo(
+    TestFinishedVideo event,
+    Emitter<CourseDetailsState> emit,
+  ) async {
+    emit(
+      state.copyWith(videoWatchingStatus: CourseVideoStatus.finished),
+    );
+    emit(
+      state.copyWith(videoWatchingStatus: CourseVideoStatus.initial),
+    );
   }
 
   Future<void> _startTimer(

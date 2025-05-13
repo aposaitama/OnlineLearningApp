@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/auth_gate_screen.dart';
 import 'package:online_app/screens/course_details_screen/course_details_screen.dart';
 import 'package:online_app/screens/edit_account_screen/edit_account_screen.dart';
+import 'package:online_app/screens/favourites_screen/favourites_screen.dart';
+import 'package:online_app/screens/help_screen.dart';
 import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
 import 'package:online_app/screens/payment_screen/payment_screen.dart';
 import 'package:online_app/screens/payment_screen/successfull_payment_screen/successfull_payment_screen.dart';
@@ -16,6 +18,7 @@ import 'package:online_app/screens/auth_screen/register_screen/register_screen.d
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/phone_linking_screen.dart';
 import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/verify_phone_screen.dart';
 import 'package:online_app/screens/search_screen/search_screen.dart';
+import 'package:online_app/screens/settings_privacy_screen.dart';
 
 part 'routes.g.dart';
 
@@ -64,6 +67,23 @@ class AuthGateRoute extends GoRouteData {
       const AuthGateScreen();
 }
 
+@TypedGoRoute<SettingsPrivacyRoute>(path: '/settings-privacy')
+class SettingsPrivacyRoute extends GoRouteData {
+  const SettingsPrivacyRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SettingsPrivacyScreen();
+}
+
+@TypedGoRoute<HelpRoute>(path: '/help-screen')
+class HelpRoute extends GoRouteData {
+  const HelpRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const HelpScreen();
+}
+
 @TypedGoRoute<MyCoursesScreenRoute>(path: '/my_courses')
 class MyCoursesScreenRoute extends GoRouteData {
   const MyCoursesScreenRoute();
@@ -71,6 +91,15 @@ class MyCoursesScreenRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const MyCoursesScreen();
+}
+
+@TypedGoRoute<FavouriteScreenRoute>(path: '/favourites')
+class FavouriteScreenRoute extends GoRouteData {
+  const FavouriteScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const FavouritesScreen();
 }
 
 @TypedGoRoute<SearchScreenRoute>(path: '/search-screen')
@@ -104,6 +133,7 @@ class SuccessfullPaymentScreenRoute extends GoRouteData {
 @TypedGoRoute<PaymentScreenRoute>(path: '/payment-screen/:courseId')
 class PaymentScreenRoute extends GoRouteData {
   final String courseId;
+
   const PaymentScreenRoute(this.courseId);
 
   @override

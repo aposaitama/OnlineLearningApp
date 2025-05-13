@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_app/resources/app_colors.dart';
@@ -13,6 +14,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
   final String concreteCourseAuthor;
   final double concreteCoursePrice;
   final int concreteCourseDuration;
+
   const ConcreteCourseItemTile({
     super.key,
     required this.concreteCourseTitle,
@@ -67,22 +69,13 @@ class ConcreteCourseItemTile extends StatelessWidget {
                         ),
                         color: AppColors.darkHintTextColor,
                       ),
-                      // child: ClipRRect(
-                      //   borderRadius: BorderRadius.circular(13.0),
-                      //   child: Image.network(
-                      //     'http://localhost:1337$imageUrl',
-                      //     height: 68.0,
-                      //     width: 68.0,
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // ),
                     )
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(
                         13.0,
                       ),
-                      child: Image.network(
-                        'http://localhost:1337$imageUrl',
+                      child: CachedNetworkImage(
+                        imageUrl: 'http://localhost:1337$imageUrl',
                         height: 68.0,
                         width: 68.0,
                         fit: BoxFit.cover,

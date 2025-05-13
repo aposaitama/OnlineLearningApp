@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +17,9 @@ import 'package:online_app/screens/course_screen/widgets/categories_builder.dart
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/course_filters_row.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
+import '../home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({super.key});
@@ -139,8 +142,23 @@ class _CourseScreenState extends State<CourseScreen> {
                 padding: const EdgeInsets.only(
                   right: 21.0,
                 ),
-                child: SvgPicture.asset(
-                  Assets.icons.userImage,
+                child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
+                  builder: (context, state) {
+                    return state.userInfo!.avatar != null ||
+                            state.userInfo!.avatar!.isNotEmpty
+                        ? ClipOval(
+                            child: CachedNetworkImage(
+                              imageUrl: state.userInfo!.avatar!,
+                              fit: BoxFit.cover,
+                              width: 50.0,
+                              height: 50.0,
+                            ),
+                          )
+                        : SvgPicture.asset(
+                            Assets.icons.userImage,
+                            fit: BoxFit.contain,
+                          );
+                  },
                 ),
               ),
             ],

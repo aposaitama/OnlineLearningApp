@@ -4,6 +4,14 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>Need camera access to take pictures</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Need photo library access to select pictures</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need microphone access to record videos</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>We use this to cache images.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -31,17 +39,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>We use this to cache images.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need access to your photo library for caching images.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-		<string>fetch</string>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

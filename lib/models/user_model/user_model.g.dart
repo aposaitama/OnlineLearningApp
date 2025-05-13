@@ -15,6 +15,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       totallyLearningDays: (json['totallyLearningDays'] as num).toInt(),
       totallyLearningHours: (json['totallyLearningHours'] as num).toDouble(),
       learnedToday: (json['learnedToday'] as num).toDouble(),
+      userLearningStreak: (json['userLearningStreak'] as num).toInt(),
       lastTimeCheckout: json['lastTimeCheckout'] == null
           ? null
           : DateTime.parse(json['lastTimeCheckout'] as String),
@@ -47,6 +48,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'totallyLearningDays': instance.totallyLearningDays,
       'totallyLearningHours': instance.totallyLearningHours,
       'learnedToday': instance.learnedToday,
+      'userLearningStreak': instance.userLearningStreak,
       'lastTimeCheckout': instance.lastTimeCheckout?.toIso8601String(),
       'user_purchased_courses': instance.user_purchased_courses,
       'favourite_items': instance.favourite_items,

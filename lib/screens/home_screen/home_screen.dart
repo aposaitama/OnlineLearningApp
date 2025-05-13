@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         if (state.loadingStatus == HomeScreenStatus.error) {
-          return const Center(child: Text('Something went wrong 😢'));
+          return const Center(child: Text('Something went wrong'));
         }
 
         if (state.loadingStatus == HomeScreenStatus.loaded) {
@@ -74,9 +75,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       context.go('/account');
                     },
-                    child: SvgPicture.asset(
-                      Assets.icons.userImage,
-                    ),
+                    child: state.userInfo!.avatar != null ||
+                            state.userInfo!.avatar!.isNotEmpty
+                        ? ClipOval(
+                            child: CachedNetworkImage(
+                              imageUrl: state.userInfo!.avatar!,
+                              fit: BoxFit.cover,
+                              width: 50.0,
+                              height: 50.0,
+                            ),
+                          )
+                        : SvgPicture.asset(
+                            Assets.icons.userImage,
+                            fit: BoxFit.contain,
+                          ),
                   ),
                 ),
               ],
