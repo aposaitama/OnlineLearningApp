@@ -122,7 +122,6 @@ class CourseItemRepository {
     }
   }
 
-
   Future<CourseBasicModel?> getCourseById({
     required String courseId,
   }) async {
@@ -141,6 +140,8 @@ class CourseItemRepository {
       }
     } catch (e) {
       rethrow;
+    }
+  }
 
   Future<List<CourseBasicModel>> getCoursesOnCourseScreen({
     required String filter,
@@ -171,9 +172,8 @@ class CourseItemRepository {
             (json) => CourseBasicModel.fromJson(json as Map<String, dynamic>),
           )
           .toList();
-    } else{
+    } else {
       return [];
-
     }
   }
 

@@ -34,6 +34,7 @@ class CourseDetailsScreen extends StatefulWidget {
 class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
   @override
   void initState() {
+    context.read<HomeScreenBloc>().add(LoadUserHomeScreenBlocEvent());
     context.read<CourseDetailsBloc>().add(
           LoadConcreteCourseInfoEvent(
             widget.courseId,
@@ -179,23 +180,19 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   courseVideoLength:
                                       course?.courseVideoItems.length ?? 0,
                                 ),
-
-                              ),
-                              // GestureDetector(
-                              //   onTap: () =>
-                              //       context.read<CourseDetailsBloc>().add(
-                              //             const PauseVideoEvent(),
-                              //           ),
-                              //   child: Container(
-                              //     height: 50.0,
-                              //     width: 50.0,
-                              //     color: Colors.amber,
-                              //   ),
-                              // ),
-                              //buy course bottom section
-                              //Ira: I changed some logic here to make sure that user can add course to favorites after purchase
-                              
-
+                                SizedBox(
+                                  height: 20.0,
+                                  child: GestureDetector(
+                                    onTap: () =>
+                                        context.read<CourseDetailsBloc>().add(
+                                              const TestFinishedVideo(),
+                                            ),
+                                    child: Container(
+                                      color: Colors.amber,
+                                      child: const Text('press'),
+                                    ),
+                                  ),
+                                ),
                                 Expanded(
                                   child: CourseVideosBuilder(
                                     courseId: widget.courseId,
@@ -226,27 +223,38 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                     },
                                   ),
                                 ),
+                                // GestureDetector(
+                                //   onTap: () =>
+                                //       context.read<CourseDetailsBloc>().add(
+                                //             const PauseVideoEvent(),
+                                //           ),
+                                //   child: Container(
+                                //     height: 50.0,
+                                //     width: 50.0,
+                                //     color: Colors.amber,
+                                //   ),
+                                // ),
                                 //buy course bottom section
                                 BlocBuilder<CourseDetailsBloc,
-                                  CourseDetailsState>(
-                                builder: (context, state) {
-                                  return BuyBottomBar(
-                                    onToggleFavourite: () =>
-                                        context.read<CourseDetailsBloc>().add(
-                                              ToogleFavouriteEvent(
-                                                  state.course?.id.toString() ??
-                                                      ''),
-                                            ),
-                                    onBuyButtonPressed: () => context.push(
-                                      '/payment-screen/${course?.id ?? 0}',
-                                    ),
-                                    courseId: widget.courseId,
-                                  );
-                                },
-                              ),
-                            ],
+                                    CourseDetailsState>(
+                                  builder: (context, state) {
+                                    return BuyBottomBar(
+                                      courseId: widget.courseId,
+                                      onToggleFavourite: () => context
+                                          .read<CourseDetailsBloc>()
+                                          .add(
+                                            ToogleFavouriteEvent(
+                                                state.course?.id.toString() ??
+                                                    ''),
+                                          ),
+                                      onBuyButtonPressed: () => context.push(
+                                        '/payment-screen/${course?.id ?? 0}',
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
-
                           ),
                         ),
                       ),
