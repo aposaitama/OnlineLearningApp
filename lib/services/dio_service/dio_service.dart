@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,9 +6,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 Dio createDio() {
   final dio = Dio(
     BaseOptions(
-      baseUrl: Platform.isAndroid
-          ? 'http://10.0.2.2:1337/api'
-          : 'http://localhost:1337/api',
+      baseUrl: 'https://learning.demodev.cc/api',
       headers: {
         'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
         'Content-Type': 'application/json',

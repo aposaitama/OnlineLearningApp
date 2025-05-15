@@ -37,7 +37,7 @@ class CategoriesItemTile extends StatelessWidget {
         Positioned(
           left: 0,
           child: CachedNetworkImage(
-            imageUrl: 'http://localhost:1337$imageUrl',
+            imageUrl: imageUrl.toImageUrl(),
             width: 110.0,
             height: 85.0,
             errorWidget: (context, url, error) {

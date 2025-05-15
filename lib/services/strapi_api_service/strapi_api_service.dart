@@ -19,9 +19,7 @@ class StrapiApiService {
   StrapiApiService()
       : dio = Dio(
           BaseOptions(
-            baseUrl: Platform.isAndroid
-                ? 'http://10.0.2.2:1337/api'
-                : 'http://localhost:1337/api',
+            baseUrl: 'https://learning.demodev.cc/api',
             headers: {
               'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
               'Content-Type': 'application/json',
@@ -172,7 +170,7 @@ class StrapiApiService {
         },
       );
       await dio.put('/users/$userID', data: {
-        'credit_cards': {
+        'creditСards': {
           "connect": [response.data['data']['id']]
         }
       });

@@ -7,7 +7,6 @@ import 'package:online_app/bloc/filters_bloc/filters_bloc.dart';
 import 'package:online_app/bloc/filters_bloc/filters_event.dart';
 import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/models/categories_model/categories_model.dart';
-import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
@@ -18,6 +17,7 @@ import 'package:online_app/screens/course_screen/widgets/concrete_course_item_ti
 import 'package:online_app/screens/course_screen/widgets/course_filters_row.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/utils/extensions.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
 import '../home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
@@ -148,10 +148,13 @@ class _CourseScreenState extends State<CourseScreen> {
                             state.userInfo!.avatar!.isNotEmpty
                         ? ClipOval(
                             child: CachedNetworkImage(
-                              imageUrl: state.userInfo!.avatar!,
+                              imageUrl: state.userInfo!.avatar!.toImageUrl(),
                               fit: BoxFit.cover,
                               width: 50.0,
                               height: 50.0,
+                              errorWidget: (context, url, error) {
+                                return const Icon(Icons.error);
+                              },
                             ),
                           )
                         : SvgPicture.asset(

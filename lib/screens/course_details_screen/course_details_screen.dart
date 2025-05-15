@@ -17,6 +17,7 @@ import 'package:online_app/screens/course_details_screen/widgets/custom_overlays
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
+import 'package:online_app/utils/extensions.dart';
 import 'package:online_app/widgets/clocking_in_widget.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
@@ -76,7 +77,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                     height: imageHeight,
                                     child: Image.network(
                                       fit: BoxFit.cover,
-                                      'http://localhost:1337${course.courseImage.url}',
+                                      course.courseImage.url.toImageUrl(),
                                     ),
                                   ),
                                   Align(

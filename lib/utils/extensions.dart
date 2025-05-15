@@ -8,7 +8,7 @@ extension SecToHoursExtension on int {
   }
 }
 
-extension ResponseExtension on Response{
+extension ResponseExtension on Response {
   bool get isSuccess => statusCode == 200;
 }
 
@@ -95,5 +95,11 @@ extension HexColorExtension on String {
     } catch (e) {
       return fallback;
     }
+  }
+}
+
+extension UrlToStrapiUrl on String {
+  String toImageUrl() {
+    return 'https://learning.demodev.cc$this';
   }
 }
