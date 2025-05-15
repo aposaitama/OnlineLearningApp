@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/firebase_options.dart';
 import 'package:online_app/navigation/app_router.dart';
@@ -17,14 +18,17 @@ import 'package:online_app/screens/course_details_screen/bloc/course_details_blo
 import 'package:online_app/screens/course_screen/bloc/course_screen_bloc.dart';
 import 'package:online_app/screens/favourites_screen/favourites_bloc/favourites_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:online_app/screens/message_screen/message_screen_bloc/message_screen_bloc.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
 import 'package:online_app/services/firebase_api_service/firebase_api_service.dart';
+import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
 import 'package:online_app/widgets/notification_dialog.dart';
 
 import 'bloc/filters_bloc/filters_bloc.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +45,8 @@ void main() async {
       );
     },
   ).initNotif();
+
+  await LocalNotificationsService.localNotificationsInit();
 
   runApp(
     MultiBlocProvider(
@@ -96,6 +102,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => FavouritesBloc(),
+        ),
+        BlocProvider(
+          create: (context) => MessageScreenBloc(),
         ),
       ],
       child: const MyApp(),
