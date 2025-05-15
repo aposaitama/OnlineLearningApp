@@ -35,11 +35,13 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
         final course = await _courseItemsRepo.getCourseById(
           courseId: event.courseID,
         );
+        if (course != null) {
+          await _courseItemsRepo.salesCountIncrease(
+            courseDocId: course.documentId,
+            salesCount: course.salesCount + 1,
+          );
+        }
 
-        await _courseItemsRepo.salesCountIncrease(
-          courseDocId: course!.documentId,
-          salesCount: course.salesCount + 1,
-        );
         emit(
           state.copyWith(paymentStatus: PaymentStatus.success),
         );
@@ -47,8 +49,6 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
         emit(
           state.copyWith(paymentStatus: PaymentStatus.initial),
         );
-
-
       } else {
         emit(
           state.copyWith(paymentStatus: PaymentStatus.failed),
