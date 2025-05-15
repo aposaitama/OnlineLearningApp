@@ -104,7 +104,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     Emitter<CourseDetailsState> emit,
   ) async {
     if (state.courseVideo == null) return;
-    add(CloseTimerEvent());
+    add(const CloseTimerEvent());
     // state.courseVideo!.dispose();
     final response = await courseRepo.completeVideo(state.videoPlayingId);
     if (response == true) {

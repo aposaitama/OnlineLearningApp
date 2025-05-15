@@ -169,11 +169,13 @@ class StrapiApiService {
           }
         },
       );
-      await dio.put('/users/$userID', data: {
-        'creditСards': {
-          "connect": [response.data['data']['id']]
-        }
-      });
+      response.data['data']['id'] != null
+          ? await dio.put('/users/$userID', data: {
+              'creditСards': {
+                "connect": [response.data['data']['id']]
+              }
+            })
+          : null;
     } catch (e) {}
   }
 }

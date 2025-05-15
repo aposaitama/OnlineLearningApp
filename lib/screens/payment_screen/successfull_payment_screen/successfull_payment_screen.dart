@@ -15,7 +15,7 @@ class SuccessfullPaymentScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(
-          bottom: heigth / 3,
+          bottom: heigth / 4,
           left: 20.0,
           right: 20.0,
         ),

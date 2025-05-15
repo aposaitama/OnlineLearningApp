@@ -137,7 +137,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               ),
                             );
                           },
-                          buttonTitle: 'Create Account',
+                          buttonTitle: 'Create Password',
                         ),
                       ],
                     ),
@@ -197,8 +197,8 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                     height: 64,
                                   ),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
                                     horizontal: 20.0,
                                   ),
                                   child: SizedBox(
@@ -207,6 +207,9 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                     child: Center(
                                       child: KeyField(
                                         num: '0',
+                                        onKeyTap: () => addDigit(
+                                          '0',
+                                        ),
                                       ),
                                     ),
                                   ),

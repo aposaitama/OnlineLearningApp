@@ -19,6 +19,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() logoutUser,
     required TResult Function() pickNewImage,
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
@@ -28,6 +29,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
     TResult? Function()? pickNewImage,
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
@@ -37,6 +39,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? logoutUser,
     TResult Function()? pickNewImage,
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
@@ -47,6 +50,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
     required TResult Function(PickNewAvatarEvent value) pickNewImage,
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
@@ -56,6 +60,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
     TResult? Function(PickNewAvatarEvent value)? pickNewImage,
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -65,6 +70,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
     TResult Function(PickNewAvatarEvent value)? pickNewImage,
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -137,6 +143,7 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() logoutUser,
     required TResult Function() pickNewImage,
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
@@ -149,6 +156,7 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
     TResult? Function()? pickNewImage,
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
@@ -161,6 +169,7 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? logoutUser,
     TResult Function()? pickNewImage,
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
@@ -177,6 +186,7 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
     required TResult Function(PickNewAvatarEvent value) pickNewImage,
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
@@ -189,6 +199,7 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
     TResult? Function(PickNewAvatarEvent value)? pickNewImage,
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -201,6 +212,7 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
     TResult Function(PickNewAvatarEvent value)? pickNewImage,
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -216,6 +228,135 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
 
 abstract class GetUserDataEvent implements AccountEvent {
   const factory GetUserDataEvent() = _$GetUserDataEventImpl;
+}
+
+/// @nodoc
+abstract class _$$LogoutUserEventImplCopyWith<$Res> {
+  factory _$$LogoutUserEventImplCopyWith(_$LogoutUserEventImpl value,
+          $Res Function(_$LogoutUserEventImpl) then) =
+      __$$LogoutUserEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogoutUserEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$LogoutUserEventImpl>
+    implements _$$LogoutUserEventImplCopyWith<$Res> {
+  __$$LogoutUserEventImplCopyWithImpl(
+      _$LogoutUserEventImpl _value, $Res Function(_$LogoutUserEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LogoutUserEventImpl implements LogoutUserEvent {
+  const _$LogoutUserEventImpl();
+
+  @override
+  String toString() {
+    return 'AccountEvent.logoutUser()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogoutUserEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() logoutUser,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+  }) {
+    return logoutUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+  }) {
+    return logoutUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? logoutUser,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    required TResult orElse(),
+  }) {
+    if (logoutUser != null) {
+      return logoutUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+  }) {
+    return logoutUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+  }) {
+    return logoutUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    required TResult orElse(),
+  }) {
+    if (logoutUser != null) {
+      return logoutUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogoutUserEvent implements AccountEvent {
+  const factory LogoutUserEvent() = _$LogoutUserEventImpl;
 }
 
 /// @nodoc
@@ -260,6 +401,7 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() logoutUser,
     required TResult Function() pickNewImage,
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
@@ -272,6 +414,7 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
     TResult? Function()? pickNewImage,
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
@@ -284,6 +427,7 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? logoutUser,
     TResult Function()? pickNewImage,
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
@@ -300,6 +444,7 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
     required TResult Function(PickNewAvatarEvent value) pickNewImage,
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
@@ -312,6 +457,7 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
     TResult? Function(PickNewAvatarEvent value)? pickNewImage,
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -324,6 +470,7 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
     TResult Function(PickNewAvatarEvent value)? pickNewImage,
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -383,6 +530,7 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() logoutUser,
     required TResult Function() pickNewImage,
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
@@ -395,6 +543,7 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
     TResult? Function()? pickNewImage,
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
@@ -407,6 +556,7 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? logoutUser,
     TResult Function()? pickNewImage,
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
@@ -423,6 +573,7 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
     required TResult Function(PickNewAvatarEvent value) pickNewImage,
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
@@ -435,6 +586,7 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
     TResult? Function(PickNewAvatarEvent value)? pickNewImage,
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -447,6 +599,7 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
     TResult Function(PickNewAvatarEvent value)? pickNewImage,
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -536,6 +689,7 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() logoutUser,
     required TResult Function() pickNewImage,
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
@@ -548,6 +702,7 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
     TResult? Function()? pickNewImage,
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
@@ -560,6 +715,7 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? logoutUser,
     TResult Function()? pickNewImage,
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
@@ -576,6 +732,7 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
     required TResult Function(PickNewAvatarEvent value) pickNewImage,
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
@@ -588,6 +745,7 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
     TResult? Function(PickNewAvatarEvent value)? pickNewImage,
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -600,6 +758,7 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
     TResult Function(PickNewAvatarEvent value)? pickNewImage,
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -671,6 +830,7 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserData,
+    required TResult Function() logoutUser,
     required TResult Function() pickNewImage,
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
@@ -683,6 +843,7 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
     TResult? Function()? pickNewImage,
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
@@ -695,6 +856,7 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserData,
+    TResult Function()? logoutUser,
     TResult Function()? pickNewImage,
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
@@ -711,6 +873,7 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
     required TResult Function(PickNewAvatarEvent value) pickNewImage,
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
@@ -723,6 +886,7 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
     TResult? Function(PickNewAvatarEvent value)? pickNewImage,
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
@@ -735,6 +899,7 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
     TResult Function(PickNewAvatarEvent value)? pickNewImage,
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
