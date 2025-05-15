@@ -75,20 +75,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       context.go('/account');
                     },
-                    child: state.userInfo!.avatar != null ||
-                            state.userInfo!.avatar!.isNotEmpty
-                        ? ClipOval(
-                            child: CachedNetworkImage(
-                              imageUrl: state.userInfo!.avatar!,
-                              fit: BoxFit.cover,
-                              width: 50.0,
-                              height: 50.0,
-                            ),
-                          )
-                        : SvgPicture.asset(
-                            Assets.icons.userImage,
-                            fit: BoxFit.contain,
-                          ),
+                    child:
+                        // state.userInfo!.avatar != null ||
+                        //         state.userInfo!.avatar!.isNotEmpty
+                        //     ? ClipOval(
+                        //         child: CachedNetworkImage(
+                        //           imageUrl: state.userInfo!.avatar!,
+                        //           fit: BoxFit.cover,
+                        //           width: 50.0,
+                        //           height: 50.0,
+                        //         ),
+                        //       )
+                        //     :
+                        SvgPicture.asset(
+                      Assets.icons.userImage,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ],

@@ -29,6 +29,7 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
     );
     if (purchaseStatus) {
       // print('successfully purchase');
+
       final course = await _courseItemsRepo.getCourseById(
         courseId: event.courseID,
       );
@@ -38,6 +39,7 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
         courseDocId: course.documentId,
       );
       if (connectCourse) {
+
         emit(
           state.copyWith(paymentStatus: PaymentStatus.success),
         );
