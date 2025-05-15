@@ -9,7 +9,7 @@ class AppRouter {
         navigatorKey: navigatorKey,
         // initialLocation: '/payment-screen/wq23eaa3b17lf6cn43lr7i0j',
         // initialLocation: '/course_details/wq23eaa3b17lf6cn43lr7i0j',
-        initialLocation: '/auth_gate',
+        initialLocation: '/successfull_payment_screen',
         routes: $appRoutes,
       );
 }

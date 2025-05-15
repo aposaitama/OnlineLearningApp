@@ -21,16 +21,15 @@ class AuthRepository {
   }
 
   Future<void> saveUserId(int userId) async {
-
-    await prefs.setInt('user_id', userId,);
-
+    await prefs.setInt(
+      'user_id',
+      userId,
+    );
   }
 
   Future<int?> getUserId() async {
-
     return prefs.getInt('user_id');
   }
-
 
   Future<String> register(
     String userName,
@@ -80,5 +79,11 @@ class AuthRepository {
     } catch (e) {
       throw 'Login failed';
     }
+  }
+
+  Future<void> logout() async {
+    try {
+      await removeToken();
+    } catch (e) {}
   }
 }

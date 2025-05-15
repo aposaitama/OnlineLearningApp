@@ -27,9 +27,9 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
+  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
-    bool obscureText = true;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,

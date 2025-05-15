@@ -51,6 +51,11 @@ class _AccountScreenState extends State<AccountScreen> {
     context.push('/favourites');
   }
 
+  void _logout() {
+    context.read<AccountBloc>().add(LogoutUserEvent());
+    context.go('/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,6 +142,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       value: (false),
                       onChanged: (isOn) {},
                     ),
+                  ),
+                  Spacer(),
+                  AccountListItem(
+                    title: 'Logout',
+                    onTap: _logout,
                   ),
                 ],
               ),

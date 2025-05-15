@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_event.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_state.dart';
@@ -10,6 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final UserRepository userRepository;
+  final authRepo = locator<AuthRepository>();
 
   AccountBloc({
     required this.userRepository,
@@ -19,6 +22,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<EditUserDataEvent>(_onEditUserData);
     on<EnterNewUsernameEvent>(_enterUsername);
     on<ClearAccountStateEvent>(_clearState);
+    on<LogoutUserEvent>(_logoutUser);
   }
 
   Future<void> _getUserData(
@@ -33,6 +37,17 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           userData: userData,
         ),
       );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> _logoutUser(
+    LogoutUserEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    try {
+      await authRepo.logout();
     } catch (e) {
       rethrow;
     }

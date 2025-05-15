@@ -19,6 +19,21 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  void _register() {
+    context.go('/phone_linking');
+    // isAgree
+    //     ? context.read<AuthBloc>().add(
+    //           RegisterUserBlocEvent(
+    //             userNameController.text,
+    //             userEmailController.text,
+    //             userPasswordController.text,
+    //           ),
+    //         )
+    //     : BotToast.showText(
+    //         text: 'You have to agree with rules',
+    //       );
+  }
+
   bool isAgree = false;
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController userEmailController = TextEditingController();
@@ -110,16 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const SizedBox(height: 24.0),
                         CustomFilledButton(
                           buttonTitle: 'Create account',
-                          onTap: () {
-                            // context.push('/phone_linking');
-                            context.read<AuthBloc>().add(
-                                  RegisterUserBlocEvent(
-                                    userNameController.text,
-                                    userEmailController.text,
-                                    userPasswordController.text,
-                                  ),
-                                );
-                          },
+                          onTap: _register,
                         ),
                         const SizedBox(height: 10.0),
                         Row(

@@ -10,12 +10,27 @@ import 'package:online_app/screens/auth_screen/register_screen/phone_linking_scr
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/phone_text_field.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 
-class PhoneLinkingScreen extends StatelessWidget {
+class PhoneLinkingScreen extends StatefulWidget {
   const PhoneLinkingScreen({super.key});
 
   @override
+  State<PhoneLinkingScreen> createState() => _PhoneLinkingScreenState();
+}
+
+class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
+  final TextEditingController phoneNumberController = TextEditingController();
+
+  void _removeSign() {
+    phoneNumberController.text.isNotEmpty
+        ? phoneNumberController.text = phoneNumberController.text.substring(
+            0,
+            phoneNumberController.text.length - 1,
+          )
+        : null;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController phoneNumberController = TextEditingController();
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final appBarBackgroundColor =
         isDark ? AppColors.darkColor : AppColors.greyCoor;
@@ -23,6 +38,7 @@ class PhoneLinkingScreen extends StatelessWidget {
       scaffoldBackgroundColor:
           isDark ? AppColors.darkColor : AppColors.greyCoor,
     );
+
     return Theme(
       data: authPageTheme,
       child: Scaffold(
@@ -57,7 +73,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                   Center(
                     child: SvgPicture.asset(
                       fit: BoxFit.scaleDown,
-                      'assets/icons/LinkPhone.svg',
+                      Assets.icons.linkPhone,
                     ),
                   ),
                   const Gap(40.0),
@@ -179,17 +195,7 @@ class PhoneLinkingScreen extends StatelessWidget {
                                       horizontal: 20.0,
                                     ),
                                     child: GestureDetector(
-                                      onTap: () {
-                                        phoneNumberController.text.isNotEmpty
-                                            ? phoneNumberController.text
-                                                .substring(
-                                                0,
-                                                phoneNumberController
-                                                        .text.length -
-                                                    1,
-                                              )
-                                            : null;
-                                      },
+                                      onTap: _removeSign,
                                       child: SizedBox(
                                         height: 64.0,
                                         width: 64.0,
