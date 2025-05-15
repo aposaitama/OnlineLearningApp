@@ -29,18 +29,16 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
     );
     if (purchaseStatus) {
       // print('successfully purchase');
-      final bool connectCourse =
-          await strapiApiService.purchaseCourse(event.courseID);
+
+      final course = await _courseItemsRepo.getCourseById(
+        courseId: event.courseID,
+      );
+
+      final bool connectCourse = await strapiApiService.purchaseCourse(
+        salesCount: course!.salesCount + 1,
+        courseDocId: course.documentId,
+      );
       if (connectCourse) {
-        final course = await _courseItemsRepo.getCourseById(
-          courseId: event.courseID,
-        );
-        if (course != null) {
-          await _courseItemsRepo.salesCountIncrease(
-            courseDocId: course.documentId,
-            salesCount: course.salesCount + 1,
-          );
-        }
 
         emit(
           state.copyWith(paymentStatus: PaymentStatus.success),

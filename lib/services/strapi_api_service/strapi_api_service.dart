@@ -59,8 +59,6 @@ class StrapiApiService {
     return prefs.getString('jwt_token');
   }
 
-
-
   Future<List<CourseBasicModel>> filterCourses({
     required List<CategoriesModel> categories,
     String? searchedText,
@@ -123,18 +121,33 @@ class StrapiApiService {
     }
   }
 
-  Future<bool> purchaseCourse(String courseID) async {
+  Future<bool> purchaseCourse({
+    required int salesCount,
+    required String courseDocId,
+  }) async {
     try {
       final userModel = await userRepo.getUserData();
       final int userID = userModel?.id ?? 0;
+
       final response = await dio.put(
-        '/users/$userID',
+        '/course-items/$courseDocId',
         data: {
-          'user_purchased_courses': {
-            "connect": [courseID]
+          'data': {
+            'salesCount': salesCount,
+            'users': [userID],
           }
         },
       );
+
+      // final response = await dio.put(
+      //   '/users/$userID',
+      //   data: {
+      //     'user_purchased_courses': {
+      //       "connect": [courseID]
+      //     }
+      //   },
+      // );
+
       if (response.data != null) {
         return true;
       } else {
