@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +8,8 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
+import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
+import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_card_sheet.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
 import 'package:online_app/screens/payment_screen/widgets/enter_cvv_code_sheet.dart';
@@ -65,121 +68,136 @@ class _PaymentScreenState extends State<PaymentScreen> {
         );
       },
     );
-    // strapi.purchaseCourse(
-    //   widget.courseId,
-    // );
-    // context.read<HomeScreenBloc>().add(
-    //       const LoadUserHomeScreenBlocEvent(),
-    //     );
-    // context.push('/successfull_payment_screen');
   }
 
   final _controller = PageController();
-
+  int currentIndex = 0;
   final strapi = StrapiApiService();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeScreenBloc, HomeScreenState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            leading: GestureDetector(
-              onTap: _back,
-              child: SvgPicture.asset(
-                Assets.icons.arrowBack,
-                fit: BoxFit.scaleDown,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).extension<AppColorsModel>()!.mainTextColor,
-                  BlendMode.srcIn,
+    return BlocListener<PaymentBloc, PaymentBlocState>(
+      listener: (context, state) {
+        if (state.addingCardStatus == CreditCardAddingStatus.success) {
+          context.read<HomeScreenBloc>().add(
+                const LoadUserHomeScreenBlocEvent(),
+              );
+          BotToast.cleanAll();
+        }
+      },
+      child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              leading: GestureDetector(
+                onTap: _back,
+                child: SvgPicture.asset(
+                  Assets.icons.arrowBack,
+                  fit: BoxFit.scaleDown,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context)
+                        .extension<AppColorsModel>()!
+                        .mainTextColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 200.0,
-                  child: PageView.builder(
-                    itemCount: (state.userInfo?.creditCards.length ?? 0) + 1,
-                    controller: _controller,
-                    itemBuilder: (context, index) {
-                      if (state.userInfo != null) {
-                        if (index < (state.userInfo?.creditCards.length ?? 0)) {
-                          return Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Center(
-                              child: Text(
-                                state.userInfo?.creditCards[index].cardNumber ??
-                                    '',
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.white,
+            body: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200.0,
+                    child: PageView.builder(
+                      itemCount: (state.userInfo?.creditCards.length ?? 0) + 1,
+                      controller: _controller,
+                      onPageChanged: (value) {
+                        setState(() {
+                          currentIndex = value;
+                        });
+                      },
+                      itemBuilder: (context, index) {
+                        if (state.userInfo != null) {
+                          if (index <
+                              (state.userInfo?.creditCards.length ?? 0)) {
+                            return Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  state.userInfo?.creditCards[index]
+                                          .cardNumber ??
+                                      '',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        } else {
-                          return AddNewCreditCard(
-                            addNewCreditCard: _showAddNewCreditCardBottomSheet,
-                          );
+                            );
+                          } else {
+                            return AddNewCreditCard(
+                              addNewCreditCard:
+                                  _showAddNewCreditCardBottomSheet,
+                            );
+                          }
                         }
-                      }
-                      return null;
-                    },
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 50.0,
-                ),
-                SmoothPageIndicator(
-                  controller: _controller,
-                  count: (state.userInfo?.creditCards.length ?? 0) + 1,
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 100.0,
+                  const SizedBox(
+                    height: 50.0,
                   ),
-                  child: (state.userInfo?.creditCards.length ?? 0) > 1
-                      ? CustomFilledButton(
-                          onTap: () {
-                            final currentIndex = _controller.page?.round() ?? 0;
-                            final selectedCard =
-                                state.userInfo?.creditCards[currentIndex];
+                  SmoothPageIndicator(
+                    controller: _controller,
+                    count: (state.userInfo?.creditCards.length ?? 0) + 1,
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 100.0,
+                    ),
+                    child: currentIndex !=
+                            (state.userInfo?.creditCards.length ?? 0)
+                        ? CustomFilledButton(
+                            onTap: () {
+                              final currentIndex =
+                                  _controller.page?.round() ?? 0;
+                              final selectedCard =
+                                  state.userInfo?.creditCards[currentIndex];
 
-                            if (selectedCard != null) {
-                              _onPuchasePressed(
-                                selectedCard.cardNumber,
-                                selectedCard.expDate.substring(0, 2),
-                                selectedCard.expDate.substring(2, 4),
-                                widget.courseId,
-                                '70',
-                              );
-                            }
-                          },
-                          buttonTitle: 'Pay Now',
-                        )
-                      : const CustomFilledButton(
-                          buttonTitle: 'Add new card',
-                        ),
-                ),
-              ],
+                              if (selectedCard != null) {
+                                _onPuchasePressed(
+                                  selectedCard.cardNumber,
+                                  selectedCard.expDate.substring(0, 2),
+                                  selectedCard.expDate.substring(2, 4),
+                                  widget.courseId,
+                                  '70',
+                                );
+                              }
+                            },
+                            buttonTitle: 'Pay Now',
+                          )
+                        : const CustomFilledButton(
+                            buttonTitle: 'Add new card',
+                          ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

@@ -15,6 +15,12 @@ enum PaymentStatus {
   failed,
 }
 
+enum CreditCardAddingStatus {
+  initial,
+  success,
+  failed,
+}
+
 @freezed
 class PaymentBlocState with _$PaymentBlocState {
   const factory PaymentBlocState({
@@ -22,6 +28,10 @@ class PaymentBlocState with _$PaymentBlocState {
       PaymentLoadingStatus.initial,
     )
     PaymentLoadingStatus loadingStatus,
+    @Default(
+      CreditCardAddingStatus.initial,
+    )
+    CreditCardAddingStatus addingCardStatus,
     @Default(
       PaymentStatus.initial,
     )

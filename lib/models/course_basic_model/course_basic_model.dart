@@ -15,7 +15,8 @@ class CourseBasicModel with _$CourseBasicModel {
     required int totalCourseDurationInSeconds,
     required double coursePrice,
     @Default([]) List<CourseVideoItem> courseVideoItems,
-    required int salesCount ,
+    required int salesCount,
+    required String courseColor,
   }) = _CourseBasicModel;
 
   factory CourseBasicModel.fromJson(Map<String, dynamic> json) =>
