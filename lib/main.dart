@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/firebase_options.dart';
 import 'package:online_app/navigation/app_router.dart';
@@ -26,7 +27,7 @@ import 'package:online_app/widgets/notification_dialog.dart';
 import 'bloc/filters_bloc/filters_bloc.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-final connectivityService = ConnectivityService();
+
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
@@ -123,7 +124,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: ThemeMode.system,
       routerConfig: AppRouter(
         navigatorKey,
-        connectivityService,
+        locator<ConnectivityService>(),
       ).createRouter(),
     );
   }
