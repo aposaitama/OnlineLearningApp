@@ -8,7 +8,7 @@ import 'package:online_app/screens/home_screen/widgets/gradient_progress_bar.dar
 
 class CourseItemStat extends StatelessWidget {
   final Color backgroundColor;
-  final Color backgroundButtonColor;
+
   final String concreteCourseItemTitle;
   final int totalTasksCount;
   final int completedTasks;
@@ -19,7 +19,6 @@ class CourseItemStat extends StatelessWidget {
     required this.completedTasks,
     required this.concreteCourseItemTitle,
     required this.backgroundColor,
-    required this.backgroundButtonColor,
     this.onPlayPressed,
   });
 
@@ -32,7 +31,11 @@ class CourseItemStat extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           13.0,
         ),
-        color: isDark ? AppColors.charcoalBlue : backgroundColor,
+        color: isDark
+            ? AppColors.charcoalBlue
+            : backgroundColor.withValues(
+                alpha: 0.5,
+              ),
       ),
       child: Padding(
         padding: const EdgeInsets.only(
@@ -57,6 +60,7 @@ class CourseItemStat extends StatelessWidget {
               ),
             ),
             GradientProgressBar(
+              progressColor: backgroundColor,
               isBackGroundWhite: true,
               value: completedTasks / totalTasksCount,
             ),
@@ -109,7 +113,7 @@ class CourseItemStat extends StatelessWidget {
                     width: 44.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: backgroundButtonColor,
+                      color: backgroundColor,
                     ),
                     child: Center(
                       child: SvgPicture.asset(

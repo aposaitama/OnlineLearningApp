@@ -9,9 +9,12 @@ import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
+import 'package:online_app/screens/home_screen/widgets/actions_builder.dart';
+import 'package:online_app/screens/home_screen/widgets/actions_item_tile.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/progress_widget_with_bg.dart';
+import 'package:online_app/widgets/clocking_in_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,11 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         if (state.loadingStatus == HomeScreenStatus.initial ||
             state.loadingStatus == HomeScreenStatus.loading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
 
         if (state.loadingStatus == HomeScreenStatus.error) {
-          return const Center(child: Text('Something went wrong'));
+          return const Center(
+            child: Text(
+              'Something went wrong',
+            ),
+          );
         }
 
         if (state.loadingStatus == HomeScreenStatus.loaded) {
@@ -101,59 +110,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 16.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20.0,
-                  ),
-                  child: SizedBox(
-                    height: 154.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 2,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            right: 10.0,
-                          ),
-                          child: Container(
-                            height: 154.0,
-                            width: 250.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                13.0,
-                              ),
-                              color: AppColors.lightBlueColor,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 25.0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const ActionsBuilder(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0,
                           ),
-                          LearningPlanWidget(
-                            completedVideos:
-                                state.userInfo?.completed_course_videos ?? [],
-                            coursesList:
-                                state.userInfo?.user_purchased_courses ?? [],
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 25.0,
+                              ),
+                              LearningPlanWidget(
+                                completedVideos:
+                                    state.userInfo?.completed_course_videos ??
+                                        [],
+                                coursesList:
+                                    state.userInfo?.user_purchased_courses ??
+                                        [],
+                              ),
+                              const SizedBox(
+                                height: 14.0,
+                              ),
+                              const MeetupWidget(),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 14.0,
-                          ),
-                          MeetupWidget(),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

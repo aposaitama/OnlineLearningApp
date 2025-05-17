@@ -19,12 +19,14 @@ import 'package:online_app/screens/favourites_screen/favourites_bloc/favourites_
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
+import 'package:online_app/services/connectivity_service/connectivity_service.dart';
 import 'package:online_app/services/firebase_api_service/firebase_api_service.dart';
 import 'package:online_app/widgets/notification_dialog.dart';
 
 import 'bloc/filters_bloc/filters_bloc.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+final connectivityService = ConnectivityService();
 void main() async {
   await dotenv.load(fileName: "lib/api_keys.env");
   WidgetsFlutterBinding.ensureInitialized();
@@ -119,7 +121,10 @@ class _MyAppState extends State<MyApp> {
       theme: GlobalTheme.lightTheme,
       darkTheme: GlobalTheme.darkTheme,
       themeMode: ThemeMode.system,
-      routerConfig: AppRouter(navigatorKey).createRouter(),
+      routerConfig: AppRouter(
+        navigatorKey,
+        connectivityService,
+      ).createRouter(),
     );
   }
 }

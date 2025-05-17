@@ -6,6 +6,7 @@ import 'package:online_app/screens/edit_account_screen/edit_account_screen.dart'
 import 'package:online_app/screens/favourites_screen/favourites_screen.dart';
 import 'package:online_app/screens/help_screen.dart';
 import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
+import 'package:online_app/screens/no_internet/no_internet.dart';
 import 'package:online_app/screens/payment_screen/payment_screen.dart';
 import 'package:online_app/screens/payment_screen/successfull_payment_screen/successfull_payment_screen.dart';
 import 'package:online_app/screens/root_screen/root_screen.dart';
@@ -21,6 +22,15 @@ import 'package:online_app/screens/search_screen/search_screen.dart';
 import 'package:online_app/screens/settings_privacy_screen.dart';
 
 part 'routes.g.dart';
+
+@TypedGoRoute<InternetConnectivityRoute>(path: '/no_internet')
+class InternetConnectivityRoute extends GoRouteData {
+  const InternetConnectivityRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NoInternetScreen();
+}
 
 @TypedGoRoute<RegisterRoute>(path: '/register')
 class RegisterRoute extends GoRouteData {

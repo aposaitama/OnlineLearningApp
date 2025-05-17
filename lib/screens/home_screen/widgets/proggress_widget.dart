@@ -8,10 +8,15 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/screens/home_screen/widgets/gradient_progress_bar.dart';
 
-class ProggressWidget extends StatelessWidget {
+class ProggressWidget extends StatefulWidget {
   final bool myCoursesText;
   const ProggressWidget({super.key, required this.myCoursesText});
 
+  @override
+  State<ProggressWidget> createState() => _ProggressWidgetState();
+}
+
+class _ProggressWidgetState extends State<ProggressWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeScreenBloc, HomeScreenState>(
@@ -59,7 +64,7 @@ class ProggressWidget extends StatelessWidget {
                         fontSize: 12.0,
                       ),
                     ),
-                    myCoursesText
+                    widget.myCoursesText
                         ? GestureDetector(
                             onTap: () => context.push(
                               '/my_courses',

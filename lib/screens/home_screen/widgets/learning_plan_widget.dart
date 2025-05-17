@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_app/models/course_basic_model/course_basic_model.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/resources/app_colors.dart';
@@ -6,7 +9,7 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_item_tile.dart';
 
-class LearningPlanWidget extends StatelessWidget {
+class LearningPlanWidget extends StatefulWidget {
   final List<CourseBasicModel> coursesList;
   final List<CourseVideoItem> completedVideos;
   const LearningPlanWidget({
@@ -16,9 +19,19 @@ class LearningPlanWidget extends StatelessWidget {
   });
 
   @override
+  State<LearningPlanWidget> createState() => _LearningPlanWidgetState();
+}
+
+class _LearningPlanWidgetState extends State<LearningPlanWidget> {
+  void _onMorePressed() {
+    context.push('/my_courses');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Learning Plan',
@@ -52,38 +65,61 @@ class LearningPlanWidget extends StatelessWidget {
               15.0,
             ),
           ),
-          child: coursesList.isNotEmpty
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 6.0,
-                  ),
-                  child: ListView.builder(
-                    itemCount: coursesList.length,
-                    itemBuilder: (context, index) {
-                      final concreteCourse = coursesList[index];
-                      final completedVideoIds =
-                          completedVideos.map((e) => e.id).toSet();
-
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20.0,
-                        ),
-                        child: LearningPlanItemTile(
-                          totalTaskCount:
-                              concreteCourse.courseVideoItems.length,
-                          completedTaskCount: concreteCourse.courseVideoItems
-                              .where(
-                                (video) => completedVideoIds.contains(
-                                  video.id,
+          child: widget.coursesList.isNotEmpty
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
+                      child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: min(widget.coursesList.length, 2),
+                        itemBuilder: (context, index) {
+                          final concreteCourse = widget.coursesList[index];
+                          final completedVideoIds =
+                              widget.completedVideos.map((e) => e.id).toSet();
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              top: 20.0,
+                              left: 5.0,
+                            ),
+                            child: LearningPlanItemTile(
+                              totalTaskCount:
+                                  concreteCourse.courseVideoItems.length,
+                              completedTaskCount:
+                                  concreteCourse.courseVideoItems
+                                      .where(
+                                        (video) => completedVideoIds.contains(
+                                          video.id,
+                                        ),
+                                      )
+                                      .length,
+                              courseTitle: concreteCourse.courseTitle,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    widget.coursesList.length > 0
+                        ? Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 10.0,
+                            ),
+                            child: GestureDetector(
+                              onTap: _onMorePressed,
+                              child: const Text(
+                                'more',
+                                style: TextStyle(
+                                  color: AppColors.deepBlueColor,
                                 ),
-                              )
-                              .length,
-                          courseTitle: concreteCourse.courseTitle,
-                        ),
-                      );
-                    },
-                  ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                  ],
                 )
               : Center(
                   child: Text(

@@ -7,6 +7,7 @@ part of 'routes.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+      $internetConnectivityRoute,
       $registerRoute,
       $loginRoute,
       $phoneLinkingRoute,
@@ -23,6 +24,29 @@ List<RouteBase> get $appRoutes => [
       $courseDetailsRoute,
       $rootShellRoute,
     ];
+
+RouteBase get $internetConnectivityRoute => GoRouteData.$route(
+      path: '/no_internet',
+      factory: $InternetConnectivityRouteExtension._fromState,
+    );
+
+extension $InternetConnectivityRouteExtension on InternetConnectivityRoute {
+  static InternetConnectivityRoute _fromState(GoRouterState state) =>
+      const InternetConnectivityRoute();
+
+  String get location => GoRouteData.$location(
+        '/no_internet',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $registerRoute => GoRouteData.$route(
       path: '/register',

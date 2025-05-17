@@ -124,6 +124,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/avatar.svg
   String get avatar => 'assets/icons/avatar.svg';
 
+  /// File path: assets/icons/check_stats.svg
+  String get checkStats => 'assets/icons/check_stats.svg';
+
   /// File path: assets/icons/clear_text.svg
   String get clearText => 'assets/icons/clear_text.svg';
 
@@ -184,6 +187,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/star.svg
   String get star => 'assets/icons/star.svg';
 
+  /// File path: assets/icons/start_learning.svg
+  String get startLearning => 'assets/icons/start_learning.svg';
+
   /// File path: assets/icons/success.svg
   String get success => 'assets/icons/success.svg';
 
@@ -202,6 +208,7 @@ class $AssetsIconsGen {
     addIcon,
     arrowBack,
     avatar,
+    checkStats,
     clearText,
     close,
     course,
@@ -222,6 +229,7 @@ class $AssetsIconsGen {
     polygonBig,
     search,
     star,
+    startLearning,
     success,
     successfullPayment,
     union,

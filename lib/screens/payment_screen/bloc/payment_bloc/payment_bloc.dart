@@ -36,10 +36,9 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
 
       final bool connectCourse = await strapiApiService.purchaseCourse(
         salesCount: course!.salesCount + 1,
-        courseDocId: course.documentId,
+        courseId: course.id,
       );
       if (connectCourse) {
-
         emit(
           state.copyWith(paymentStatus: PaymentStatus.success),
         );
@@ -69,9 +68,25 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
     AddCreditCardEvent event,
     Emitter<PaymentBlocState> emit,
   ) async {
-    await strapiApiService.addCreditCard(
+    final bool response = await strapiApiService.addCreditCard(
       event.cardNumber.replaceAll('-', ''),
       event.expDate,
+    );
+    response
+        ? emit(
+            state.copyWith(
+              addingCardStatus: CreditCardAddingStatus.success,
+            ),
+          )
+        : emit(
+            state.copyWith(
+              addingCardStatus: CreditCardAddingStatus.failed,
+            ),
+          );
+    emit(
+      state.copyWith(
+        addingCardStatus: CreditCardAddingStatus.initial,
+      ),
     );
   }
 }

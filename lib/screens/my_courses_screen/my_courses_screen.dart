@@ -10,6 +10,7 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/screens/home_screen/widgets/proggress_widget.dart';
 import 'package:online_app/screens/my_courses_screen/widgets/course_item_stat.dart';
+import 'package:online_app/utils/extensions.dart';
 
 class MyCoursesScreen extends StatelessWidget {
   const MyCoursesScreen({super.key});
@@ -83,8 +84,8 @@ class MyCoursesScreen extends StatelessWidget {
                         onPlayPressed: () => context.push(
                           '/course_details/${concreteCourse.documentId}',
                         ),
-                        backgroundColor: AppColors.pinkColor,
-                        backgroundButtonColor: AppColors.darkPurpleColor,
+                        backgroundColor:
+                            concreteCourse.courseColor.hexToColor(),
                         concreteCourseItemTitle: concreteCourse.courseTitle,
                         totalTasksCount: concreteCourse.courseVideoItems.length,
                         completedTasks: completedTasks,
