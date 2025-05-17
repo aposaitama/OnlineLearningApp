@@ -19,7 +19,7 @@ class LocalNotificationsService {
 
   static Future<void> localNotificationsInit() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('app_icon');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
@@ -79,21 +79,21 @@ class LocalNotificationsService {
       _notificationDetails(),
     );
 
-    // final newNotification = LocalNotificationModel(
-    //   id: id,
-    //   body:body,
-    //   date: DateTime.now(),
-    //   notificationType: notificationType,
-    // );
-    //
-    // final currentNotifications =
-    // await _sharedPreferences.getLocalNotifications();
-    //
-    // currentNotifications.add(newNotification);
-    //
-    // await _sharedPreferences.saveLocalNotification(
-    //   notifications: currentNotifications,
-    // );
+    final newNotification = LocalNotificationModel(
+      id: id,
+      body:body,
+      date: DateTime.now(),
+      notificationType: notificationType,
+    );
+
+    final currentNotifications =
+    await _sharedPreferences.getLocalNotifications();
+
+    currentNotifications.add(newNotification);
+
+    await _sharedPreferences.saveLocalNotification(
+      notifications: currentNotifications,
+    );
   }
 
   Future<void> scheduleDailyNotificationIfStreakZero(
