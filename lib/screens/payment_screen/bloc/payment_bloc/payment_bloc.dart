@@ -13,7 +13,7 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
   final strapiApiService = locator<StrapiApiService>();
   final _paymentRepo = locator<PaymentRepository>();
   final _courseItemsRepo = locator<CourseItemRepository>();
-  final _sharedPreferencesService = locator<SharedPreferencesService>();
+  final _localNotificationsService = locator<LocalNotificationsService>();
 
   PaymentBloc() : super(const PaymentBlocState()) {
     on<AddCreditCardEvent>(_addCreditCard);
@@ -46,29 +46,14 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
         );
 
         int id = DateTime.now().millisecondsSinceEpoch.remainder(10000);
-        LocalNotificationsService.showNotification(
+        _localNotificationsService.showNotification(
           id: id,
           title: 'Online Learning App',
           body:
               'You have successfully purchased a course "${course.courseTitle}"',
-        );
-
-        final newNotification = LocalNotificationModel(
-          id: id,
-          body:
-              'You have successfully purchased a course "${course.courseTitle}"',
-          date: DateTime.now(),
           notificationType: 'card',
         );
 
-        final currentNotifications =
-            await _sharedPreferencesService.getLocalNotifications();
-
-        currentNotifications.add(newNotification);
-
-        await _sharedPreferencesService.saveLocalNotification(
-          notifications: currentNotifications,
-        );
       } else {
         emit(
           state.copyWith(paymentStatus: PaymentStatus.failed),

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeScreenState {
   UserModel? get userInfo => throw _privateConstructorUsedError;
   HomeScreenStatus get loadingStatus => throw _privateConstructorUsedError;
+  List<int> get courseIds => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,10 @@ abstract class $HomeScreenStateCopyWith<$Res> {
           HomeScreenState value, $Res Function(HomeScreenState) then) =
       _$HomeScreenStateCopyWithImpl<$Res, HomeScreenState>;
   @useResult
-  $Res call({UserModel? userInfo, HomeScreenStatus loadingStatus});
+  $Res call(
+      {UserModel? userInfo,
+      HomeScreenStatus loadingStatus,
+      List<int> courseIds});
 
   $UserModelCopyWith<$Res>? get userInfo;
 }
@@ -54,6 +58,7 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   $Res call({
     Object? userInfo = freezed,
     Object? loadingStatus = null,
+    Object? courseIds = null,
   }) {
     return _then(_value.copyWith(
       userInfo: freezed == userInfo
@@ -64,6 +69,10 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
           ? _value.loadingStatus
           : loadingStatus // ignore: cast_nullable_to_non_nullable
               as HomeScreenStatus,
+      courseIds: null == courseIds
+          ? _value.courseIds
+          : courseIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ) as $Val);
   }
 
@@ -90,7 +99,10 @@ abstract class _$$HomeScreenStateImplCopyWith<$Res>
       __$$HomeScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserModel? userInfo, HomeScreenStatus loadingStatus});
+  $Res call(
+      {UserModel? userInfo,
+      HomeScreenStatus loadingStatus,
+      List<int> courseIds});
 
   @override
   $UserModelCopyWith<$Res>? get userInfo;
@@ -111,6 +123,7 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
   $Res call({
     Object? userInfo = freezed,
     Object? loadingStatus = null,
+    Object? courseIds = null,
   }) {
     return _then(_$HomeScreenStateImpl(
       userInfo: freezed == userInfo
@@ -121,6 +134,10 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
           ? _value.loadingStatus
           : loadingStatus // ignore: cast_nullable_to_non_nullable
               as HomeScreenStatus,
+      courseIds: null == courseIds
+          ? _value._courseIds
+          : courseIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -129,17 +146,28 @@ class __$$HomeScreenStateImplCopyWithImpl<$Res>
 
 class _$HomeScreenStateImpl implements _HomeScreenState {
   const _$HomeScreenStateImpl(
-      {this.userInfo, this.loadingStatus = HomeScreenStatus.initial});
+      {this.userInfo,
+      this.loadingStatus = HomeScreenStatus.initial,
+      final List<int> courseIds = const []})
+      : _courseIds = courseIds;
 
   @override
   final UserModel? userInfo;
   @override
   @JsonKey()
   final HomeScreenStatus loadingStatus;
+  final List<int> _courseIds;
+  @override
+  @JsonKey()
+  List<int> get courseIds {
+    if (_courseIds is EqualUnmodifiableListView) return _courseIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_courseIds);
+  }
 
   @override
   String toString() {
-    return 'HomeScreenState(userInfo: $userInfo, loadingStatus: $loadingStatus)';
+    return 'HomeScreenState(userInfo: $userInfo, loadingStatus: $loadingStatus, courseIds: $courseIds)';
   }
 
   @override
@@ -150,11 +178,14 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
             (identical(other.userInfo, userInfo) ||
                 other.userInfo == userInfo) &&
             (identical(other.loadingStatus, loadingStatus) ||
-                other.loadingStatus == loadingStatus));
+                other.loadingStatus == loadingStatus) &&
+            const DeepCollectionEquality()
+                .equals(other._courseIds, _courseIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userInfo, loadingStatus);
+  int get hashCode => Object.hash(runtimeType, userInfo, loadingStatus,
+      const DeepCollectionEquality().hash(_courseIds));
 
   /// Create a copy of HomeScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -169,12 +200,15 @@ class _$HomeScreenStateImpl implements _HomeScreenState {
 abstract class _HomeScreenState implements HomeScreenState {
   const factory _HomeScreenState(
       {final UserModel? userInfo,
-      final HomeScreenStatus loadingStatus}) = _$HomeScreenStateImpl;
+      final HomeScreenStatus loadingStatus,
+      final List<int> courseIds}) = _$HomeScreenStateImpl;
 
   @override
   UserModel? get userInfo;
   @override
   HomeScreenStatus get loadingStatus;
+  @override
+  List<int> get courseIds;
 
   /// Create a copy of HomeScreenState
   /// with the given fields replaced by the non-null parameter values.

@@ -1,6 +1,12 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
+import 'package:timezone/timezone.dart' as tz;
+
+import '../../models/local_notification_model/local_notification_model.dart';
 
 class LocalNotificationsService {
+  final _sharedPreferences = locator<SharedPreferencesService>();
   static final LocalNotificationsService _instance =
       LocalNotificationsService._internal();
 
@@ -17,10 +23,10 @@ class LocalNotificationsService {
 
     const DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
-          requestSoundPermission: true,
-          requestBadgePermission: true,
-          requestAlertPermission: true,
-        );
+      requestSoundPermission: true,
+      requestBadgePermission: true,
+      requestAlertPermission: true,
+    );
 
     const InitializationSettings initializationSettings =
         InitializationSettings(
@@ -30,21 +36,17 @@ class LocalNotificationsService {
 
     await _notificationsPlugin.initialize(initializationSettings);
 
-    final bool? result = await _notificationsPlugin
+    await _notificationsPlugin
         .resolvePlatformSpecificImplementation<
-        IOSFlutterLocalNotificationsPlugin>()
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+          alert: true,
+          badge: true,
+          sound: true,
+        );
   }
 
-  static Future<void> showNotification({
-    required int id,
-    required String title,
-    required String body,
-  }) async {
+  NotificationDetails _notificationDetails() {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'default_channel_id',
@@ -61,6 +63,79 @@ class LocalNotificationsService {
       iOS: iosDetails,
     );
 
-    await _notificationsPlugin.show(id, title, body, platformChannelSpecifics);
+    return platformChannelSpecifics;
+  }
+
+  Future<void> showNotification({
+    required int id,
+    required String title,
+    required String body,
+    required String notificationType,
+  }) async {
+    await _notificationsPlugin.show(
+      id,
+      title,
+      body,
+      _notificationDetails(),
+    );
+
+    // final newNotification = LocalNotificationModel(
+    //   id: id,
+    //   body:body,
+    //   date: DateTime.now(),
+    //   notificationType: notificationType,
+    // );
+    //
+    // final currentNotifications =
+    // await _sharedPreferences.getLocalNotifications();
+    //
+    // currentNotifications.add(newNotification);
+    //
+    // await _sharedPreferences.saveLocalNotification(
+    //   notifications: currentNotifications,
+    // );
+  }
+
+  Future<void> scheduleDailyNotificationIfStreakZero(
+      {required int streak}) async {
+    if (streak != 0) return;
+
+    final id = DateTime.now().millisecondsSinceEpoch.remainder(10000);
+    await _notificationsPlugin.zonedSchedule(
+      id,
+      'Reminding!!!',
+      'Come back, you have uncompleted courses!',
+      _nextInstanceOfSixPM(),
+      _notificationDetails(),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
+  }
+
+  tz.TZDateTime _nextInstanceOfSixPM() {
+    final now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduledDate =
+        tz.TZDateTime(tz.local, now.year, now.month, now.day, 18);
+
+    if (scheduledDate.isBefore(now)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
+    }
+
+    return scheduledDate;
+  }
+
+  Future<void> showStreakNotification(int streak) async {
+    // if(streak != 0 && (DateTime.now().hour != 20 && DateTime.now().minute != 45)) return;
+
+    final id = DateTime.now().millisecondsSinceEpoch.remainder(10000);
+    if (streak == 0 &&
+        (DateTime.now().hour == 19 && DateTime.now().minute == 43)) {
+      await _notificationsPlugin.show(
+        id,
+        'Reminding!!!',
+        'Come back, you have uncompleted courses!',
+        _notificationDetails(),
+      );
+    }
   }
 }

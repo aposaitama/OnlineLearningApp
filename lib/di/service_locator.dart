@@ -7,6 +7,7 @@ import 'package:online_app/repositories/course_repository/course_repository.dart
 import 'package:online_app/repositories/notification_repository/notification_repository.dart';
 import 'package:online_app/repositories/payment_repository/payment_repository.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
+import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
 import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,4 +31,6 @@ Future<void> setupLocator() async {
   locator.registerSingleton<CourseRepository>(CourseRepository());
   locator.registerSingleton<CategoryRepository>(CategoryRepository());
   locator.registerSingleton<CourseItemRepository>(CourseItemRepository());
+
+  locator.registerSingleton<LocalNotificationsService>(LocalNotificationsService());
 }
