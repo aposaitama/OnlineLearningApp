@@ -103,7 +103,7 @@ class _LearningPlanWidgetState extends State<LearningPlanWidget> {
                         },
                       ),
                     ),
-                    widget.coursesList.length > 0
+                    widget.coursesList.length > 2
                         ? Padding(
                             padding: const EdgeInsets.only(
                               bottom: 10.0,

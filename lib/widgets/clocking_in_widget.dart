@@ -134,14 +134,14 @@ class ClockingInWidget {
                             return Container(
                               width: 28.0,
                               height: 28.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColors.deepBlueColor,
                               ),
                               child: Center(
                                 child: Text(
                                   (index + 1).toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
