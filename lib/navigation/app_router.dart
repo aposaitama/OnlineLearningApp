@@ -14,8 +14,10 @@ class AppRouter {
         // initialLocation: '/course_details/wq23eaa3b17lf6cn43lr7i0j',
 
         initialLocation: '/auth_gate',
+        refreshListenable: connectivityService,
         redirect: (context, state) {
           final hasInternet = connectivityService.hasInternet;
+          print(hasInternet);
           final goingToNoInternet = state.uri.toString() == '/no_internet';
 
           if (!hasInternet && !goingToNoInternet) {

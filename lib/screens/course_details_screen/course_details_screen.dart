@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,9 +82,10 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                     SizedBox(
                                       width: double.infinity,
                                       height: imageHeight,
-                                      child: Image.network(
+                                      child: CachedNetworkImage(
                                         fit: BoxFit.cover,
-                                        course.courseImage.url.toImageUrl(),
+                                        imageUrl:
+                                            course.courseImage.url.toImageUrl(),
                                       ),
                                     ),
                                     Align(
