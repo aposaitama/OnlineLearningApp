@@ -16,10 +16,8 @@ class ConnectivityService extends ChangeNotifier {
   }
 
   void _init() {
-    // Перша перевірка одразу
     _checkConnection();
 
-    // Періодична перевірка кожні 5 секунд
     _timer =
         Timer.periodic(const Duration(seconds: 5), (_) => _checkConnection());
   }
