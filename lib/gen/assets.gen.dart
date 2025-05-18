@@ -172,6 +172,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/lock_icon.svg
   String get lockIcon => 'assets/icons/lock_icon.svg';
 
+  /// File path: assets/icons/master-card.svg
+  String get masterCard => 'assets/icons/master-card.svg';
+
   /// File path: assets/icons/meetup_icon.svg
   String get meetupIcon => 'assets/icons/meetup_icon.svg';
 
@@ -211,6 +214,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user_image.svg
   String get userImage => 'assets/icons/user_image.svg';
 
+  /// File path: assets/icons/visa.svg
+  String get visa => 'assets/icons/visa.svg';
+
   /// List of all assets
   List<String> get values => [
     account,
@@ -233,6 +239,7 @@ class $AssetsIconsGen {
     infoNotification,
     linkPhone,
     lockIcon,
+    masterCard,
     meetupIcon,
     message,
     noNetwork,
@@ -246,6 +253,7 @@ class $AssetsIconsGen {
     successfullPayment,
     union,
     userImage,
+    visa,
   ];
 }
 

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/models/course_concrete_model.dart/course_concrete_model.dart';
 import 'package:online_app/screens/course_details_screen/widgets/course_video_item_tile.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
 class CourseVideosBuilder extends StatelessWidget {

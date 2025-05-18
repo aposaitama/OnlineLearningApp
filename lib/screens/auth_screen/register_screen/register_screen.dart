@@ -20,18 +20,18 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   void _register() {
-    context.go('/phone_linking');
-    // isAgree
-    //     ? context.read<AuthBloc>().add(
-    //           RegisterUserBlocEvent(
-    //             userNameController.text,
-    //             userEmailController.text,
-    //             userPasswordController.text,
-    //           ),
-    //         )
-    //     : BotToast.showText(
-    //         text: 'You have to agree with rules',
-    //       );
+    // context.go('/phone_linking');
+    isAgree
+        ? context.read<AuthBloc>().add(
+              RegisterUserBlocEvent(
+                userNameController.text,
+                userEmailController.text,
+                userPasswordController.text,
+              ),
+            )
+        : BotToast.showText(
+            text: 'You have to agree with rules',
+          );
   }
 
   bool isAgree = false;
