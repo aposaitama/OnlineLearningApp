@@ -2,14 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-  	<string>sms</string>
-  	<string>tel</string>
-	<string>https</string>
-	</array>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>remote-notification</string>
+    </array>
+    <key>NSUserNotificationAlertStyle</key>
+    <string>alert</string>
+    <key>FirebaseAppDelegateProxyEnabled</key>
+    <false/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>Need camera access to take pictures</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Need photo library access to select pictures</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need microphone access to record videos</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>We use this to cache images.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -37,14 +52,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Need camera access to take pictures</string>
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>We use this to cache images.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Need microphone access to record videos</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Need photo library access to select pictures</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

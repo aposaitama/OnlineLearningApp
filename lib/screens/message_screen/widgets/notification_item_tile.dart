@@ -8,11 +8,13 @@ import 'package:online_app/resources/app_fonts.dart';
 class NotificationItemTile extends StatelessWidget {
   final String notificationDescription;
   final String date;
+  final String notificationType;
 
   const NotificationItemTile({
     super.key,
     required this.notificationDescription,
     required this.date,
+    required this.notificationType,
   });
 
   @override
@@ -42,7 +44,15 @@ class NotificationItemTile extends StatelessWidget {
                 height: 48.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(13.0),
-                  color: AppColors.deepBlueColor,
+                  color: notificationType == 'card'
+                      ? AppColors.pinkColor
+                      : AppColors.lightBlueBackgroundColor,
+                ),
+                child: SvgPicture.asset(
+                  notificationType == 'card'
+                      ? Assets.icons.cardNotification
+                      : Assets.icons.infoNotification,
+                  fit: BoxFit.scaleDown,
                 ),
               ),
               const SizedBox(

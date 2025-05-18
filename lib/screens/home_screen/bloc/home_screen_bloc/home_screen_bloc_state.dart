@@ -15,5 +15,6 @@ class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     UserModel? userInfo,
     @Default(HomeScreenStatus.initial) HomeScreenStatus loadingStatus,
+    @Default([]) List<int> courseIds,
   }) = _HomeScreenState;
 }

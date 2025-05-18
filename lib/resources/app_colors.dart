@@ -21,4 +21,5 @@ class AppColors {
   static const Color textSecondary = Color(0xFF9FB2B8);
   static const Color greyCoor = Color(0xFFF0F0F2);
   static const Color darkHintTextColor = Color(0xFF858597);
+  static const Color lightBlueBackgroundColor = Color(0xFFEAEAFF);
 }

@@ -124,6 +124,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/avatar.svg
   String get avatar => 'assets/icons/avatar.svg';
 
+  /// File path: assets/icons/card_notification.svg
+  String get cardNotification => 'assets/icons/card_notification.svg';
+
   /// File path: assets/icons/check_stats.svg
   String get checkStats => 'assets/icons/check_stats.svg';
 
@@ -159,6 +162,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/icon_done.svg
   String get iconDone => 'assets/icons/icon_done.svg';
+
+  /// File path: assets/icons/info_notification.svg
+  String get infoNotification => 'assets/icons/info_notification.svg';
 
   /// File path: assets/icons/link_phone.svg
   String get linkPhone => 'assets/icons/link_phone.svg';
@@ -217,6 +223,7 @@ class $AssetsIconsGen {
     addIcon,
     arrowBack,
     avatar,
+    cardNotification,
     checkStats,
     clearText,
     close,
@@ -229,6 +236,7 @@ class $AssetsIconsGen {
     hideImage,
     home,
     iconDone,
+    infoNotification,
     linkPhone,
     lockIcon,
     masterCard,
