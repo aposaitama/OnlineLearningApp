@@ -8,6 +8,8 @@ import 'package:online_app/repositories/notification_repository/notification_rep
 import 'package:online_app/repositories/payment_repository/payment_repository.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/services/connectivity_service/connectivity_service.dart';
+import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
+import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,6 +22,8 @@ Future<void> setupLocator() async {
   locator.registerSingleton<SharedPreferences>(prefs);
   locator.registerSingleton<Dio>(createDio());
 
+  locator.registerSingleton<SharedPreferencesService>(SharedPreferencesService());
+
   locator.registerSingleton<AuthRepository>(AuthRepository());
   locator.registerSingleton<UserRepository>(UserRepository());
 
@@ -30,4 +34,5 @@ Future<void> setupLocator() async {
   locator.registerSingleton<CategoryRepository>(CategoryRepository());
   locator.registerSingleton<CourseItemRepository>(CourseItemRepository());
   locator.registerSingleton<ConnectivityService>(ConnectivityService());
+  locator.registerSingleton<LocalNotificationsService>(LocalNotificationsService());
 }

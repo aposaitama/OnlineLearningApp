@@ -19,32 +19,44 @@ mixin _$HomeScreenBlocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadUserData,
+    required TResult Function() getCourseIds,
+    required TResult Function() checkCourseIds,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadUserData,
+    TResult? Function()? getCourseIds,
+    TResult? Function()? checkCourseIds,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadUserData,
+    TResult Function()? getCourseIds,
+    TResult Function()? checkCourseIds,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadUserHomeScreenBlocEvent value) loadUserData,
+    required TResult Function(GetCourseIdsEvent value) getCourseIds,
+    required TResult Function(CheckCourseIdsEvent value) checkCourseIds,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult? Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult? Function(CheckCourseIdsEvent value)? checkCourseIds,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult Function(CheckCourseIdsEvent value)? checkCourseIds,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +129,8 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadUserData,
+    required TResult Function() getCourseIds,
+    required TResult Function() checkCourseIds,
   }) {
     return loadUserData();
   }
@@ -125,6 +139,8 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadUserData,
+    TResult? Function()? getCourseIds,
+    TResult? Function()? checkCourseIds,
   }) {
     return loadUserData?.call();
   }
@@ -133,6 +149,8 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadUserData,
+    TResult Function()? getCourseIds,
+    TResult Function()? checkCourseIds,
     required TResult orElse(),
   }) {
     if (loadUserData != null) {
@@ -145,6 +163,8 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadUserHomeScreenBlocEvent value) loadUserData,
+    required TResult Function(GetCourseIdsEvent value) getCourseIds,
+    required TResult Function(CheckCourseIdsEvent value) checkCourseIds,
   }) {
     return loadUserData(this);
   }
@@ -153,6 +173,8 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult? Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult? Function(CheckCourseIdsEvent value)? checkCourseIds,
   }) {
     return loadUserData?.call(this);
   }
@@ -161,6 +183,8 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult Function(CheckCourseIdsEvent value)? checkCourseIds,
     required TResult orElse(),
   }) {
     if (loadUserData != null) {
@@ -173,4 +197,227 @@ class _$LoadUserHomeScreenBlocEventImpl implements LoadUserHomeScreenBlocEvent {
 abstract class LoadUserHomeScreenBlocEvent implements HomeScreenBlocEvent {
   const factory LoadUserHomeScreenBlocEvent() =
       _$LoadUserHomeScreenBlocEventImpl;
+}
+
+/// @nodoc
+abstract class _$$GetCourseIdsEventImplCopyWith<$Res> {
+  factory _$$GetCourseIdsEventImplCopyWith(_$GetCourseIdsEventImpl value,
+          $Res Function(_$GetCourseIdsEventImpl) then) =
+      __$$GetCourseIdsEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetCourseIdsEventImplCopyWithImpl<$Res>
+    extends _$HomeScreenBlocEventCopyWithImpl<$Res, _$GetCourseIdsEventImpl>
+    implements _$$GetCourseIdsEventImplCopyWith<$Res> {
+  __$$GetCourseIdsEventImplCopyWithImpl(_$GetCourseIdsEventImpl _value,
+      $Res Function(_$GetCourseIdsEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeScreenBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetCourseIdsEventImpl implements GetCourseIdsEvent {
+  const _$GetCourseIdsEventImpl();
+
+  @override
+  String toString() {
+    return 'HomeScreenBlocEvent.getCourseIds()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetCourseIdsEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadUserData,
+    required TResult Function() getCourseIds,
+    required TResult Function() checkCourseIds,
+  }) {
+    return getCourseIds();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadUserData,
+    TResult? Function()? getCourseIds,
+    TResult? Function()? checkCourseIds,
+  }) {
+    return getCourseIds?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadUserData,
+    TResult Function()? getCourseIds,
+    TResult Function()? checkCourseIds,
+    required TResult orElse(),
+  }) {
+    if (getCourseIds != null) {
+      return getCourseIds();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadUserHomeScreenBlocEvent value) loadUserData,
+    required TResult Function(GetCourseIdsEvent value) getCourseIds,
+    required TResult Function(CheckCourseIdsEvent value) checkCourseIds,
+  }) {
+    return getCourseIds(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult? Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult? Function(CheckCourseIdsEvent value)? checkCourseIds,
+  }) {
+    return getCourseIds?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult Function(CheckCourseIdsEvent value)? checkCourseIds,
+    required TResult orElse(),
+  }) {
+    if (getCourseIds != null) {
+      return getCourseIds(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCourseIdsEvent implements HomeScreenBlocEvent {
+  const factory GetCourseIdsEvent() = _$GetCourseIdsEventImpl;
+}
+
+/// @nodoc
+abstract class _$$CheckCourseIdsEventImplCopyWith<$Res> {
+  factory _$$CheckCourseIdsEventImplCopyWith(_$CheckCourseIdsEventImpl value,
+          $Res Function(_$CheckCourseIdsEventImpl) then) =
+      __$$CheckCourseIdsEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckCourseIdsEventImplCopyWithImpl<$Res>
+    extends _$HomeScreenBlocEventCopyWithImpl<$Res, _$CheckCourseIdsEventImpl>
+    implements _$$CheckCourseIdsEventImplCopyWith<$Res> {
+  __$$CheckCourseIdsEventImplCopyWithImpl(_$CheckCourseIdsEventImpl _value,
+      $Res Function(_$CheckCourseIdsEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeScreenBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CheckCourseIdsEventImpl implements CheckCourseIdsEvent {
+  const _$CheckCourseIdsEventImpl();
+
+  @override
+  String toString() {
+    return 'HomeScreenBlocEvent.checkCourseIds()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckCourseIdsEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadUserData,
+    required TResult Function() getCourseIds,
+    required TResult Function() checkCourseIds,
+  }) {
+    return checkCourseIds();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadUserData,
+    TResult? Function()? getCourseIds,
+    TResult? Function()? checkCourseIds,
+  }) {
+    return checkCourseIds?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadUserData,
+    TResult Function()? getCourseIds,
+    TResult Function()? checkCourseIds,
+    required TResult orElse(),
+  }) {
+    if (checkCourseIds != null) {
+      return checkCourseIds();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadUserHomeScreenBlocEvent value) loadUserData,
+    required TResult Function(GetCourseIdsEvent value) getCourseIds,
+    required TResult Function(CheckCourseIdsEvent value) checkCourseIds,
+  }) {
+    return checkCourseIds(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult? Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult? Function(CheckCourseIdsEvent value)? checkCourseIds,
+  }) {
+    return checkCourseIds?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadUserHomeScreenBlocEvent value)? loadUserData,
+    TResult Function(GetCourseIdsEvent value)? getCourseIds,
+    TResult Function(CheckCourseIdsEvent value)? checkCourseIds,
+    required TResult orElse(),
+  }) {
+    if (checkCourseIds != null) {
+      return checkCourseIds(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckCourseIdsEvent implements HomeScreenBlocEvent {
+  const factory CheckCourseIdsEvent() = _$CheckCourseIdsEventImpl;
 }

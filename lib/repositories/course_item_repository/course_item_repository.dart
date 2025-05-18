@@ -155,7 +155,7 @@ class CourseItemRepository {
     };
 
     if (filter == 'New') {
-      queryParameters['sort'] = 'publishedAt:desc';
+      queryParameters['sort'] = 'createdAt:desc';
     } else if (filter == 'Popular') {
       queryParameters['sort'] = 'salesCount:desc';
     }
@@ -193,6 +193,22 @@ class CourseItemRepository {
       );
     } catch (e) {
       throw Exception('Somehow we cant increase sales count');
+    }
+  }
+
+  Future<List<int>> getCoursesIds() async {
+    try {
+      final response = await _dio.get('/course-items');
+
+      if (response.isSuccess) {
+        return (response.data['data'] as List)
+            .map((json) => json['id'] as int)
+            .toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 }
