@@ -16,7 +16,7 @@ class StrapiApiService {
   StrapiApiService()
       : dio = Dio(
           BaseOptions(
-            baseUrl: 'http://localhost:1337/api',
+            baseUrl: 'https://learning.demodev.cc/api',
             headers: {
               'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
               'Content-Type': 'application/json',
@@ -194,8 +194,7 @@ class StrapiApiService {
       final queryParameters = {
         'populate': 'courseVideoItems.video',
         'populate[]': 'courseImage',
-        if (categories.isNotEmpty)
-          'filters[courseCategory][\$in]': categories,
+        if (categories.isNotEmpty) 'filters[courseCategory][\$in]': categories,
       };
 
       final response = await dio.get(
@@ -206,10 +205,8 @@ class StrapiApiService {
       if (response.isSuccess) {
         return (response.data['data'] as List)
             .map(
-              (json) => CourseBasicModel.fromJson(
-            json
-          ),
-        )
+              (json) => CourseBasicModel.fromJson(json),
+            )
             .toList();
       } else {
         return [];

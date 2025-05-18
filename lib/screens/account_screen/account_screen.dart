@@ -51,6 +51,11 @@ class _AccountScreenState extends State<AccountScreen> {
     context.push('/favourites');
   }
 
+  void _logout() {
+    context.read<AccountBloc>().add(const LogoutUserEvent());
+    context.go('/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +81,9 @@ class _AccountScreenState extends State<AccountScreen> {
         },
         builder: (context, state) {
           if (state.userData == null) {
-            return const CircularProgressIndicator();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else {
             return Padding(
               padding: const EdgeInsets.only(left: 20.0),
@@ -137,6 +144,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       value: (false),
                       onChanged: (isOn) {},
                     ),
+                  ),
+                  const Spacer(),
+                  AccountListItem(
+                    title: 'Logout',
+                    onTap: _logout,
                   ),
                 ],
               ),

@@ -1,7 +1,7 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
@@ -34,15 +34,37 @@ class EnterCvvCodeSheet extends StatefulWidget {
 class _EnterCvvCodeSheetState extends State<EnterCvvCodeSheet> {
   final TextEditingController cvvController = TextEditingController();
 
+  void onPurchaseCoursePressed() {
+    if (cvvController.text.length == 3) {
+      context.read<PaymentBloc>().add(
+            PurchaseCourseEvent(
+              widget.cardNumber,
+              widget.expMonth,
+              widget.expYear,
+              cvvController.text,
+              widget.courseID,
+              widget.summ,
+            ),
+          );
+    } else {
+      BotToast.showText(text: 'Enter correct cvv');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<PaymentBloc, PaymentBlocState>(
       listener: (context, state) {
         if (state.paymentStatus == PaymentStatus.success) {
           context.pop();
+          context.pop();
           context.read<HomeScreenBloc>().add(
                 const LoadUserHomeScreenBlocEvent(),
               );
+        } else if (state.paymentStatus == PaymentStatus.failed) {
+          BotToast.showText(
+            text: 'Purchase failed',
+          );
         }
       },
       child: Container(
@@ -69,16 +91,7 @@ class _EnterCvvCodeSheetState extends State<EnterCvvCodeSheet> {
               BlocBuilder<PaymentBloc, PaymentBlocState>(
                 builder: (context, state) {
                   return CustomFilledButton(
-                    onTap: () => context.read<PaymentBloc>().add(
-                          PurchaseCourseEvent(
-                            widget.cardNumber,
-                            widget.expMonth,
-                            widget.expYear,
-                            cvvController.text,
-                            widget.courseID,
-                            widget.summ,
-                          ),
-                        ),
+                    onTap: onPurchaseCoursePressed,
                     buttonTitle: 'Purchase Course',
                   );
                 },

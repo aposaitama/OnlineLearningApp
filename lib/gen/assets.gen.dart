@@ -127,6 +127,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/card_notification.svg
   String get cardNotification => 'assets/icons/card_notification.svg';
 
+  /// File path: assets/icons/check_stats.svg
+  String get checkStats => 'assets/icons/check_stats.svg';
+
   /// File path: assets/icons/clear_text.svg
   String get clearText => 'assets/icons/clear_text.svg';
 
@@ -175,6 +178,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/message.svg
   String get message => 'assets/icons/message.svg';
 
+  /// File path: assets/icons/no network.svg
+  String get noNetwork => 'assets/icons/no network.svg';
+
   /// File path: assets/icons/pause.svg
   String get pause => 'assets/icons/pause.svg';
 
@@ -189,6 +195,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/star.svg
   String get star => 'assets/icons/star.svg';
+
+  /// File path: assets/icons/start_learning.svg
+  String get startLearning => 'assets/icons/start_learning.svg';
 
   /// File path: assets/icons/success.svg
   String get success => 'assets/icons/success.svg';
@@ -209,6 +218,7 @@ class $AssetsIconsGen {
     arrowBack,
     avatar,
     cardNotification,
+    checkStats,
     clearText,
     close,
     course,
@@ -225,11 +235,13 @@ class $AssetsIconsGen {
     lockIcon,
     meetupIcon,
     message,
+    noNetwork,
     pause,
     polygon,
     polygonBig,
     search,
     star,
+    startLearning,
     success,
     successfullPayment,
     union,

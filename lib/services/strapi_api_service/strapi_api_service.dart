@@ -19,9 +19,7 @@ class StrapiApiService {
   StrapiApiService()
       : dio = Dio(
           BaseOptions(
-            baseUrl: Platform.isAndroid
-                ? 'http://10.0.2.2:1337/api'
-                : 'http://localhost:1337/api',
+            baseUrl: 'https://learning.demodev.cc/api',
             headers: {
               'Authorization': 'Bearer ${dotenv.env['STRAPI_SECRET_KEY']}',
               'Content-Type': 'application/json',
@@ -123,30 +121,30 @@ class StrapiApiService {
 
   Future<bool> purchaseCourse({
     required int salesCount,
-    required String courseDocId,
+    required int courseId,
   }) async {
     try {
       final userModel = await userRepo.getUserData();
       final int userID = userModel?.id ?? 0;
 
-      final response = await dio.put(
-        '/course-items/$courseDocId',
-        data: {
-          'data': {
-            'salesCount': salesCount,
-            'users': [userID],
-          }
-        },
-      );
-
       // final response = await dio.put(
-      //   '/users/$userID',
+      //   '/course-items/$courseDocId',
       //   data: {
-      //     'user_purchased_courses': {
-      //       "connect": [courseID]
+      //     'data': {
+      //       'salesCount': salesCount,
+      //       'users': [userID],
       //     }
       //   },
       // );
+
+      final response = await dio.put(
+        '/users/$userID',
+        data: {
+          'user_purchased_courses': {
+            "connect": [courseId]
+          }
+        },
+      );
 
       if (response.data != null) {
         return true;
@@ -158,7 +156,7 @@ class StrapiApiService {
     }
   }
 
-  Future<void> addCreditCard(String cardNum, String expDate) async {
+  Future<bool> addCreditCard(String cardNum, String expDate) async {
     try {
       final userModel = await userRepo.getUserData();
       final int userID = userModel?.id ?? 0;
@@ -171,11 +169,26 @@ class StrapiApiService {
           }
         },
       );
-      await dio.put('/users/$userID', data: {
-        'credit_cards': {
-          "connect": [response.data['data']['id']]
+      if (response.data['data']['id'] != null) {
+        final connectCreditCard = await dio.put(
+          '/users/$userID',
+          data: {
+            'creditCards': {
+              "connect": [response.data['data']['id']]
+            }
+          },
+        );
+
+        if (connectCreditCard.data['id'] != null) {
+          return true;
+        } else {
+          return false;
         }
-      });
-    } catch (e) {}
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
 }

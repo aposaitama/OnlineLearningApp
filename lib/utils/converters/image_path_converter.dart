@@ -9,7 +9,7 @@ class ImagePathConverter
     if (json == null || json['url'] == null) {
       return '';
     } else {
-      return 'http://localhost:1337${json['url']}';
+      return 'https://learning.demodev.cc${json['url']}';
     }
   }
 

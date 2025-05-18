@@ -27,16 +27,23 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
     LoadUserHomeScreenBlocEvent event,
     Emitter<HomeScreenState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        loadingStatus: HomeScreenStatus.loading,
+      ),
+    );
     final userInfoModel = await userRepo.getUserData();
     if (userInfoModel != null) {
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
       final daybefore = DateTime(now.year, now.month, now.day - 1);
-      final last = DateTime(
-        userInfoModel.lastTimeCheckout!.year,
-        userInfoModel.lastTimeCheckout!.month,
-        userInfoModel.lastTimeCheckout!.day,
-      );
+      final last = userInfoModel.lastTimeCheckout != null
+          ? DateTime(
+              userInfoModel.lastTimeCheckout!.year,
+              userInfoModel.lastTimeCheckout!.month,
+              userInfoModel.lastTimeCheckout!.day,
+            )
+          : null;
       final userCheckoutCurrentStreak = userInfoModel.userLearningStreak;
       userInfoModel.lastTimeCheckout != null
           ? today == last

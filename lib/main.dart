@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/firebase_options.dart';
 import 'package:online_app/navigation/app_router.dart';
@@ -20,6 +21,7 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/message_screen/message_screen_bloc/message_screen_bloc.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
 import 'package:online_app/screens/search_screen/search_screen_bloc/search_screen_bloc.dart';
+import 'package:online_app/services/connectivity_service/connectivity_service.dart';
 import 'package:online_app/services/firebase_api_service/firebase_api_service.dart';
 import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
 import 'package:online_app/widgets/notification_dialog.dart';
@@ -129,7 +131,10 @@ class _MyAppState extends State<MyApp> {
       theme: GlobalTheme.lightTheme,
       darkTheme: GlobalTheme.darkTheme,
       themeMode: ThemeMode.system,
-      routerConfig: AppRouter(navigatorKey).createRouter(),
+      routerConfig: AppRouter(
+        navigatorKey,
+        locator<ConnectivityService>(),
+      ).createRouter(),
     );
   }
 }

@@ -136,7 +136,6 @@ class CourseItemRepository {
         );
       } else {
         throw Exception('There is no such course!');
-        return null;
       }
     } catch (e) {
       rethrow;

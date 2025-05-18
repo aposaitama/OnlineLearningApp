@@ -3,11 +3,6 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 
-
-import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
-import 'package:online_app/utils/extensions.dart';
-
-
 class UserRepository {
   final Dio _dio = locator<Dio>();
   final authRepo = locator<AuthRepository>();
@@ -43,7 +38,7 @@ class UserRepository {
         },
       );
 
-    return UserModel.fromJson(
+      return UserModel.fromJson(
         response.data,
       );
     } catch (e) {
@@ -70,6 +65,36 @@ class UserRepository {
       }
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<void> updateUserPaymentPassword(String paymentPassword) async {
+    final userModel = await getUserData();
+    final int userID = userModel?.id ?? 0;
+    final Map<String, dynamic> data = {};
+    try {
+      data['paymentPassword'] = paymentPassword;
+      await _dio.put(
+        '/users/$userID',
+        data: data,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> updateUserPhoneNumber(String phoneNumber) async {
+    final userModel = await getUserData();
+    final int userID = userModel?.id ?? 0;
+    final Map<String, dynamic> data = {};
+    try {
+      data['phoneNum'] = phoneNumber;
+      await _dio.put(
+        '/users/$userID',
+        data: data,
+      );
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -135,7 +160,6 @@ class UserRepository {
     } catch (e) {}
   }
 
-
   Future<UserModel?> editUserData({
     String? username,
     String? avatarPath,
@@ -146,8 +170,7 @@ class UserRepository {
 
       var formData = FormData();
 
-      final body =
-      {
+      final body = {
         if (username != null) 'username': username,
       };
 
@@ -174,7 +197,6 @@ class UserRepository {
           data: formData,
         );
       }
-
     } catch (e) {
       throw Exception(e);
     }

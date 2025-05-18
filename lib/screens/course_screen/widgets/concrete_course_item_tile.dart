@@ -75,7 +75,7 @@ class ConcreteCourseItemTile extends StatelessWidget {
                         13.0,
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: 'http://localhost:1337$imageUrl',
+                        imageUrl: imageUrl.toImageUrl(),
                         height: 68.0,
                         width: 68.0,
                         fit: BoxFit.cover,
