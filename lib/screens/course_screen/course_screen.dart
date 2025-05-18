@@ -144,11 +144,10 @@ class _CourseScreenState extends State<CourseScreen> {
                 ),
                 child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
                   builder: (context, state) {
-                    return state.userInfo!.avatar != null ||
-                            state.userInfo!.avatar!.isNotEmpty
+                    return (state.userInfo?.avatar?.isNotEmpty ?? false)
                         ? ClipOval(
                             child: CachedNetworkImage(
-                              imageUrl: state.userInfo!.avatar!.toImageUrl(),
+                              imageUrl: state.userInfo!.avatar!,
                               fit: BoxFit.cover,
                               width: 50.0,
                               height: 50.0,

@@ -23,7 +23,9 @@ class MyCoursesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: isDark ? AppColors.darkColor : Colors.white,
         leading: GestureDetector(
-          onTap: () => context.pop(),
+          onTap: () {
+            context.canPop() ? context.pop() : context.go('/home');
+          },
           child: SvgPicture.asset(
             Assets.icons.arrowBack,
             fit: BoxFit.scaleDown,

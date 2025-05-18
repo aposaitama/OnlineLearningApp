@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
@@ -12,8 +13,10 @@ import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_card_sheet.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
+import 'package:online_app/screens/payment_screen/widgets/credit_card_item_tile.dart';
 import 'package:online_app/screens/payment_screen/widgets/enter_cvv_code_sheet.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
+import 'package:online_app/utils/extensions.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -116,33 +119,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       itemCount: (state.userInfo?.creditCards.length ?? 0) + 1,
                       controller: _controller,
                       onPageChanged: (value) {
-                        setState(() {
-                          currentIndex = value;
-                        });
+                        setState(
+                          () {
+                            currentIndex = value;
+                          },
+                        );
                       },
                       itemBuilder: (context, index) {
                         if (state.userInfo != null) {
                           if (index <
                               (state.userInfo?.creditCards.length ?? 0)) {
-                            return Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.blueAccent,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  state.userInfo?.creditCards[index]
-                                          .cardNumber ??
-                                      '',
-                                  style: const TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
+                            return CreditCardItemTile(
+                              creditCardNum: state.userInfo?.creditCards[index]
+                                      .cardNumber ??
+                                  '',
                             );
                           } else {
                             return AddNewCreditCard(
@@ -155,14 +145,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
-                  SmoothPageIndicator(
-                    controller: _controller,
-                    count: (state.userInfo?.creditCards.length ?? 0) + 1,
-                  ),
                   const Spacer(),
+                  SizedBox(
+                    child: SmoothPageIndicator(
+                      controller: _controller,
+                      count: (state.userInfo?.creditCards.length ?? 0) + 1,
+                      effect: const WormEffect(
+                        activeDotColor: AppColors.deepBlueColor,
+                        dotColor: Colors.grey,
+                        dotHeight: 6.0,
+                        dotWidth: 6.0,
+                        spacing: 8.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 115.0,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: 100.0,

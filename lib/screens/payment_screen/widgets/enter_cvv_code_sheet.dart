@@ -56,8 +56,7 @@ class _EnterCvvCodeSheetState extends State<EnterCvvCodeSheet> {
     return BlocListener<PaymentBloc, PaymentBlocState>(
       listener: (context, state) {
         if (state.paymentStatus == PaymentStatus.success) {
-          context.pop();
-          context.pop();
+          context.go('/successfull_payment_screen');
           context.read<HomeScreenBloc>().add(
                 const LoadUserHomeScreenBlocEvent(),
               );

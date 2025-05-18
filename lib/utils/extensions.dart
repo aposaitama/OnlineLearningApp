@@ -112,3 +112,9 @@ extension HexToColor on String {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 }
+
+extension NumToCard on String {
+  String numToCardNum() {
+    return '**** **** **** ${substring(length - 4, length)}';
+  }
+}

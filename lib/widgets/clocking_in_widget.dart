@@ -128,9 +128,40 @@ class ClockingInWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: List.generate(
-                          7,
-                          (index) {
+                        children: List.generate(7, (index) {
+                          final streak = userCurrentLearingnStreak;
+
+                          // Якщо менше 4 — показати сині кружечки по кількості стріку, інші білі
+                          if (streak < 4) {
+                            final isFilled = index < streak;
+
+                            return Container(
+                              width: 28.0,
+                              height: 28.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: isFilled
+                                    ? AppColors.deepBlueColor
+                                    : Colors.grey.shade300,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  (index + 1).toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+
+                          final int middleStart = 3;
+                          final int greyStart = 5;
+
+                          if (index < middleStart) {
+                            final int number = streak - (2 - index);
+
                             return Container(
                               width: 28.0,
                               height: 28.0,
@@ -140,15 +171,34 @@ class ClockingInWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  (index + 1).toString(),
+                                  number.toString(),
                                   style: const TextStyle(
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                                 ),
                               ),
                             );
-                          },
-                        ),
+                          } else {
+                            return Container(
+                              width: 28.0,
+                              height: 28.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.shade300,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  ((streak - 2) + index).toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.0,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        }),
                       ),
                       const Spacer(),
                       const CustomFilledButton(buttonTitle: 'Share'),
