@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PaymentBlocEvent {
-  String get cardNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cardNumber, String expDate)
@@ -24,6 +23,8 @@ mixin _$PaymentBlocEvent {
     required TResult Function(String cardNumber, String expMonth,
             String expYear, String cvv, String courseID, String summ)
         purchaseCourse,
+    required TResult Function(String paymentPassword) checkPassword,
+    required TResult Function() resetCheckPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,8 @@ mixin _$PaymentBlocEvent {
     TResult? Function(String cardNumber, String expMonth, String expYear,
             String cvv, String courseID, String summ)?
         purchaseCourse,
+    TResult? Function(String paymentPassword)? checkPassword,
+    TResult? Function()? resetCheckPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +43,8 @@ mixin _$PaymentBlocEvent {
     TResult Function(String cardNumber, String expMonth, String expYear,
             String cvv, String courseID, String summ)?
         purchaseCourse,
+    TResult Function(String paymentPassword)? checkPassword,
+    TResult Function()? resetCheckPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,26 +52,26 @@ mixin _$PaymentBlocEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AddCreditCardEvent value) addCreditNumber,
     required TResult Function(PurchaseCourseEvent value) purchaseCourse,
+    required TResult Function(CheckPaymentPasswordEvent value) checkPassword,
+    required TResult Function(ResetCheckPasswordEvent value) resetCheckPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddCreditCardEvent value)? addCreditNumber,
     TResult? Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult? Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult? Function(ResetCheckPasswordEvent value)? resetCheckPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddCreditCardEvent value)? addCreditNumber,
     TResult Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult Function(ResetCheckPasswordEvent value)? resetCheckPassword,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of PaymentBlocEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PaymentBlocEventCopyWith<PaymentBlocEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -75,8 +80,6 @@ abstract class $PaymentBlocEventCopyWith<$Res> {
   factory $PaymentBlocEventCopyWith(
           PaymentBlocEvent value, $Res Function(PaymentBlocEvent) then) =
       _$PaymentBlocEventCopyWithImpl<$Res, PaymentBlocEvent>;
-  @useResult
-  $Res call({String cardNumber});
 }
 
 /// @nodoc
@@ -91,27 +94,13 @@ class _$PaymentBlocEventCopyWithImpl<$Res, $Val extends PaymentBlocEvent>
 
   /// Create a copy of PaymentBlocEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? cardNumber = null,
-  }) {
-    return _then(_value.copyWith(
-      cardNumber: null == cardNumber
-          ? _value.cardNumber
-          : cardNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AddCreditCardEventImplCopyWith<$Res>
-    implements $PaymentBlocEventCopyWith<$Res> {
+abstract class _$$AddCreditCardEventImplCopyWith<$Res> {
   factory _$$AddCreditCardEventImplCopyWith(_$AddCreditCardEventImpl value,
           $Res Function(_$AddCreditCardEventImpl) then) =
       __$$AddCreditCardEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String cardNumber, String expDate});
 }
@@ -190,6 +179,8 @@ class _$AddCreditCardEventImpl implements AddCreditCardEvent {
     required TResult Function(String cardNumber, String expMonth,
             String expYear, String cvv, String courseID, String summ)
         purchaseCourse,
+    required TResult Function(String paymentPassword) checkPassword,
+    required TResult Function() resetCheckPassword,
   }) {
     return addCreditNumber(cardNumber, expDate);
   }
@@ -201,6 +192,8 @@ class _$AddCreditCardEventImpl implements AddCreditCardEvent {
     TResult? Function(String cardNumber, String expMonth, String expYear,
             String cvv, String courseID, String summ)?
         purchaseCourse,
+    TResult? Function(String paymentPassword)? checkPassword,
+    TResult? Function()? resetCheckPassword,
   }) {
     return addCreditNumber?.call(cardNumber, expDate);
   }
@@ -212,6 +205,8 @@ class _$AddCreditCardEventImpl implements AddCreditCardEvent {
     TResult Function(String cardNumber, String expMonth, String expYear,
             String cvv, String courseID, String summ)?
         purchaseCourse,
+    TResult Function(String paymentPassword)? checkPassword,
+    TResult Function()? resetCheckPassword,
     required TResult orElse(),
   }) {
     if (addCreditNumber != null) {
@@ -225,6 +220,8 @@ class _$AddCreditCardEventImpl implements AddCreditCardEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AddCreditCardEvent value) addCreditNumber,
     required TResult Function(PurchaseCourseEvent value) purchaseCourse,
+    required TResult Function(CheckPaymentPasswordEvent value) checkPassword,
+    required TResult Function(ResetCheckPasswordEvent value) resetCheckPassword,
   }) {
     return addCreditNumber(this);
   }
@@ -234,6 +231,8 @@ class _$AddCreditCardEventImpl implements AddCreditCardEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddCreditCardEvent value)? addCreditNumber,
     TResult? Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult? Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult? Function(ResetCheckPasswordEvent value)? resetCheckPassword,
   }) {
     return addCreditNumber?.call(this);
   }
@@ -243,6 +242,8 @@ class _$AddCreditCardEventImpl implements AddCreditCardEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddCreditCardEvent value)? addCreditNumber,
     TResult Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult Function(ResetCheckPasswordEvent value)? resetCheckPassword,
     required TResult orElse(),
   }) {
     if (addCreditNumber != null) {
@@ -256,25 +257,21 @@ abstract class AddCreditCardEvent implements PaymentBlocEvent {
   const factory AddCreditCardEvent(
       final String cardNumber, final String expDate) = _$AddCreditCardEventImpl;
 
-  @override
   String get cardNumber;
   String get expDate;
 
   /// Create a copy of PaymentBlocEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddCreditCardEventImplCopyWith<_$AddCreditCardEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PurchaseCourseEventImplCopyWith<$Res>
-    implements $PaymentBlocEventCopyWith<$Res> {
+abstract class _$$PurchaseCourseEventImplCopyWith<$Res> {
   factory _$$PurchaseCourseEventImplCopyWith(_$PurchaseCourseEventImpl value,
           $Res Function(_$PurchaseCourseEventImpl) then) =
       __$$PurchaseCourseEventImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {String cardNumber,
@@ -395,6 +392,8 @@ class _$PurchaseCourseEventImpl implements PurchaseCourseEvent {
     required TResult Function(String cardNumber, String expMonth,
             String expYear, String cvv, String courseID, String summ)
         purchaseCourse,
+    required TResult Function(String paymentPassword) checkPassword,
+    required TResult Function() resetCheckPassword,
   }) {
     return purchaseCourse(cardNumber, expMonth, expYear, cvv, courseID, summ);
   }
@@ -406,6 +405,8 @@ class _$PurchaseCourseEventImpl implements PurchaseCourseEvent {
     TResult? Function(String cardNumber, String expMonth, String expYear,
             String cvv, String courseID, String summ)?
         purchaseCourse,
+    TResult? Function(String paymentPassword)? checkPassword,
+    TResult? Function()? resetCheckPassword,
   }) {
     return purchaseCourse?.call(
         cardNumber, expMonth, expYear, cvv, courseID, summ);
@@ -418,6 +419,8 @@ class _$PurchaseCourseEventImpl implements PurchaseCourseEvent {
     TResult Function(String cardNumber, String expMonth, String expYear,
             String cvv, String courseID, String summ)?
         purchaseCourse,
+    TResult Function(String paymentPassword)? checkPassword,
+    TResult Function()? resetCheckPassword,
     required TResult orElse(),
   }) {
     if (purchaseCourse != null) {
@@ -431,6 +434,8 @@ class _$PurchaseCourseEventImpl implements PurchaseCourseEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AddCreditCardEvent value) addCreditNumber,
     required TResult Function(PurchaseCourseEvent value) purchaseCourse,
+    required TResult Function(CheckPaymentPasswordEvent value) checkPassword,
+    required TResult Function(ResetCheckPasswordEvent value) resetCheckPassword,
   }) {
     return purchaseCourse(this);
   }
@@ -440,6 +445,8 @@ class _$PurchaseCourseEventImpl implements PurchaseCourseEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AddCreditCardEvent value)? addCreditNumber,
     TResult? Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult? Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult? Function(ResetCheckPasswordEvent value)? resetCheckPassword,
   }) {
     return purchaseCourse?.call(this);
   }
@@ -449,6 +456,8 @@ class _$PurchaseCourseEventImpl implements PurchaseCourseEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddCreditCardEvent value)? addCreditNumber,
     TResult Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult Function(ResetCheckPasswordEvent value)? resetCheckPassword,
     required TResult orElse(),
   }) {
     if (purchaseCourse != null) {
@@ -467,7 +476,6 @@ abstract class PurchaseCourseEvent implements PaymentBlocEvent {
       final String courseID,
       final String summ) = _$PurchaseCourseEventImpl;
 
-  @override
   String get cardNumber;
   String get expMonth;
   String get expYear;
@@ -477,8 +485,300 @@ abstract class PurchaseCourseEvent implements PaymentBlocEvent {
 
   /// Create a copy of PaymentBlocEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PurchaseCourseEventImplCopyWith<_$PurchaseCourseEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CheckPaymentPasswordEventImplCopyWith<$Res> {
+  factory _$$CheckPaymentPasswordEventImplCopyWith(
+          _$CheckPaymentPasswordEventImpl value,
+          $Res Function(_$CheckPaymentPasswordEventImpl) then) =
+      __$$CheckPaymentPasswordEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String paymentPassword});
+}
+
+/// @nodoc
+class __$$CheckPaymentPasswordEventImplCopyWithImpl<$Res>
+    extends _$PaymentBlocEventCopyWithImpl<$Res,
+        _$CheckPaymentPasswordEventImpl>
+    implements _$$CheckPaymentPasswordEventImplCopyWith<$Res> {
+  __$$CheckPaymentPasswordEventImplCopyWithImpl(
+      _$CheckPaymentPasswordEventImpl _value,
+      $Res Function(_$CheckPaymentPasswordEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PaymentBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? paymentPassword = null,
+  }) {
+    return _then(_$CheckPaymentPasswordEventImpl(
+      paymentPassword: null == paymentPassword
+          ? _value.paymentPassword
+          : paymentPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CheckPaymentPasswordEventImpl implements CheckPaymentPasswordEvent {
+  const _$CheckPaymentPasswordEventImpl({required this.paymentPassword});
+
+  @override
+  final String paymentPassword;
+
+  @override
+  String toString() {
+    return 'PaymentBlocEvent.checkPassword(paymentPassword: $paymentPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckPaymentPasswordEventImpl &&
+            (identical(other.paymentPassword, paymentPassword) ||
+                other.paymentPassword == paymentPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, paymentPassword);
+
+  /// Create a copy of PaymentBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CheckPaymentPasswordEventImplCopyWith<_$CheckPaymentPasswordEventImpl>
+      get copyWith => __$$CheckPaymentPasswordEventImplCopyWithImpl<
+          _$CheckPaymentPasswordEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String cardNumber, String expDate)
+        addCreditNumber,
+    required TResult Function(String cardNumber, String expMonth,
+            String expYear, String cvv, String courseID, String summ)
+        purchaseCourse,
+    required TResult Function(String paymentPassword) checkPassword,
+    required TResult Function() resetCheckPassword,
+  }) {
+    return checkPassword(paymentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String cardNumber, String expDate)? addCreditNumber,
+    TResult? Function(String cardNumber, String expMonth, String expYear,
+            String cvv, String courseID, String summ)?
+        purchaseCourse,
+    TResult? Function(String paymentPassword)? checkPassword,
+    TResult? Function()? resetCheckPassword,
+  }) {
+    return checkPassword?.call(paymentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String cardNumber, String expDate)? addCreditNumber,
+    TResult Function(String cardNumber, String expMonth, String expYear,
+            String cvv, String courseID, String summ)?
+        purchaseCourse,
+    TResult Function(String paymentPassword)? checkPassword,
+    TResult Function()? resetCheckPassword,
+    required TResult orElse(),
+  }) {
+    if (checkPassword != null) {
+      return checkPassword(paymentPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddCreditCardEvent value) addCreditNumber,
+    required TResult Function(PurchaseCourseEvent value) purchaseCourse,
+    required TResult Function(CheckPaymentPasswordEvent value) checkPassword,
+    required TResult Function(ResetCheckPasswordEvent value) resetCheckPassword,
+  }) {
+    return checkPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AddCreditCardEvent value)? addCreditNumber,
+    TResult? Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult? Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult? Function(ResetCheckPasswordEvent value)? resetCheckPassword,
+  }) {
+    return checkPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddCreditCardEvent value)? addCreditNumber,
+    TResult Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult Function(ResetCheckPasswordEvent value)? resetCheckPassword,
+    required TResult orElse(),
+  }) {
+    if (checkPassword != null) {
+      return checkPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckPaymentPasswordEvent implements PaymentBlocEvent {
+  const factory CheckPaymentPasswordEvent(
+          {required final String paymentPassword}) =
+      _$CheckPaymentPasswordEventImpl;
+
+  String get paymentPassword;
+
+  /// Create a copy of PaymentBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CheckPaymentPasswordEventImplCopyWith<_$CheckPaymentPasswordEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetCheckPasswordEventImplCopyWith<$Res> {
+  factory _$$ResetCheckPasswordEventImplCopyWith(
+          _$ResetCheckPasswordEventImpl value,
+          $Res Function(_$ResetCheckPasswordEventImpl) then) =
+      __$$ResetCheckPasswordEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetCheckPasswordEventImplCopyWithImpl<$Res>
+    extends _$PaymentBlocEventCopyWithImpl<$Res, _$ResetCheckPasswordEventImpl>
+    implements _$$ResetCheckPasswordEventImplCopyWith<$Res> {
+  __$$ResetCheckPasswordEventImplCopyWithImpl(
+      _$ResetCheckPasswordEventImpl _value,
+      $Res Function(_$ResetCheckPasswordEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PaymentBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResetCheckPasswordEventImpl implements ResetCheckPasswordEvent {
+  const _$ResetCheckPasswordEventImpl();
+
+  @override
+  String toString() {
+    return 'PaymentBlocEvent.resetCheckPassword()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetCheckPasswordEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String cardNumber, String expDate)
+        addCreditNumber,
+    required TResult Function(String cardNumber, String expMonth,
+            String expYear, String cvv, String courseID, String summ)
+        purchaseCourse,
+    required TResult Function(String paymentPassword) checkPassword,
+    required TResult Function() resetCheckPassword,
+  }) {
+    return resetCheckPassword();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String cardNumber, String expDate)? addCreditNumber,
+    TResult? Function(String cardNumber, String expMonth, String expYear,
+            String cvv, String courseID, String summ)?
+        purchaseCourse,
+    TResult? Function(String paymentPassword)? checkPassword,
+    TResult? Function()? resetCheckPassword,
+  }) {
+    return resetCheckPassword?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String cardNumber, String expDate)? addCreditNumber,
+    TResult Function(String cardNumber, String expMonth, String expYear,
+            String cvv, String courseID, String summ)?
+        purchaseCourse,
+    TResult Function(String paymentPassword)? checkPassword,
+    TResult Function()? resetCheckPassword,
+    required TResult orElse(),
+  }) {
+    if (resetCheckPassword != null) {
+      return resetCheckPassword();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddCreditCardEvent value) addCreditNumber,
+    required TResult Function(PurchaseCourseEvent value) purchaseCourse,
+    required TResult Function(CheckPaymentPasswordEvent value) checkPassword,
+    required TResult Function(ResetCheckPasswordEvent value) resetCheckPassword,
+  }) {
+    return resetCheckPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AddCreditCardEvent value)? addCreditNumber,
+    TResult? Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult? Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult? Function(ResetCheckPasswordEvent value)? resetCheckPassword,
+  }) {
+    return resetCheckPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddCreditCardEvent value)? addCreditNumber,
+    TResult Function(PurchaseCourseEvent value)? purchaseCourse,
+    TResult Function(CheckPaymentPasswordEvent value)? checkPassword,
+    TResult Function(ResetCheckPasswordEvent value)? resetCheckPassword,
+    required TResult orElse(),
+  }) {
+    if (resetCheckPassword != null) {
+      return resetCheckPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetCheckPasswordEvent implements PaymentBlocEvent {
+  const factory ResetCheckPasswordEvent() = _$ResetCheckPasswordEventImpl;
 }

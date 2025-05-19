@@ -10,11 +10,13 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc.dart';
+import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_card_sheet.dart';
 import 'package:online_app/screens/payment_screen/widgets/add_new_credit_card.dart';
 import 'package:online_app/screens/payment_screen/widgets/credit_card_item_tile.dart';
 import 'package:online_app/screens/payment_screen/widgets/enter_cvv_code_sheet.dart';
+import 'package:online_app/screens/payment_screen/widgets/enter_payment_password_sheet.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 import 'package:online_app/utils/extensions.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
@@ -68,6 +70,27 @@ class _PaymentScreenState extends State<PaymentScreen> {
           expYear: expYear,
           courseID: courseID,
           summ: summ,
+        );
+      },
+    );
+  }
+
+  void _enterPaymentPassword(
+    String cardNumber,
+    String expMonth,
+    String expYear,
+    String courseID,
+    String summ,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      builder: (bottomSheetContext) {
+        return EnterPaymentPasswordSheet(
+          showCvvBottomSheet: () => _onPuchasePressed( cardNumber,
+             expMonth,
+             expYear,
+             courseID,
+             summ,),
         );
       },
     );
@@ -176,7 +199,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   state.userInfo?.creditCards[currentIndex];
 
                               if (selectedCard != null) {
-                                _onPuchasePressed(
+                                _enterPaymentPassword(
                                   selectedCard.cardNumber,
                                   selectedCard.expDate.substring(0, 2),
                                   selectedCard.expDate.substring(2, 4),

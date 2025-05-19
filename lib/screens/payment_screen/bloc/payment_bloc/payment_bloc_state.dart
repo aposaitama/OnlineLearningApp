@@ -36,5 +36,7 @@ class PaymentBlocState with _$PaymentBlocState {
       PaymentStatus.initial,
     )
     PaymentStatus paymentStatus,
+
+    @Default(false) bool checkPassword,
   }) = _PaymentBlocState;
 }

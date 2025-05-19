@@ -3,6 +3,7 @@ import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/local_notification_model/local_notification_model.dart';
 import 'package:online_app/repositories/course_item_repository/course_item_repository.dart';
 import 'package:online_app/repositories/payment_repository/payment_repository.dart';
+import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
 import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
@@ -14,10 +15,13 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
   final _paymentRepo = locator<PaymentRepository>();
   final _courseItemsRepo = locator<CourseItemRepository>();
   final _localNotificationsService = locator<LocalNotificationsService>();
+  final _userRepo = locator<UserRepository>();
 
   PaymentBloc() : super(const PaymentBlocState()) {
     on<AddCreditCardEvent>(_addCreditCard);
     on<PurchaseCourseEvent>(_purchaseCourse);
+    on<CheckPaymentPasswordEvent>(_onCheckPassword);
+    on<ResetCheckPasswordEvent>(_onResetCheckPassword);
   }
 
   Future<void> _purchaseCourse(
@@ -54,7 +58,6 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
               'You have successfully purchased a course "${course.courseTitle}"',
           notificationType: 'card',
         );
-
       } else {
         emit(
           state.copyWith(paymentStatus: PaymentStatus.failed),
@@ -92,6 +95,31 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
     emit(
       state.copyWith(
         addingCardStatus: CreditCardAddingStatus.initial,
+      ),
+    );
+  }
+
+  Future<void> _onCheckPassword(
+    CheckPaymentPasswordEvent event,
+    Emitter<PaymentBlocState> emit,
+  ) async {
+    final bool checkPassword = await _userRepo.checkUserPaymentPassword(
+      paymentPassword: event.paymentPassword,
+    );
+
+    emit(
+      state.copyWith(
+        checkPassword: checkPassword,
+      ),
+    );
+
+
+  }
+
+  void _onResetCheckPassword(ResetCheckPasswordEvent event, Emitter<PaymentBlocState> emit,){
+    emit(
+      state.copyWith(
+        checkPassword: false,
       ),
     );
   }
