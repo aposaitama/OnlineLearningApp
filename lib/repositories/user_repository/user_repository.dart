@@ -68,31 +68,41 @@ class UserRepository {
     }
   }
 
-  Future<void> updateUserPaymentPassword(String paymentPassword) async {
+  Future<bool> updateUserPaymentPassword(String paymentPassword) async {
     final userModel = await getUserData();
     final int userID = userModel?.id ?? 0;
     final Map<String, dynamic> data = {};
     try {
       data['paymentPassword'] = paymentPassword;
-      await _dio.put(
+      final response = await _dio.put(
         '/users/$userID',
         data: data,
       );
+      if (response.data != null) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> updateUserPhoneNumber(String phoneNumber) async {
+  Future<bool> updateUserPhoneNumber(String phoneNumber) async {
     final userModel = await getUserData();
     final int userID = userModel?.id ?? 0;
     final Map<String, dynamic> data = {};
     try {
-      data['phoneNum'] = phoneNumber;
-      await _dio.put(
+      data['userPhoneNumber'] = phoneNumber;
+      final response = await _dio.put(
         '/users/$userID',
         data: data,
       );
+      if (response.data != null) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       rethrow;
     }
