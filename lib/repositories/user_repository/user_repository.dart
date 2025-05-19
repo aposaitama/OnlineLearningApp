@@ -211,4 +211,18 @@ class UserRepository {
       throw Exception(e);
     }
   }
+
+  Future<bool> checkUserPaymentPassword({required String paymentPassword}) async {
+    final user = await getUserData();
+
+    if(user != null){
+      if(user.paymentPassword == paymentPassword){
+        return true;
+      } else{
+        return false;
+      }
+    }
+
+    return false;
+  }
 }

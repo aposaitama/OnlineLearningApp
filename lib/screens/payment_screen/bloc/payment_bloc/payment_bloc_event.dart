@@ -16,4 +16,8 @@ class PaymentBlocEvent with _$PaymentBlocEvent {
     String courseID,
     String summ,
   ) = PurchaseCourseEvent;
+
+  const factory PaymentBlocEvent.checkPassword({required String paymentPassword}) = CheckPaymentPasswordEvent;
+
+  const factory PaymentBlocEvent.resetCheckPassword() = ResetCheckPasswordEvent;
 }
