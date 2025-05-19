@@ -8,6 +8,8 @@ part of 'routes.dart';
 
 List<RouteBase> get $appRoutes => [
       $internetConnectivityRoute,
+      $noNotifRoute,
+      $noProfuctsRoute,
       $registerRoute,
       $loginRoute,
       $phoneLinkingRoute,
@@ -36,6 +38,51 @@ extension $InternetConnectivityRouteExtension on InternetConnectivityRoute {
 
   String get location => GoRouteData.$location(
         '/no_internet',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $noNotifRoute => GoRouteData.$route(
+      path: '/no_notif',
+      factory: $NoNotifRouteExtension._fromState,
+    );
+
+extension $NoNotifRouteExtension on NoNotifRoute {
+  static NoNotifRoute _fromState(GoRouterState state) => const NoNotifRoute();
+
+  String get location => GoRouteData.$location(
+        '/no_notif',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $noProfuctsRoute => GoRouteData.$route(
+      path: '/no_products',
+      factory: $NoProfuctsRouteExtension._fromState,
+    );
+
+extension $NoProfuctsRouteExtension on NoProfuctsRoute {
+  static NoProfuctsRoute _fromState(GoRouterState state) =>
+      const NoProfuctsRoute();
+
+  String get location => GoRouteData.$location(
+        '/no_products',
       );
 
   void go(BuildContext context) => context.go(location);

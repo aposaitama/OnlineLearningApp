@@ -3,10 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:online_app/screens/auth_screen/auth_gate_screen/auth_gate_screen.dart';
 import 'package:online_app/screens/course_details_screen/course_details_screen.dart';
 import 'package:online_app/screens/edit_account_screen/edit_account_screen.dart';
+import 'package:online_app/screens/error_status_screen/no_nitif/no_notif.dart';
+import 'package:online_app/screens/error_status_screen/no_products/error_no_products_status_screen.dart';
 import 'package:online_app/screens/favourites_screen/favourites_screen.dart';
 import 'package:online_app/screens/help_screen.dart';
 import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
-import 'package:online_app/screens/no_internet/no_internet.dart';
+import 'package:online_app/screens/error_status_screen/no_internet/no_internet.dart';
 import 'package:online_app/screens/payment_screen/payment_screen.dart';
 import 'package:online_app/screens/payment_screen/successfull_payment_screen/successfull_payment_screen.dart';
 import 'package:online_app/screens/root_screen/root_screen.dart';
@@ -30,6 +32,23 @@ class InternetConnectivityRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const NoInternetScreen();
+}
+
+@TypedGoRoute<NoNotifRoute>(path: '/no_notif')
+class NoNotifRoute extends GoRouteData {
+  const NoNotifRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const NoNotif();
+}
+
+@TypedGoRoute<NoProfuctsRoute>(path: '/no_products')
+class NoProfuctsRoute extends GoRouteData {
+  const NoProfuctsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ErrorNoProductsStatusScreen();
 }
 
 @TypedGoRoute<RegisterRoute>(path: '/register')

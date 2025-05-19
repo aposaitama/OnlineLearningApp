@@ -9,7 +9,7 @@ class ErrorNoProductsStatusScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ErrorStatusItemTile(
-        iconPath: Assets.icons.noNetwork,
+        iconPath: Assets.icons.noProducts,
         errorTitle: 'No products',
         errorDescription: 'You don\'t have any products yet!',
         buttonTitle: 'Try again',
