@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthBlocState {
   RegisterStatus get status => throw _privateConstructorUsedError;
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
+  PhoneNumberConnectingStatus get phoneNumberConnectingStatus =>
+      throw _privateConstructorUsedError;
+  PaymentPasswordConnectingStatus get paymentPasswordConnectingStatus =>
+      throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthBlocState
@@ -34,7 +38,11 @@ abstract class $AuthBlocStateCopyWith<$Res> {
       _$AuthBlocStateCopyWithImpl<$Res, AuthBlocState>;
   @useResult
   $Res call(
-      {RegisterStatus status, LoginStatus loginStatus, String errorMessage});
+      {RegisterStatus status,
+      LoginStatus loginStatus,
+      PhoneNumberConnectingStatus phoneNumberConnectingStatus,
+      PaymentPasswordConnectingStatus paymentPasswordConnectingStatus,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -54,6 +62,8 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
   $Res call({
     Object? status = null,
     Object? loginStatus = null,
+    Object? phoneNumberConnectingStatus = null,
+    Object? paymentPasswordConnectingStatus = null,
     Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
@@ -65,6 +75,14 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
+      phoneNumberConnectingStatus: null == phoneNumberConnectingStatus
+          ? _value.phoneNumberConnectingStatus
+          : phoneNumberConnectingStatus // ignore: cast_nullable_to_non_nullable
+              as PhoneNumberConnectingStatus,
+      paymentPasswordConnectingStatus: null == paymentPasswordConnectingStatus
+          ? _value.paymentPasswordConnectingStatus
+          : paymentPasswordConnectingStatus // ignore: cast_nullable_to_non_nullable
+              as PaymentPasswordConnectingStatus,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -82,7 +100,11 @@ abstract class _$$AuthBlocStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {RegisterStatus status, LoginStatus loginStatus, String errorMessage});
+      {RegisterStatus status,
+      LoginStatus loginStatus,
+      PhoneNumberConnectingStatus phoneNumberConnectingStatus,
+      PaymentPasswordConnectingStatus paymentPasswordConnectingStatus,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -100,6 +122,8 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? loginStatus = null,
+    Object? phoneNumberConnectingStatus = null,
+    Object? paymentPasswordConnectingStatus = null,
     Object? errorMessage = null,
   }) {
     return _then(_$AuthBlocStateImpl(
@@ -111,6 +135,14 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
+      phoneNumberConnectingStatus: null == phoneNumberConnectingStatus
+          ? _value.phoneNumberConnectingStatus
+          : phoneNumberConnectingStatus // ignore: cast_nullable_to_non_nullable
+              as PhoneNumberConnectingStatus,
+      paymentPasswordConnectingStatus: null == paymentPasswordConnectingStatus
+          ? _value.paymentPasswordConnectingStatus
+          : paymentPasswordConnectingStatus // ignore: cast_nullable_to_non_nullable
+              as PaymentPasswordConnectingStatus,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -125,6 +157,9 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   const _$AuthBlocStateImpl(
       {this.status = RegisterStatus.initial,
       this.loginStatus = LoginStatus.initial,
+      this.phoneNumberConnectingStatus = PhoneNumberConnectingStatus.initial,
+      this.paymentPasswordConnectingStatus =
+          PaymentPasswordConnectingStatus.initial,
       this.errorMessage = ''});
 
   @override
@@ -135,11 +170,17 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   final LoginStatus loginStatus;
   @override
   @JsonKey()
+  final PhoneNumberConnectingStatus phoneNumberConnectingStatus;
+  @override
+  @JsonKey()
+  final PaymentPasswordConnectingStatus paymentPasswordConnectingStatus;
+  @override
+  @JsonKey()
   final String errorMessage;
 
   @override
   String toString() {
-    return 'AuthBlocState(status: $status, loginStatus: $loginStatus, errorMessage: $errorMessage)';
+    return 'AuthBlocState(status: $status, loginStatus: $loginStatus, phoneNumberConnectingStatus: $phoneNumberConnectingStatus, paymentPasswordConnectingStatus: $paymentPasswordConnectingStatus, errorMessage: $errorMessage)';
   }
 
   @override
@@ -150,13 +191,26 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.loginStatus, loginStatus) ||
                 other.loginStatus == loginStatus) &&
+            (identical(other.phoneNumberConnectingStatus,
+                    phoneNumberConnectingStatus) ||
+                other.phoneNumberConnectingStatus ==
+                    phoneNumberConnectingStatus) &&
+            (identical(other.paymentPasswordConnectingStatus,
+                    paymentPasswordConnectingStatus) ||
+                other.paymentPasswordConnectingStatus ==
+                    paymentPasswordConnectingStatus) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, loginStatus, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      loginStatus,
+      phoneNumberConnectingStatus,
+      paymentPasswordConnectingStatus,
+      errorMessage);
 
   /// Create a copy of AuthBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -171,12 +225,18 @@ abstract class _AuthBlocState implements AuthBlocState {
   const factory _AuthBlocState(
       {final RegisterStatus status,
       final LoginStatus loginStatus,
+      final PhoneNumberConnectingStatus phoneNumberConnectingStatus,
+      final PaymentPasswordConnectingStatus paymentPasswordConnectingStatus,
       final String errorMessage}) = _$AuthBlocStateImpl;
 
   @override
   RegisterStatus get status;
   @override
   LoginStatus get loginStatus;
+  @override
+  PhoneNumberConnectingStatus get phoneNumberConnectingStatus;
+  @override
+  PaymentPasswordConnectingStatus get paymentPasswordConnectingStatus;
   @override
   String get errorMessage;
 
