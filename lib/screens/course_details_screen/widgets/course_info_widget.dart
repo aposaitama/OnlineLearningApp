@@ -4,13 +4,14 @@ import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/utils/extensions.dart';
 
-class CourseInfoWidget extends StatelessWidget {
+class CourseInfoWidget extends StatefulWidget {
   final String courseTitle;
   final String courseDescription;
   final double coursePrice;
   final int courseDuration;
   final int courseVideoLength;
-  const CourseInfoWidget({
+
+  CourseInfoWidget({
     super.key,
     required this.courseTitle,
     required this.courseDescription,
@@ -18,6 +19,20 @@ class CourseInfoWidget extends StatelessWidget {
     required this.courseDuration,
     required this.courseVideoLength,
   });
+
+  @override
+  State<CourseInfoWidget> createState() => _CourseInfoWidgetState();
+}
+
+class _CourseInfoWidgetState extends State<CourseInfoWidget> {
+  bool _expanded = false;
+  final int _maxLines = 2;
+
+  void _expandDescription() {
+    setState(() {
+      _expanded = !_expanded;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +47,7 @@ class CourseInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                courseTitle,
+                widget.courseTitle,
                 style: AppFonts.poppinsBold.copyWith(
                   color: Theme.of(context)
                       .extension<AppColorsModel>()!
@@ -42,7 +57,7 @@ class CourseInfoWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$${coursePrice.toString()}',
+                '\$${widget.coursePrice.toString()}',
                 style: AppFonts.poppinsBold.copyWith(
                   color: AppColors.deepBlueColor,
                   fontSize: 20.0,
@@ -57,7 +72,7 @@ class CourseInfoWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                courseDuration.toTimeFormat(),
+                widget.courseDuration.toTimeFormat(),
                 style: AppFonts.poppinsRegular.copyWith(
                   color: Theme.of(context)
                       .extension<AppColorsModel>()!
@@ -69,7 +84,7 @@ class CourseInfoWidget extends StatelessWidget {
                 width: 10.0,
               ),
               Text(
-                '${courseVideoLength.toString()} Lessons',
+                '${widget.courseVideoLength.toString()} Lessons',
                 style: AppFonts.poppinsRegular.copyWith(
                   color: Theme.of(context)
                       .extension<AppColorsModel>()!
@@ -92,11 +107,24 @@ class CourseInfoWidget extends StatelessWidget {
             ),
           ),
           Text(
-            courseDescription,
+            widget.courseDescription,
             style: AppFonts.poppinsRegular.copyWith(
               color:
                   Theme.of(context).extension<AppColorsModel>()!.hintTextColor,
               fontSize: 12.0,
+            ),
+            maxLines: _expanded ? null : _maxLines,
+            overflow: _expanded ? TextOverflow.visible : TextOverflow.ellipsis,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15.0),
+            child: Center(
+              child: GestureDetector(
+                onTap: _expandDescription,
+                child: Icon(
+                  _expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                ),
+              ),
             ),
           ),
         ],

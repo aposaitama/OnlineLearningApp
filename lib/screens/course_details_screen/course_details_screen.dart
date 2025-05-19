@@ -17,7 +17,6 @@ import 'package:online_app/screens/course_details_screen/widgets/course_videos_b
 import 'package:online_app/screens/course_details_screen/widgets/custom_overlays_controls.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
-import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/utils/extensions.dart';
 import 'package:online_app/widgets/clocking_in_widget.dart';
 
@@ -182,8 +181,8 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 children: [
                                   CourseInfoWidget(
                                     courseTitle: course?.courseTitle ?? '',
-                                    courseDescription:
-                                        course?.courseDescription ?? '',
+                                    courseDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                                        // course?.courseDescription ?? '',
                                     coursePrice: course?.coursePrice ?? 0.0,
                                     courseDuration:
                                         course?.totalCourseDurationInSeconds ??
