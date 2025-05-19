@@ -38,6 +38,7 @@ dependencies:
   provider: ^6.1.5
   credit_card_type_detector: ^3.0.0
 #  image_picker: ^1.1.2
+  carousel_slider: ^5.0.0
 
   mask_text_input_formatter: ^2.9.0
   liqpay: ^0.0.2
@@ -83,6 +84,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/fonts/
+    - assets/images/
     - lib/api_keys.env
   #   - images/a_dot_ham.jpeg
 

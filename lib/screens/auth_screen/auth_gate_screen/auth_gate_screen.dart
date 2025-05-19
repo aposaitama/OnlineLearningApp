@@ -20,7 +20,7 @@ class AuthGateScreen extends StatelessWidget {
           if (state.gateStatus == AuthGateStatus.authenticated) {
             context.go('/home');
           } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
-            context.go('/login');
+            context.go('/onboarding-screen');
           }
         },
         child: BlocBuilder<AuthGateBloc, AuthGateBlocState>(
