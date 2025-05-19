@@ -184,6 +184,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/no network.svg
   String get noNetwork => 'assets/icons/no network.svg';
 
+  /// File path: assets/icons/no_notif.svg
+  String get noNotif => 'assets/icons/no_notif.svg';
+
+  /// File path: assets/icons/no_products.svg
+  String get noProducts => 'assets/icons/no_products.svg';
+
   /// File path: assets/icons/pause.svg
   String get pause => 'assets/icons/pause.svg';
 
@@ -243,6 +249,8 @@ class $AssetsIconsGen {
     meetupIcon,
     message,
     noNetwork,
+    noNotif,
+    noProducts,
     pause,
     polygon,
     polygonBig,
