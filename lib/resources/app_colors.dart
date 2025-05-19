@@ -22,4 +22,6 @@ class AppColors {
   static const Color greyCoor = Color(0xFFF0F0F2);
   static const Color darkHintTextColor = Color(0xFF858597);
   static const Color lightBlueBackgroundColor = Color(0xFFEAEAFF);
+  static const Color skyBlue = Color(0xFFCDECFE);
+  static const Color lightGreen = Color(0xFFD9F4F1);
 }

@@ -22,6 +22,7 @@ List<RouteBase> get $appRoutes => [
       $successfullPaymentScreenRoute,
       $paymentScreenRoute,
       $courseDetailsRoute,
+      $onboardingScreenRoute,
       $rootShellRoute,
     ];
 
@@ -359,6 +360,29 @@ extension $CourseDetailsRouteExtension on CourseDetailsRoute {
 
   String get location => GoRouteData.$location(
         '/course_details/${Uri.encodeComponent(courseId)}',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $onboardingScreenRoute => GoRouteData.$route(
+      path: '/onboarding-screen',
+      factory: $OnboardingScreenRouteExtension._fromState,
+    );
+
+extension $OnboardingScreenRouteExtension on OnboardingScreenRoute {
+  static OnboardingScreenRoute _fromState(GoRouterState state) =>
+      const OnboardingScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding-screen',
       );
 
   void go(BuildContext context) => context.go(location);

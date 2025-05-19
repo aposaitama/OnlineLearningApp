@@ -6,7 +6,7 @@ import 'package:online_app/screens/edit_account_screen/edit_account_screen.dart'
 import 'package:online_app/screens/favourites_screen/favourites_screen.dart';
 import 'package:online_app/screens/help_screen.dart';
 import 'package:online_app/screens/my_courses_screen/my_courses_screen.dart';
-import 'package:online_app/screens/no_internet/no_internet.dart';
+import 'package:online_app/screens/onboarding_screens/onboarding_screen.dart';
 import 'package:online_app/screens/payment_screen/payment_screen.dart';
 import 'package:online_app/screens/payment_screen/successfull_payment_screen/successfull_payment_screen.dart';
 import 'package:online_app/screens/root_screen/root_screen.dart';
@@ -20,6 +20,8 @@ import 'package:online_app/screens/auth_screen/register_screen/phone_linking_scr
 import 'package:online_app/screens/auth_screen/register_screen/verify_phone_screen/verify_phone_screen.dart';
 import 'package:online_app/screens/search_screen/search_screen.dart';
 import 'package:online_app/screens/settings_privacy_screen.dart';
+
+import '../screens/error_status_screen/no_internet/no_internet.dart';
 
 part 'routes.g.dart';
 
@@ -162,6 +164,18 @@ class CourseDetailsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return CourseDetailsScreen(courseId: courseId);
+  }
+}
+
+@TypedGoRoute<OnboardingScreenRoute>(
+  path: '/onboarding-screen',
+)
+class OnboardingScreenRoute extends GoRouteData {
+  const OnboardingScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return OnboardingScreen();
   }
 }
 
