@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -15,19 +18,18 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  late final PageController _pageController;
+  final CarouselSliderController _carouselController = CarouselSliderController();
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
   }
 
-  int _currentPage = 0;
+  int _currentIndex = 0;
 
   void _pageChange(int index) {
     setState(() {
-      _currentPage = index;
+      _currentIndex = index;
     });
   }
 
@@ -36,36 +38,48 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: 'Numerous free\ntrial courses',
       subtitle: 'Free courses for you to\nfind your way to learning',
       image: Assets.images.onboardingFirst.image(),
+      currentPage: 0,
     ),
     OnboardingWidget(
       title: 'Quick and easy\nlearning',
       subtitle:
           'Easy and fast learning at\nany time to help you\nimprove various skills',
       image: Assets.images.onboardingSecond.image(),
+      currentPage: 1,
     ),
     OnboardingWidget(
       title: 'Create your own\nstudy plan',
       subtitle:
           'Study according to the\nstudy plan, make study\nmore motivated',
       image: Assets.images.onboardingThird.image(),
+      currentPage: 2,
     ),
   ];
 
+  void _login(){
+    context.go('/login');
+  }
+
+  void _register(){
+    context.go('/register');
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            // Кнопка "Skip" справа вгорі
-            _currentPage != 2
+            const SizedBox(height: 50.0,),
+            _currentIndex != 2
                 ? Align(
                     alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+                    child: SizedBox(
+                      height: 40.0,
                       child: TextButton(
                         onPressed: () {
-                          _pageController.jumpToPage(2);
+                          _carouselController.animateToPage(2);
                           _pageChange(2);
                         },
                         child: Text(
@@ -80,58 +94,100 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                   )
-                : const SizedBox.shrink(),
-
-            // Сторінки Onboarding (займає основну висоту)
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (index) => _pageChange(index),
-                children: onboardingWidgets,
-              ),
-            ),
-
-            // Індикатор сторінок
+                : const SizedBox(
+                    height: 40.0,
+                  ),
             Column(
               children: [
-                _currentPage == 2
-                    ? Padding(
-                        padding: const EdgeInsets.only(bottom: 32.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Sign up'),
-                            ),
-                            const SizedBox(width: 16),
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Log in'),
-                            ),
-                          ],
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: SmoothPageIndicator(
-                    controller: _pageController,
-                    count: 3,
-                    effect: const WormEffect(
-                      activeDotColor: AppColors.deepBlueColor,
-                      dotColor: Colors.grey,
-                      dotHeight: 5.0,
-                      dotWidth: 9.0,
-                      spacing: 8.0,
-                    ),
+                CarouselSlider(
+                  carouselController: _carouselController,
+                  items: onboardingWidgets,
+                  options: CarouselOptions(
+                    viewportFraction: 1.0,
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                ),
+                AnimatedSmoothIndicator(
+                  activeIndex: _currentIndex,
+                  count: onboardingWidgets.length,
+                  effect: const WormEffect(
+                    activeDotColor: AppColors.deepBlueColor,
+                    dotColor: AppColors.lightGreyColor,
+                    dotHeight: 5.0,
+                    dotWidth: 10.0,
                   ),
                 ),
               ],
             ),
+            const Spacer(),
+            SafeArea(
+              child: Column(
+                children: [
+                  if (_currentIndex == 2)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 160.0,
+                          height: 50.0,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            onPressed: _register,
+                            child: const Text('Sign up'),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Container(
+                          width: 160.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            border: Border.all(
+                              color: isDark
+                                  ? Colors.transparent
+                                  : AppColors.deepBlueColor,
+                              width: 2,
+                            ),
+                            color: isDark
+                                ? AppColors.lightGreyColor
+                                : Colors.transparent,
+                          ),
+                          child: TextButton(
+                            onPressed: _login,
+                            child: Text(
+                              'Log in',
+                              style: AppFonts.poppinsRegular.copyWith(
+                                color: isDark
+                                    ? Colors.white
+                                    : AppColors.deepBlueColor,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    const SizedBox.shrink(),
+                ],
+              ),
+            ),
+            const SizedBox(height: 50.0,),
           ],
         ),
       ),
+
     );
   }
 }

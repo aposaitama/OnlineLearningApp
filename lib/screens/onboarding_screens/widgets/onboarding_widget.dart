@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:online_app/gen/assets.gen.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 
@@ -9,11 +8,14 @@ class OnboardingWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final Widget image;
+  final int currentPage;
 
   const OnboardingWidget({
     super.key,
     required this.title,
-    required this.subtitle, required this.image,
+    required this.subtitle,
+    required this.image,
+    required this.currentPage,
   });
 
   @override
@@ -26,7 +28,13 @@ class OnboardingWidget extends StatelessWidget {
           height: 260.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
-            color: isDark ? Colors.transparent : AppColors.skyBlue,
+            color: isDark
+                ? Colors.transparent
+                : currentPage == 0
+                    ? AppColors.skyBlue
+                    : currentPage == 1
+                        ? AppColors.lightGreen
+                        : Colors.transparent,
           ),
           child: image,
         ),
@@ -37,7 +45,6 @@ class OnboardingWidget extends StatelessWidget {
           ),
           child: Text(
             title,
-            // 'Numerous free\ntrial courses',
             style: AppFonts.poppinsRegular.copyWith(
               color:
                   Theme.of(context).extension<AppColorsModel>()!.mainTextColor,
@@ -49,7 +56,6 @@ class OnboardingWidget extends StatelessWidget {
         ),
         Text(
           subtitle,
-          // 'Free courses for you to\nfind your way to learning',
           style: AppFonts.poppinsRegular.copyWith(
             color: Theme.of(context).extension<AppColorsModel>()!.hintTextColor,
             fontSize: 16.0,
