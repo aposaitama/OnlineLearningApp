@@ -11,7 +11,7 @@ class AppRouter {
   GoRouter createRouter() => GoRouter(
         navigatorKey: navigatorKey,
         // initialLocation: '/payment-screen/ql29i9oegaoitpfkjew3e5yt',
-        // initialLocation: '/course_details/wq23eaa3b17lf6cn43lr7i0j',
+        // initialLocation: '/course_details/e22uduowfibilgmnn12kpzdg',
 
         initialLocation: '/auth_gate',
         refreshListenable: connectivityService,

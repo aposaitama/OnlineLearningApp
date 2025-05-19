@@ -80,7 +80,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   children: [
                                     SizedBox(
                                       width: double.infinity,
-                                      height: imageHeight,
+                                      height: imageHeight + 22,
                                       child: CachedNetworkImage(
                                         fit: BoxFit.cover,
                                         imageUrl:
@@ -154,7 +154,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                            top: imageHeight - 22,
+                            top: imageHeight,
                           ),
                           child: Container(
                             decoration: BoxDecoration(
@@ -170,7 +170,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 ),
                               ),
                             ),
-                            height: height - imageHeight + 22,
+                            height: height - imageHeight,
                             width: double.infinity,
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -192,16 +192,16 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   ),
                                   SizedBox(
                                     height: 20.0,
-                                    child: GestureDetector(
-                                      onTap: () =>
-                                          context.read<CourseDetailsBloc>().add(
-                                                const TestFinishedVideo(),
-                                              ),
-                                      child: Container(
-                                        color: Colors.amber,
-                                        child: const Text('press'),
-                                      ),
-                                    ),
+                                    // child: GestureDetector(
+                                    //   onTap: () =>
+                                    //       context.read<CourseDetailsBloc>().add(
+                                    //             const TestFinishedVideo(),
+                                    //           ),
+                                    //   child: Container(
+                                    //     color: Colors.amber,
+                                    //     child: const Text('press'),
+                                    //   ),
+                                    // ),
                                   ),
                                   Expanded(
                                     child: CourseVideosBuilder(
