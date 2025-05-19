@@ -15,7 +15,13 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController _pageController = PageController();
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
 
   int _currentPage = 0;
 
@@ -52,27 +58,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           children: [
             // Кнопка "Skip" справа вгорі
-            if (_currentPage != 2)
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16.0, top: 8.0),
-                  child: TextButton(
-                    onPressed: () {
-                      _pageController.jumpToPage(2);
-                    },
-                    child: Text(
-                      'Skip',
-                      style: AppFonts.poppinsRegular.copyWith(
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()!
-                            .hintTextColor,
-                        fontSize: 14.0,
+            _currentPage != 2
+                ? Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+                      child: TextButton(
+                        onPressed: () {
+                          _pageController.jumpToPage(2);
+                          _pageChange(2);
+                        },
+                        child: Text(
+                          'Skip',
+                          style: AppFonts.poppinsRegular.copyWith(
+                            color: Theme.of(context)
+                                .extension<AppColorsModel>()!
+                                .hintTextColor,
+                            fontSize: 14.0,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
+                  )
+                : const SizedBox.shrink(),
 
             // Сторінки Onboarding (займає основну висоту)
             Expanded(
@@ -84,44 +92,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
 
             // Індикатор сторінок
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: SmoothPageIndicator(
-                controller: _pageController,
-                count: 3,
-                effect: const WormEffect(
-                  activeDotColor: AppColors.deepBlueColor,
-                  dotColor: Colors.grey,
-                  dotHeight: 5.0,
-                  dotWidth: 9.0,
-                  spacing: 8.0,
+            Column(
+              children: [
+                _currentPage == 2
+                    ? Padding(
+                        padding: const EdgeInsets.only(bottom: 32.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: const Text('Sign up'),
+                            ),
+                            const SizedBox(width: 16),
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: const Text('Log in'),
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: SmoothPageIndicator(
+                    controller: _pageController,
+                    count: 3,
+                    effect: const WormEffect(
+                      activeDotColor: AppColors.deepBlueColor,
+                      dotColor: Colors.grey,
+                      dotHeight: 5.0,
+                      dotWidth: 9.0,
+                      spacing: 8.0,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-
-            // Кнопки "Sign up" / "Log in" тільки на останній сторінці
-            if (_currentPage == 2)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 32.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Sign up'),
-                    ),
-                    const SizedBox(width: 16),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Log in'),
-                    ),
-                  ],
-                ),
-              ),
           ],
         ),
       ),
     );
   }
-
 }
