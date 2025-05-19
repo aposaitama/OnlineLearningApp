@@ -193,16 +193,16 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   ),
                                   SizedBox(
                                     height: 20.0,
-                                    child: GestureDetector(
-                                      onTap: () =>
-                                          context.read<CourseDetailsBloc>().add(
-                                                const TestFinishedVideo(),
-                                              ),
-                                      child: Container(
-                                        color: Colors.amber,
-                                        child: const Text('press'),
-                                      ),
-                                    ),
+                                    // child: GestureDetector(
+                                    //   onTap: () =>
+                                    //       context.read<CourseDetailsBloc>().add(
+                                    //             const TestFinishedVideo(),
+                                    //           ),
+                                    //   child: Container(
+                                    //     color: Colors.amber,
+                                    //     child: const Text('press'),
+                                    //   ),
+                                    // ),
                                   ),
                                   Expanded(
                                     child: CourseVideosBuilder(
