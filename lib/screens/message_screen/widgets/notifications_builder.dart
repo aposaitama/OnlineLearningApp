@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/screens/error_status_screen/widget/error_status_item_tile.dart';
 import 'package:online_app/screens/message_screen/widgets/notification_item_tile.dart';
 
 import '../../../resources/app_colors_model.dart';
@@ -15,7 +17,6 @@ class NotificationsBuilder extends StatelessWidget {
     final int hours = date.hour;
     final int minutes = date.minute;
 
-
     final String time = '$hours:${minutes.toString().padLeft(2, '0')}';
     final String formattedDate = DateFormat('dd MMM’yyyy').format(date);
     return '$time, $formattedDate';
@@ -26,17 +27,12 @@ class NotificationsBuilder extends StatelessWidget {
     return BlocBuilder<MessageScreenBloc, MessageScreenState>(
       builder: (context, state) {
         if (state.notificationListStatus == NotificationListStatus.initial) {
-          return Center(
-            child: Text(
-              'You have no notifications yet',
-              style: AppFonts.poppinsBold.copyWith(
-                color: Theme.of(context)
-                    .extension<AppColorsModel>()!
-                    .mainTextColor,
-                fontSize: 12.0,
-                height: 2.0,
-              ),
-            ),
+          return ErrorStatusItemTile(
+            iconPath: Assets.icons.noNotif,
+            errorTitle: 'No Notifications yet!',
+            errorDescription:
+                'We’ll nofify you once we have something for you ',
+            buttonTitle: 'Try again',
           );
         } else if (state.notificationListStatus ==
             NotificationListStatus.loading) {
