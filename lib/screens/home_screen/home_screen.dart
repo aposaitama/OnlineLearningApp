@@ -34,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeScreenBloc, HomeScreenState>(
       builder: (context, state) {
-        print(state.userInfo?.avatar ?? '');
         if (state.loadingStatus == HomeScreenStatus.initial ||
             state.loadingStatus == HomeScreenStatus.loading) {
           return const Center(

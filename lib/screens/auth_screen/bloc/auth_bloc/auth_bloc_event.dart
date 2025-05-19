@@ -11,4 +11,8 @@ class AuthBlocEvent with _$AuthBlocEvent {
   ) = RegisterUserBlocEvent;
   const factory AuthBlocEvent.loginUser(String email, String password) =
       LoginUserBlocEvent;
+  const factory AuthBlocEvent.connectPhoneNum(String phoneNum) =
+      ConnectPhoneNumEvent;
+  const factory AuthBlocEvent.connectPaymentPass(String paymentPassword) =
+      ConnectPaymentPassEvent;
 }

@@ -20,7 +20,6 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   void _register() {
-    // context.go('/phone_linking');
     isAgree
         ? context.read<AuthBloc>().add(
               RegisterUserBlocEvent(

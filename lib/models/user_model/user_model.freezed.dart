@@ -24,6 +24,7 @@ mixin _$UserModel {
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get userPhoneNumber => throw _privateConstructorUsedError;
+  String? get paymentPassword => throw _privateConstructorUsedError;
   int get totallyLearningDays => throw _privateConstructorUsedError;
   double get totallyLearningHours => throw _privateConstructorUsedError;
   double get learnedToday => throw _privateConstructorUsedError;
@@ -60,6 +61,7 @@ abstract class $UserModelCopyWith<$Res> {
       String username,
       String email,
       String? userPhoneNumber,
+      String? paymentPassword,
       int totallyLearningDays,
       double totallyLearningHours,
       double learnedToday,
@@ -92,6 +94,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? username = null,
     Object? email = null,
     Object? userPhoneNumber = freezed,
+    Object? paymentPassword = freezed,
     Object? totallyLearningDays = null,
     Object? totallyLearningHours = null,
     Object? learnedToday = null,
@@ -120,6 +123,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       userPhoneNumber: freezed == userPhoneNumber
           ? _value.userPhoneNumber
           : userPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentPassword: freezed == paymentPassword
+          ? _value.paymentPassword
+          : paymentPassword // ignore: cast_nullable_to_non_nullable
               as String?,
       totallyLearningDays: null == totallyLearningDays
           ? _value.totallyLearningDays
@@ -182,6 +189,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String username,
       String email,
       String? userPhoneNumber,
+      String? paymentPassword,
       int totallyLearningDays,
       double totallyLearningHours,
       double learnedToday,
@@ -212,6 +220,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? username = null,
     Object? email = null,
     Object? userPhoneNumber = freezed,
+    Object? paymentPassword = freezed,
     Object? totallyLearningDays = null,
     Object? totallyLearningHours = null,
     Object? learnedToday = null,
@@ -240,6 +249,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
       userPhoneNumber: freezed == userPhoneNumber
           ? _value.userPhoneNumber
           : userPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentPassword: freezed == paymentPassword
+          ? _value.paymentPassword
+          : paymentPassword // ignore: cast_nullable_to_non_nullable
               as String?,
       totallyLearningDays: null == totallyLearningDays
           ? _value.totallyLearningDays
@@ -297,6 +310,7 @@ class _$UserModelImpl implements _UserModel {
       required this.username,
       required this.email,
       required this.userPhoneNumber,
+      required this.paymentPassword,
       required this.totallyLearningDays,
       required this.totallyLearningHours,
       required this.learnedToday,
@@ -325,6 +339,8 @@ class _$UserModelImpl implements _UserModel {
   final String email;
   @override
   final String? userPhoneNumber;
+  @override
+  final String? paymentPassword;
   @override
   final int totallyLearningDays;
   @override
@@ -383,7 +399,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, userLearningStreak: $userLearningStreak, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, paymentPassword: $paymentPassword, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, userLearningStreak: $userLearningStreak, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
   }
 
   @override
@@ -397,6 +413,8 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.userPhoneNumber, userPhoneNumber) ||
                 other.userPhoneNumber == userPhoneNumber) &&
+            (identical(other.paymentPassword, paymentPassword) ||
+                other.paymentPassword == paymentPassword) &&
             (identical(other.totallyLearningDays, totallyLearningDays) ||
                 other.totallyLearningDays == totallyLearningDays) &&
             (identical(other.totallyLearningHours, totallyLearningHours) ||
@@ -428,6 +446,7 @@ class _$UserModelImpl implements _UserModel {
       username,
       email,
       userPhoneNumber,
+      paymentPassword,
       totallyLearningDays,
       totallyLearningHours,
       learnedToday,
@@ -462,6 +481,7 @@ abstract class _UserModel implements UserModel {
       required final String username,
       required final String email,
       required final String? userPhoneNumber,
+      required final String? paymentPassword,
       required final int totallyLearningDays,
       required final double totallyLearningHours,
       required final double learnedToday,
@@ -485,6 +505,8 @@ abstract class _UserModel implements UserModel {
   String get email;
   @override
   String? get userPhoneNumber;
+  @override
+  String? get paymentPassword;
   @override
   int get totallyLearningDays;
   @override

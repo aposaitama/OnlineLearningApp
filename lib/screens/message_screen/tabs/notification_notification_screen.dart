@@ -29,9 +29,9 @@ class _NotificationNotificationScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           horizontal: 20.0,
           vertical: 20.0,
         ),

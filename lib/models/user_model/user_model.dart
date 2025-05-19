@@ -15,6 +15,7 @@ class UserModel with _$UserModel {
     required String username,
     required String email,
     required String? userPhoneNumber,
+    required String? paymentPassword,
     required int totallyLearningDays,
     required double totallyLearningHours,
     required double learnedToday,

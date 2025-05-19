@@ -66,9 +66,24 @@ class _ProggressWidgetState extends State<ProggressWidget> {
                     ),
                     widget.myCoursesText
                         ? GestureDetector(
-                            onTap: () => context.push(
-                              '/my_courses',
-                            ),
+                            onTap: () {
+                              if ((state.userInfo?.user_purchased_courses
+                                          .length ??
+                                      0) >
+                                  0) {
+                                context.push(
+                                  '/my_courses',
+                                );
+                              } else {
+                                context.push(
+                                  '/no_products',
+                                );
+                              }
+                            }
+                            // () => context.push(
+                            //   '/my_courses',
+                            // )
+                            ,
                             child: Text(
                               'My courses',
                               style: AppFonts.poppinsRegular.copyWith(
