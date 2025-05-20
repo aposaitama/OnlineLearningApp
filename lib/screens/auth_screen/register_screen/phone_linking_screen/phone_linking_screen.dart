@@ -14,6 +14,7 @@ import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc_state.da
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/key_field.dart';
 import 'package:online_app/screens/auth_screen/register_screen/phone_linking_screen/widgets/phone_text_field.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 
 class PhoneLinkingScreen extends StatefulWidget {
   const PhoneLinkingScreen({super.key});
@@ -34,12 +35,38 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
         : null;
   }
 
-  void _connectPhoneNumber(String phoneNum) {
-    phoneNum.isNotEmpty
-        ? context.read<AuthBloc>().add(ConnectPhoneNumEvent(phoneNum))
-        : BotToast.showText(
-            text: 'Enter correct phone number',
-          );
+  void _onKeyFieldPressed(String numItem) {
+    if (phoneNumberController.text.length <= 15) {
+      phoneNumberController.text += numItem;
+    }
+  }
+
+  void _connectPhoneNumberValidationMethod(String phoneNum) {
+    if (phoneNum.isNotEmpty) {
+      try {
+        final frPhone0 = PhoneNumber.parse(phoneNum);
+        final bool isPhoneValid = frPhone0.isValid(
+          type: PhoneNumberType.mobile,
+        );
+        isPhoneValid
+            ? context.read<AuthBloc>().add(
+                  ConnectPhoneNumEvent(
+                    phoneNum,
+                  ),
+                )
+            : BotToast.showText(
+                text: 'Enter correct phone number',
+              );
+      } on PhoneNumberException catch (e) {
+        BotToast.showText(
+          text: "Error: ${e.description.toString()}",
+        );
+      }
+    } else {
+      BotToast.showText(
+        text: 'Enter correct phone number',
+      );
+    }
   }
 
   @override
@@ -146,7 +173,8 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                             SizedBox(
                               width: 125.0,
                               child: CustomFilledButton(
-                                onTap: () => _connectPhoneNumber(
+                                onTap: () =>
+                                    _connectPhoneNumberValidationMethod(
                                   phoneNumberController.text,
                                 ),
                                 buttonTitle: 'Continue',
@@ -154,7 +182,9 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20.0),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
                         Expanded(
                           child: Column(
                             children: [
@@ -179,10 +209,10 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                               child: Center(
                                                 child: KeyField(
                                                   num: numItem,
-                                                  onKeyTap: () {
-                                                    phoneNumberController
-                                                        .text += numItem;
-                                                  },
+                                                  onKeyTap: () =>
+                                                      _onKeyFieldPressed(
+                                                    numItem,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -212,9 +242,9 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                         child: Center(
                                           child: KeyField(
                                             num: '0',
-                                            onKeyTap: () {
-                                              phoneNumberController.text += '0';
-                                            },
+                                            onKeyTap: () => _onKeyFieldPressed(
+                                              '0',
+                                            ),
                                           ),
                                         ),
                                       ),

@@ -79,6 +79,9 @@ class ConcreteCourseItemTile extends StatelessWidget {
                         height: 68.0,
                         width: 68.0,
                         fit: BoxFit.cover,
+                        fadeInDuration: const Duration(
+                          milliseconds: 50,
+                        ),
                       ),
                     ),
               const SizedBox(

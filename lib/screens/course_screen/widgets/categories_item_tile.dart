@@ -40,6 +40,9 @@ class CategoriesItemTile extends StatelessWidget {
             imageUrl: imageUrl.toImageUrl(),
             width: 110.0,
             height: 85.0,
+            fadeInDuration: const Duration(
+              milliseconds: 50,
+            ),
             errorWidget: (context, url, error) {
               return const Icon(Icons.error);
             },

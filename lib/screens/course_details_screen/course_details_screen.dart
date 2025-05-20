@@ -34,23 +34,17 @@ class CourseDetailsScreen extends StatefulWidget {
 
 class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
   @override
-  // void initState() {
-  //   context.read<HomeScreenBloc>().add(LoadUserHomeScreenBlocEvent());
-  //   context.read<CourseDetailsBloc>().add(
-  //         LoadConcreteCourseInfoEvent(
-  //           widget.courseId,
-  //         ),
-  //       );
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final double imageHeight = (MediaQuery.of(context).size.height / 3);
     final double height = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (_) => CourseDetailsBloc()
-        ..add(LoadConcreteCourseInfoEvent(widget.courseId)),
+        ..add(
+          LoadConcreteCourseInfoEvent(
+            widget.courseId,
+          ),
+        ),
       child: BlocListener<CourseDetailsBloc, CourseDetailsState>(
         listener: (context, state) {
           if (state.loadingStatus == CourseDetailsLoadingStatus.initial) {
@@ -80,7 +74,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   children: [
                                     SizedBox(
                                       width: double.infinity,
-                                      height: imageHeight + 22,
+                                      height: imageHeight + 44,
                                       child: CachedNetworkImage(
                                         fit: BoxFit.cover,
                                         imageUrl:
@@ -100,7 +94,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                           icon: SvgPicture.asset(
                                             Assets.icons.arrowBack,
                                             colorFilter: const ColorFilter.mode(
-                                              AppColors.darkColor,
+                                              Colors.white,
                                               BlendMode.srcIn,
                                             ),
                                           ),
@@ -134,6 +128,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                       height: imageHeight - 22,
                                       child: Chewie(
                                         controller: ChewieController(
+                                          aspectRatio: 16 / 9,
                                           fullScreenByDefault:
                                               state.isFullScreen,
                                           videoPlayerController:
@@ -154,7 +149,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                            top: imageHeight,
+                            top: imageHeight + 22,
                           ),
                           child: Container(
                             decoration: BoxDecoration(
@@ -170,7 +165,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 ),
                               ),
                             ),
-                            height: height - imageHeight,
+                            height: height - imageHeight - 22,
                             width: double.infinity,
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -181,8 +176,9 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                 children: [
                                   CourseInfoWidget(
                                     courseTitle: course?.courseTitle ?? '',
-                                    courseDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                                        // course?.courseDescription ?? '',
+                                    courseDescription:
+                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                                    // course?.courseDescription ?? '',
                                     coursePrice: course?.coursePrice ?? 0.0,
                                     courseDuration:
                                         course?.totalCourseDurationInSeconds ??
@@ -190,18 +186,8 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                     courseVideoLength:
                                         course?.courseVideoItems.length ?? 0,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20.0,
-                                    // child: GestureDetector(
-                                    //   onTap: () =>
-                                    //       context.read<CourseDetailsBloc>().add(
-                                    //             const TestFinishedVideo(),
-                                    //           ),
-                                    //   child: Container(
-                                    //     color: Colors.amber,
-                                    //     child: const Text('press'),
-                                    //   ),
-                                    // ),
                                   ),
                                   Expanded(
                                     child: CourseVideosBuilder(

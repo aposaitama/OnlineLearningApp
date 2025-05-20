@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,8 +17,8 @@ import 'package:online_app/screens/course_screen/widgets/categories_builder.dart
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/course_filters_row.dart';
 import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
+import 'package:online_app/screens/course_screen/widgets/shimmer_concrete_course_item_tile.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
-import 'package:online_app/utils/extensions.dart';
 import '../../widgets/search_modal_sheet/search_modal_sheet.dart';
 import '../home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 
@@ -38,6 +39,7 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   void initState() {
     super.initState();
+    // Future.delayed(Duration(seconds: 3), _loadInitialData);
     _loadInitialData();
     _scrollController.addListener(_onScroll);
   }
@@ -60,11 +62,9 @@ class _CourseScreenState extends State<CourseScreen> {
   }
 
   void _loadInitialData() {
-    _courseScreenBloc.add(
-      const LoadCourseBasicInfoEvent(
-        refresh: true,
-      ),
-    );
+    Timeline.startSync('Load Initial Data');
+    _courseScreenBloc.add(const LoadCourseBasicInfoEvent(refresh: true));
+    Timeline.finishSync();
   }
 
   void _showFilterBottomSheet() {
@@ -93,12 +93,6 @@ class _CourseScreenState extends State<CourseScreen> {
   }
 
   void _selectCategory(CategoriesModel category) async {
-    // context.read<CourseScreenBloc>().add(
-    //       SelectCategoryOnCoursesEvent(
-    //         categoryId: categoryId,
-    //       ),
-    //     );
-
     context.read<FiltersBloc>().add(
           SelectCategoriesEvent(
             category: category,
@@ -118,7 +112,6 @@ class _CourseScreenState extends State<CourseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return BlocBuilder<CourseScreenBloc, CourseScreenState>(
       builder: (context, state) {
         return Scaffold(
@@ -151,6 +144,7 @@ class _CourseScreenState extends State<CourseScreen> {
                               fit: BoxFit.cover,
                               width: 50.0,
                               height: 50.0,
+                              fadeInDuration: Duration.zero,
                               errorWidget: (context, url, error) {
                                 return const Icon(Icons.error);
                               },
@@ -227,29 +221,40 @@ class _CourseScreenState extends State<CourseScreen> {
                   height: 24.0,
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                    ),
-                    itemCount: state.courseList.length,
-                    controller: _scrollController,
-                    itemBuilder: (context, index) {
-                      final concreteCourse = state.courseList[index];
-                      return GestureDetector(
-                        onTap: () => context.push(
-                          '/course_details/${concreteCourse.documentId}',
+                  child: state.courseList.isNotEmpty
+                      ? ListView.builder(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0,
+                          ),
+                          itemCount: state.courseList.length,
+                          controller: _scrollController,
+                          itemBuilder: (context, index) {
+                            final concreteCourse = state.courseList[index];
+                            return GestureDetector(
+                              onTap: () => context.push(
+                                '/course_details/${concreteCourse.documentId}',
+                              ),
+                              child: ConcreteCourseItemTile(
+                                imageUrl: concreteCourse.courseImage.url,
+                                concreteCourseTitle: concreteCourse.courseTitle,
+                                concreteCourseAuthor:
+                                    concreteCourse.courseAuthor,
+                                concreteCoursePrice: concreteCourse.coursePrice,
+                                concreteCourseDuration:
+                                    concreteCourse.totalCourseDurationInSeconds,
+                              ),
+                            );
+                          },
+                        )
+                      : ListView.builder(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0,
+                          ),
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            return const ShimmerConcreteCourseItemTile();
+                          },
                         ),
-                        child: ConcreteCourseItemTile(
-                          imageUrl: concreteCourse.courseImage.url,
-                          concreteCourseTitle: concreteCourse.courseTitle,
-                          concreteCourseAuthor: concreteCourse.courseAuthor,
-                          concreteCoursePrice: concreteCourse.coursePrice,
-                          concreteCourseDuration:
-                              concreteCourse.totalCourseDurationInSeconds,
-                        ),
-                      );
-                    },
-                  ),
                 )
               ],
             ),

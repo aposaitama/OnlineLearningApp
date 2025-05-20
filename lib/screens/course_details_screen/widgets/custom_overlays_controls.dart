@@ -29,37 +29,46 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
   void initState() {
     super.initState();
     _startHideTimer();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final controller = ChewieController.of(context);
-      final videoController = controller.videoPlayerController;
-      controller.videoPlayerController.addListener(
-        () {
-          if (mounted && _showControls) {
-            setState(() {});
-          }
-          final isEnded = videoController.value.position >=
-                  videoController.value.duration &&
-              !videoController.value.isPlaying;
-          if (isEnded) {
-            context.read<CourseDetailsBloc>().add(
-                  const FinishedVideoEvent(),
-                );
-            context.read<HomeScreenBloc>().add(
-                  const LoadUserHomeScreenBlocEvent(),
-                );
-          }
-        },
-      );
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        final controller = ChewieController.of(context);
+        final videoController = controller.videoPlayerController;
+        controller.videoPlayerController.addListener(
+          () {
+            if (mounted && _showControls) {
+              setState(() {});
+            }
+            final isEnded = videoController.value.position >=
+                    videoController.value.duration &&
+                !videoController.value.isPlaying;
+            if (isEnded) {
+              context.read<CourseDetailsBloc>().add(
+                    const FinishedVideoEvent(),
+                  );
+              context.read<HomeScreenBloc>().add(
+                    const LoadUserHomeScreenBlocEvent(),
+                  );
+            }
+          },
+        );
+      },
+    );
   }
 
   void _startHideTimer() {
     _hideTimer?.cancel();
-    _hideTimer = Timer(const Duration(seconds: 3), () {
-      setState(() {
-        _showControls = false;
-      });
-    });
+    _hideTimer = Timer(
+      const Duration(
+        seconds: 3,
+      ),
+      () {
+        setState(
+          () {
+            _showControls = false;
+          },
+        );
+      },
+    );
   }
 
   void _onUserInteraction() {
