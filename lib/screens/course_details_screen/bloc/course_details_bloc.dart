@@ -230,7 +230,33 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
   ) async {
     if (state.courseVideo != null) {
       await state.courseVideo!.pause();
-      await state.courseVideo!.dispose();
+      // await state.courseVideo!.dispose();
+      add(const CloseTimerEvent());
+      final response = await courseRepo.completeVideo(state.videoPlayingId);
+      if (response == true) {
+        emit(
+          state.copyWith(
+            videoWatchingStatus: CourseVideoStatus.finished,
+          ),
+        );
+        emit(
+          state.copyWith(
+            videoPlayingId: '',
+            videoLoadingStatus: CourseLoadingVideoStatus.initial,
+            videoWatchingStatus: CourseVideoStatus.initial,
+            courseVideo: null,
+          ),
+        );
+        return;
+      }
+      emit(
+        state.copyWith(
+          videoPlayingId: '',
+          videoLoadingStatus: CourseLoadingVideoStatus.initial,
+          courseVideo: null,
+        ),
+      );
+      return;
     }
     final controller = VideoPlayerController.networkUrl(
       Uri.parse(

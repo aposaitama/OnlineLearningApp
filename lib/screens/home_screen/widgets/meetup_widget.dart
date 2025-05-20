@@ -31,7 +31,9 @@ class MeetupWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _launchUrl('https://meet.google.com/landing'),
+      onTap: () => _launchUrl(
+        'https://maps.app.goo.gl/9zojGFyY6RpVS8N7A',
+      ),
       child: Container(
         height: 120.0,
         decoration: BoxDecoration(

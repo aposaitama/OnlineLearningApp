@@ -10,6 +10,7 @@ import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_bloc.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_event.dart';
 import 'package:online_app/screens/account_screen/widgets/account_list_item.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'account_bloc/account_state.dart';
 
@@ -26,6 +27,10 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     super.initState();
+    // Future.delayed(
+    //   Duration(seconds: 3),
+    //   _getUserData,
+    // );
     _getUserData();
   }
 
@@ -52,7 +57,9 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   void _logout() {
-    context.read<AccountBloc>().add(const LogoutUserEvent());
+    _accountBloc.add(
+      const LogoutUserEvent(),
+    );
     context.go('/login');
   }
 
@@ -73,88 +80,92 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ),
       ),
-      body: BlocConsumer<AccountBloc, AccountState>(
-        listener: (context, state) {
-          if (state.userData != null) {
-            // _getUserData()ж
-          }
-        },
-        builder: (context, state) {
-          if (state.userData == null) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            return Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Column(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: state.userData!.avatar == null ||
-                            state.userData!.avatar!.isEmpty
-                        ? SvgPicture.asset(
-                            Assets.icons.avatar,
-                            fit: BoxFit.contain,
-                          )
-                        : ClipOval(
-                            child: CachedNetworkImage(
-                              imageUrl: state.userData!.avatar!,
-                              fit: BoxFit.cover,
-                              width: 89.0,
-                              height: 89.0,
-                            ),
-                          ),
-                  ),
-                  AccountListItem(
-                    title: 'Favourite',
-                    onTap: _favourites,
-                  ),
-                  AccountListItem(
-                    title: 'Edit Account',
-                    onTap: _editUserData,
-                  ),
-                  AccountListItem(
-                    title: 'Settings and Privacy',
-                    onTap: _settingsPrivacy,
-                  ),
-                  AccountListItem(
-                    title: 'Help',
-                    onTap: _help,
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(right: 10),
-                    title: Text(
-                      'Notifications',
-                      style: AppFonts.poppinsMedium.copyWith(
-                        color: Theme.of(context)
-                            .extension<AppColorsModel>()
-                            ?.mainTextColor,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20.0),
+        child: Column(
+          children: [
+            BlocBuilder<AccountBloc, AccountState>(
+              builder: (context, state) {
+                if (state.userData == null) {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey,
+                    highlightColor: Colors.white,
+                    child: Container(
+                      width: 89.0,
+                      height: 89.0,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
                       ),
                     ),
-                    trailing: Switch(
-                      activeTrackColor: AppColors.deepBlueColor,
-                      inactiveTrackColor: AppColors.lightGreyColor,
-                      activeColor: AppColors.darkBlue,
-                      inactiveThumbColor: AppColors.grayProgressColor,
-                      value: (false),
-                      onChanged: (isOn) {},
-                    ),
+                  );
+                }
+                return Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
                   ),
-                  const Spacer(),
-                  AccountListItem(
-                    title: 'Logout',
-                    onTap: _logout,
-                  ),
-                ],
+                  child: state.userData!.avatar == null ||
+                          state.userData!.avatar!.isEmpty
+                      ? SvgPicture.asset(
+                          Assets.icons.avatar,
+                          fit: BoxFit.contain,
+                        )
+                      : ClipOval(
+                          child: CachedNetworkImage(
+                            imageUrl: state.userData!.avatar!,
+                            fit: BoxFit.cover,
+                            width: 89.0,
+                            height: 89.0,
+                          ),
+                        ),
+                );
+              },
+            ),
+            AccountListItem(
+              title: 'Favourite',
+              onTap: _favourites,
+            ),
+            AccountListItem(
+              title: 'Edit Account',
+              onTap: _editUserData,
+            ),
+            AccountListItem(
+              title: 'Settings and Privacy',
+              onTap: _settingsPrivacy,
+            ),
+            AccountListItem(
+              title: 'Help',
+              onTap: _help,
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.only(right: 10),
+              title: Text(
+                'Notifications',
+                style: AppFonts.poppinsMedium.copyWith(
+                  color: Theme.of(context)
+                      .extension<AppColorsModel>()
+                      ?.mainTextColor,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            );
-          }
-        },
+              trailing: Switch(
+                activeTrackColor: AppColors.deepBlueColor,
+                inactiveTrackColor: AppColors.lightGreyColor,
+                activeColor: AppColors.darkBlue,
+                inactiveThumbColor: AppColors.grayProgressColor,
+                value: (false),
+                onChanged: (isOn) {},
+              ),
+            ),
+            const Spacer(),
+            AccountListItem(
+              arrowIcon: false,
+              title: 'Logout',
+              onTap: _logout,
+            ),
+          ],
+        ),
       ),
     );
   }

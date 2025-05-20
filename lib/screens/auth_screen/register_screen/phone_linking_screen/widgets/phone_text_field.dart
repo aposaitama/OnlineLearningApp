@@ -32,6 +32,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         ),
       ),
       child: TextFormField(
+        readOnly: true,
         style: AppFonts.poppinsBold.copyWith(
           fontSize: 18,
         ),

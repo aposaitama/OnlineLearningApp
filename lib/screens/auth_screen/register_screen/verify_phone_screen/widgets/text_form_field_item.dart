@@ -15,6 +15,7 @@ class TextFormFieldItem extends StatelessWidget {
       width: 50.0,
       height: 58.0,
       child: TextFormField(
+        readOnly: true,
         controller: controller,
         showCursor: false,
         decoration: InputDecoration(
