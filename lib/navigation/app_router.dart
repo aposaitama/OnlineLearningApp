@@ -17,7 +17,7 @@ class AppRouter {
         refreshListenable: connectivityService,
         redirect: (context, state) {
           final hasInternet = connectivityService.hasInternet;
-          print(hasInternet);
+
           final goingToNoInternet = state.uri.toString() == '/no_internet';
 
           if (!hasInternet && !goingToNoInternet) {
