@@ -7,7 +7,6 @@ import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_event.dart';
 import 'package:online_app/screens/payment_screen/bloc/payment_bloc/payment_bloc_state.dart';
 import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
-import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:online_app/services/strapi_api_service/strapi_api_service.dart';
 
 class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
@@ -107,19 +106,28 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
       paymentPassword: event.paymentPassword,
     );
 
-    emit(
-      state.copyWith(
-        checkPassword: checkPassword,
-      ),
-    );
-
-
+    if (checkPassword == true) {
+      emit(
+        state.copyWith(
+          checkPasswordStatus: CheckPaymentPasswordStatus.successful,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          checkPasswordStatus: CheckPaymentPasswordStatus.error,
+        ),
+      );
+    }
   }
 
-  void _onResetCheckPassword(ResetCheckPasswordEvent event, Emitter<PaymentBlocState> emit,){
+  void _onResetCheckPassword(
+    ResetCheckPasswordEvent event,
+    Emitter<PaymentBlocState> emit,
+  ) {
     emit(
       state.copyWith(
-        checkPassword: false,
+        checkPasswordStatus: CheckPaymentPasswordStatus.initial,
       ),
     );
   }

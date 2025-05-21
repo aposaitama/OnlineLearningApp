@@ -20,7 +20,8 @@ mixin _$PaymentBlocState {
   CreditCardAddingStatus get addingCardStatus =>
       throw _privateConstructorUsedError;
   PaymentStatus get paymentStatus => throw _privateConstructorUsedError;
-  bool get checkPassword => throw _privateConstructorUsedError;
+  CheckPaymentPasswordStatus get checkPasswordStatus =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of PaymentBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +40,7 @@ abstract class $PaymentBlocStateCopyWith<$Res> {
       {PaymentLoadingStatus loadingStatus,
       CreditCardAddingStatus addingCardStatus,
       PaymentStatus paymentStatus,
-      bool checkPassword});
+      CheckPaymentPasswordStatus checkPasswordStatus});
 }
 
 /// @nodoc
@@ -60,7 +61,7 @@ class _$PaymentBlocStateCopyWithImpl<$Res, $Val extends PaymentBlocState>
     Object? loadingStatus = null,
     Object? addingCardStatus = null,
     Object? paymentStatus = null,
-    Object? checkPassword = null,
+    Object? checkPasswordStatus = null,
   }) {
     return _then(_value.copyWith(
       loadingStatus: null == loadingStatus
@@ -75,10 +76,10 @@ class _$PaymentBlocStateCopyWithImpl<$Res, $Val extends PaymentBlocState>
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
               as PaymentStatus,
-      checkPassword: null == checkPassword
-          ? _value.checkPassword
-          : checkPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
+      checkPasswordStatus: null == checkPasswordStatus
+          ? _value.checkPasswordStatus
+          : checkPasswordStatus // ignore: cast_nullable_to_non_nullable
+              as CheckPaymentPasswordStatus,
     ) as $Val);
   }
 }
@@ -95,7 +96,7 @@ abstract class _$$PaymentBlocStateImplCopyWith<$Res>
       {PaymentLoadingStatus loadingStatus,
       CreditCardAddingStatus addingCardStatus,
       PaymentStatus paymentStatus,
-      bool checkPassword});
+      CheckPaymentPasswordStatus checkPasswordStatus});
 }
 
 /// @nodoc
@@ -114,7 +115,7 @@ class __$$PaymentBlocStateImplCopyWithImpl<$Res>
     Object? loadingStatus = null,
     Object? addingCardStatus = null,
     Object? paymentStatus = null,
-    Object? checkPassword = null,
+    Object? checkPasswordStatus = null,
   }) {
     return _then(_$PaymentBlocStateImpl(
       loadingStatus: null == loadingStatus
@@ -129,10 +130,10 @@ class __$$PaymentBlocStateImplCopyWithImpl<$Res>
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
               as PaymentStatus,
-      checkPassword: null == checkPassword
-          ? _value.checkPassword
-          : checkPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
+      checkPasswordStatus: null == checkPasswordStatus
+          ? _value.checkPasswordStatus
+          : checkPasswordStatus // ignore: cast_nullable_to_non_nullable
+              as CheckPaymentPasswordStatus,
     ));
   }
 }
@@ -144,7 +145,7 @@ class _$PaymentBlocStateImpl implements _PaymentBlocState {
       {this.loadingStatus = PaymentLoadingStatus.initial,
       this.addingCardStatus = CreditCardAddingStatus.initial,
       this.paymentStatus = PaymentStatus.initial,
-      this.checkPassword = false});
+      this.checkPasswordStatus = CheckPaymentPasswordStatus.initial});
 
   @override
   @JsonKey()
@@ -157,11 +158,11 @@ class _$PaymentBlocStateImpl implements _PaymentBlocState {
   final PaymentStatus paymentStatus;
   @override
   @JsonKey()
-  final bool checkPassword;
+  final CheckPaymentPasswordStatus checkPasswordStatus;
 
   @override
   String toString() {
-    return 'PaymentBlocState(loadingStatus: $loadingStatus, addingCardStatus: $addingCardStatus, paymentStatus: $paymentStatus, checkPassword: $checkPassword)';
+    return 'PaymentBlocState(loadingStatus: $loadingStatus, addingCardStatus: $addingCardStatus, paymentStatus: $paymentStatus, checkPasswordStatus: $checkPasswordStatus)';
   }
 
   @override
@@ -175,13 +176,13 @@ class _$PaymentBlocStateImpl implements _PaymentBlocState {
                 other.addingCardStatus == addingCardStatus) &&
             (identical(other.paymentStatus, paymentStatus) ||
                 other.paymentStatus == paymentStatus) &&
-            (identical(other.checkPassword, checkPassword) ||
-                other.checkPassword == checkPassword));
+            (identical(other.checkPasswordStatus, checkPasswordStatus) ||
+                other.checkPasswordStatus == checkPasswordStatus));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, loadingStatus, addingCardStatus,
-      paymentStatus, checkPassword);
+      paymentStatus, checkPasswordStatus);
 
   /// Create a copy of PaymentBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -195,10 +196,11 @@ class _$PaymentBlocStateImpl implements _PaymentBlocState {
 
 abstract class _PaymentBlocState implements PaymentBlocState {
   const factory _PaymentBlocState(
-      {final PaymentLoadingStatus loadingStatus,
-      final CreditCardAddingStatus addingCardStatus,
-      final PaymentStatus paymentStatus,
-      final bool checkPassword}) = _$PaymentBlocStateImpl;
+          {final PaymentLoadingStatus loadingStatus,
+          final CreditCardAddingStatus addingCardStatus,
+          final PaymentStatus paymentStatus,
+          final CheckPaymentPasswordStatus checkPasswordStatus}) =
+      _$PaymentBlocStateImpl;
 
   @override
   PaymentLoadingStatus get loadingStatus;
@@ -207,7 +209,7 @@ abstract class _PaymentBlocState implements PaymentBlocState {
   @override
   PaymentStatus get paymentStatus;
   @override
-  bool get checkPassword;
+  CheckPaymentPasswordStatus get checkPasswordStatus;
 
   /// Create a copy of PaymentBlocState
   /// with the given fields replaced by the non-null parameter values.
