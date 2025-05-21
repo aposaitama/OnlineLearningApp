@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _homeScreenBloc.add(const GetCourseIdsEvent());
     _periodicCoursesCheck();
-    _userStreakNotification();
+    // _notificationService.checkPendingNotificationRequests();
   }
 
   Future<void> _userStreakNotification() async {
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _periodicCoursesCheck() {
     _checkCoursesIds = Timer.periodic(
       const Duration(minutes: 3),
-          (timer) {
+      (timer) {
         _homeScreenBloc.add(
           const CheckCourseIdsEvent(),
         );
@@ -86,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         if (state.loadingStatus == HomeScreenStatus.loaded) {
+          _userStreakNotification();
           return Scaffold(
             appBar: AppBar(
               toolbarHeight: 85.0,

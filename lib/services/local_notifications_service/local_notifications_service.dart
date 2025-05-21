@@ -86,19 +86,23 @@ class LocalNotificationsService {
     );
   }
 
+  // Future<void> checkPendingNotificationRequests() async {
+  //   // await _notificationsPlugin.cancelAll();
+  //   final List<PendingNotificationRequest> pendingNotificationRequests =
+  //       await _notificationsPlugin.pendingNotificationRequests();
+  //   print(pendingNotificationRequests.length);
+  // }
+
   Future<void> scheduleDailyNotificationIfStreakZero(
       {required int streak}) async {
-    if (streak != 0) return;
-
-    final id = DateTime.now().millisecondsSinceEpoch.remainder(10000);
+    const id = 2;
     await _notificationsPlugin.zonedSchedule(
       id,
       'Reminding!!!',
       'Come back, you have uncompleted courses!',
-      _nextInstanceOfSixPM(),
+      _nextInstanceOfSheduledNotif(),
       _notificationDetails(),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.time,
     );
 
     final localNotificationRepo = locator<LocalNotificationRepository>();
@@ -109,10 +113,11 @@ class LocalNotificationsService {
     );
   }
 
-  tz.TZDateTime _nextInstanceOfSixPM() {
+  tz.TZDateTime _nextInstanceOfSheduledNotif() {
     final now = tz.TZDateTime.now(tz.local);
-    tz.TZDateTime scheduledDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, 18);
+
+    tz.TZDateTime scheduledDate = tz.TZDateTime(
+        tz.local, now.year, now.month, now.day, now.hour + 12, now.minute);
 
     if (scheduledDate.isBefore(now)) {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
