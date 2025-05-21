@@ -125,6 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         CustomFilledButton(
                           buttonTitle: 'Create account',
                           onTap: _register,
+                          buttonColor: !isAgree ? AppColors.darkHintTextColor : null,
                         ),
                         const SizedBox(height: 10.0),
                         Row(
