@@ -11,8 +11,9 @@ _$LocalNotificationModelImpl _$$LocalNotificationModelImplFromJson(
     _$LocalNotificationModelImpl(
       id: (json['id'] as num).toInt(),
       body: json['body'] as String,
-      date: DateTime.parse(json['date'] as String),
-      notificationType: json['notificationType'] as String,
+      date: const DateConverter().fromJson(json['date'] as String?),
+      notificationType:
+          $enumDecode(_$NotificationTypeEnumMap, json['notificationType']),
     );
 
 Map<String, dynamic> _$$LocalNotificationModelImplToJson(
@@ -20,6 +21,11 @@ Map<String, dynamic> _$$LocalNotificationModelImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'body': instance.body,
-      'date': instance.date.toIso8601String(),
-      'notificationType': instance.notificationType,
+      'date': const DateConverter().toJson(instance.date),
+      'notificationType': _$NotificationTypeEnumMap[instance.notificationType]!,
     };
+
+const _$NotificationTypeEnumMap = {
+  NotificationType.card: 'card',
+  NotificationType.info: 'info',
+};

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,11 +12,12 @@ import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/screens/home_screen/widgets/actions_builder.dart';
-import 'package:online_app/screens/home_screen/widgets/actions_item_tile.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/progress_widget_with_bg.dart';
-import 'package:online_app/widgets/clocking_in_widget.dart';
+
+import '../../di/service_locator.dart';
+import '../../services/local_notifications_service/local_notifications_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,10 +27,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeScreenBloc get _homeScreenBloc => context.read<HomeScreenBloc>();
+  Timer? _checkCoursesIds;
+  final _notificationService = locator<LocalNotificationsService>();
+
   @override
   void initState() {
     super.initState();
-    context.read<HomeScreenBloc>().add(const LoadUserHomeScreenBlocEvent());
+    _homeScreenBloc.add(const LoadUserHomeScreenBlocEvent());
+
+    _homeScreenBloc.add(const GetCourseIdsEvent());
+    _periodicCoursesCheck();
+    _userStreakNotification();
+  }
+
+  Future<void> _userStreakNotification() async {
+    if (_homeScreenBloc.state.userInfo != null) {
+      await _notificationService.scheduleDailyNotificationIfStreakZero(
+        streak: _homeScreenBloc.state.userInfo!.userLearningStreak,
+      );
+    }
+  }
+
+  void _periodicCoursesCheck() {
+    _checkCoursesIds = Timer.periodic(
+      const Duration(minutes: 3),
+          (timer) {
+        _homeScreenBloc.add(
+          const CheckCourseIdsEvent(),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _checkCoursesIds?.cancel();
   }
 
   @override

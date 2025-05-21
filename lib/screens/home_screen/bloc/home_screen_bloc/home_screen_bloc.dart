@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/local_notification_model/local_notification_model.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
@@ -102,7 +103,7 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
         id: id,
         title: 'Update!',
         body: 'New courses were introduced',
-        notificationType: 'info',
+        notificationType: NotificationType.info,
       );
 
       emit(
