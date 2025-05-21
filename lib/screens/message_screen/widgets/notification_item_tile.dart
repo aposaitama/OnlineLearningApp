@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/models/local_notification_model/local_notification_model.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
@@ -8,7 +9,7 @@ import 'package:online_app/resources/app_fonts.dart';
 class NotificationItemTile extends StatelessWidget {
   final String notificationDescription;
   final String date;
-  final String notificationType;
+  final NotificationType notificationType;
 
   const NotificationItemTile({
     super.key,
@@ -46,12 +47,12 @@ class NotificationItemTile extends StatelessWidget {
                   height: 48.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13.0),
-                    color: notificationType == 'card'
+                    color: notificationType == NotificationType.card
                         ? AppColors.pinkColor
                         : AppColors.lightBlueBackgroundColor,
                   ),
                   child: SvgPicture.asset(
-                    notificationType == 'card'
+                    notificationType == NotificationType.card
                         ? Assets.icons.cardNotification
                         : Assets.icons.infoNotification,
                     fit: BoxFit.scaleDown,

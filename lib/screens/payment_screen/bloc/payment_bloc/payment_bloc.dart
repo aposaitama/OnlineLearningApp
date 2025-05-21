@@ -56,7 +56,7 @@ class PaymentBloc extends Bloc<PaymentBlocEvent, PaymentBlocState> {
           title: 'Online Learning App',
           body:
               'You have successfully purchased a course "${course.courseTitle}"',
-          notificationType: 'card',
+          notificationType: NotificationType.card,
         );
       } else {
         emit(

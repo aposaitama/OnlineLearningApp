@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:online_app/models/local_notification_model/local_notification_model.dart';
-import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:online_app/utils/extensions.dart';
 
@@ -19,7 +18,7 @@ class LocalNotificationRepository {
 
   Future<void> createNotification({
     required String notificationBody,
-    required String notificationType,
+    required NotificationType notificationType,
   }) async {
     try {
       final int? userId = await _sharedPreferencesService.getUserId();
@@ -28,7 +27,7 @@ class LocalNotificationRepository {
         'data': {
           'body': notificationBody,
           'date': DateTime.now().toUtc().toIso8601String(),
-          'notificationType': notificationType,
+          'notificationType': notificationType.name,
           'users_permissions_user': userId,
         },
       };

@@ -1,5 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/models/local_notification_model/local_notification_model.dart';
 import 'package:online_app/repositories/local_notification_repository/local_notification_repository.dart';
 import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -68,7 +69,7 @@ class LocalNotificationsService {
     required int id,
     required String title,
     required String body,
-    required String notificationType,
+    required NotificationType notificationType,
   }) async {
     await _notificationsPlugin.show(
       id,
@@ -104,7 +105,7 @@ class LocalNotificationsService {
 
     localNotificationRepo.createNotification(
       notificationBody: 'Come back, you have uncompleted courses!',
-      notificationType: 'info',
+      notificationType: NotificationType.info,
     );
   }
 
