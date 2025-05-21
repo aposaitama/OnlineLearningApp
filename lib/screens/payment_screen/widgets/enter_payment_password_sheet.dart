@@ -82,16 +82,18 @@ class _EnterPaymentPasswordSheetState extends State<EnterPaymentPasswordSheet> {
   Widget build(BuildContext context) {
     return BlocListener<PaymentBloc, PaymentBlocState>(
       listener: (context, state) {
-        if (state.checkPassword == true) {
+        if (state.checkPasswordStatus == CheckPaymentPasswordStatus.successful) {
           context.pop();
           widget.showCvvBottomSheet();
-
           context.read<PaymentBloc>().add(
-                ResetCheckPasswordEvent(),
+                const ResetCheckPasswordEvent(),
               );
-        } else {
+        } else if(state.checkPasswordStatus == CheckPaymentPasswordStatus.error) {
           BotToast.showText(text: 'Invalid password!');
         }
+        context.read<PaymentBloc>().add(
+              const ResetCheckPasswordEvent(),
+            );
       },
       child: Column(
         children: [
