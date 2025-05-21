@@ -17,6 +17,7 @@ class KeyField extends StatelessWidget {
         style: AppFonts.poppinsBold.copyWith(
           fontSize: 22.0,
           color: Theme.of(context).extension<AppColorsModel>()?.mainTextColor,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

@@ -33,6 +33,7 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
             phoneNumberController.text.length - 1,
           )
         : null;
+    setState(() {});
   }
 
   void _onKeyFieldPressed(String numItem) {
@@ -178,6 +179,9 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                   phoneNumberController.text,
                                 ),
                                 buttonTitle: 'Continue',
+                                buttonColor: phoneNumberController.text.isEmpty
+                                    ? AppColors.darkHintTextColor
+                                    : null,
                               ),
                             ),
                           ],
@@ -208,12 +212,13 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                               height: 64,
                                               child: Center(
                                                 child: KeyField(
-                                                  num: numItem,
-                                                  onKeyTap: () =>
+                                                    num: numItem,
+                                                    onKeyTap: () {
                                                       _onKeyFieldPressed(
-                                                    numItem,
-                                                  ),
-                                                ),
+                                                        numItem,
+                                                      );
+                                                      setState(() {});
+                                                    }),
                                               ),
                                             ),
                                           ),

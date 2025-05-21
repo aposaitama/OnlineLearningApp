@@ -5,7 +5,14 @@ import 'package:online_app/resources/app_fonts.dart';
 class CustomFilledButton extends StatelessWidget {
   final String buttonTitle;
   final void Function()? onTap;
-  const CustomFilledButton({super.key, required this.buttonTitle, this.onTap});
+  final Color? buttonColor;
+
+  const CustomFilledButton({
+    super.key,
+    required this.buttonTitle,
+    this.onTap,
+    this.buttonColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class CustomFilledButton extends StatelessWidget {
         height: 50.0,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppColors.deepBlueColor,
+          color: buttonColor ?? AppColors.deepBlueColor,
           borderRadius: BorderRadius.circular(
             13.0,
           ),

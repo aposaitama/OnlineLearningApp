@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_app/gen/assets.gen.dart';
+import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/resources/app_colors_model.dart';
 import 'package:online_app/resources/app_fonts.dart';
 import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc.dart';
@@ -170,6 +171,9 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               code.join(),
                             ),
                             buttonTitle: 'Create Password',
+                            buttonColor: code.join().isEmpty || code.join().length < 4
+                                ? AppColors.darkHintTextColor
+                                : null,
                           ),
                         ],
                       ),
@@ -205,9 +209,12 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                             child: Center(
                                               child: KeyField(
                                                 num: numItem,
-                                                onKeyTap: () => addDigit(
-                                                  numItem,
-                                                ),
+                                                onKeyTap: () {
+                                                  addDigit(
+                                                    numItem,
+                                                  );
+                                                  setState(() {});
+                                                },
                                               ),
                                             ),
                                           ),
