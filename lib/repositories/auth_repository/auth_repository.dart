@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final SharedPreferences prefs = locator<SharedPreferences>();
   final Dio _dio = locator<Dio>();
+  final _sharedPreferencesService = locator<SharedPreferencesService>();
 
   Future<void> saveToken(String token) async {
     await prefs.setString('jwt_token', token);
@@ -20,16 +22,6 @@ class AuthRepository {
     return prefs.getString('jwt_token');
   }
 
-  Future<void> saveUserId(int userId) async {
-    await prefs.setInt(
-      'user_id',
-      userId,
-    );
-  }
-
-  Future<int?> getUserId() async {
-    return prefs.getInt('user_id');
-  }
 
   Future<String> register(
     String userName,
@@ -48,7 +40,7 @@ class AuthRepository {
       final token = response.data['jwt'];
       final userId = response.data['user']['id'];
 
-      await saveUserId(userId);
+      await _sharedPreferencesService.saveUserId(userId);
       await saveToken(token);
 
       return token;
@@ -70,7 +62,7 @@ class AuthRepository {
       final token = response.data['jwt'];
       final userId = response.data['user']['id'];
 
-      await saveUserId(userId);
+      await _sharedPreferencesService.saveUserId(userId);
       await saveToken(token);
       return token;
     } on DioException catch (e) {

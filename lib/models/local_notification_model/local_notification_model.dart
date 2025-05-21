@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:online_app/utils/converters/date_converter.dart';
 
 part 'local_notification_model.freezed.dart';
 part 'local_notification_model.g.dart';
@@ -8,7 +9,7 @@ class LocalNotificationModel with _$LocalNotificationModel {
   factory LocalNotificationModel({
     required int id,
     required String body,
-    required DateTime date,
+    @DateConverter() required DateTime date,
     required String notificationType,
 }) = _LocalNotificationModel;
 

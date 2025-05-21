@@ -14,34 +14,20 @@ class SharedPreferencesService {
   Future<SharedPreferences> _prefs() async =>
       await SharedPreferences.getInstance();
 
-  Future<void> saveLocalNotification({
-    required List<LocalNotificationModel> notifications,
-  }) async {
+
+  Future<void> saveUserId(int userId) async {
     final prefs = await _prefs();
 
-    final jsonString = jsonEncode(
-      notifications
-          .map(
-            (notification) => notification.toJson(),
-          )
-          .toList(),
+    await prefs.setInt(
+      'user_id',
+      userId,
     );
-
-    await prefs.setString('notifications_key', jsonString,);
   }
 
-  Future<List<LocalNotificationModel>> getLocalNotifications() async {
+  Future<int?> getUserId() async {
     final prefs = await _prefs();
-    final jsonString = prefs.getString('notifications_key');
 
-    if (jsonString == null) return [];
-
-    final List<dynamic> decoded = jsonDecode(jsonString);
-
-    final List<LocalNotificationModel> notifications = decoded
-        .map((json) => LocalNotificationModel.fromJson(json as Map<String, dynamic>))
-        .toList();
-
-    return notifications;
+    return prefs.getInt('user_id');
   }
+
 }

@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:online_app/di/service_locator.dart';
+import 'package:online_app/repositories/local_notification_repository/local_notification_repository.dart';
 import 'package:online_app/screens/message_screen/message_screen_bloc/message_screen_event.dart';
 import 'package:online_app/screens/message_screen/message_screen_bloc/message_screen_state.dart';
 import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 
 class MessageScreenBloc extends Bloc<MessageScreenEvent, MessageScreenState> {
-  final _sharedPreferencesService = locator<SharedPreferencesService>();
+  final _localNotificationRepo = locator<LocalNotificationRepository>();
 
   MessageScreenBloc() : super(MessageScreenState()) {
     on<GetNotificationsEvent>(_onGetNotifications);
@@ -23,7 +24,7 @@ class MessageScreenBloc extends Bloc<MessageScreenEvent, MessageScreenState> {
       );
 
       final notifications =
-          await _sharedPreferencesService.getLocalNotifications();
+          await _localNotificationRepo.getLocalNotifications();
 
       if (notifications.isEmpty) {
         emit(

@@ -11,7 +11,7 @@ _$LocalNotificationModelImpl _$$LocalNotificationModelImplFromJson(
     _$LocalNotificationModelImpl(
       id: (json['id'] as num).toInt(),
       body: json['body'] as String,
-      date: DateTime.parse(json['date'] as String),
+      date: const DateConverter().fromJson(json['date'] as String?),
       notificationType: json['notificationType'] as String,
     );
 
@@ -20,6 +20,6 @@ Map<String, dynamic> _$$LocalNotificationModelImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'body': instance.body,
-      'date': instance.date.toIso8601String(),
+      'date': const DateConverter().toJson(instance.date),
       'notificationType': instance.notificationType,
     };

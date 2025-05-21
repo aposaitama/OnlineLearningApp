@@ -10,10 +10,9 @@ class AppRouter {
   AppRouter(this.navigatorKey, this.connectivityService);
   GoRouter createRouter() => GoRouter(
         navigatorKey: navigatorKey,
-        // initialLocation: '/payment-screen/ql29i9oegaoitpfkjew3e5yt',
-        initialLocation: '/course_details/e22uduowfibilgmnn12kpzdg',
+        // initialLocation: '/course_details/e22uduowfibilgmnn12kpzdg',
 
-        // initialLocation: '/auth_gate',
+        initialLocation: '/auth_gate',
         refreshListenable: connectivityService,
         redirect: (context, state) {
           final hasInternet = connectivityService.hasInternet;

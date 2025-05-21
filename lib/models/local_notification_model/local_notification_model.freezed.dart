@@ -23,6 +23,7 @@ LocalNotificationModel _$LocalNotificationModelFromJson(
 mixin _$LocalNotificationModel {
   int get id => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
+  @DateConverter()
   DateTime get date => throw _privateConstructorUsedError;
   String get notificationType => throw _privateConstructorUsedError;
 
@@ -42,7 +43,11 @@ abstract class $LocalNotificationModelCopyWith<$Res> {
           $Res Function(LocalNotificationModel) then) =
       _$LocalNotificationModelCopyWithImpl<$Res, LocalNotificationModel>;
   @useResult
-  $Res call({int id, String body, DateTime date, String notificationType});
+  $Res call(
+      {int id,
+      String body,
+      @DateConverter() DateTime date,
+      String notificationType});
 }
 
 /// @nodoc
@@ -96,7 +101,11 @@ abstract class _$$LocalNotificationModelImplCopyWith<$Res>
       __$$LocalNotificationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String body, DateTime date, String notificationType});
+  $Res call(
+      {int id,
+      String body,
+      @DateConverter() DateTime date,
+      String notificationType});
 }
 
 /// @nodoc
@@ -146,7 +155,7 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
   _$LocalNotificationModelImpl(
       {required this.id,
       required this.body,
-      required this.date,
+      @DateConverter() required this.date,
       required this.notificationType});
 
   factory _$LocalNotificationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -157,6 +166,7 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
   @override
   final String body;
   @override
+  @DateConverter()
   final DateTime date;
   @override
   final String notificationType;
@@ -204,7 +214,7 @@ abstract class _LocalNotificationModel implements LocalNotificationModel {
   factory _LocalNotificationModel(
       {required final int id,
       required final String body,
-      required final DateTime date,
+      @DateConverter() required final DateTime date,
       required final String notificationType}) = _$LocalNotificationModelImpl;
 
   factory _LocalNotificationModel.fromJson(Map<String, dynamic> json) =
@@ -215,6 +225,7 @@ abstract class _LocalNotificationModel implements LocalNotificationModel {
   @override
   String get body;
   @override
+  @DateConverter()
   DateTime get date;
   @override
   String get notificationType;

@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
-import 'package:online_app/repositories/auth_repository/auth_repository.dart';
+import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 
 class UserRepository {
   final Dio _dio = locator<Dio>();
-  final authRepo = locator<AuthRepository>();
+  final _sharedPreferencesService  = locator<SharedPreferencesService>();
 
   Future<UserModel?> getUserData() async {
-    final userId = await authRepo.getUserId();
+    final userId = await _sharedPreferencesService.getUserId();
 
     try {
       final response = await _dio.get(
@@ -175,7 +175,7 @@ class UserRepository {
     String? avatarPath,
   }) async {
     try {
-      final userId = await authRepo.getUserId();
+      final userId = await _sharedPreferencesService.getUserId();
       final url = '/users/$userId';
 
       var formData = FormData();
