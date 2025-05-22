@@ -24,6 +24,8 @@ mixin _$AccountEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +36,8 @@ mixin _$AccountEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +48,8 @@ mixin _$AccountEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +61,10 @@ mixin _$AccountEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +75,9 @@ mixin _$AccountEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +88,9 @@ mixin _$AccountEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,6 +164,8 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) {
     return getUserData();
   }
@@ -161,6 +179,8 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) {
     return getUserData?.call();
   }
@@ -174,6 +194,8 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -191,6 +213,10 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) {
     return getUserData(this);
   }
@@ -204,6 +230,9 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) {
     return getUserData?.call(this);
   }
@@ -217,6 +246,9 @@ class _$GetUserDataEventImpl implements GetUserDataEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -277,6 +309,8 @@ class _$LogoutUserEventImpl implements LogoutUserEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) {
     return logoutUser();
   }
@@ -290,6 +324,8 @@ class _$LogoutUserEventImpl implements LogoutUserEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) {
     return logoutUser?.call();
   }
@@ -303,6 +339,8 @@ class _$LogoutUserEventImpl implements LogoutUserEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (logoutUser != null) {
@@ -320,6 +358,10 @@ class _$LogoutUserEventImpl implements LogoutUserEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) {
     return logoutUser(this);
   }
@@ -333,6 +375,9 @@ class _$LogoutUserEventImpl implements LogoutUserEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) {
     return logoutUser?.call(this);
   }
@@ -346,6 +391,9 @@ class _$LogoutUserEventImpl implements LogoutUserEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (logoutUser != null) {
@@ -406,6 +454,8 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) {
     return pickNewImage();
   }
@@ -419,6 +469,8 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) {
     return pickNewImage?.call();
   }
@@ -432,6 +484,8 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (pickNewImage != null) {
@@ -449,6 +503,10 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) {
     return pickNewImage(this);
   }
@@ -462,6 +520,9 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) {
     return pickNewImage?.call(this);
   }
@@ -475,6 +536,9 @@ class _$PickNewAvatarEventImpl implements PickNewAvatarEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (pickNewImage != null) {
@@ -535,6 +599,8 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) {
     return editUserData();
   }
@@ -548,6 +614,8 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) {
     return editUserData?.call();
   }
@@ -561,6 +629,8 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (editUserData != null) {
@@ -578,6 +648,10 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) {
     return editUserData(this);
   }
@@ -591,6 +665,9 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) {
     return editUserData?.call(this);
   }
@@ -604,6 +681,9 @@ class _$EditUserDataEventImpl implements EditUserDataEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (editUserData != null) {
@@ -694,6 +774,8 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) {
     return enterNewUsername(newUsername);
   }
@@ -707,6 +789,8 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) {
     return enterNewUsername?.call(newUsername);
   }
@@ -720,6 +804,8 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (enterNewUsername != null) {
@@ -737,6 +823,10 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) {
     return enterNewUsername(this);
   }
@@ -750,6 +840,9 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) {
     return enterNewUsername?.call(this);
   }
@@ -763,6 +856,9 @@ class _$EnterNewUsernameEventImpl implements EnterNewUsernameEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (enterNewUsername != null) {
@@ -835,6 +931,8 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
     required TResult Function() editUserData,
     required TResult Function(String? newUsername) enterNewUsername,
     required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
   }) {
     return clearState();
   }
@@ -848,6 +946,8 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
     TResult? Function()? editUserData,
     TResult? Function(String? newUsername)? enterNewUsername,
     TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
   }) {
     return clearState?.call();
   }
@@ -861,6 +961,8 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
     TResult Function()? editUserData,
     TResult Function(String? newUsername)? enterNewUsername,
     TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (clearState != null) {
@@ -878,6 +980,10 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
     required TResult Function(EditUserDataEvent value) editUserData,
     required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
     required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
   }) {
     return clearState(this);
   }
@@ -891,6 +997,9 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
     TResult? Function(EditUserDataEvent value)? editUserData,
     TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
   }) {
     return clearState?.call(this);
   }
@@ -904,6 +1013,9 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
     TResult Function(EditUserDataEvent value)? editUserData,
     TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
     TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
     required TResult orElse(),
   }) {
     if (clearState != null) {
@@ -915,4 +1027,303 @@ class _$ClearAccountStateEventImpl implements ClearAccountStateEvent {
 
 abstract class ClearAccountStateEvent implements AccountEvent {
   const factory ClearAccountStateEvent() = _$ClearAccountStateEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ToggleNotificationsEventImplCopyWith<$Res> {
+  factory _$$ToggleNotificationsEventImplCopyWith(
+          _$ToggleNotificationsEventImpl value,
+          $Res Function(_$ToggleNotificationsEventImpl) then) =
+      __$$ToggleNotificationsEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ToggleNotificationsEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$ToggleNotificationsEventImpl>
+    implements _$$ToggleNotificationsEventImplCopyWith<$Res> {
+  __$$ToggleNotificationsEventImplCopyWithImpl(
+      _$ToggleNotificationsEventImpl _value,
+      $Res Function(_$ToggleNotificationsEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ToggleNotificationsEventImpl implements ToggleNotificationsEvent {
+  const _$ToggleNotificationsEventImpl();
+
+  @override
+  String toString() {
+    return 'AccountEvent.toggleNotifications()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleNotificationsEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() logoutUser,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
+  }) {
+    return toggleNotifications();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
+  }) {
+    return toggleNotifications?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? logoutUser,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
+    required TResult orElse(),
+  }) {
+    if (toggleNotifications != null) {
+      return toggleNotifications();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
+  }) {
+    return toggleNotifications(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
+  }) {
+    return toggleNotifications?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
+    required TResult orElse(),
+  }) {
+    if (toggleNotifications != null) {
+      return toggleNotifications(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToggleNotificationsEvent implements AccountEvent {
+  const factory ToggleNotificationsEvent() = _$ToggleNotificationsEventImpl;
+}
+
+/// @nodoc
+abstract class _$$ToggleNotificationsSoundEventImplCopyWith<$Res> {
+  factory _$$ToggleNotificationsSoundEventImplCopyWith(
+          _$ToggleNotificationsSoundEventImpl value,
+          $Res Function(_$ToggleNotificationsSoundEventImpl) then) =
+      __$$ToggleNotificationsSoundEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ToggleNotificationsSoundEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res,
+        _$ToggleNotificationsSoundEventImpl>
+    implements _$$ToggleNotificationsSoundEventImplCopyWith<$Res> {
+  __$$ToggleNotificationsSoundEventImplCopyWithImpl(
+      _$ToggleNotificationsSoundEventImpl _value,
+      $Res Function(_$ToggleNotificationsSoundEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AccountEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ToggleNotificationsSoundEventImpl
+    implements ToggleNotificationsSoundEvent {
+  const _$ToggleNotificationsSoundEventImpl();
+
+  @override
+  String toString() {
+    return 'AccountEvent.toggleNotificationsSound()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleNotificationsSoundEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserData,
+    required TResult Function() logoutUser,
+    required TResult Function() pickNewImage,
+    required TResult Function() editUserData,
+    required TResult Function(String? newUsername) enterNewUsername,
+    required TResult Function() clearState,
+    required TResult Function() toggleNotifications,
+    required TResult Function() toggleNotificationsSound,
+  }) {
+    return toggleNotificationsSound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserData,
+    TResult? Function()? logoutUser,
+    TResult? Function()? pickNewImage,
+    TResult? Function()? editUserData,
+    TResult? Function(String? newUsername)? enterNewUsername,
+    TResult? Function()? clearState,
+    TResult? Function()? toggleNotifications,
+    TResult? Function()? toggleNotificationsSound,
+  }) {
+    return toggleNotificationsSound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserData,
+    TResult Function()? logoutUser,
+    TResult Function()? pickNewImage,
+    TResult Function()? editUserData,
+    TResult Function(String? newUsername)? enterNewUsername,
+    TResult Function()? clearState,
+    TResult Function()? toggleNotifications,
+    TResult Function()? toggleNotificationsSound,
+    required TResult orElse(),
+  }) {
+    if (toggleNotificationsSound != null) {
+      return toggleNotificationsSound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserDataEvent value) getUserData,
+    required TResult Function(LogoutUserEvent value) logoutUser,
+    required TResult Function(PickNewAvatarEvent value) pickNewImage,
+    required TResult Function(EditUserDataEvent value) editUserData,
+    required TResult Function(EnterNewUsernameEvent value) enterNewUsername,
+    required TResult Function(ClearAccountStateEvent value) clearState,
+    required TResult Function(ToggleNotificationsEvent value)
+        toggleNotifications,
+    required TResult Function(ToggleNotificationsSoundEvent value)
+        toggleNotificationsSound,
+  }) {
+    return toggleNotificationsSound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetUserDataEvent value)? getUserData,
+    TResult? Function(LogoutUserEvent value)? logoutUser,
+    TResult? Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult? Function(EditUserDataEvent value)? editUserData,
+    TResult? Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult? Function(ClearAccountStateEvent value)? clearState,
+    TResult? Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult? Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
+  }) {
+    return toggleNotificationsSound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserDataEvent value)? getUserData,
+    TResult Function(LogoutUserEvent value)? logoutUser,
+    TResult Function(PickNewAvatarEvent value)? pickNewImage,
+    TResult Function(EditUserDataEvent value)? editUserData,
+    TResult Function(EnterNewUsernameEvent value)? enterNewUsername,
+    TResult Function(ClearAccountStateEvent value)? clearState,
+    TResult Function(ToggleNotificationsEvent value)? toggleNotifications,
+    TResult Function(ToggleNotificationsSoundEvent value)?
+        toggleNotificationsSound,
+    required TResult orElse(),
+  }) {
+    if (toggleNotificationsSound != null) {
+      return toggleNotificationsSound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToggleNotificationsSoundEvent implements AccountEvent {
+  const factory ToggleNotificationsSoundEvent() =
+      _$ToggleNotificationsSoundEventImpl;
 }
