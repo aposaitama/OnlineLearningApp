@@ -7,12 +7,14 @@ import 'package:online_app/repositories/auth_repository/auth_repository.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_event.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_state.dart';
+import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final UserRepository userRepository;
   final authRepo = locator<AuthRepository>();
+  final _sharedPrefs = locator<SharedPreferencesService>();
 
   AccountBloc({
     required this.userRepository,
@@ -23,6 +25,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<EnterNewUsernameEvent>(_enterUsername);
     on<ClearAccountStateEvent>(_clearState);
     on<LogoutUserEvent>(_logoutUser);
+    on<ToggleNotificationsEvent>(_onToggleNotif);
+    on<ToggleNotificationsSoundEvent>(_onToggleNotifSound);
   }
 
   Future<void> _getUserData(
@@ -32,9 +36,17 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     try {
       final userData = await userRepository.getUserData();
 
+      final bool? enableNotifications =
+          await _sharedPrefs.getEnableNotificationsStatus();
+
+      final bool? enableNotificationsSound =
+          await _sharedPrefs.getSoundNotificationsStatus();
+
       emit(
         state.copyWith(
           userData: userData,
+          enableNotifications: enableNotifications!,
+          enableNotificationsSound: enableNotificationsSound!,
         ),
       );
     } catch (e) {
@@ -122,6 +134,42 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       state.copyWith(
         newUsername: null,
         newAvatarPath: null,
+      ),
+    );
+  }
+
+  Future<void> _onToggleNotif(
+    ToggleNotificationsEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    await _sharedPrefs.saveEnableNotificationsStatus(
+      enableNotifications: !state.enableNotifications,
+    );
+
+    final currentNotifStatus =
+        await _sharedPrefs.getEnableNotificationsStatus();
+
+    emit(
+      state.copyWith(
+        enableNotifications: currentNotifStatus!,
+      ),
+    );
+  }
+
+  Future<void> _onToggleNotifSound(
+    ToggleNotificationsSoundEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    await _sharedPrefs.saveSoundNotificationsStatus(
+      enableNotificationsSound: !state.enableNotificationsSound,
+    );
+
+    final currentNotifSoundStatus =
+        await _sharedPrefs.getSoundNotificationsStatus();
+
+    emit(
+      state.copyWith(
+        enableNotificationsSound: currentNotifSoundStatus!,
       ),
     );
   }

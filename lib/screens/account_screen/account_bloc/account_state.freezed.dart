@@ -19,6 +19,8 @@ mixin _$AccountState {
   UserModel? get userData => throw _privateConstructorUsedError;
   String? get newAvatarPath => throw _privateConstructorUsedError;
   String? get newUsername => throw _privateConstructorUsedError;
+  bool get enableNotifications => throw _privateConstructorUsedError;
+  bool get enableNotificationsSound => throw _privateConstructorUsedError;
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +35,12 @@ abstract class $AccountStateCopyWith<$Res> {
           AccountState value, $Res Function(AccountState) then) =
       _$AccountStateCopyWithImpl<$Res, AccountState>;
   @useResult
-  $Res call({UserModel? userData, String? newAvatarPath, String? newUsername});
+  $Res call(
+      {UserModel? userData,
+      String? newAvatarPath,
+      String? newUsername,
+      bool enableNotifications,
+      bool enableNotificationsSound});
 
   $UserModelCopyWith<$Res>? get userData;
 }
@@ -56,6 +63,8 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
     Object? userData = freezed,
     Object? newAvatarPath = freezed,
     Object? newUsername = freezed,
+    Object? enableNotifications = null,
+    Object? enableNotificationsSound = null,
   }) {
     return _then(_value.copyWith(
       userData: freezed == userData
@@ -70,6 +79,14 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
           ? _value.newUsername
           : newUsername // ignore: cast_nullable_to_non_nullable
               as String?,
+      enableNotifications: null == enableNotifications
+          ? _value.enableNotifications
+          : enableNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      enableNotificationsSound: null == enableNotificationsSound
+          ? _value.enableNotificationsSound
+          : enableNotificationsSound // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -96,7 +113,12 @@ abstract class _$$AccountStateImplCopyWith<$Res>
       __$$AccountStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserModel? userData, String? newAvatarPath, String? newUsername});
+  $Res call(
+      {UserModel? userData,
+      String? newAvatarPath,
+      String? newUsername,
+      bool enableNotifications,
+      bool enableNotificationsSound});
 
   @override
   $UserModelCopyWith<$Res>? get userData;
@@ -118,6 +140,8 @@ class __$$AccountStateImplCopyWithImpl<$Res>
     Object? userData = freezed,
     Object? newAvatarPath = freezed,
     Object? newUsername = freezed,
+    Object? enableNotifications = null,
+    Object? enableNotificationsSound = null,
   }) {
     return _then(_$AccountStateImpl(
       userData: freezed == userData
@@ -132,6 +156,14 @@ class __$$AccountStateImplCopyWithImpl<$Res>
           ? _value.newUsername
           : newUsername // ignore: cast_nullable_to_non_nullable
               as String?,
+      enableNotifications: null == enableNotifications
+          ? _value.enableNotifications
+          : enableNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      enableNotificationsSound: null == enableNotificationsSound
+          ? _value.enableNotificationsSound
+          : enableNotificationsSound // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -139,7 +171,12 @@ class __$$AccountStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountStateImpl implements _AccountState {
-  _$AccountStateImpl({this.userData, this.newAvatarPath, this.newUsername});
+  _$AccountStateImpl(
+      {this.userData,
+      this.newAvatarPath,
+      this.newUsername,
+      this.enableNotifications = true,
+      this.enableNotificationsSound = true});
 
   @override
   final UserModel? userData;
@@ -147,10 +184,16 @@ class _$AccountStateImpl implements _AccountState {
   final String? newAvatarPath;
   @override
   final String? newUsername;
+  @override
+  @JsonKey()
+  final bool enableNotifications;
+  @override
+  @JsonKey()
+  final bool enableNotificationsSound;
 
   @override
   String toString() {
-    return 'AccountState(userData: $userData, newAvatarPath: $newAvatarPath, newUsername: $newUsername)';
+    return 'AccountState(userData: $userData, newAvatarPath: $newAvatarPath, newUsername: $newUsername, enableNotifications: $enableNotifications, enableNotificationsSound: $enableNotificationsSound)';
   }
 
   @override
@@ -163,12 +206,17 @@ class _$AccountStateImpl implements _AccountState {
             (identical(other.newAvatarPath, newAvatarPath) ||
                 other.newAvatarPath == newAvatarPath) &&
             (identical(other.newUsername, newUsername) ||
-                other.newUsername == newUsername));
+                other.newUsername == newUsername) &&
+            (identical(other.enableNotifications, enableNotifications) ||
+                other.enableNotifications == enableNotifications) &&
+            (identical(
+                    other.enableNotificationsSound, enableNotificationsSound) ||
+                other.enableNotificationsSound == enableNotificationsSound));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, userData, newAvatarPath, newUsername);
+  int get hashCode => Object.hash(runtimeType, userData, newAvatarPath,
+      newUsername, enableNotifications, enableNotificationsSound);
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.
@@ -183,7 +231,9 @@ abstract class _AccountState implements AccountState {
   factory _AccountState(
       {final UserModel? userData,
       final String? newAvatarPath,
-      final String? newUsername}) = _$AccountStateImpl;
+      final String? newUsername,
+      final bool enableNotifications,
+      final bool enableNotificationsSound}) = _$AccountStateImpl;
 
   @override
   UserModel? get userData;
@@ -191,6 +241,10 @@ abstract class _AccountState implements AccountState {
   String? get newAvatarPath;
   @override
   String? get newUsername;
+  @override
+  bool get enableNotifications;
+  @override
+  bool get enableNotificationsSound;
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.

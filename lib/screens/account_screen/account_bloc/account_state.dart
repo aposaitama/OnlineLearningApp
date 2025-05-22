@@ -10,5 +10,7 @@ class AccountState with _$AccountState {
     UserModel? userData,
     String? newAvatarPath,
     String? newUsername,
+    @Default(true) bool enableNotifications,
+    @Default(true) bool enableNotificationsSound,
   }) = _AccountState;
 }
