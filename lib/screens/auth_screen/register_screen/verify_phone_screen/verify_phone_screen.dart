@@ -70,11 +70,21 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
     }
   }
 
-  void connectPaymentPassword(String paymentPassword) {
+  Future<void> connectPaymentPassword(String paymentPassword) async {
     if (paymentPassword.length == 4) {
-      context.read<AuthBloc>().add(
-            ConnectPaymentPassEvent(paymentPassword),
-          );
+      final authBloc = context.read<AuthBloc>();
+      authBloc.add(
+        EnterPaymentPasswordEvent(
+          paymentPassword: paymentPassword,
+        ),
+      );
+
+      await authBloc.stream
+          .firstWhere((state) => state.paymentPassword != null);
+
+      authBloc.add(
+        const RegisterUserBlocEvent(),
+      );
     } else {
       BotToast.showText(
         text: 'Check the accuracy of a payment password',
@@ -86,20 +96,25 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthBlocState>(
       listener: (context, state) {
-        if (state.paymentPasswordConnectingStatus ==
-            PaymentPasswordConnectingStatus.successfull) {
-          SuccessRegistration.show(
-            context,
-            () => context.go(
-              '/home',
-            ),
-          );
-        } else if (state.paymentPasswordConnectingStatus ==
-            PaymentPasswordConnectingStatus.failed) {
-          BotToast.showText(
-            text: 'Erorr while connecting payment password',
-          );
-        }
+        state.status == RegisterStatus.successfull
+            ? context.go('/home')
+            : state.status == RegisterStatus.failed
+            ? BotToast.showText(text: state.errorMessage)
+            : null;
+        // if (state.paymentPasswordConnectingStatus ==
+        //     PaymentPasswordConnectingStatus.successfull) {
+        //   SuccessRegistration.show(
+        //     context,
+        //     () => context.go(
+        //       '/home',
+        //     ),
+        //   );
+        // } else if (state.paymentPasswordConnectingStatus ==
+        //     PaymentPasswordConnectingStatus.failed) {
+        //   BotToast.showText(
+        //     text: 'Erorr while connecting payment password',
+        //   );
+        // }
       },
       child: Scaffold(
         appBar: AppBar(
@@ -171,9 +186,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               code.join(),
                             ),
                             buttonTitle: 'Create Password',
-                            buttonColor: code.join().isEmpty || code.join().length < 4
-                                ? AppColors.darkHintTextColor
-                                : null,
+                            buttonColor:
+                                code.join().isEmpty || code.join().length < 4
+                                    ? AppColors.darkHintTextColor
+                                    : null,
                           ),
                         ],
                       ),

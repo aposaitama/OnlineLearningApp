@@ -18,11 +18,18 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthBlocState {
   RegisterStatus get status => throw _privateConstructorUsedError;
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
+  EnterUsernameEmailPasswordStatus get enterUsernameEmailPasswordStatus =>
+      throw _privateConstructorUsedError;
   PhoneNumberConnectingStatus get phoneNumberConnectingStatus =>
       throw _privateConstructorUsedError;
   PaymentPasswordConnectingStatus get paymentPasswordConnectingStatus =>
       throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get paymentPassword => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -40,9 +47,15 @@ abstract class $AuthBlocStateCopyWith<$Res> {
   $Res call(
       {RegisterStatus status,
       LoginStatus loginStatus,
+      EnterUsernameEmailPasswordStatus enterUsernameEmailPasswordStatus,
       PhoneNumberConnectingStatus phoneNumberConnectingStatus,
       PaymentPasswordConnectingStatus paymentPasswordConnectingStatus,
-      String errorMessage});
+      String errorMessage,
+      String? username,
+      String? email,
+      String? password,
+      String? phoneNumber,
+      String? paymentPassword});
 }
 
 /// @nodoc
@@ -62,9 +75,15 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
   $Res call({
     Object? status = null,
     Object? loginStatus = null,
+    Object? enterUsernameEmailPasswordStatus = null,
     Object? phoneNumberConnectingStatus = null,
     Object? paymentPasswordConnectingStatus = null,
     Object? errorMessage = null,
+    Object? username = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? phoneNumber = freezed,
+    Object? paymentPassword = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -75,6 +94,10 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
+      enterUsernameEmailPasswordStatus: null == enterUsernameEmailPasswordStatus
+          ? _value.enterUsernameEmailPasswordStatus
+          : enterUsernameEmailPasswordStatus // ignore: cast_nullable_to_non_nullable
+              as EnterUsernameEmailPasswordStatus,
       phoneNumberConnectingStatus: null == phoneNumberConnectingStatus
           ? _value.phoneNumberConnectingStatus
           : phoneNumberConnectingStatus // ignore: cast_nullable_to_non_nullable
@@ -87,6 +110,26 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentPassword: freezed == paymentPassword
+          ? _value.paymentPassword
+          : paymentPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -102,9 +145,15 @@ abstract class _$$AuthBlocStateImplCopyWith<$Res>
   $Res call(
       {RegisterStatus status,
       LoginStatus loginStatus,
+      EnterUsernameEmailPasswordStatus enterUsernameEmailPasswordStatus,
       PhoneNumberConnectingStatus phoneNumberConnectingStatus,
       PaymentPasswordConnectingStatus paymentPasswordConnectingStatus,
-      String errorMessage});
+      String errorMessage,
+      String? username,
+      String? email,
+      String? password,
+      String? phoneNumber,
+      String? paymentPassword});
 }
 
 /// @nodoc
@@ -122,9 +171,15 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? loginStatus = null,
+    Object? enterUsernameEmailPasswordStatus = null,
     Object? phoneNumberConnectingStatus = null,
     Object? paymentPasswordConnectingStatus = null,
     Object? errorMessage = null,
+    Object? username = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? phoneNumber = freezed,
+    Object? paymentPassword = freezed,
   }) {
     return _then(_$AuthBlocStateImpl(
       status: null == status
@@ -135,6 +190,10 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
+      enterUsernameEmailPasswordStatus: null == enterUsernameEmailPasswordStatus
+          ? _value.enterUsernameEmailPasswordStatus
+          : enterUsernameEmailPasswordStatus // ignore: cast_nullable_to_non_nullable
+              as EnterUsernameEmailPasswordStatus,
       phoneNumberConnectingStatus: null == phoneNumberConnectingStatus
           ? _value.phoneNumberConnectingStatus
           : phoneNumberConnectingStatus // ignore: cast_nullable_to_non_nullable
@@ -147,6 +206,26 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentPassword: freezed == paymentPassword
+          ? _value.paymentPassword
+          : paymentPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -157,10 +236,17 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   const _$AuthBlocStateImpl(
       {this.status = RegisterStatus.initial,
       this.loginStatus = LoginStatus.initial,
+      this.enterUsernameEmailPasswordStatus =
+          EnterUsernameEmailPasswordStatus.initial,
       this.phoneNumberConnectingStatus = PhoneNumberConnectingStatus.initial,
       this.paymentPasswordConnectingStatus =
           PaymentPasswordConnectingStatus.initial,
-      this.errorMessage = ''});
+      this.errorMessage = '',
+      this.username,
+      this.email,
+      this.password,
+      this.phoneNumber,
+      this.paymentPassword});
 
   @override
   @JsonKey()
@@ -170,6 +256,9 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   final LoginStatus loginStatus;
   @override
   @JsonKey()
+  final EnterUsernameEmailPasswordStatus enterUsernameEmailPasswordStatus;
+  @override
+  @JsonKey()
   final PhoneNumberConnectingStatus phoneNumberConnectingStatus;
   @override
   @JsonKey()
@@ -177,10 +266,20 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   @override
   @JsonKey()
   final String errorMessage;
+  @override
+  final String? username;
+  @override
+  final String? email;
+  @override
+  final String? password;
+  @override
+  final String? phoneNumber;
+  @override
+  final String? paymentPassword;
 
   @override
   String toString() {
-    return 'AuthBlocState(status: $status, loginStatus: $loginStatus, phoneNumberConnectingStatus: $phoneNumberConnectingStatus, paymentPasswordConnectingStatus: $paymentPasswordConnectingStatus, errorMessage: $errorMessage)';
+    return 'AuthBlocState(status: $status, loginStatus: $loginStatus, enterUsernameEmailPasswordStatus: $enterUsernameEmailPasswordStatus, phoneNumberConnectingStatus: $phoneNumberConnectingStatus, paymentPasswordConnectingStatus: $paymentPasswordConnectingStatus, errorMessage: $errorMessage, username: $username, email: $email, password: $password, phoneNumber: $phoneNumber, paymentPassword: $paymentPassword)';
   }
 
   @override
@@ -191,6 +290,10 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.loginStatus, loginStatus) ||
                 other.loginStatus == loginStatus) &&
+            (identical(other.enterUsernameEmailPasswordStatus,
+                    enterUsernameEmailPasswordStatus) ||
+                other.enterUsernameEmailPasswordStatus ==
+                    enterUsernameEmailPasswordStatus) &&
             (identical(other.phoneNumberConnectingStatus,
                     phoneNumberConnectingStatus) ||
                 other.phoneNumberConnectingStatus ==
@@ -200,7 +303,16 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
                 other.paymentPasswordConnectingStatus ==
                     paymentPasswordConnectingStatus) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.paymentPassword, paymentPassword) ||
+                other.paymentPassword == paymentPassword));
   }
 
   @override
@@ -208,9 +320,15 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
       runtimeType,
       status,
       loginStatus,
+      enterUsernameEmailPasswordStatus,
       phoneNumberConnectingStatus,
       paymentPasswordConnectingStatus,
-      errorMessage);
+      errorMessage,
+      username,
+      email,
+      password,
+      phoneNumber,
+      paymentPassword);
 
   /// Create a copy of AuthBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -225,20 +343,38 @@ abstract class _AuthBlocState implements AuthBlocState {
   const factory _AuthBlocState(
       {final RegisterStatus status,
       final LoginStatus loginStatus,
+      final EnterUsernameEmailPasswordStatus enterUsernameEmailPasswordStatus,
       final PhoneNumberConnectingStatus phoneNumberConnectingStatus,
       final PaymentPasswordConnectingStatus paymentPasswordConnectingStatus,
-      final String errorMessage}) = _$AuthBlocStateImpl;
+      final String errorMessage,
+      final String? username,
+      final String? email,
+      final String? password,
+      final String? phoneNumber,
+      final String? paymentPassword}) = _$AuthBlocStateImpl;
 
   @override
   RegisterStatus get status;
   @override
   LoginStatus get loginStatus;
   @override
+  EnterUsernameEmailPasswordStatus get enterUsernameEmailPasswordStatus;
+  @override
   PhoneNumberConnectingStatus get phoneNumberConnectingStatus;
   @override
   PaymentPasswordConnectingStatus get paymentPasswordConnectingStatus;
   @override
   String get errorMessage;
+  @override
+  String? get username;
+  @override
+  String? get email;
+  @override
+  String? get password;
+  @override
+  String? get phoneNumber;
+  @override
+  String? get paymentPassword;
 
   /// Create a copy of AuthBlocState
   /// with the given fields replaced by the non-null parameter values.

@@ -2,10 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
 import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
+import 'package:online_app/utils/extensions.dart';
 
 class UserRepository {
   final Dio _dio = locator<Dio>();
-  final _sharedPreferencesService  = locator<SharedPreferencesService>();
+  final _sharedPreferencesService = locator<SharedPreferencesService>();
 
   Future<UserModel?> getUserData() async {
     final userId = await _sharedPreferencesService.getUserId();
@@ -65,6 +66,34 @@ class UserRepository {
       }
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<bool> updatePaymentPasswordAndPhoneNumber({
+    required String phoneNumber,
+    required String paymentPassword,
+  }) async {
+    try {
+      final int? userId = await _sharedPreferencesService.getUserId();
+
+      final body = {
+        'data': {
+          'userPhoneNumber': phoneNumber,
+          'paymentPassword': paymentPassword,
+        }
+      };
+
+      final response = await _dio.put(
+        '/users/$userId',
+        data: body,
+      );
+
+      if (response.data != null) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -212,13 +241,14 @@ class UserRepository {
     }
   }
 
-  Future<bool> checkUserPaymentPassword({required String paymentPassword}) async {
+  Future<bool> checkUserPaymentPassword(
+      {required String paymentPassword}) async {
     final user = await getUserData();
 
-    if(user != null){
-      if(user.paymentPassword == paymentPassword){
+    if (user != null) {
+      if (user.paymentPassword == paymentPassword) {
         return true;
-      } else{
+      } else {
         return false;
       }
     }

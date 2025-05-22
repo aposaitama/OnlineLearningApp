@@ -22,12 +22,13 @@ class AuthRepository {
     return prefs.getString('jwt_token');
   }
 
-
-  Future<String> register(
-    String userName,
-    String email,
-    String password,
-  ) async {
+  Future<String> register({
+    required String userName,
+    required String email,
+    required String password,
+    // required String phoneNumber,
+    // required String paymentPassword,
+  }) async {
     try {
       final response = await _dio.post(
         '/auth/local/register',
@@ -37,6 +38,7 @@ class AuthRepository {
           'password': password,
         },
       );
+
       final token = response.data['jwt'];
       final userId = response.data['user']['id'];
 
@@ -44,6 +46,8 @@ class AuthRepository {
       await saveToken(token);
 
       return token;
+
+
     } on DioException catch (e) {
       final message = e.response?.data['error']['message'] ?? 'Unknown error';
       throw 'Register failed: $message';

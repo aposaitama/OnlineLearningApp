@@ -12,6 +12,8 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatter;
+  final Function(String)? onChanged;
+
   const CustomTextField({
     super.key,
     required this.title,
@@ -20,6 +22,7 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.validator,
     this.inputFormatter,
+    this.onChanged,
   });
 
   @override
@@ -28,6 +31,7 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   bool obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -92,7 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     )
                   : null,
             ),
-            onChanged: (value) {},
+            onChanged: widget.onChanged,
           ),
         ),
       ],

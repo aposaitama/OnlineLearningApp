@@ -18,29 +18,41 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthBlocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String email, String password)
-        registerUser,
+    required TResult Function() registerUser,
     required TResult Function(String email, String password) loginUser,
     required TResult Function(String phoneNum) connectPhoneNum,
     required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String email, String password)?
-        registerUser,
+    TResult? Function()? registerUser,
     TResult? Function(String email, String password)? loginUser,
     TResult? Function(String phoneNum)? connectPhoneNum,
     TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String email, String password)?
-        registerUser,
+    TResult Function()? registerUser,
     TResult Function(String email, String password)? loginUser,
     TResult Function(String phoneNum)? connectPhoneNum,
     TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,6 +62,12 @@ mixin _$AuthBlocEvent {
     required TResult Function(LoginUserBlocEvent value) loginUser,
     required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
     required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +76,11 @@ mixin _$AuthBlocEvent {
     TResult? Function(LoginUserBlocEvent value)? loginUser,
     TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +89,11 @@ mixin _$AuthBlocEvent {
     TResult Function(LoginUserBlocEvent value)? loginUser,
     TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -98,8 +126,6 @@ abstract class _$$RegisterUserBlocEventImplCopyWith<$Res> {
           _$RegisterUserBlocEventImpl value,
           $Res Function(_$RegisterUserBlocEventImpl) then) =
       __$$RegisterUserBlocEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String userName, String email, String password});
 }
 
 /// @nodoc
@@ -112,107 +138,76 @@ class __$$RegisterUserBlocEventImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthBlocEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userName = null,
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_$RegisterUserBlocEventImpl(
-      null == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
-  const _$RegisterUserBlocEventImpl(this.userName, this.email, this.password);
-
-  @override
-  final String userName;
-  @override
-  final String email;
-  @override
-  final String password;
+  const _$RegisterUserBlocEventImpl();
 
   @override
   String toString() {
-    return 'AuthBlocEvent.registerUser(userName: $userName, email: $email, password: $password)';
+    return 'AuthBlocEvent.registerUser()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegisterUserBlocEventImpl &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            other is _$RegisterUserBlocEventImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userName, email, password);
-
-  /// Create a copy of AuthBlocEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RegisterUserBlocEventImplCopyWith<_$RegisterUserBlocEventImpl>
-      get copyWith => __$$RegisterUserBlocEventImplCopyWithImpl<
-          _$RegisterUserBlocEventImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String email, String password)
-        registerUser,
+    required TResult Function() registerUser,
     required TResult Function(String email, String password) loginUser,
     required TResult Function(String phoneNum) connectPhoneNum,
     required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
   }) {
-    return registerUser(userName, email, password);
+    return registerUser();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String email, String password)?
-        registerUser,
+    TResult? Function()? registerUser,
     TResult? Function(String email, String password)? loginUser,
     TResult? Function(String phoneNum)? connectPhoneNum,
     TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
   }) {
-    return registerUser?.call(userName, email, password);
+    return registerUser?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String email, String password)?
-        registerUser,
+    TResult Function()? registerUser,
     TResult Function(String email, String password)? loginUser,
     TResult Function(String phoneNum)? connectPhoneNum,
     TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (registerUser != null) {
-      return registerUser(userName, email, password);
+      return registerUser();
     }
     return orElse();
   }
@@ -224,6 +219,12 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
     required TResult Function(LoginUserBlocEvent value) loginUser,
     required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
     required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
   }) {
     return registerUser(this);
   }
@@ -235,6 +236,11 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
     TResult? Function(LoginUserBlocEvent value)? loginUser,
     TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
   }) {
     return registerUser?.call(this);
   }
@@ -246,6 +252,11 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
     TResult Function(LoginUserBlocEvent value)? loginUser,
     TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (registerUser != null) {
@@ -256,19 +267,7 @@ class _$RegisterUserBlocEventImpl implements RegisterUserBlocEvent {
 }
 
 abstract class RegisterUserBlocEvent implements AuthBlocEvent {
-  const factory RegisterUserBlocEvent(
-          final String userName, final String email, final String password) =
-      _$RegisterUserBlocEventImpl;
-
-  String get userName;
-  String get email;
-  String get password;
-
-  /// Create a copy of AuthBlocEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RegisterUserBlocEventImplCopyWith<_$RegisterUserBlocEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory RegisterUserBlocEvent() = _$RegisterUserBlocEventImpl;
 }
 
 /// @nodoc
@@ -349,11 +348,15 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String email, String password)
-        registerUser,
+    required TResult Function() registerUser,
     required TResult Function(String email, String password) loginUser,
     required TResult Function(String phoneNum) connectPhoneNum,
     required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
   }) {
     return loginUser(email, password);
   }
@@ -361,11 +364,15 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String email, String password)?
-        registerUser,
+    TResult? Function()? registerUser,
     TResult? Function(String email, String password)? loginUser,
     TResult? Function(String phoneNum)? connectPhoneNum,
     TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
   }) {
     return loginUser?.call(email, password);
   }
@@ -373,11 +380,15 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String email, String password)?
-        registerUser,
+    TResult Function()? registerUser,
     TResult Function(String email, String password)? loginUser,
     TResult Function(String phoneNum)? connectPhoneNum,
     TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (loginUser != null) {
@@ -393,6 +404,12 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
     required TResult Function(LoginUserBlocEvent value) loginUser,
     required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
     required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
   }) {
     return loginUser(this);
   }
@@ -404,6 +421,11 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
     TResult? Function(LoginUserBlocEvent value)? loginUser,
     TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
   }) {
     return loginUser?.call(this);
   }
@@ -415,6 +437,11 @@ class _$LoginUserBlocEventImpl implements LoginUserBlocEvent {
     TResult Function(LoginUserBlocEvent value)? loginUser,
     TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (loginUser != null) {
@@ -509,11 +536,15 @@ class _$ConnectPhoneNumEventImpl implements ConnectPhoneNumEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String email, String password)
-        registerUser,
+    required TResult Function() registerUser,
     required TResult Function(String email, String password) loginUser,
     required TResult Function(String phoneNum) connectPhoneNum,
     required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
   }) {
     return connectPhoneNum(phoneNum);
   }
@@ -521,11 +552,15 @@ class _$ConnectPhoneNumEventImpl implements ConnectPhoneNumEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String email, String password)?
-        registerUser,
+    TResult? Function()? registerUser,
     TResult? Function(String email, String password)? loginUser,
     TResult? Function(String phoneNum)? connectPhoneNum,
     TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
   }) {
     return connectPhoneNum?.call(phoneNum);
   }
@@ -533,11 +568,15 @@ class _$ConnectPhoneNumEventImpl implements ConnectPhoneNumEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String email, String password)?
-        registerUser,
+    TResult Function()? registerUser,
     TResult Function(String email, String password)? loginUser,
     TResult Function(String phoneNum)? connectPhoneNum,
     TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (connectPhoneNum != null) {
@@ -553,6 +592,12 @@ class _$ConnectPhoneNumEventImpl implements ConnectPhoneNumEvent {
     required TResult Function(LoginUserBlocEvent value) loginUser,
     required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
     required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
   }) {
     return connectPhoneNum(this);
   }
@@ -564,6 +609,11 @@ class _$ConnectPhoneNumEventImpl implements ConnectPhoneNumEvent {
     TResult? Function(LoginUserBlocEvent value)? loginUser,
     TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
   }) {
     return connectPhoneNum?.call(this);
   }
@@ -575,6 +625,11 @@ class _$ConnectPhoneNumEventImpl implements ConnectPhoneNumEvent {
     TResult Function(LoginUserBlocEvent value)? loginUser,
     TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (connectPhoneNum != null) {
@@ -669,11 +724,15 @@ class _$ConnectPaymentPassEventImpl implements ConnectPaymentPassEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String email, String password)
-        registerUser,
+    required TResult Function() registerUser,
     required TResult Function(String email, String password) loginUser,
     required TResult Function(String phoneNum) connectPhoneNum,
     required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
   }) {
     return connectPaymentPass(paymentPassword);
   }
@@ -681,11 +740,15 @@ class _$ConnectPaymentPassEventImpl implements ConnectPaymentPassEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String email, String password)?
-        registerUser,
+    TResult? Function()? registerUser,
     TResult? Function(String email, String password)? loginUser,
     TResult? Function(String phoneNum)? connectPhoneNum,
     TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
   }) {
     return connectPaymentPass?.call(paymentPassword);
   }
@@ -693,11 +756,15 @@ class _$ConnectPaymentPassEventImpl implements ConnectPaymentPassEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String email, String password)?
-        registerUser,
+    TResult Function()? registerUser,
     TResult Function(String email, String password)? loginUser,
     TResult Function(String phoneNum)? connectPhoneNum,
     TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (connectPaymentPass != null) {
@@ -713,6 +780,12 @@ class _$ConnectPaymentPassEventImpl implements ConnectPaymentPassEvent {
     required TResult Function(LoginUserBlocEvent value) loginUser,
     required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
     required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
   }) {
     return connectPaymentPass(this);
   }
@@ -724,6 +797,11 @@ class _$ConnectPaymentPassEventImpl implements ConnectPaymentPassEvent {
     TResult? Function(LoginUserBlocEvent value)? loginUser,
     TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
   }) {
     return connectPaymentPass?.call(this);
   }
@@ -735,6 +813,11 @@ class _$ConnectPaymentPassEventImpl implements ConnectPaymentPassEvent {
     TResult Function(LoginUserBlocEvent value)? loginUser,
     TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
     TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
     required TResult orElse(),
   }) {
     if (connectPaymentPass != null) {
@@ -754,5 +837,938 @@ abstract class ConnectPaymentPassEvent implements AuthBlocEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConnectPaymentPassEventImplCopyWith<_$ConnectPaymentPassEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EnterUsernameEventImplCopyWith<$Res> {
+  factory _$$EnterUsernameEventImplCopyWith(_$EnterUsernameEventImpl value,
+          $Res Function(_$EnterUsernameEventImpl) then) =
+      __$$EnterUsernameEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String username});
+}
+
+/// @nodoc
+class __$$EnterUsernameEventImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$EnterUsernameEventImpl>
+    implements _$$EnterUsernameEventImplCopyWith<$Res> {
+  __$$EnterUsernameEventImplCopyWithImpl(_$EnterUsernameEventImpl _value,
+      $Res Function(_$EnterUsernameEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? username = null,
+  }) {
+    return _then(_$EnterUsernameEventImpl(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterUsernameEventImpl implements EnterUsernameEvent {
+  const _$EnterUsernameEventImpl({required this.username});
+
+  @override
+  final String username;
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.enterUsername(username: $username)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterUsernameEventImpl &&
+            (identical(other.username, username) ||
+                other.username == username));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, username);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterUsernameEventImplCopyWith<_$EnterUsernameEventImpl> get copyWith =>
+      __$$EnterUsernameEventImplCopyWithImpl<_$EnterUsernameEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registerUser,
+    required TResult Function(String email, String password) loginUser,
+    required TResult Function(String phoneNum) connectPhoneNum,
+    required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
+  }) {
+    return enterUsername(username);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? registerUser,
+    TResult? Function(String email, String password)? loginUser,
+    TResult? Function(String phoneNum)? connectPhoneNum,
+    TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
+  }) {
+    return enterUsername?.call(username);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registerUser,
+    TResult Function(String email, String password)? loginUser,
+    TResult Function(String phoneNum)? connectPhoneNum,
+    TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterUsername != null) {
+      return enterUsername(username);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegisterUserBlocEvent value) registerUser,
+    required TResult Function(LoginUserBlocEvent value) loginUser,
+    required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
+    required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
+  }) {
+    return enterUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RegisterUserBlocEvent value)? registerUser,
+    TResult? Function(LoginUserBlocEvent value)? loginUser,
+    TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+  }) {
+    return enterUsername?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegisterUserBlocEvent value)? registerUser,
+    TResult Function(LoginUserBlocEvent value)? loginUser,
+    TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterUsername != null) {
+      return enterUsername(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterUsernameEvent implements AuthBlocEvent {
+  const factory EnterUsernameEvent({required final String username}) =
+      _$EnterUsernameEventImpl;
+
+  String get username;
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterUsernameEventImplCopyWith<_$EnterUsernameEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EnterEmailEventImplCopyWith<$Res> {
+  factory _$$EnterEmailEventImplCopyWith(_$EnterEmailEventImpl value,
+          $Res Function(_$EnterEmailEventImpl) then) =
+      __$$EnterEmailEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$$EnterEmailEventImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$EnterEmailEventImpl>
+    implements _$$EnterEmailEventImplCopyWith<$Res> {
+  __$$EnterEmailEventImplCopyWithImpl(
+      _$EnterEmailEventImpl _value, $Res Function(_$EnterEmailEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$EnterEmailEventImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterEmailEventImpl implements EnterEmailEvent {
+  const _$EnterEmailEventImpl({required this.email});
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.enterEmail(email: $email)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterEmailEventImpl &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterEmailEventImplCopyWith<_$EnterEmailEventImpl> get copyWith =>
+      __$$EnterEmailEventImplCopyWithImpl<_$EnterEmailEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registerUser,
+    required TResult Function(String email, String password) loginUser,
+    required TResult Function(String phoneNum) connectPhoneNum,
+    required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
+  }) {
+    return enterEmail(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? registerUser,
+    TResult? Function(String email, String password)? loginUser,
+    TResult? Function(String phoneNum)? connectPhoneNum,
+    TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
+  }) {
+    return enterEmail?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registerUser,
+    TResult Function(String email, String password)? loginUser,
+    TResult Function(String phoneNum)? connectPhoneNum,
+    TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterEmail != null) {
+      return enterEmail(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegisterUserBlocEvent value) registerUser,
+    required TResult Function(LoginUserBlocEvent value) loginUser,
+    required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
+    required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
+  }) {
+    return enterEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RegisterUserBlocEvent value)? registerUser,
+    TResult? Function(LoginUserBlocEvent value)? loginUser,
+    TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+  }) {
+    return enterEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegisterUserBlocEvent value)? registerUser,
+    TResult Function(LoginUserBlocEvent value)? loginUser,
+    TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterEmail != null) {
+      return enterEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterEmailEvent implements AuthBlocEvent {
+  const factory EnterEmailEvent({required final String email}) =
+      _$EnterEmailEventImpl;
+
+  String get email;
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterEmailEventImplCopyWith<_$EnterEmailEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EnterPasswordEventImplCopyWith<$Res> {
+  factory _$$EnterPasswordEventImplCopyWith(_$EnterPasswordEventImpl value,
+          $Res Function(_$EnterPasswordEventImpl) then) =
+      __$$EnterPasswordEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String password});
+}
+
+/// @nodoc
+class __$$EnterPasswordEventImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$EnterPasswordEventImpl>
+    implements _$$EnterPasswordEventImplCopyWith<$Res> {
+  __$$EnterPasswordEventImplCopyWithImpl(_$EnterPasswordEventImpl _value,
+      $Res Function(_$EnterPasswordEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? password = null,
+  }) {
+    return _then(_$EnterPasswordEventImpl(
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterPasswordEventImpl implements EnterPasswordEvent {
+  const _$EnterPasswordEventImpl({required this.password});
+
+  @override
+  final String password;
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.enterPassword(password: $password)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterPasswordEventImpl &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, password);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterPasswordEventImplCopyWith<_$EnterPasswordEventImpl> get copyWith =>
+      __$$EnterPasswordEventImplCopyWithImpl<_$EnterPasswordEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registerUser,
+    required TResult Function(String email, String password) loginUser,
+    required TResult Function(String phoneNum) connectPhoneNum,
+    required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
+  }) {
+    return enterPassword(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? registerUser,
+    TResult? Function(String email, String password)? loginUser,
+    TResult? Function(String phoneNum)? connectPhoneNum,
+    TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
+  }) {
+    return enterPassword?.call(password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registerUser,
+    TResult Function(String email, String password)? loginUser,
+    TResult Function(String phoneNum)? connectPhoneNum,
+    TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterPassword != null) {
+      return enterPassword(password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegisterUserBlocEvent value) registerUser,
+    required TResult Function(LoginUserBlocEvent value) loginUser,
+    required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
+    required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
+  }) {
+    return enterPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RegisterUserBlocEvent value)? registerUser,
+    TResult? Function(LoginUserBlocEvent value)? loginUser,
+    TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+  }) {
+    return enterPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegisterUserBlocEvent value)? registerUser,
+    TResult Function(LoginUserBlocEvent value)? loginUser,
+    TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterPassword != null) {
+      return enterPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterPasswordEvent implements AuthBlocEvent {
+  const factory EnterPasswordEvent({required final String password}) =
+      _$EnterPasswordEventImpl;
+
+  String get password;
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterPasswordEventImplCopyWith<_$EnterPasswordEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EnterPhoneNumberEventImplCopyWith<$Res> {
+  factory _$$EnterPhoneNumberEventImplCopyWith(
+          _$EnterPhoneNumberEventImpl value,
+          $Res Function(_$EnterPhoneNumberEventImpl) then) =
+      __$$EnterPhoneNumberEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String phoneNumber});
+}
+
+/// @nodoc
+class __$$EnterPhoneNumberEventImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$EnterPhoneNumberEventImpl>
+    implements _$$EnterPhoneNumberEventImplCopyWith<$Res> {
+  __$$EnterPhoneNumberEventImplCopyWithImpl(_$EnterPhoneNumberEventImpl _value,
+      $Res Function(_$EnterPhoneNumberEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phoneNumber = null,
+  }) {
+    return _then(_$EnterPhoneNumberEventImpl(
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterPhoneNumberEventImpl implements EnterPhoneNumberEvent {
+  const _$EnterPhoneNumberEventImpl({required this.phoneNumber});
+
+  @override
+  final String phoneNumber;
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.enterPhoneNumber(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterPhoneNumberEventImpl &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, phoneNumber);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterPhoneNumberEventImplCopyWith<_$EnterPhoneNumberEventImpl>
+      get copyWith => __$$EnterPhoneNumberEventImplCopyWithImpl<
+          _$EnterPhoneNumberEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registerUser,
+    required TResult Function(String email, String password) loginUser,
+    required TResult Function(String phoneNum) connectPhoneNum,
+    required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
+  }) {
+    return enterPhoneNumber(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? registerUser,
+    TResult? Function(String email, String password)? loginUser,
+    TResult? Function(String phoneNum)? connectPhoneNum,
+    TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
+  }) {
+    return enterPhoneNumber?.call(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registerUser,
+    TResult Function(String email, String password)? loginUser,
+    TResult Function(String phoneNum)? connectPhoneNum,
+    TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterPhoneNumber != null) {
+      return enterPhoneNumber(phoneNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegisterUserBlocEvent value) registerUser,
+    required TResult Function(LoginUserBlocEvent value) loginUser,
+    required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
+    required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
+  }) {
+    return enterPhoneNumber(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RegisterUserBlocEvent value)? registerUser,
+    TResult? Function(LoginUserBlocEvent value)? loginUser,
+    TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+  }) {
+    return enterPhoneNumber?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegisterUserBlocEvent value)? registerUser,
+    TResult Function(LoginUserBlocEvent value)? loginUser,
+    TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterPhoneNumber != null) {
+      return enterPhoneNumber(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterPhoneNumberEvent implements AuthBlocEvent {
+  const factory EnterPhoneNumberEvent({required final String phoneNumber}) =
+      _$EnterPhoneNumberEventImpl;
+
+  String get phoneNumber;
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterPhoneNumberEventImplCopyWith<_$EnterPhoneNumberEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EnterPaymentPasswordEventImplCopyWith<$Res> {
+  factory _$$EnterPaymentPasswordEventImplCopyWith(
+          _$EnterPaymentPasswordEventImpl value,
+          $Res Function(_$EnterPaymentPasswordEventImpl) then) =
+      __$$EnterPaymentPasswordEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String paymentPassword});
+}
+
+/// @nodoc
+class __$$EnterPaymentPasswordEventImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$EnterPaymentPasswordEventImpl>
+    implements _$$EnterPaymentPasswordEventImplCopyWith<$Res> {
+  __$$EnterPaymentPasswordEventImplCopyWithImpl(
+      _$EnterPaymentPasswordEventImpl _value,
+      $Res Function(_$EnterPaymentPasswordEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? paymentPassword = null,
+  }) {
+    return _then(_$EnterPaymentPasswordEventImpl(
+      paymentPassword: null == paymentPassword
+          ? _value.paymentPassword
+          : paymentPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EnterPaymentPasswordEventImpl implements EnterPaymentPasswordEvent {
+  const _$EnterPaymentPasswordEventImpl({required this.paymentPassword});
+
+  @override
+  final String paymentPassword;
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.enterPaymentPassword(paymentPassword: $paymentPassword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EnterPaymentPasswordEventImpl &&
+            (identical(other.paymentPassword, paymentPassword) ||
+                other.paymentPassword == paymentPassword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, paymentPassword);
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EnterPaymentPasswordEventImplCopyWith<_$EnterPaymentPasswordEventImpl>
+      get copyWith => __$$EnterPaymentPasswordEventImplCopyWithImpl<
+          _$EnterPaymentPasswordEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() registerUser,
+    required TResult Function(String email, String password) loginUser,
+    required TResult Function(String phoneNum) connectPhoneNum,
+    required TResult Function(String paymentPassword) connectPaymentPass,
+    required TResult Function(String username) enterUsername,
+    required TResult Function(String email) enterEmail,
+    required TResult Function(String password) enterPassword,
+    required TResult Function(String phoneNumber) enterPhoneNumber,
+    required TResult Function(String paymentPassword) enterPaymentPassword,
+  }) {
+    return enterPaymentPassword(paymentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? registerUser,
+    TResult? Function(String email, String password)? loginUser,
+    TResult? Function(String phoneNum)? connectPhoneNum,
+    TResult? Function(String paymentPassword)? connectPaymentPass,
+    TResult? Function(String username)? enterUsername,
+    TResult? Function(String email)? enterEmail,
+    TResult? Function(String password)? enterPassword,
+    TResult? Function(String phoneNumber)? enterPhoneNumber,
+    TResult? Function(String paymentPassword)? enterPaymentPassword,
+  }) {
+    return enterPaymentPassword?.call(paymentPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registerUser,
+    TResult Function(String email, String password)? loginUser,
+    TResult Function(String phoneNum)? connectPhoneNum,
+    TResult Function(String paymentPassword)? connectPaymentPass,
+    TResult Function(String username)? enterUsername,
+    TResult Function(String email)? enterEmail,
+    TResult Function(String password)? enterPassword,
+    TResult Function(String phoneNumber)? enterPhoneNumber,
+    TResult Function(String paymentPassword)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterPaymentPassword != null) {
+      return enterPaymentPassword(paymentPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegisterUserBlocEvent value) registerUser,
+    required TResult Function(LoginUserBlocEvent value) loginUser,
+    required TResult Function(ConnectPhoneNumEvent value) connectPhoneNum,
+    required TResult Function(ConnectPaymentPassEvent value) connectPaymentPass,
+    required TResult Function(EnterUsernameEvent value) enterUsername,
+    required TResult Function(EnterEmailEvent value) enterEmail,
+    required TResult Function(EnterPasswordEvent value) enterPassword,
+    required TResult Function(EnterPhoneNumberEvent value) enterPhoneNumber,
+    required TResult Function(EnterPaymentPasswordEvent value)
+        enterPaymentPassword,
+  }) {
+    return enterPaymentPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RegisterUserBlocEvent value)? registerUser,
+    TResult? Function(LoginUserBlocEvent value)? loginUser,
+    TResult? Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult? Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult? Function(EnterUsernameEvent value)? enterUsername,
+    TResult? Function(EnterEmailEvent value)? enterEmail,
+    TResult? Function(EnterPasswordEvent value)? enterPassword,
+    TResult? Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult? Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+  }) {
+    return enterPaymentPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegisterUserBlocEvent value)? registerUser,
+    TResult Function(LoginUserBlocEvent value)? loginUser,
+    TResult Function(ConnectPhoneNumEvent value)? connectPhoneNum,
+    TResult Function(ConnectPaymentPassEvent value)? connectPaymentPass,
+    TResult Function(EnterUsernameEvent value)? enterUsername,
+    TResult Function(EnterEmailEvent value)? enterEmail,
+    TResult Function(EnterPasswordEvent value)? enterPassword,
+    TResult Function(EnterPhoneNumberEvent value)? enterPhoneNumber,
+    TResult Function(EnterPaymentPasswordEvent value)? enterPaymentPassword,
+    required TResult orElse(),
+  }) {
+    if (enterPaymentPassword != null) {
+      return enterPaymentPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EnterPaymentPasswordEvent implements AuthBlocEvent {
+  const factory EnterPaymentPasswordEvent(
+          {required final String paymentPassword}) =
+      _$EnterPaymentPasswordEventImpl;
+
+  String get paymentPassword;
+
+  /// Create a copy of AuthBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EnterPaymentPasswordEventImplCopyWith<_$EnterPaymentPasswordEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

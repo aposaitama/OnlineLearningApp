@@ -42,22 +42,28 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
     }
   }
 
-  void _connectPhoneNumberValidationMethod(String phoneNum) {
+  void _addPhoneNumber(String phoneNum) {
     if (phoneNum.isNotEmpty) {
       try {
         final frPhone0 = PhoneNumber.parse(phoneNum);
         final bool isPhoneValid = frPhone0.isValid(
           type: PhoneNumberType.mobile,
         );
-        isPhoneValid
-            ? context.read<AuthBloc>().add(
-                  ConnectPhoneNumEvent(
-                    phoneNum,
-                  ),
-                )
-            : BotToast.showText(
-                text: 'Enter correct phone number',
+        if (isPhoneValid) {
+          context.read<AuthBloc>().add(
+                EnterPhoneNumberEvent(
+                  phoneNumber: phoneNum,
+                ),
               );
+          context.push(
+            '/phone_verify',
+          );
+
+        } else {
+          BotToast.showText(
+            text: 'Enter correct phone number',
+          );
+        }
       } on PhoneNumberException catch (e) {
         BotToast.showText(
           text: "Error: ${e.description.toString()}",
@@ -175,7 +181,7 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                               width: 125.0,
                               child: CustomFilledButton(
                                 onTap: () =>
-                                    _connectPhoneNumberValidationMethod(
+                                    _addPhoneNumber(
                                   phoneNumberController.text,
                                 ),
                                 buttonTitle: 'Continue',

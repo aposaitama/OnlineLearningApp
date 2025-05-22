@@ -8,19 +8,17 @@ import 'package:online_app/screens/auth_screen/bloc/auth_bloc/auth_bloc_state.da
 class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   final _auth = locator<AuthRepository>();
   final _userRepo = locator<UserRepository>();
+
   AuthBloc() : super(const AuthBlocState()) {
-    on<RegisterUserBlocEvent>(
-      _registerUser,
-    );
-    on<LoginUserBlocEvent>(
-      _loginUser,
-    );
-    on<ConnectPhoneNumEvent>(
-      _connectPhoneNum,
-    );
-    on<ConnectPaymentPassEvent>(
-      _connectPaymentPass,
-    );
+    on<RegisterUserBlocEvent>(_registerUser);
+    on<LoginUserBlocEvent>(_loginUser);
+    on<ConnectPhoneNumEvent>(_connectPhoneNum);
+    on<ConnectPaymentPassEvent>(_connectPaymentPass);
+    on<EnterUsernameEvent>(_enterUsername);
+    on<EnterEmailEvent>(_enterEmail);
+    on<EnterPasswordEvent>(_enterPassword);
+    on<EnterPhoneNumberEvent>(_enterPhoneNumber);
+    on<EnterPaymentPasswordEvent>(_enterPaymentPassword);
   }
 
   Future<void> _connectPhoneNum(
@@ -140,16 +138,27 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       ),
     );
     try {
-      await _auth.register(
-        event.userName,
-        event.email,
-        event.password,
-      );
-      emit(
-        state.copyWith(
-          status: RegisterStatus.successfull,
-        ),
-      );
+      if (state.username != null &&
+          state.email != null &&
+          state.password != null &&
+          state.phoneNumber != null &&
+          state.paymentPassword != null) {
+        await _auth.register(
+          userName: state.username!,
+          email: state.email!,
+          password: state.password!,
+        );
+
+        await _userRepo.updatePaymentPasswordAndPhoneNumber(
+          phoneNumber: state.phoneNumber!,
+          paymentPassword: state.paymentPassword!,
+        );
+        emit(
+          state.copyWith(
+            status: RegisterStatus.successfull,
+          ),
+        );
+      }
     } catch (e) {
       emit(
         state.copyWith(
@@ -160,15 +169,58 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
     }
   }
 
-  // Future<void> _logOut(
-  //   LogOutRegisterScreenBlocEvent event,
-  //   Emitter<RegisterScreenBlocState> emit,
-  // ) async {
-  //   _auth.signOut();
-  //   emit(
-  //     state.copyWith(
-  //       status: RegisterStatus.initial,
-  //     ),
-  //   );
-  // }
+  void _enterUsername(
+    EnterUsernameEvent event,
+    Emitter<AuthBlocState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        username: event.username,
+      ),
+    );
+  }
+
+  void _enterEmail(
+    EnterEmailEvent event,
+    Emitter<AuthBlocState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        email: event.email,
+      ),
+    );
+  }
+
+  void _enterPassword(
+    EnterPasswordEvent event,
+    Emitter<AuthBlocState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        password: event.password,
+      ),
+    );
+  }
+
+  void _enterPhoneNumber(
+    EnterPhoneNumberEvent event,
+    Emitter<AuthBlocState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        phoneNumber: event.phoneNumber,
+      ),
+    );
+  }
+
+  void _enterPaymentPassword(
+    EnterPaymentPasswordEvent event,
+    Emitter<AuthBlocState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        paymentPassword: event.paymentPassword,
+      ),
+    );
+  }
 }

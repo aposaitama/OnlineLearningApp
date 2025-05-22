@@ -21,22 +21,52 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   void _register() {
     isAgree
-        ? context.read<AuthBloc>().add(
-              RegisterUserBlocEvent(
-                userNameController.text,
-                userEmailController.text,
-                userPasswordController.text,
-              ),
-            )
+        ? context.push('/phone_linking')
         : BotToast.showText(
             text: 'You have to agree with rules',
           );
   }
 
+  void _enterUsername(String value) {
+    context.read<AuthBloc>().add(
+          EnterUsernameEvent(
+            username: value,
+          ),
+        );
+  }
+
+  void _enterEmail(String value) {
+    context.read<AuthBloc>().add(
+          EnterEmailEvent(
+            email: value,
+          ),
+        );
+  }
+
+  void _enterPassword(String value) {
+    context.read<AuthBloc>().add(
+          EnterPasswordEvent(
+            password: value,
+          ),
+        );
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'This field can not be empty';
+    }
+
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
+    if (!emailRegex.hasMatch(value)) {
+      return 'Invalid format for email';
+    }
+
+    return null;
+  }
+
   bool isAgree = false;
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController userEmailController = TextEditingController();
-  final TextEditingController userPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -55,42 +85,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   : null;
         },
         child: Scaffold(
-          body: Column(
-            children: [
-              SizedBox(
-                height: 159.0,
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Sign Up',
-                        style: AppFonts.poppinsBold.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).extension<AppColorsModel>()?.mainTextColor,
+          resizeToAvoidBottomInset: true,
+          appBar: AppBar(
+            backgroundColor: isDark ? AppColors.darkColor : AppColors.greyCoor,
+            toolbarHeight: 149,
+            centerTitle: false,
+            flexibleSpace: Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Sign Up',
+                      style: AppFonts.poppinsBold.copyWith(
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColorsModel>()?.mainTextColor,
+                      ),
+                    ),
+                    const SizedBox(height: 6.0),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Text(
+                        'Enter your details below & free sign up',
+                        style: AppFonts.poppinsRegular.copyWith(
+                          fontSize: 12.0,
+                          color: AppColors.lavanderGrayColor,
                         ),
                       ),
-                      const SizedBox(height: 6.0),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text(
-                          'Enter your details below & free sign up',
-                          style: AppFonts.poppinsRegular.copyWith(
-                            fontSize: 12.0,
-                            color: AppColors.lavanderGrayColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Expanded(
-                child: Container(
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
                     color: isDark ? AppColors.charcoalBlue : Colors.white,
                     borderRadius: const BorderRadius.only(
@@ -104,28 +140,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         const SizedBox(height: 33.0),
                         CustomTextField(
-                          title: 'Your Username',
-                          hint: '',
-                          controller: userNameController,
-                        ),
+                            title: 'Your Username',
+                            hint: '',
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field can not be empty';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) => _enterUsername(value)),
                         const SizedBox(height: 25.0),
                         CustomTextField(
                           title: 'Your Email',
                           hint: '',
-                          controller: userEmailController,
+                          validator: (value) => _validateEmail(value),
+                          onChanged: (value) => _enterEmail(value),
                         ),
                         const SizedBox(height: 25.0),
                         CustomTextField(
                           title: 'Password',
                           hint: '',
                           isPassword: true,
-                          controller: userPasswordController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field can not be empty';
+                            } else if (value.length < 6) {
+                              return 'Password must contain at least 6 symbols';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => _enterPassword(value),
                         ),
                         const SizedBox(height: 24.0),
                         CustomFilledButton(
                           buttonTitle: 'Create account',
                           onTap: _register,
-                          buttonColor: !isAgree ? AppColors.darkHintTextColor : null,
+                          buttonColor:
+                              !isAgree ? AppColors.darkHintTextColor : null,
                         ),
                         const SizedBox(height: 10.0),
                         Row(
@@ -191,8 +242,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
