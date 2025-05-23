@@ -20,18 +20,21 @@ mixin _$AuthGateBlocEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() checkRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() checkIfAllDataEntered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? checkIfAllDataEntered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? checkIfAllDataEntered,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +43,22 @@ mixin _$AuthGateBlocEvent {
     required TResult Function(CheckRequestedAuthBlocEvent value) checkRequested,
     required TResult Function(LogoutRequestedAuthBlocEvent value)
         logoutRequested,
+    required TResult Function(CheckIfAllUserDataEntered value)
+        checkIfAllDataEntered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckRequestedAuthBlocEvent value)? checkRequested,
     TResult? Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult? Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckRequestedAuthBlocEvent value)? checkRequested,
     TResult Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -125,6 +132,7 @@ class _$CheckRequestedAuthBlocEventImpl implements CheckRequestedAuthBlocEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() checkRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() checkIfAllDataEntered,
   }) {
     return checkRequested();
   }
@@ -134,6 +142,7 @@ class _$CheckRequestedAuthBlocEventImpl implements CheckRequestedAuthBlocEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? checkIfAllDataEntered,
   }) {
     return checkRequested?.call();
   }
@@ -143,6 +152,7 @@ class _$CheckRequestedAuthBlocEventImpl implements CheckRequestedAuthBlocEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? checkIfAllDataEntered,
     required TResult orElse(),
   }) {
     if (checkRequested != null) {
@@ -157,6 +167,8 @@ class _$CheckRequestedAuthBlocEventImpl implements CheckRequestedAuthBlocEvent {
     required TResult Function(CheckRequestedAuthBlocEvent value) checkRequested,
     required TResult Function(LogoutRequestedAuthBlocEvent value)
         logoutRequested,
+    required TResult Function(CheckIfAllUserDataEntered value)
+        checkIfAllDataEntered,
   }) {
     return checkRequested(this);
   }
@@ -166,6 +178,7 @@ class _$CheckRequestedAuthBlocEventImpl implements CheckRequestedAuthBlocEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckRequestedAuthBlocEvent value)? checkRequested,
     TResult? Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult? Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
   }) {
     return checkRequested?.call(this);
   }
@@ -175,6 +188,7 @@ class _$CheckRequestedAuthBlocEventImpl implements CheckRequestedAuthBlocEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckRequestedAuthBlocEvent value)? checkRequested,
     TResult Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
     required TResult orElse(),
   }) {
     if (checkRequested != null) {
@@ -237,6 +251,7 @@ class _$LogoutRequestedAuthBlocEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function() checkRequested,
     required TResult Function() logoutRequested,
+    required TResult Function() checkIfAllDataEntered,
   }) {
     return logoutRequested();
   }
@@ -246,6 +261,7 @@ class _$LogoutRequestedAuthBlocEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkRequested,
     TResult? Function()? logoutRequested,
+    TResult? Function()? checkIfAllDataEntered,
   }) {
     return logoutRequested?.call();
   }
@@ -255,6 +271,7 @@ class _$LogoutRequestedAuthBlocEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkRequested,
     TResult Function()? logoutRequested,
+    TResult Function()? checkIfAllDataEntered,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -269,6 +286,8 @@ class _$LogoutRequestedAuthBlocEventImpl
     required TResult Function(CheckRequestedAuthBlocEvent value) checkRequested,
     required TResult Function(LogoutRequestedAuthBlocEvent value)
         logoutRequested,
+    required TResult Function(CheckIfAllUserDataEntered value)
+        checkIfAllDataEntered,
   }) {
     return logoutRequested(this);
   }
@@ -278,6 +297,7 @@ class _$LogoutRequestedAuthBlocEventImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckRequestedAuthBlocEvent value)? checkRequested,
     TResult? Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult? Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
   }) {
     return logoutRequested?.call(this);
   }
@@ -287,6 +307,7 @@ class _$LogoutRequestedAuthBlocEventImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckRequestedAuthBlocEvent value)? checkRequested,
     TResult Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -299,4 +320,121 @@ class _$LogoutRequestedAuthBlocEventImpl
 abstract class LogoutRequestedAuthBlocEvent implements AuthGateBlocEvent {
   const factory LogoutRequestedAuthBlocEvent() =
       _$LogoutRequestedAuthBlocEventImpl;
+}
+
+/// @nodoc
+abstract class _$$CheckIfAllUserDataEnteredImplCopyWith<$Res> {
+  factory _$$CheckIfAllUserDataEnteredImplCopyWith(
+          _$CheckIfAllUserDataEnteredImpl value,
+          $Res Function(_$CheckIfAllUserDataEnteredImpl) then) =
+      __$$CheckIfAllUserDataEnteredImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckIfAllUserDataEnteredImplCopyWithImpl<$Res>
+    extends _$AuthGateBlocEventCopyWithImpl<$Res,
+        _$CheckIfAllUserDataEnteredImpl>
+    implements _$$CheckIfAllUserDataEnteredImplCopyWith<$Res> {
+  __$$CheckIfAllUserDataEnteredImplCopyWithImpl(
+      _$CheckIfAllUserDataEnteredImpl _value,
+      $Res Function(_$CheckIfAllUserDataEnteredImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthGateBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CheckIfAllUserDataEnteredImpl implements CheckIfAllUserDataEntered {
+  const _$CheckIfAllUserDataEnteredImpl();
+
+  @override
+  String toString() {
+    return 'AuthGateBlocEvent.checkIfAllDataEntered()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckIfAllUserDataEnteredImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkRequested,
+    required TResult Function() logoutRequested,
+    required TResult Function() checkIfAllDataEntered,
+  }) {
+    return checkIfAllDataEntered();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkRequested,
+    TResult? Function()? logoutRequested,
+    TResult? Function()? checkIfAllDataEntered,
+  }) {
+    return checkIfAllDataEntered?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkRequested,
+    TResult Function()? logoutRequested,
+    TResult Function()? checkIfAllDataEntered,
+    required TResult orElse(),
+  }) {
+    if (checkIfAllDataEntered != null) {
+      return checkIfAllDataEntered();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CheckRequestedAuthBlocEvent value) checkRequested,
+    required TResult Function(LogoutRequestedAuthBlocEvent value)
+        logoutRequested,
+    required TResult Function(CheckIfAllUserDataEntered value)
+        checkIfAllDataEntered,
+  }) {
+    return checkIfAllDataEntered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CheckRequestedAuthBlocEvent value)? checkRequested,
+    TResult? Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult? Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
+  }) {
+    return checkIfAllDataEntered?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CheckRequestedAuthBlocEvent value)? checkRequested,
+    TResult Function(LogoutRequestedAuthBlocEvent value)? logoutRequested,
+    TResult Function(CheckIfAllUserDataEntered value)? checkIfAllDataEntered,
+    required TResult orElse(),
+  }) {
+    if (checkIfAllDataEntered != null) {
+      return checkIfAllDataEntered(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckIfAllUserDataEntered implements AuthGateBlocEvent {
+  const factory CheckIfAllUserDataEntered() = _$CheckIfAllUserDataEnteredImpl;
 }

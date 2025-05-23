@@ -11,14 +11,21 @@ class AuthGateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => AuthGateBloc()..add(const CheckRequestedAuthBlocEvent()),
+      create: (context) => AuthGateBloc()
+        ..add(const CheckRequestedAuthBlocEvent())
+        ..add(const CheckIfAllUserDataEntered()),
       child: BlocListener<AuthGateBloc, AuthGateBlocState>(
-        listenWhen:
-            (previous, current) => previous.gateStatus != current.gateStatus,
+        listenWhen: (previous, current) =>
+            previous.dataEnteredStatus != current.dataEnteredStatus || previous.gateStatus != current.gateStatus,
         listener: (context, state) {
           if (state.gateStatus == AuthGateStatus.authenticated) {
-            context.go('/home');
+            if (state.dataEnteredStatus == AllDataEntered.entered) {
+              context.go('/home');
+            } else if (state.dataEnteredStatus == AllDataEntered.notEntered) {
+              context.go('/phone_linking');
+            } else {
+              context.go('/home');
+            }
           } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
             context.go('/onboarding-screen');
           }

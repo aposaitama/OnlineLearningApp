@@ -8,4 +8,5 @@ class AuthGateBlocEvent with _$AuthGateBlocEvent {
       CheckRequestedAuthBlocEvent;
   const factory AuthGateBlocEvent.logoutRequested() =
       LogoutRequestedAuthBlocEvent;
+  const factory AuthGateBlocEvent.checkIfAllDataEntered() = CheckIfAllUserDataEntered;
 }
