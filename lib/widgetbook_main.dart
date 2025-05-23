@@ -5,8 +5,12 @@ import 'package:online_app/navigation/cubit/navigation_cubit.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/resources/app_colors.dart';
 import 'package:online_app/screens/account_screen/account_bloc/account_bloc.dart';
+import 'package:online_app/screens/course_details_screen/widgets/buy_bottom_bar.dart';
 import 'package:online_app/screens/course_details_screen/widgets/video_playable_button.dart';
+import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
+import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
 import 'package:online_app/screens/edit_account_screen/widgets/edit_account_text_field.dart';
+import 'package:online_app/screens/my_courses_screen/widgets/course_item_stat.dart';
 import 'package:online_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:online_app/widgets/custom_text_field.dart';
@@ -63,6 +67,11 @@ class WidgetbookApp extends StatelessWidget {
               WidgetbookUseCase(
                   name: 'BottomBar',
                   builder: (context) => const CustomBottomNavBar()),
+              WidgetbookUseCase(
+                  name: 'Buy Bottom Bar',
+                  builder: (context) => const BuyBottomBar(
+                        courseId: '',
+                      )),
               WidgetbookComponent(
                 name: 'TextFields',
                 useCases: [
@@ -101,6 +110,42 @@ class WidgetbookApp extends StatelessWidget {
                       onPlayPressed: () {},
                     ),
                   ),
+                ],
+              ),
+              WidgetbookComponent(
+                name: 'Item Tiles',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'CourseItemStat Tile',
+                    builder: (context) => const SizedBox(
+                      width: 200.0,
+                      child: CourseItemStat(
+                        totalTasksCount: 10,
+                        completedTasks: 5,
+                        concreteCourseItemTitle: 'Course Title',
+                        backgroundColor: AppColors.deepBlueColor,
+                      ),
+                    ),
+                  ),
+                  WidgetbookUseCase(
+                    name: 'Concrete Course Item tile',
+                    builder: (context) => const ConcreteCourseItemTile(
+                      concreteCourseTitle: 'Course Title',
+                      concreteCourseAuthor: 'Course Author',
+                      concreteCoursePrice: 100,
+                      concreteCourseDuration: 10000,
+                      imageUrl: '/uploads/Doggie_Corgi_e2fc339d5e.jpeg',
+                    ),
+                  ),
+                  WidgetbookUseCase(
+                      name: 'Category item tile',
+                      builder: (context) => const CategoriesItemTile(
+                            backgroundColor: '#F0F4F8',
+                            textColor: '#CEECFE',
+                            imageUrl: '/uploads/category1_495656e347.png',
+                            categoryTitle: 'Education',
+                            textBackgroundColor: '#A3A9FF',
+                          )),
                 ],
               ),
             ],
