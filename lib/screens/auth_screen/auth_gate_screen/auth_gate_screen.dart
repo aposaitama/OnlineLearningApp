@@ -16,15 +16,14 @@ class AuthGateScreen extends StatelessWidget {
         ..add(const CheckIfAllUserDataEntered()),
       child: BlocListener<AuthGateBloc, AuthGateBlocState>(
         listenWhen: (previous, current) =>
-            previous.dataEnteredStatus != current.dataEnteredStatus || previous.gateStatus != current.gateStatus,
+            previous.dataEnteredStatus != current.dataEnteredStatus ||
+            previous.gateStatus != current.gateStatus,
         listener: (context, state) {
           if (state.gateStatus == AuthGateStatus.authenticated) {
             if (state.dataEnteredStatus == AllDataEntered.entered) {
               context.go('/home');
-            } else if (state.dataEnteredStatus == AllDataEntered.notEntered) {
-              context.go('/phone_linking');
             } else {
-              context.go('/home');
+              context.go('/phone_linking');
             }
           } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
             context.go('/onboarding-screen');
