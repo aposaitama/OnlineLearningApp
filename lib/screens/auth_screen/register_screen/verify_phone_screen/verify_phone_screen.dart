@@ -171,9 +171,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               code.join(),
                             ),
                             buttonTitle: 'Create Password',
-                            buttonColor: code.join().isEmpty || code.join().length < 4
-                                ? AppColors.darkHintTextColor
-                                : null,
+                            buttonColor:
+                                code.join().isEmpty || code.join().length < 4
+                                    ? AppColors.darkHintTextColor
+                                    : null,
                           ),
                         ],
                       ),
@@ -199,22 +200,22 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: row
                                       .map(
-                                        (numItem) => Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0,
-                                          ),
-                                          child: SizedBox(
-                                            width: 64,
-                                            height: 64,
-                                            child: Center(
-                                              child: KeyField(
-                                                num: numItem,
-                                                onKeyTap: () {
-                                                  addDigit(
-                                                    numItem,
-                                                  );
-                                                  setState(() {});
-                                                },
+                                        (numItem) => GestureDetector(
+                                          onTap: () => addDigit(numItem),
+                                          child: Container(
+                                            color: Colors.transparent,
+                                            child: Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                horizontal: 20.0,
+                                              ),
+                                              child: SizedBox(
+                                                width: 64,
+                                                height: 64,
+                                                child: Center(
+                                                  child: KeyField(
+                                                    num: numItem,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -237,31 +238,34 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       height: 64,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0,
+                                  GestureDetector(
+                                    onTap: () => addDigit(
+                                      '0',
                                     ),
-                                    child: SizedBox(
-                                      width: 64,
-                                      height: 64,
-                                      child: Center(
-                                        child: KeyField(
-                                          num: '0',
-                                          onKeyTap: () => addDigit(
-                                            '0',
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                        ),
+                                        child: SizedBox(
+                                          width: 64,
+                                          height: 64,
+                                          child: Center(
+                                            child: KeyField(
+                                              num: '0',
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0,
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        deleteDigit();
-                                      },
+                                  GestureDetector(
+                                    onTap: () => deleteDigit(),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0,
+                                      ),
                                       child: SizedBox(
                                         height: 64.0,
                                         width: 64.0,

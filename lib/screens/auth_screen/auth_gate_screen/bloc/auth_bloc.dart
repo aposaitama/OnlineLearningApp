@@ -42,7 +42,16 @@ class AuthGateBloc extends Bloc<AuthGateBlocEvent, AuthGateBlocState> {
   ) async {
     final UserModel? user = await _userRepo.getUserData();
 
-    if (user!.isAllUserDataEntered == true) {
+    if(user == null) {
+      emit(
+        state.copyWith(
+          dataEnteredStatus: AllDataEntered.notEntered,
+        ),
+      );
+      return;
+    }
+
+    if (user.isAllUserDataEntered == true) {
       emit(
         state.copyWith(dataEnteredStatus: AllDataEntered.entered),
       );

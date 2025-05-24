@@ -99,17 +99,17 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: appBarBackgroundColor,
-            leading: GestureDetector(
-              onTap: () => context.pop(),
-              child: SvgPicture.asset(
-                Assets.icons.arrowBack,
-                fit: BoxFit.scaleDown,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).extension<AppColorsModel>()!.mainTextColor,
-                  BlendMode.srcIn,
-                ),
-              ),
-            ),
+            // leading: GestureDetector(
+            //   onTap: () => context.pop(),
+            //   child: SvgPicture.asset(
+            //     Assets.icons.arrowBack,
+            //     fit: BoxFit.scaleDown,
+            //     colorFilter: ColorFilter.mode(
+            //       Theme.of(context).extension<AppColorsModel>()!.mainTextColor,
+            //       BlendMode.srcIn,
+            //     ),
+            //   ),
+            // ),
             title: Text(
               'Continue with Phone',
               style: AppFonts.poppinsMedium.copyWith(
@@ -203,22 +203,26 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: row
                                         .map(
-                                          (numItem) => Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20.0,
-                                            ),
-                                            child: SizedBox(
-                                              width: 64,
-                                              height: 64,
-                                              child: Center(
-                                                child: KeyField(
-                                                    num: numItem,
-                                                    onKeyTap: () {
-                                                      _onKeyFieldPressed(
-                                                        numItem,
-                                                      );
-                                                      setState(() {});
-                                                    }),
+                                          (numItem) => GestureDetector(
+                                            onTap: () {
+                                              _onKeyFieldPressed(numItem);
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                              color: Colors.transparent,
+                                              child: Padding(
+                                                padding: const EdgeInsets.symmetric(
+                                                  horizontal: 20.0,
+                                                ),
+                                                child: SizedBox(
+                                                  width: 64,
+                                                  height: 64,
+                                                  child: Center(
+                                                    child: KeyField(
+                                                      num: numItem,
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -237,37 +241,43 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                       ),
                                       child: SizedBox(width: 64, height: 64),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0,
-                                      ),
-                                      child: SizedBox(
-                                        width: 64,
-                                        height: 64,
-                                        child: Center(
-                                          child: KeyField(
-                                            num: '0',
-                                            onKeyTap: () => _onKeyFieldPressed(
-                                              '0',
+                                    GestureDetector(
+                                      onTap: () => _onKeyFieldPressed('0'),
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 20.0,
+                                          ),
+                                          child: SizedBox(
+                                            width: 64,
+                                            height: 64,
+                                            child: Center(
+                                              child: KeyField(
+                                                num: '0',
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0,
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: _removeSign,
-                                        child: SizedBox(
-                                          height: 64.0,
-                                          width: 64.0,
-                                          child: Icon(
-                                            Icons.backspace_outlined,
-                                            color: Theme.of(context)
-                                                .extension<AppColorsModel>()
-                                                ?.mainTextColor,
+                                    GestureDetector(
+                                      onTap: _removeSign,
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0,
+                                          ),
+                                          child: SizedBox(
+                                            height: 64.0,
+                                            width: 64.0,
+                                            child: Icon(
+                                              Icons.backspace_outlined,
+                                              color: Theme.of(context)
+                                                  .extension<AppColorsModel>()
+                                                  ?.mainTextColor,
+                                            ),
                                           ),
                                         ),
                                       ),
