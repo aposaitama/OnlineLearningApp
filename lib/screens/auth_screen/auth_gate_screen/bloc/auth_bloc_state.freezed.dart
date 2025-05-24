@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthGateBlocState {
   AuthGateStatus get gateStatus => throw _privateConstructorUsedError;
+  AllDataEntered get dataEnteredStatus => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthGateBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $AuthGateBlocStateCopyWith<$Res> {
           AuthGateBlocState value, $Res Function(AuthGateBlocState) then) =
       _$AuthGateBlocStateCopyWithImpl<$Res, AuthGateBlocState>;
   @useResult
-  $Res call({AuthGateStatus gateStatus});
+  $Res call({AuthGateStatus gateStatus, AllDataEntered dataEnteredStatus});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$AuthGateBlocStateCopyWithImpl<$Res, $Val extends AuthGateBlocState>
   @override
   $Res call({
     Object? gateStatus = null,
+    Object? dataEnteredStatus = null,
   }) {
     return _then(_value.copyWith(
       gateStatus: null == gateStatus
           ? _value.gateStatus
           : gateStatus // ignore: cast_nullable_to_non_nullable
               as AuthGateStatus,
+      dataEnteredStatus: null == dataEnteredStatus
+          ? _value.dataEnteredStatus
+          : dataEnteredStatus // ignore: cast_nullable_to_non_nullable
+              as AllDataEntered,
     ) as $Val);
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$AuthGateBlocStateImplCopyWith<$Res>
       __$$AuthGateBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthGateStatus gateStatus});
+  $Res call({AuthGateStatus gateStatus, AllDataEntered dataEnteredStatus});
 }
 
 /// @nodoc
@@ -85,12 +91,17 @@ class __$$AuthGateBlocStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gateStatus = null,
+    Object? dataEnteredStatus = null,
   }) {
     return _then(_$AuthGateBlocStateImpl(
       gateStatus: null == gateStatus
           ? _value.gateStatus
           : gateStatus // ignore: cast_nullable_to_non_nullable
               as AuthGateStatus,
+      dataEnteredStatus: null == dataEnteredStatus
+          ? _value.dataEnteredStatus
+          : dataEnteredStatus // ignore: cast_nullable_to_non_nullable
+              as AllDataEntered,
     ));
   }
 }
@@ -98,15 +109,20 @@ class __$$AuthGateBlocStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthGateBlocStateImpl implements _AuthGateBlocState {
-  const _$AuthGateBlocStateImpl({this.gateStatus = AuthGateStatus.initial});
+  const _$AuthGateBlocStateImpl(
+      {this.gateStatus = AuthGateStatus.initial,
+      this.dataEnteredStatus = AllDataEntered.initial});
 
   @override
   @JsonKey()
   final AuthGateStatus gateStatus;
+  @override
+  @JsonKey()
+  final AllDataEntered dataEnteredStatus;
 
   @override
   String toString() {
-    return 'AuthGateBlocState(gateStatus: $gateStatus)';
+    return 'AuthGateBlocState(gateStatus: $gateStatus, dataEnteredStatus: $dataEnteredStatus)';
   }
 
   @override
@@ -115,11 +131,13 @@ class _$AuthGateBlocStateImpl implements _AuthGateBlocState {
         (other.runtimeType == runtimeType &&
             other is _$AuthGateBlocStateImpl &&
             (identical(other.gateStatus, gateStatus) ||
-                other.gateStatus == gateStatus));
+                other.gateStatus == gateStatus) &&
+            (identical(other.dataEnteredStatus, dataEnteredStatus) ||
+                other.dataEnteredStatus == dataEnteredStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gateStatus);
+  int get hashCode => Object.hash(runtimeType, gateStatus, dataEnteredStatus);
 
   /// Create a copy of AuthGateBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -132,11 +150,14 @@ class _$AuthGateBlocStateImpl implements _AuthGateBlocState {
 }
 
 abstract class _AuthGateBlocState implements AuthGateBlocState {
-  const factory _AuthGateBlocState({final AuthGateStatus gateStatus}) =
-      _$AuthGateBlocStateImpl;
+  const factory _AuthGateBlocState(
+      {final AuthGateStatus gateStatus,
+      final AllDataEntered dataEnteredStatus}) = _$AuthGateBlocStateImpl;
 
   @override
   AuthGateStatus get gateStatus;
+  @override
+  AllDataEntered get dataEnteredStatus;
 
   /// Create a copy of AuthGateBlocState
   /// with the given fields replaced by the non-null parameter values.

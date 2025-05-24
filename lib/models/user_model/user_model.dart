@@ -27,6 +27,7 @@ class UserModel with _$UserModel {
     required List<MessageNotification> message_notifications,
     @ImagePathConverter() String? avatar,
     required List<CreditCardModel> creditCards,
+    @Default(false) bool isAllUserDataEntered,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

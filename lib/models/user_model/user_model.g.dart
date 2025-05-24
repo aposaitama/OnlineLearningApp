@@ -38,6 +38,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       creditCards: (json['creditCards'] as List<dynamic>)
           .map((e) => CreditCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isAllUserDataEntered: json['isAllUserDataEntered'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -59,6 +60,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'avatar': _$JsonConverterToJson<Map<String, dynamic>?, String>(
           instance.avatar, const ImagePathConverter().toJson),
       'creditCards': instance.creditCards,
+      'isAllUserDataEntered': instance.isAllUserDataEntered,
     };
 
 Json? _$JsonConverterToJson<Json, Value>(

@@ -74,6 +74,7 @@ class UserRepository {
     final Map<String, dynamic> data = {};
     try {
       data['paymentPassword'] = paymentPassword;
+      data['isAllUserDataEntered'] = true;
       final response = await _dio.put(
         '/users/$userID',
         data: data,
