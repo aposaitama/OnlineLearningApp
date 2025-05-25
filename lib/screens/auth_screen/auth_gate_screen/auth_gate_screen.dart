@@ -14,21 +14,31 @@ class AuthGateScreen extends StatelessWidget {
       create: (context) => AuthGateBloc()
         ..add(const CheckRequestedAuthBlocEvent())
         ..add(const CheckIfAllUserDataEntered()),
-      child: BlocListener<AuthGateBloc, AuthGateBlocState>(
-        listenWhen: (previous, current) =>
-            previous.dataEnteredStatus != current.dataEnteredStatus ||
-            previous.gateStatus != current.gateStatus,
-        listener: (context, state) {
-          if (state.gateStatus == AuthGateStatus.authenticated) {
-            if (state.dataEnteredStatus == AllDataEntered.entered) {
-              context.go('/home');
-            } else {
-              context.go('/phone_linking');
-            }
-          } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
-            context.go('/onboarding-screen');
-          }
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthGateBloc, AuthGateBlocState>(
+            listenWhen: (previous, current) => previous.gateStatus != current.gateStatus,
+            listener: (context, state) {
+              if (state.gateStatus == AuthGateStatus.authenticated) {
+                // Тільки після автентифікації перевіряємо чи введені всі дані
+                context.read<AuthGateBloc>().add(const CheckIfAllUserDataEntered());
+              } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
+                context.go('/onboarding-screen');
+              }
+            },
+          ),
+          BlocListener<AuthGateBloc, AuthGateBlocState>(
+            listenWhen: (previous, current) =>
+            previous.dataEnteredStatus != current.dataEnteredStatus,
+            listener: (context, state) {
+              if (state.dataEnteredStatus == AllDataEntered.entered) {
+                context.go('/home');
+              } else if (state.dataEnteredStatus == AllDataEntered.notEntered) {
+                context.go('/phone_linking');
+              }
+            },
+          ),
+        ],
         child: BlocBuilder<AuthGateBloc, AuthGateBlocState>(
           builder: (context, state) {
             if (state.gateStatus == AuthGateStatus.initial) {

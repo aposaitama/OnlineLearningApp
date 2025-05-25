@@ -76,4 +76,18 @@ class SharedPreferencesService {
 
     return enableNotificationsSound;
   }
+
+  Future<void> saveAlarmRequest(bool isRequested) async {
+    final prefs = await _prefs();
+
+    await prefs.setBool('exact_alarm_requested', isRequested);
+  }
+
+  Future<bool?> getAlarmRequest() async {
+    final prefs = await _prefs();
+
+    final bool? isRequested = prefs.getBool('exact_alarm_requested');
+
+    return isRequested;
+  }
 }

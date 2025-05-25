@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:android_intent_plus/flag.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/local_notification_model/local_notification_model.dart';
@@ -44,6 +48,8 @@ class LocalNotificationsService {
       badge: true,
       sound: true,
     );
+
+    await requestExactAlarmPermission();
   }
 
   Future<NotificationDetails> _notificationDetails() async {
@@ -117,12 +123,12 @@ class LocalNotificationsService {
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
 
-    final localNotificationRepo = locator<LocalNotificationRepository>();
-
-    localNotificationRepo.createNotification(
-      notificationBody: 'Come back, you have uncompleted courses!',
-      notificationType: NotificationType.info,
-    );
+    // final localNotificationRepo = locator<LocalNotificationRepository>();
+    //
+    // localNotificationRepo.createNotification(
+    //   notificationBody: 'Come back, you have uncompleted courses!',
+    //   notificationType: NotificationType.info,
+    // );
   }
 
   tz.TZDateTime _nextInstanceOfScheduledNotif() {
@@ -137,5 +143,26 @@ class LocalNotificationsService {
 
     return scheduledDate;
   }
+
+
+  static Future<void> requestExactAlarmPermission() async {
+    if (!Platform.isAndroid) return;
+
+    final prefs = locator<SharedPreferencesService>();
+    final requestedBefore = await prefs.getAlarmRequest() ?? false;
+
+    if (!requestedBefore) {
+      const intent = AndroidIntent(
+        action: 'android.settings.REQUEST_SCHEDULE_EXACT_ALARM',
+        flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
+      );
+      await intent.launch();
+
+      await prefs.saveAlarmRequest(true);
+    }
+  }
+
+
+
 
 }
