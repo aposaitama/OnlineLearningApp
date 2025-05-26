@@ -12,8 +12,7 @@ class AuthGateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthGateBloc()
-        ..add(const CheckRequestedAuthBlocEvent())
-        ..add(const CheckIfAllUserDataEntered()),
+        ..add(const CheckRequestedAuthBlocEvent()),
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthGateBloc, AuthGateBlocState>(
@@ -21,10 +20,9 @@ class AuthGateScreen extends StatelessWidget {
                 previous.gateStatus != current.gateStatus,
             listener: (context, state) {
               if (state.gateStatus == AuthGateStatus.authenticated) {
-                // Тільки після автентифікації перевіряємо чи введені всі дані
-                context
-                    .read<AuthGateBloc>()
-                    .add(const CheckIfAllUserDataEntered());
+
+                context.read<AuthGateBloc>().add(const CheckIfAllUserDataEntered());
+
               } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
                 context.go('/onboarding-screen');
               }
@@ -48,6 +46,8 @@ class AuthGateScreen extends StatelessWidget {
               } else if (state.dataEnteredStatus ==
                   AllDataEntered.phoneNumberNotEntered) {
                 context.go('/phone_linking');
+              }else if(state.dataEnteredStatus == AllDataEntered.onlyPhoneEntered){
+                context.go('/phone_verify');
               }
             },
           ),
