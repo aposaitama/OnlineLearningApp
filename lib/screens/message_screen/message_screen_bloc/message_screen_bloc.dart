@@ -34,10 +34,21 @@ class MessageScreenBloc extends Bloc<MessageScreenEvent, MessageScreenState> {
         );
         return;
       }
+      final filteredNotifications = notifications.where((notif) {
+        if (notif.body == "Come back, you have uncompleted courses!") {
+          final notifDatePlus9h = notif.date.add(const Duration(hours: 9));
+
+          if (notifDatePlus9h.isAfter(DateTime.now())) {
+            return false;
+          }
+        }
+
+        return true;
+      }).toList();
       emit(
         state.copyWith(
           notificationListStatus: NotificationListStatus.successful,
-          notifications: notifications,
+          notifications: filteredNotifications,
         ),
       );
     } catch (e) {

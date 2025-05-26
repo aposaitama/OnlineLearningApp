@@ -91,10 +91,6 @@ void main() async {
         BlocProvider(
           create: (_) => PaymentBloc(),
         ),
-        // BlocProvider(
-        //   create: (_) => FiltersBloc(),
-
-        // ),
         BlocProvider(
           create: (context) => SearchScreenBloc(
             courseItemRepository: context.read<CourseItemRepository>(),

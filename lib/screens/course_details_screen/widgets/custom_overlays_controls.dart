@@ -78,6 +78,14 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
     _startHideTimer();
   }
 
+  void _toggleFullScreen(ChewieController controller) {
+    if (controller.isFullScreen) {
+      controller.exitFullScreen();
+    } else {
+      controller.enterFullScreen();
+    }
+  }
+
   @override
   void dispose() {
     _hideTimer?.cancel();
@@ -138,10 +146,7 @@ class _CustomOverlayControlsState extends State<CustomOverlayControls> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          onPressed: () =>
-                              context.read<CourseDetailsBloc>().add(
-                                    const FullScreenEvent(),
-                                  ),
+                          onPressed: () => _toggleFullScreen(controller),
                           icon: SvgPicture.asset(
                             Assets.icons.fullScreen,
                           ),

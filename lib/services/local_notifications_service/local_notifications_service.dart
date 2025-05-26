@@ -12,28 +12,30 @@ import 'package:timezone/timezone.dart' as tz;
 class LocalNotificationsService {
   final _sharedPrefs = locator<SharedPreferencesService>();
   static final LocalNotificationsService _instance =
-  LocalNotificationsService._internal();
+      LocalNotificationsService._internal();
 
   factory LocalNotificationsService() => _instance;
 
   LocalNotificationsService._internal();
 
   static final FlutterLocalNotificationsPlugin _notificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
+
+  // final localNotificationRepo = locator<LocalNotificationRepository>();
 
   static Future<void> localNotificationsInit() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const DarwinInitializationSettings initializationSettingsDarwin =
-    DarwinInitializationSettings(
+        DarwinInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
     );
 
     const InitializationSettings initializationSettings =
-    InitializationSettings(
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
@@ -42,12 +44,12 @@ class LocalNotificationsService {
 
     await _notificationsPlugin
         .resolvePlatformSpecificImplementation<
-        IOSFlutterLocalNotificationsPlugin>()
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+          alert: true,
+          badge: true,
+          sound: true,
+        );
 
     await requestExactAlarmPermission();
   }
@@ -55,7 +57,7 @@ class LocalNotificationsService {
   Future<NotificationDetails> _notificationDetails() async {
     final isEnabledSound = await _sharedPrefs.getSoundNotificationsStatus();
     AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails(
+        AndroidNotificationDetails(
       'default_channel_id',
       'Default',
       channelDescription: 'General notifications',
@@ -64,8 +66,8 @@ class LocalNotificationsService {
       playSound: isEnabledSound!,
     );
 
-    DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
-        presentSound: isEnabledSound);
+    DarwinNotificationDetails iosDetails =
+        DarwinNotificationDetails(presentSound: isEnabledSound);
 
     NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
@@ -81,8 +83,8 @@ class LocalNotificationsService {
     required String body,
     required NotificationType notificationType,
   }) async {
-    final enableNotifications = await _sharedPrefs
-        .getEnableNotificationsStatus();
+    final enableNotifications =
+        await _sharedPrefs.getEnableNotificationsStatus();
     if (enableNotifications == false) return;
 
     await _notificationsPlugin.show(
@@ -109,8 +111,8 @@ class LocalNotificationsService {
 
   Future<void> scheduleDailyNotificationIfStreakZero(
       {required int streak}) async {
-    final enableNotifications = await _sharedPrefs
-        .getEnableNotificationsStatus();
+    final enableNotifications =
+        await _sharedPrefs.getEnableNotificationsStatus();
     if (enableNotifications == false) return;
 
     const id = 2;
@@ -123,12 +125,11 @@ class LocalNotificationsService {
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
 
-    // final localNotificationRepo = locator<LocalNotificationRepository>();
-    //
-    // localNotificationRepo.createNotification(
-    //   notificationBody: 'Come back, you have uncompleted courses!',
-    //   notificationType: NotificationType.info,
-    // );
+    final localNotificationRepo = locator<LocalNotificationRepository>();
+    localNotificationRepo.createNotification(
+      notificationBody: 'Come back, you have uncompleted courses!',
+      notificationType: NotificationType.info,
+    );
   }
 
   tz.TZDateTime _nextInstanceOfScheduledNotif() {
@@ -143,7 +144,6 @@ class LocalNotificationsService {
 
     return scheduledDate;
   }
-
 
   static Future<void> requestExactAlarmPermission() async {
     if (!Platform.isAndroid) return;
@@ -161,8 +161,4 @@ class LocalNotificationsService {
       await prefs.saveAlarmRequest(true);
     }
   }
-
-
-
-
 }
