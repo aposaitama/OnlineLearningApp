@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/local_notification_model/local_notification_model.dart';
+import 'package:online_app/repositories/local_notification_repository/local_notification_repository.dart';
 import 'package:online_app/repositories/user_repository/user_repository.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
@@ -17,6 +18,7 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
   final userRepo = locator<UserRepository>();
   final _courseRepo = locator<CourseItemRepository>();
   final _notificationService = locator<LocalNotificationsService>();
+  final _notificationRepo = locator<LocalNotificationRepository>();
 
   HomeScreenBloc() : super(const HomeScreenState()) {
     on<LoadUserHomeScreenBlocEvent>(_loadUserData);
@@ -69,6 +71,16 @@ class HomeScreenBloc extends Bloc<HomeScreenBlocEvent, HomeScreenState> {
               totallyLearningDays: 1,
             );
     }
+    final lastUserLocalNotif =
+        await _notificationRepo.getLastLocalNotification();
+    if (lastUserLocalNotif != null) {
+      final DateTime notifDatePlus9h =
+          lastUserLocalNotif.date.add(const Duration(hours: 9));
+      if (notifDatePlus9h.isAfter(DateTime.now())) {
+        await _notificationRepo.deleteNotif(lastUserLocalNotif.documentId);
+      }
+    }
+
     final userInfoChangedModel = await userRepo.getUserData();
     emit(
       state.copyWith(

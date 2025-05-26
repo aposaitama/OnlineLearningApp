@@ -17,11 +17,14 @@ class AuthGateScreen extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthGateBloc, AuthGateBlocState>(
-            listenWhen: (previous, current) => previous.gateStatus != current.gateStatus,
+            listenWhen: (previous, current) =>
+                previous.gateStatus != current.gateStatus,
             listener: (context, state) {
               if (state.gateStatus == AuthGateStatus.authenticated) {
                 // Тільки після автентифікації перевіряємо чи введені всі дані
-                context.read<AuthGateBloc>().add(const CheckIfAllUserDataEntered());
+                context
+                    .read<AuthGateBloc>()
+                    .add(const CheckIfAllUserDataEntered());
               } else if (state.gateStatus == AuthGateStatus.unAuthenticated) {
                 context.go('/onboarding-screen');
               }
@@ -29,11 +32,21 @@ class AuthGateScreen extends StatelessWidget {
           ),
           BlocListener<AuthGateBloc, AuthGateBlocState>(
             listenWhen: (previous, current) =>
-            previous.dataEnteredStatus != current.dataEnteredStatus,
+                previous.dataEnteredStatus != current.dataEnteredStatus,
             listener: (context, state) {
               if (state.dataEnteredStatus == AllDataEntered.entered) {
                 context.go('/home');
-              } else if (state.dataEnteredStatus == AllDataEntered.notEntered) {
+              } else if (state.dataEnteredStatus == AllDataEntered.notEntered
+                  // ||
+                  //     state.dataEnteredStatus ==
+                  //         AllDataEntered.phoneNumberNotEntered
+                  ) {
+                context.go('/phone_linking');
+              } else if (state.dataEnteredStatus ==
+                  AllDataEntered.paymentPasswordNotEntered) {
+                context.go('/phone_verify');
+              } else if (state.dataEnteredStatus ==
+                  AllDataEntered.phoneNumberNotEntered) {
                 context.go('/phone_linking');
               }
             },
