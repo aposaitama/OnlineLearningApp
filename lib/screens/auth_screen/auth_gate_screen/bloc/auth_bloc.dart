@@ -51,11 +51,17 @@ class AuthGateBloc extends Bloc<AuthGateBlocEvent, AuthGateBlocState> {
       return;
     }
 
-    if (user.isAllUserDataEntered == true) {
+    if (user.userPhoneNumber != null && user.paymentPassword != null) {
       emit(
         state.copyWith(dataEnteredStatus: AllDataEntered.entered),
       );
-    } else {
+    } else if(user.userPhoneNumber != null && user.paymentPassword == null){
+      emit(
+        state.copyWith(
+          dataEnteredStatus: AllDataEntered.onlyPhoneEntered,
+        ),
+      );
+    } else{
       emit(
         state.copyWith(
           dataEnteredStatus: AllDataEntered.notEntered,
