@@ -99,6 +99,7 @@ class EditAccountScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30.0,),
                 EditAccountTextField(
+                  initialValue: state.userData!.username,
                   onChanged: (value) => _onEnterUsername(context, value),
                 ),
               ],

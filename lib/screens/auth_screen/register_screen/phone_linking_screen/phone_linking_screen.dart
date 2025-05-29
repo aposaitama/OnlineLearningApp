@@ -174,10 +174,11 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                             SizedBox(
                               width: 125.0,
                               child: CustomFilledButton(
-                                onTap: () =>
-                                    _connectPhoneNumberValidationMethod(
-                                  phoneNumberController.text,
-                                ),
+                                onTap: phoneNumberController.text.isEmpty
+                                    ? () {}
+                                    : () => _connectPhoneNumberValidationMethod(
+                                          phoneNumberController.text,
+                                        ),
                                 buttonTitle: 'Continue',
                                 buttonColor: phoneNumberController.text.isEmpty
                                     ? AppColors.darkHintTextColor
@@ -211,7 +212,8 @@ class _PhoneLinkingScreenState extends State<PhoneLinkingScreen> {
                                             child: Container(
                                               color: Colors.transparent,
                                               child: Padding(
-                                                padding: const EdgeInsets.symmetric(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
                                                   horizontal: 20.0,
                                                 ),
                                                 child: SizedBox(

@@ -9,19 +9,19 @@ import '../../../resources/app_fonts.dart';
 
 class EditAccountTextField extends StatelessWidget {
   final Function(String)? onChanged;
+  final String initialValue;
 
   const EditAccountTextField({
     super.key,
-    this.onChanged,
+    this.onChanged, required this.initialValue,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return BlocBuilder<AccountBloc, AccountState>(
-      builder: (context, state) {
+
         return TextFormField(
-          initialValue: state.userData!.username,
+          initialValue: initialValue,
           // controller: searchFieldController,
           cursorColor: AppColors.grayProgressColor,
           decoration: InputDecoration(
@@ -63,7 +63,6 @@ class EditAccountTextField extends StatelessWidget {
           ),
           onChanged: onChanged,
         );
-      }
-    );
+
   }
 }

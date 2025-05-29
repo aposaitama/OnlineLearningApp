@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatter;
+
   const CustomTextField({
     super.key,
     required this.title,
@@ -28,6 +29,8 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   bool obscureText = true;
+  String? errorText;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,10 +60,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
           child: TextFormField(
             inputFormatters: widget.inputFormatter ?? [],
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.disabled,
             obscureText: widget.isPassword == true ? obscureText : false,
             controller: widget.controller,
             validator: widget.validator,
+            onChanged: (value) {
+              if (widget.validator != null) {
+                setState(() {
+                  errorText = widget.validator!(value);
+                });
+              }
+            },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(
                 left: 14.0,
@@ -92,9 +102,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     )
                   : null,
             ),
-            onChanged: (value) {},
           ),
         ),
+        if (errorText != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 6.0, left: 6.0),
+            child: Text(
+              errorText!,
+              style: TextStyle(color: Colors.red, fontSize: 12.0),
+            ),
+          ),
       ],
     );
   }

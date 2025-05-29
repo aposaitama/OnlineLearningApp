@@ -152,7 +152,7 @@ class LocalNotificationsService {
     final requestedBefore = await prefs.getAlarmRequest() ?? false;
 
     if (!requestedBefore) {
-      const intent = AndroidIntent(
+      var intent = const AndroidIntent(
         action: 'android.settings.REQUEST_SCHEDULE_EXACT_ALARM',
         flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
       );
