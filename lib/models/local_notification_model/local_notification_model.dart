@@ -17,6 +17,7 @@ enum NotificationType {
 class LocalNotificationModel with _$LocalNotificationModel {
   factory LocalNotificationModel({
     required int id,
+    required String documentId,
     required String body,
     @DateConverter() required DateTime date,
     required NotificationType notificationType,

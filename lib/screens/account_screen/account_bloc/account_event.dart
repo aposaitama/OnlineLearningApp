@@ -17,4 +17,8 @@ class AccountEvent with _$AccountEvent {
   ) = EnterNewUsernameEvent;
 
   const factory AccountEvent.clearState() = ClearAccountStateEvent;
+
+  const factory AccountEvent.toggleNotifications() = ToggleNotificationsEvent;
+
+  const factory AccountEvent.toggleNotificationsSound() = ToggleNotificationsSoundEvent;
 }

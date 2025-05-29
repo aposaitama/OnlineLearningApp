@@ -22,6 +22,7 @@ LocalNotificationModel _$LocalNotificationModelFromJson(
 /// @nodoc
 mixin _$LocalNotificationModel {
   int get id => throw _privateConstructorUsedError;
+  String get documentId => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
   @DateConverter()
   DateTime get date => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $LocalNotificationModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      String documentId,
       String body,
       @DateConverter() DateTime date,
       NotificationType notificationType});
@@ -67,6 +69,7 @@ class _$LocalNotificationModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
+    Object? documentId = null,
     Object? body = null,
     Object? date = null,
     Object? notificationType = null,
@@ -76,6 +79,10 @@ class _$LocalNotificationModelCopyWithImpl<$Res,
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      documentId: null == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as String,
       body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -103,6 +110,7 @@ abstract class _$$LocalNotificationModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      String documentId,
       String body,
       @DateConverter() DateTime date,
       NotificationType notificationType});
@@ -124,6 +132,7 @@ class __$$LocalNotificationModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? documentId = null,
     Object? body = null,
     Object? date = null,
     Object? notificationType = null,
@@ -133,6 +142,10 @@ class __$$LocalNotificationModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      documentId: null == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as String,
       body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -154,6 +167,7 @@ class __$$LocalNotificationModelImplCopyWithImpl<$Res>
 class _$LocalNotificationModelImpl implements _LocalNotificationModel {
   _$LocalNotificationModelImpl(
       {required this.id,
+      required this.documentId,
       required this.body,
       @DateConverter() required this.date,
       required this.notificationType});
@@ -164,6 +178,8 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
   @override
   final int id;
   @override
+  final String documentId;
+  @override
   final String body;
   @override
   @DateConverter()
@@ -173,7 +189,7 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
 
   @override
   String toString() {
-    return 'LocalNotificationModel(id: $id, body: $body, date: $date, notificationType: $notificationType)';
+    return 'LocalNotificationModel(id: $id, documentId: $documentId, body: $body, date: $date, notificationType: $notificationType)';
   }
 
   @override
@@ -182,6 +198,8 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
         (other.runtimeType == runtimeType &&
             other is _$LocalNotificationModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.documentId, documentId) ||
+                other.documentId == documentId) &&
             (identical(other.body, body) || other.body == body) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.notificationType, notificationType) ||
@@ -191,7 +209,7 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, body, date, notificationType);
+      Object.hash(runtimeType, id, documentId, body, date, notificationType);
 
   /// Create a copy of LocalNotificationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -213,6 +231,7 @@ class _$LocalNotificationModelImpl implements _LocalNotificationModel {
 abstract class _LocalNotificationModel implements LocalNotificationModel {
   factory _LocalNotificationModel(
           {required final int id,
+          required final String documentId,
           required final String body,
           @DateConverter() required final DateTime date,
           required final NotificationType notificationType}) =
@@ -223,6 +242,8 @@ abstract class _LocalNotificationModel implements LocalNotificationModel {
 
   @override
   int get id;
+  @override
+  String get documentId;
   @override
   String get body;
   @override

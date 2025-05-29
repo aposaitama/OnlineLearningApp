@@ -40,6 +40,7 @@ mixin _$UserModel {
   @ImagePathConverter()
   String? get avatar => throw _privateConstructorUsedError;
   List<CreditCardModel> get creditCards => throw _privateConstructorUsedError;
+  bool get isAllUserDataEntered => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -72,7 +73,8 @@ abstract class $UserModelCopyWith<$Res> {
       List<CourseVideoItem> completed_course_videos,
       List<MessageNotification> message_notifications,
       @ImagePathConverter() String? avatar,
-      List<CreditCardModel> creditCards});
+      List<CreditCardModel> creditCards,
+      bool isAllUserDataEntered});
 }
 
 /// @nodoc
@@ -106,6 +108,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? message_notifications = null,
     Object? avatar = freezed,
     Object? creditCards = null,
+    Object? isAllUserDataEntered = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -172,6 +175,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.creditCards
           : creditCards // ignore: cast_nullable_to_non_nullable
               as List<CreditCardModel>,
+      isAllUserDataEntered: null == isAllUserDataEntered
+          ? _value.isAllUserDataEntered
+          : isAllUserDataEntered // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -200,7 +207,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       List<CourseVideoItem> completed_course_videos,
       List<MessageNotification> message_notifications,
       @ImagePathConverter() String? avatar,
-      List<CreditCardModel> creditCards});
+      List<CreditCardModel> creditCards,
+      bool isAllUserDataEntered});
 }
 
 /// @nodoc
@@ -232,6 +240,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? message_notifications = null,
     Object? avatar = freezed,
     Object? creditCards = null,
+    Object? isAllUserDataEntered = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -298,6 +307,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value._creditCards
           : creditCards // ignore: cast_nullable_to_non_nullable
               as List<CreditCardModel>,
+      isAllUserDataEntered: null == isAllUserDataEntered
+          ? _value.isAllUserDataEntered
+          : isAllUserDataEntered // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -321,7 +334,8 @@ class _$UserModelImpl implements _UserModel {
       required final List<CourseVideoItem> completed_course_videos,
       required final List<MessageNotification> message_notifications,
       @ImagePathConverter() this.avatar,
-      required final List<CreditCardModel> creditCards})
+      required final List<CreditCardModel> creditCards,
+      this.isAllUserDataEntered = false})
       : _user_purchased_courses = user_purchased_courses,
         _favourite_items = favourite_items,
         _completed_course_videos = completed_course_videos,
@@ -398,8 +412,12 @@ class _$UserModelImpl implements _UserModel {
   }
 
   @override
+  @JsonKey()
+  final bool isAllUserDataEntered;
+
+  @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, paymentPassword: $paymentPassword, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, userLearningStreak: $userLearningStreak, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards)';
+    return 'UserModel(id: $id, username: $username, email: $email, userPhoneNumber: $userPhoneNumber, paymentPassword: $paymentPassword, totallyLearningDays: $totallyLearningDays, totallyLearningHours: $totallyLearningHours, learnedToday: $learnedToday, userLearningStreak: $userLearningStreak, lastTimeCheckout: $lastTimeCheckout, user_purchased_courses: $user_purchased_courses, favourite_items: $favourite_items, completed_course_videos: $completed_course_videos, message_notifications: $message_notifications, avatar: $avatar, creditCards: $creditCards, isAllUserDataEntered: $isAllUserDataEntered)';
   }
 
   @override
@@ -435,7 +453,9 @@ class _$UserModelImpl implements _UserModel {
                 .equals(other._message_notifications, _message_notifications) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             const DeepCollectionEquality()
-                .equals(other._creditCards, _creditCards));
+                .equals(other._creditCards, _creditCards) &&
+            (identical(other.isAllUserDataEntered, isAllUserDataEntered) ||
+                other.isAllUserDataEntered == isAllUserDataEntered));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -457,7 +477,8 @@ class _$UserModelImpl implements _UserModel {
       const DeepCollectionEquality().hash(_completed_course_videos),
       const DeepCollectionEquality().hash(_message_notifications),
       avatar,
-      const DeepCollectionEquality().hash(_creditCards));
+      const DeepCollectionEquality().hash(_creditCards),
+      isAllUserDataEntered);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -492,7 +513,8 @@ abstract class _UserModel implements UserModel {
       required final List<CourseVideoItem> completed_course_videos,
       required final List<MessageNotification> message_notifications,
       @ImagePathConverter() final String? avatar,
-      required final List<CreditCardModel> creditCards}) = _$UserModelImpl;
+      required final List<CreditCardModel> creditCards,
+      final bool isAllUserDataEntered}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -530,6 +552,8 @@ abstract class _UserModel implements UserModel {
   String? get avatar;
   @override
   List<CreditCardModel> get creditCards;
+  @override
+  bool get isAllUserDataEntered;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

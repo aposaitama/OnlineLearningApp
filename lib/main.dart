@@ -23,6 +23,7 @@ import 'package:online_app/screens/search_screen/search_screen_bloc/search_scree
 import 'package:online_app/services/connectivity_service/connectivity_service.dart';
 import 'package:online_app/services/firebase_api_service/firebase_api_service.dart';
 import 'package:online_app/services/local_notifications_service/local_notifications_service.dart';
+import 'package:online_app/services/shared_preferences_service/shared_preferences_service.dart';
 import 'package:online_app/widgets/notification_dialog.dart';
 
 import 'bloc/filters_bloc/filters_bloc.dart';
@@ -47,6 +48,8 @@ void main() async {
       );
     },
   ).initNotif();
+
+  await SharedPreferencesService().initializeNotificationsStatus();
 
   await LocalNotificationsService.localNotificationsInit();
 
@@ -88,10 +91,6 @@ void main() async {
         BlocProvider(
           create: (_) => PaymentBloc(),
         ),
-        // BlocProvider(
-        //   create: (_) => FiltersBloc(),
-
-        // ),
         BlocProvider(
           create: (context) => SearchScreenBloc(
             courseItemRepository: context.read<CourseItemRepository>(),

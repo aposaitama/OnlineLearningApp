@@ -44,7 +44,7 @@ class _EnterPaymentPasswordSheetState extends State<EnterPaymentPasswordSheet> {
     super.dispose();
   }
 
-  void addDigit(String digit) {
+  void _addDigit(String digit) {
     final index = code.indexWhere((element) => element.isEmpty);
     if (index != -1) {
       setState(
@@ -171,18 +171,21 @@ class _EnterPaymentPasswordSheetState extends State<EnterPaymentPasswordSheet> {
                                     MainAxisAlignment.spaceBetween,
                                 children: row
                                     .map(
-                                      (numItem) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0,
-                                        ),
-                                        child: SizedBox(
-                                          width: 64,
-                                          height: 64,
-                                          child: Center(
-                                            child: KeyField(
-                                              num: numItem,
-                                              onKeyTap: () => addDigit(
-                                                numItem,
+                                      (numItem) => GestureDetector(
+                                        onTap: () => _addDigit(numItem),
+                                        child: Container(
+                                          color: Colors.transparent,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 20.0,
+                                            ),
+                                            child: SizedBox(
+                                              width: 64,
+                                              height: 64,
+                                              child: Center(
+                                                child: KeyField(
+                                                  num: numItem,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -205,31 +208,33 @@ class _EnterPaymentPasswordSheetState extends State<EnterPaymentPasswordSheet> {
                                     height: 64,
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0,
-                                  ),
-                                  child: SizedBox(
-                                    width: 64,
-                                    height: 64,
-                                    child: Center(
-                                      child: KeyField(
-                                        num: '0',
-                                        onKeyTap: () => addDigit(
-                                          '0',
+                                GestureDetector(
+                                  onTap: ()=> _addDigit('0'),
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 20.0,
+                                      ),
+                                      child: SizedBox(
+                                        width: 64,
+                                        height: 64,
+                                        child: Center(
+                                          child: KeyField(
+                                            num: '0',
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0,
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      deleteDigit();
-                                    },
+                                GestureDetector(
+                                  onTap: () =>
+                                    deleteDigit(),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0,
+                                    ),
                                     child: SizedBox(
                                       height: 64.0,
                                       width: 64.0,

@@ -56,6 +56,9 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                   const LoadUserHomeScreenBlocEvent(),
                 );
           }
+          if (state.videoLoadingStatus == CourseLoadingVideoStatus.loading) {
+            BotToast.showLoading();
+          }
         },
         child: BlocBuilder<CourseDetailsBloc, CourseDetailsState>(
           builder: (context, state) {
@@ -69,6 +72,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                       builder: (context, state) {
                         if (state.videoLoadingStatus ==
                             CourseLoadingVideoStatus.initial) {
+                          BotToast.cleanAll();
                           return course != null
                               ? Stack(
                                   children: [
@@ -107,6 +111,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                         }
                         if (state.videoLoadingStatus ==
                             CourseLoadingVideoStatus.loaded) {
+                          BotToast.cleanAll();
                           return state.courseVideo != null
                               ? BlocListener<CourseDetailsBloc,
                                   CourseDetailsState>(

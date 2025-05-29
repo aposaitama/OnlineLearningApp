@@ -62,4 +62,32 @@ class LocalNotificationRepository {
       rethrow;
     }
   }
+
+  Future<LocalNotificationModel?> getLastLocalNotification() async {
+    try {
+      final int? userId = await _sharedPreferencesService.getUserId();
+
+      final response = await _dio.get(
+          '/local-notifications?filters[body][\$eq]=Come%20back%2C%20you%20have%20uncompleted%20courses!&filters[users_permissions_user]=$userId&sort[0]=date:desc&pagination[page]=1&pagination[pageSize]=1');
+
+      if (response.isSuccess) {
+        final data = response.data['data'];
+        if (data != null && data.isNotEmpty) {
+          return LocalNotificationModel.fromJson(response.data['data'][0]);
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> deleteNotif(String notifId) async {
+    try {
+      await _dio.delete('/local-notifications/$notifId');
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

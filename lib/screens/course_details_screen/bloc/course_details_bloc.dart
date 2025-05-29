@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/user_model/user_model.dart';
@@ -228,9 +229,11 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
     LoadCourseVideoEvent event,
     Emitter<CourseDetailsState> emit,
   ) async {
+    emit(state.copyWith(videoLoadingStatus: CourseLoadingVideoStatus.loading));
+
     if (state.courseVideo != null) {
       await state.courseVideo!.pause();
-      // await state.courseVideo!.dispose();
+
       add(const CloseTimerEvent());
       final response = await courseRepo.completeVideo(state.videoPlayingId);
       if (response == true) {
@@ -247,6 +250,7 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
             courseVideo: null,
           ),
         );
+
         return;
       }
       emit(
@@ -273,10 +277,6 @@ class CourseDetailsBloc extends Bloc<CourseDetailsEvent, CourseDetailsState> {
         courseVideo: controller,
       ),
     );
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    // strapiApiService.fetchConcreteCourse(
-    //   event.videoUrl,
-    // );
   }
 
   @override

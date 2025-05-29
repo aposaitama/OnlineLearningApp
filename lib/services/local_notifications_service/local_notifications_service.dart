@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:android_intent_plus/flag.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:online_app/di/service_locator.dart';
 import 'package:online_app/models/local_notification_model/local_notification_model.dart';
@@ -6,6 +10,7 @@ import 'package:online_app/services/shared_preferences_service/shared_preference
 import 'package:timezone/timezone.dart' as tz;
 
 class LocalNotificationsService {
+  final _sharedPrefs = locator<SharedPreferencesService>();
   static final LocalNotificationsService _instance =
       LocalNotificationsService._internal();
 
@@ -15,6 +20,8 @@ class LocalNotificationsService {
 
   static final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
+  // final localNotificationRepo = locator<LocalNotificationRepository>();
 
   static Future<void> localNotificationsInit() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -43,21 +50,26 @@ class LocalNotificationsService {
           badge: true,
           sound: true,
         );
+
+    await requestExactAlarmPermission();
   }
 
-  NotificationDetails _notificationDetails() {
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+  Future<NotificationDetails> _notificationDetails() async {
+    final isEnabledSound = await _sharedPrefs.getSoundNotificationsStatus();
+    AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'default_channel_id',
       'Default',
       channelDescription: 'General notifications',
       importance: Importance.max,
       priority: Priority.high,
+      playSound: isEnabledSound!,
     );
 
-    const DarwinNotificationDetails iosDetails = DarwinNotificationDetails();
+    DarwinNotificationDetails iosDetails =
+        DarwinNotificationDetails(presentSound: isEnabledSound);
 
-    const NotificationDetails platformChannelSpecifics = NotificationDetails(
+    NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: iosDetails,
     );
@@ -71,11 +83,15 @@ class LocalNotificationsService {
     required String body,
     required NotificationType notificationType,
   }) async {
+    final enableNotifications =
+        await _sharedPrefs.getEnableNotificationsStatus();
+    if (enableNotifications == false) return;
+
     await _notificationsPlugin.show(
       id,
       title,
       body,
-      _notificationDetails(),
+      await _notificationDetails(),
     );
 
     final localNotificationRepo = locator<LocalNotificationRepository>();
@@ -95,25 +111,28 @@ class LocalNotificationsService {
 
   Future<void> scheduleDailyNotificationIfStreakZero(
       {required int streak}) async {
+    final enableNotifications =
+        await _sharedPrefs.getEnableNotificationsStatus();
+    if (enableNotifications == false) return;
+
     const id = 2;
     await _notificationsPlugin.zonedSchedule(
       id,
       'Reminding!!!',
       'Come back, you have uncompleted courses!',
-      _nextInstanceOfSheduledNotif(),
-      _notificationDetails(),
+      _nextInstanceOfScheduledNotif(),
+      await _notificationDetails(),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
 
     final localNotificationRepo = locator<LocalNotificationRepository>();
-
     localNotificationRepo.createNotification(
       notificationBody: 'Come back, you have uncompleted courses!',
       notificationType: NotificationType.info,
     );
   }
 
-  tz.TZDateTime _nextInstanceOfSheduledNotif() {
+  tz.TZDateTime _nextInstanceOfScheduledNotif() {
     final now = tz.TZDateTime.now(tz.local);
 
     tz.TZDateTime scheduledDate = tz.TZDateTime(
@@ -126,18 +145,20 @@ class LocalNotificationsService {
     return scheduledDate;
   }
 
-  Future<void> showStreakNotification(int streak) async {
-    // if(streak != 0 && (DateTime.now().hour != 20 && DateTime.now().minute != 45)) return;
+  static Future<void> requestExactAlarmPermission() async {
+    if (!Platform.isAndroid) return;
 
-    final id = DateTime.now().millisecondsSinceEpoch.remainder(10000);
-    if (streak == 0 &&
-        (DateTime.now().hour == 19 && DateTime.now().minute == 43)) {
-      await _notificationsPlugin.show(
-        id,
-        'Reminding!!!',
-        'Come back, you have uncompleted courses!',
-        _notificationDetails(),
+    final prefs = locator<SharedPreferencesService>();
+    final requestedBefore = await prefs.getAlarmRequest() ?? false;
+
+    if (!requestedBefore) {
+      const intent = AndroidIntent(
+        action: 'android.settings.REQUEST_SCHEDULE_EXACT_ALARM',
+        flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
       );
+      await intent.launch();
+
+      await prefs.saveAlarmRequest(true);
     }
   }
 }
