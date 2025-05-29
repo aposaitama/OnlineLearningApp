@@ -158,11 +158,16 @@ class _SearchModalSheetState extends State<SearchModalSheet> {
                     ),
                   ),
                 ),
-                PriceSlider(
-                  onChange: (RangeValues range) => _selectPriceRange(
-                    context,
-                    range,
-                  ),
+                BlocBuilder<FiltersBloc, FiltersState>(
+                  builder: (context, state) {
+                    return PriceSlider(
+                      priceRange: state.priceRange,
+                      onChange: (RangeValues range) => _selectPriceRange(
+                        context,
+                        range,
+                      ),
+                    );
+                  }
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 18.0),

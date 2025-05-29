@@ -9,16 +9,20 @@ import 'package:online_app/screens/course_details_screen/widgets/buy_bottom_bar.
 import 'package:online_app/screens/course_details_screen/widgets/video_playable_button.dart';
 import 'package:online_app/screens/course_screen/widgets/categories_item_tile.dart';
 import 'package:online_app/screens/course_screen/widgets/concrete_course_item_tile.dart';
+import 'package:online_app/screens/course_screen/widgets/search_text_field.dart';
 import 'package:online_app/screens/edit_account_screen/widgets/edit_account_text_field.dart';
 import 'package:online_app/screens/home_screen/widgets/actions_item_tile.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_item_tile.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
+import 'package:online_app/screens/home_screen/widgets/progress_widget_with_bg.dart';
 import 'package:online_app/screens/my_courses_screen/widgets/course_item_stat.dart';
 import 'package:online_app/widgets/clocking_stat_item_tile.dart';
 import 'package:online_app/widgets/custom_bottom_nav_bar.dart';
 import 'package:online_app/widgets/custom_filled_button.dart';
 import 'package:online_app/widgets/custom_text_field.dart';
+import 'package:online_app/widgets/search_modal_sheet/price_slider.dart';
 import 'package:widgetbook/widgetbook.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 import 'gen/assets.gen.dart';
 
@@ -74,9 +78,16 @@ class WidgetbookApp extends StatelessWidget {
               ),
               WidgetbookUseCase(
                 name: 'Buy Bottom Bar',
-                builder: (context) => const BuyBottomBar(
-                  courseId: '',
-                ),
+                builder: (context) {
+                  final isFavourite = context.knobs
+                      .boolean(label: 'Is Favourite', initialValue: true);
+                  final isBought = context.knobs
+                      .boolean(label: 'Is Bought', initialValue: true);
+                  return BuyBottomBar(
+                    isBought: isBought,
+                    isFavourite: isFavourite,
+                  );
+                },
               ),
               WidgetbookUseCase(
                 name: 'Meetup widget',
@@ -86,15 +97,16 @@ class WidgetbookApp extends StatelessWidget {
                 name: 'TextFields',
                 useCases: [
                   WidgetbookUseCase(
-                    name: 'TextFieldWithFilters',
-                    builder: (context) => const CustomTextField(
-                      title: 'title',
-                      hint: 'hint',
-                    ),
-                  ),
+                      name: 'TextFieldWithFilters',
+                      builder: (context) => SearchTextField(
+                            onTapFilters: () {},
+                            updateCourses: () {},
+                          )),
                   WidgetbookUseCase(
-                    name: 'TextFieldWithFilters',
-                    builder: (context) => const EditAccountTextField(),
+                    name: 'EditTextField',
+                    builder: (context) => const EditAccountTextField(
+                      initialValue: 'username',
+                    ),
                   ),
                 ],
               ),
@@ -102,22 +114,30 @@ class WidgetbookApp extends StatelessWidget {
                 name: 'Buttons',
                 useCases: [
                   WidgetbookUseCase(
-                    name: 'DefaultButton',
-                    builder: (context) =>
-                        const CustomFilledButton(buttonTitle: 'Button'),
-                  ),
-                  WidgetbookUseCase(
-                    name: 'InactiveButton',
-                    builder: (context) => const CustomFilledButton(
-                      buttonTitle: 'buttonTitle',
-                      buttonColor: AppColors.darkHintTextColor,
-                    ),
+                    name: 'Default Button',
+                    builder: (context) {
+                      final isActive = context.knobs
+                          .boolean(label: 'Is Active', initialValue: true);
+                      return CustomFilledButton(
+                        buttonTitle: 'My Button',
+                        buttonColor: isActive
+                            ? AppColors.deepBlueColor
+                            : AppColors.darkHintTextColor,
+                      );
+                    },
                   ),
                   WidgetbookUseCase(
                     name: 'PlayButton',
                     builder: (context) => VideoPlayableButton(
                       imagePath: Assets.icons.polygon,
                       onPlayPressed: () {},
+                    ),
+                  ),
+                  WidgetbookUseCase(
+                    name: 'PriceSlider',
+                    builder: (context) => PriceSlider(
+                      onChange: (range) {},
+                      priceRange: const RangeValues(0, 400),
                     ),
                   ),
                 ],

@@ -23,7 +23,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _register() {
     if (isAgree) {
-      if(_formKey.currentState!.validate()){
       context.read<AuthBloc>().add(
             RegisterUserBlocEvent(
               userNameController.text,
@@ -31,7 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               userPasswordController.text,
             ),
           );
-      }
     } else {
       BotToast.showText(
         text: 'You have to agree with rules',
@@ -154,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           const SizedBox(height: 24.0),
                           CustomFilledButton(
                             buttonTitle: 'Create account',
-                            onTap: _register,
+                            onTap: !isAgree ? (){} : _register,
                             buttonColor:
                                 !isAgree ? AppColors.darkHintTextColor : null,
                           ),

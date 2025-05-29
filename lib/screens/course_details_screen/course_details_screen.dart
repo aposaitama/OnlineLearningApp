@@ -17,6 +17,7 @@ import 'package:online_app/screens/course_details_screen/widgets/course_videos_b
 import 'package:online_app/screens/course_details_screen/widgets/custom_overlays_controls.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_event.dart';
+import 'package:online_app/screens/home_screen/bloc/home_screen_bloc/home_screen_bloc_state.dart';
 import 'package:online_app/utils/extensions.dart';
 import 'package:online_app/widgets/clocking_in_widget.dart';
 
@@ -227,23 +228,32 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> {
                                   ),
 
                                   //buy course bottom section
-                                  BlocBuilder<CourseDetailsBloc,
-                                      CourseDetailsState>(
-                                    builder: (context, state) {
-                                      return BuyBottomBar(
-                                        courseId: widget.courseId,
-                                        onToggleFavourite: () => context
-                                            .read<CourseDetailsBloc>()
-                                            .add(
-                                              ToogleFavouriteEvent(
-                                                  state.course?.id.toString() ??
-                                                      ''),
+                                  BlocBuilder<HomeScreenBloc, HomeScreenState>(
+                                    builder: (context, homeScreenState) {
+                                      return BlocBuilder<CourseDetailsBloc,
+                                          CourseDetailsState>(
+                                        builder: (context, state) {
+                                          return BuyBottomBar(
+                                            isBought: (homeScreenState.userInfo?.user_purchased_courses
+                                                .any((course) {
+                                              return course.documentId == widget.courseId;
+                                            }) ??
+                                                false),
+                                            isFavourite: state.isInFavourite,
+                                            onToggleFavourite: () => context
+                                                .read<CourseDetailsBloc>()
+                                                .add(
+                                                  ToogleFavouriteEvent(
+                                                      state.course?.id.toString() ??
+                                                          ''),
+                                                ),
+                                            onBuyButtonPressed: () => context.push(
+                                              '/payment-screen/${course?.id ?? 0}',
                                             ),
-                                        onBuyButtonPressed: () => context.push(
-                                          '/payment-screen/${course?.id ?? 0}',
-                                        ),
+                                          );
+                                        },
                                       );
-                                    },
+                                    }
                                   ),
                                 ],
                               ),
