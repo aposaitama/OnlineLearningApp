@@ -49,7 +49,6 @@ class ClockingInWidget {
   static Future<void> showUserStatDialog(
     BuildContext context,
   ) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return showDialog(
       context: context,
       builder: (_) => Dialog(

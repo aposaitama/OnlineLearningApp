@@ -15,6 +15,7 @@ import 'package:online_app/screens/home_screen/widgets/actions_builder.dart';
 import 'package:online_app/screens/home_screen/widgets/learning_plan_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/meetup_widget.dart';
 import 'package:online_app/screens/home_screen/widgets/progress_widget_with_bg.dart';
+import 'package:online_app/widgets/clocking_in_widget.dart';
 
 import '../../di/service_locator.dart';
 import '../../services/local_notifications_service/local_notifications_service.dart';
@@ -86,7 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         if (state.loadingStatus == HomeScreenStatus.loaded) {
-          _userStreakNotification();
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ClockingInWidget.showUserStatDialog(context);
+            _userStreakNotification();
+          });
           return Scaffold(
             appBar: AppBar(
               toolbarHeight: 85.0,
